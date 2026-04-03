@@ -1,6 +1,9 @@
 {
   "version": 1,
   "defaults": {
+    "record": {
+      "sale_status": true
+    },
     "flight_offer": {
       "supplier_code": "",
       "itinerary_code": "",
@@ -39,12 +42,65 @@
     "flight_offer.sale_status",
     "flight_offer.seats_available",
     "flight_offer.settlement_price",
-    "flight_offer.supplier_code"
+    "flight_offer.supplier_code",
+    "record",
+    "record.sale_status"
   ],
   "required": [
     "editing",
-    "flight_offer"
+    "flight_offer",
+    "record"
   ],
   "urlParams": {},
-  "notes": []
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "get": "Travel.FlightOffer.get",
+        "list": "Travel.FlightOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "runtime",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/flight_detail",
+        "cases": [],
+        "page_kind": "detail",
+        "page_spec": {
+          "page_kind": "detail",
+          "route_role": "detail",
+          "supports_runtime_record_identity": false,
+          "template_kind": "object_page"
+        }
+      }
+    },
+    "entity": "FlightOffer",
+    "extends": "base_object_page",
+    "page_id": "flight_detail",
+    "page_type": "object_page",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "object_page"
+      }
+    },
+    "version": 2
+  }
 }

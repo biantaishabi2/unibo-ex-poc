@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "supplier_code": "",
       "itinerary_code": "",
       "flight_no": "",
@@ -24,6 +25,7 @@
       "sale_status": ""
     },
     {
+      "id": "row_02",
       "supplier_code": "",
       "itinerary_code": "",
       "flight_no": "",
@@ -42,6 +44,7 @@
       "sale_status": ""
     },
     {
+      "id": "row_03",
       "supplier_code": "",
       "itinerary_code": "",
       "flight_no": "",

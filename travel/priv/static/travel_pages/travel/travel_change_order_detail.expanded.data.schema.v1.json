@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "travel_change_order.approval_mode",
     "travel_change_order.change_fee",
     "travel_change_order.change_reason",
@@ -10,9 +11,21 @@
   ],
   "requiredRoots": [
     "editing",
+    "record",
     "travel_change_order"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

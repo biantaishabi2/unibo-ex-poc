@@ -43,6 +43,29 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
+      <.button variant="secondary" phx-click="action_submit" size="md" id="travel_change_order_action_submit">
+        提交改签申请,如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
+      </.button>
+      <%= if get_in(@record, [:status]) == "pending" do %>
+        <.button variant="secondary" phx-click="action_confirm_change" size="md" id="travel_change_order_action_confirm_change">
+          confirm_change
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "pending" do %>
+        <.button variant="secondary" phx-click="action_reject_change" size="md" id="travel_change_order_action_reject_change">
+          reject_change
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "approved" do %>
+        <.button variant="secondary" phx-click="action_complete" size="md" id="travel_change_order_action_complete">
+          complete
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "pending" do %>
+        <.button variant="secondary" phx-click="action_complete_direct" size="md" id="travel_change_order_action_complete_direct">
+          complete_direct
+        </.button>
+      <% end %>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
@@ -64,7 +87,7 @@
                   改签原因
                 </.text>
                 <.text id="detail_fields_change_reason_value">
-                  <%= get_in(@travel_change_order, [:change_reason]) || "" %>
+                  <%= get_in(@travel_change_order, [:change_reason]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_price_difference">
@@ -72,7 +95,7 @@
                   差价
                 </.text>
                 <.text id="detail_fields_price_difference_value">
-                  <%= get_in(@travel_change_order, [:price_difference]) || "" %>
+                  <%= get_in(@travel_change_order, [:price_difference]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_change_fee">
@@ -80,7 +103,7 @@
                   改签手续费
                 </.text>
                 <.text id="detail_fields_change_fee_value">
-                  <%= get_in(@travel_change_order, [:change_fee]) || "" %>
+                  <%= get_in(@travel_change_order, [:change_fee]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_status">
@@ -88,7 +111,7 @@
                   status
                 </.text>
                 <.text id="detail_fields_status_value">
-                  <%= get_in(@travel_change_order, [:status]) || "" %>
+                  <%= get_in(@travel_change_order, [:status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_approval_mode">
@@ -96,24 +119,28 @@
                   审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
                 </.text>
                 <.text id="detail_fields_approval_mode_value">
-                  <%= get_in(@travel_change_order, [:approval_mode]) || "" %>
+                  <%= get_in(@travel_change_order, [:approval_mode]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="travel_change_order_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="travel_change_order.change_reason" size="md" id="update_change_reason" />
-                <.input bind="travel_change_order.price_difference" size="md" id="update_price_difference" />
-                <.input bind="travel_change_order.change_fee" size="md" id="update_change_fee" />
-                <.input bind="travel_change_order.new_offer_id" size="md" id="update_new_offer_id" />
-                <.select bind="travel_change_order.status" size="md" id="update_status" options={[%{label: "pending", value: "pending"}, %{label: "approved", value: "approved"}, %{label: "completed", value: "completed"}, %{label: "rejected", value: "rejected"}]}>
-
-                </.select>
-                <.select bind="travel_change_order.approval_mode" size="md" id="update_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
-
+                <.input size="md" name="travel_change_order[change_reason]" id="travel_change_order_form_change_reason" value={get_in(@travel_change_order, [:change_reason]) || ""} />
+                <.input size="md" name="travel_change_order[price_difference]" id="travel_change_order_form_price_difference" value={get_in(@travel_change_order, [:price_difference]) || ""} />
+                <.input size="md" name="travel_change_order[change_fee]" id="travel_change_order_form_change_fee" value={get_in(@travel_change_order, [:change_fee]) || ""} />
+                <.input size="md" name="travel_change_order[new_offer_id]" id="travel_change_order_form_new_offer_id" value={get_in(@travel_change_order, [:new_offer_id]) || ""} />
+                <.select size="md" name="travel_change_order[approval_mode]" id="travel_change_order_form_approval_mode" :let={builder} value={get_in(@travel_change_order, [:approval_mode]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="none" label="none">none</.select_item>
+                      <.select_item builder={builder} value="self" label="self">self</.select_item>
+                      <.select_item builder={builder} value="oa" label="oa">oa</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
               </.stack>
             </.grid>
@@ -121,7 +148,7 @@
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

@@ -178,6 +178,36 @@
         }
       ]
     },
+    "action_activate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "vacation_offer_action_activate",
+          "prop": "click",
+          "raw": "action_activate"
+        }
+      ]
+    },
+    "action_deactivate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "vacation_offer_action_deactivate",
+          "prop": "click",
+          "raw": "action_deactivate"
+        }
+      ]
+    },
+    "action_expire": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "vacation_offer_action_expire",
+          "prop": "click",
+          "raw": "action_expire"
+        }
+      ]
+    },
     "action_destroy": {
       "triggers": [
         {
@@ -192,14 +222,8 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "edit_form",
+          "node_id": "vacation_offer_edit_form",
           "prop": "submit",
-          "raw": "form_submit"
-        },
-        {
-          "node_type": "Button",
-          "node_id": "save_btn",
-          "prop": "click",
           "raw": "form_submit"
         }
       ]
@@ -208,7 +232,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "edit_form",
+          "node_id": "vacation_offer_edit_form",
           "prop": "change",
           "raw": "form_change"
         }

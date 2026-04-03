@@ -1,4 +1,7 @@
 {
+  "record": {
+    "sale_status": true
+  },
   "hotel_offer": {
     "supplier_code": "",
     "hotel_code": "",

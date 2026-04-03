@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "travel_order.booking_mode",
     "travel_order.change_status",
     "travel_order.contact_name",
@@ -24,9 +25,21 @@
   ],
   "requiredRoots": [
     "editing",
+    "record",
     "travel_order"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

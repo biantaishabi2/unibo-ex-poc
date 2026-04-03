@@ -6,18 +6,21 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "cabin_class_code": "",
       "cabin_class_name": "",
       "cabin_rank": "",
       "status": ""
     },
     {
+      "id": "row_02",
       "cabin_class_code": "",
       "cabin_class_name": "",
       "cabin_rank": "",
       "status": ""
     },
     {
+      "id": "row_03",
       "cabin_class_code": "",
       "cabin_class_name": "",
       "cabin_rank": "",

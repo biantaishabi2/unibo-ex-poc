@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_room_type_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_room_type/:id",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

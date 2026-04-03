@@ -16,67 +16,373 @@
     },
     "params": {
       "accept": [
-        "id"
+        "id",
+        "airline_name",
+        "airline_code",
+        "icao_code",
+        "status",
+        "iata_code"
       ]
     }
   },
   "children": [],
+  "delivery_mode": "compiled",
   "domain": "Travel",
   "e2e": {
     "playwright": {
-      "auto": true,
-      "base_path": "/travel/travel_airline/:id",
+      "auto": false,
+      "base_path": "/pages/travel/travel_airline/:id",
+      "capabilities": {
+        "supports_backend_verification": true,
+        "supports_children": false,
+        "supports_custom_actions": false,
+        "supports_custom_page": false,
+        "supports_data_lifecycle": true,
+        "supports_destroy": false,
+        "supports_edit_form": true,
+        "supports_embedded_form": false,
+        "supports_fcl": false,
+        "supports_state_machine": false,
+        "supports_wait_contract": true,
+        "supports_wizard": false
+      },
       "cases": [
         {
           "covers": [],
+          "kind": "load",
           "name": "页面加载 + 结构可见",
           "steps": [
             {
               "action": "expect_visible",
-              "selector": "[data-page='travel_airline_detail']"
+              "selector": "#travel_airline_detail"
             }
-          ]
+          ],
+          "verification_key": "load",
+          "wait_key": "load"
         },
         {
           "covers": [
-            "toggle_edit"
+            "toggle_edit",
+            "cancel_edit"
           ],
+          "kind": "flow",
           "name": "编辑模式切换",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='toggle_edit']"
+              "event": "toggle_edit"
             },
             {
               "action": "expect_visible",
-              "selector": "form, [data-mode='edit']"
+              "selector": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "click",
+              "event": "cancel_edit"
+            },
+            {
+              "action": "expect_not_visible",
+              "selector": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             }
-          ]
+          ],
+          "verification_key": "toggle_edit",
+          "wait_key": null
         },
         {
           "covers": [
+            "toggle_edit",
+            "form_change",
             "form_submit"
           ],
-          "name": "表单提交",
+          "kind": "crud",
+          "name": "CRUD：编辑记录",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='form_submit'], button[type='submit']"
+              "event": "toggle_edit"
             },
             {
-              "action": "expect_text_contains",
-              "selector": "#flash-group, [data-flash], [role='alert']",
-              "value": "成功"
+              "action": "expect_visible",
+              "selector": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "type",
+              "field": "iata_code",
+              "value": "UPDATED_{{__run_id}}_iata_code"
+            },
+            {
+              "action": "type",
+              "field": "icao_code",
+              "value": "UPDATED_{{__run_id}}_icao_code"
+            },
+            {
+              "action": "type",
+              "field": "airline_name",
+              "value": "UPDATED_{{__run_id}}_airline_name"
+            },
+            {
+              "action": "select_option",
+              "field": "status",
+              "value": "inactive"
+            },
+            {
+              "action": "click",
+              "event": "form_submit"
+            }
+          ],
+          "verification_key": "update",
+          "wait_key": "form_submit"
+        }
+      ],
+      "data_contract": {
+        "binds": [
+          {
+            "name": "route_record_id",
+            "path": "id",
+            "source": "route"
+          },
+          {
+            "name": "created_display_value",
+            "path": "airline_code",
+            "source": "form"
+          }
+        ],
+        "cleanup": [],
+        "inputs": [
+          "route",
+          "form",
+          "generated_form_values"
+        ],
+        "setup": [
+          {
+            "binds": [
+              {
+                "name": "seed_record_id",
+                "path": "id",
+                "source": "result"
+              },
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelAirline",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelAirlines",
+            "kind": "entity_list_first",
+            "name": "resolve_current_record",
+            "owner": "root"
+          }
+        ]
+      },
+      "dto_smoke": [],
+      "graphql_path": "/api/graphql",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#travel_airline_detail",
+          "submit": "#travel_airline_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "protocol": {
+        "case_fields": [
+          "name",
+          "kind",
+          "covers",
+          "wait_key",
+          "verification_key",
+          "steps"
+        ],
+        "contract_fields": [
+          "strategy",
+          "capabilities",
+          "wait_contract",
+          "verification_contract",
+          "data_contract"
+        ],
+        "step_fields": [
+          "action",
+          "selector",
+          "value",
+          "url",
+          "timeout"
+        ],
+        "transition_fields": [
+          "name",
+          "from",
+          "to",
+          "trigger",
+          "description",
+          "navigate_to"
+        ],
+        "version": 4
+      },
+      "strategy": "object_detail_flow",
+      "template_kind": "object_page",
+      "verification_contract": {
+        "create": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "created_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              },
+              {
+                "name": "created_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": "$form.airline_code",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelAirline",
+            "op": "field_equals",
+            "path": "airline_code",
+            "source": "created_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_airline_detail",
+              "value": null
+            }
+          ]
+        },
+        "load": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelAirline",
+            "op": "exists",
+            "path": "id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_airline_detail",
+              "value": null
+            }
+          ]
+        },
+        "state_transitions": [],
+        "toggle_edit": {
+          "backend": null,
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_airline_detail",
+              "value": null
+            }
+          ]
+        },
+        "update": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "$form.airline_name",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelAirline",
+            "op": "equals",
+            "path": "airline_name",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_airline_detail",
+              "value": null
             }
           ]
         }
-      ],
-      "dto_smoke": []
+      },
+      "wait_contract": {
+        "form_submit": {
+          "mode": "form_settled",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "#travel_airline_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "form_settled",
+            "selector": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "toggle_edit": {
+          "mode": "dom_visible",
+          "reload_messages": [],
+          "selectors": [
+            "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+          ],
+          "state_keys": [],
+          "timeout": 3000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        }
+      }
     }
   },
   "entity": "TravelAirline",
   "page_id": "travel_airline_detail",
   "page_type": "object_page",
+  "resource_type": "master_data",
   "runtime_monitoring": null,
   "schema_version": "1.0",
   "state_transitions": [
@@ -115,11 +421,34 @@
     "form",
     "loading"
   ],
+  "transitions": {
+    "cancel_edit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "form_change": [],
+    "form_submit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "toggle_edit": [
+      {
+        "op": "toggle",
+        "path": "editing"
+      }
+    ]
+  },
   "ui": {
     "sections": [],
     "template": {
       "detail": "object_page"
     }
   },
-  "version": 1
+  "version": 2
 }

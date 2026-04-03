@@ -32,6 +32,21 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
+      <%= if get_in(@record, [:sale_status]) == "draft" || get_in(@record, [:sale_status]) == "inactive" do %>
+        <.button variant="secondary" phx-click="action_activate" size="md" id="train_offer_action_activate">
+          activate
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:sale_status]) == "active" do %>
+        <.button variant="secondary" phx-click="action_deactivate" size="md" id="train_offer_action_deactivate">
+          deactivate
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:sale_status]) == "active" do %>
+        <.button variant="secondary" phx-click="action_expire" size="md" id="train_offer_action_expire">
+          expire
+        </.button>
+      <% end %>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
@@ -53,7 +68,7 @@
                   供应商编码
                 </.text>
                 <.text id="detail_fields_supplier_code_value">
-                  <%= get_in(@train_offer, [:supplier_code]) || "" %>
+                  <%= get_in(@train_offer, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_train_no">
@@ -61,7 +76,7 @@
                   车次号
                 </.text>
                 <.text id="detail_fields_train_no_value">
-                  <%= get_in(@train_offer, [:train_no]) || "" %>
+                  <%= get_in(@train_offer, [:train_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_departure_station_code">
@@ -69,7 +84,7 @@
                   出发站编码
                 </.text>
                 <.text id="detail_fields_departure_station_code_value">
-                  <%= get_in(@train_offer, [:departure_station_code]) || "" %>
+                  <%= get_in(@train_offer, [:departure_station_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_departure_station_name">
@@ -77,7 +92,7 @@
                   出发站名称
                 </.text>
                 <.text id="detail_fields_departure_station_name_value">
-                  <%= get_in(@train_offer, [:departure_station_name]) || "" %>
+                  <%= get_in(@train_offer, [:departure_station_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_arrival_station_code">
@@ -85,7 +100,7 @@
                   到达站编码
                 </.text>
                 <.text id="detail_fields_arrival_station_code_value">
-                  <%= get_in(@train_offer, [:arrival_station_code]) || "" %>
+                  <%= get_in(@train_offer, [:arrival_station_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_arrival_station_name">
@@ -93,7 +108,7 @@
                   到达站名称
                 </.text>
                 <.text id="detail_fields_arrival_station_name_value">
-                  <%= get_in(@train_offer, [:arrival_station_name]) || "" %>
+                  <%= get_in(@train_offer, [:arrival_station_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_travel_date">
@@ -101,7 +116,7 @@
                   乘车日期
                 </.text>
                 <.text id="detail_fields_travel_date_value">
-                  <%= get_in(@train_offer, [:travel_date]) || "" %>
+                  <%= get_in(@train_offer, [:travel_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_departure_at">
@@ -109,7 +124,7 @@
                   发车时间
                 </.text>
                 <.text id="detail_fields_departure_at_value">
-                  <%= get_in(@train_offer, [:departure_at]) || "" %>
+                  <%= get_in(@train_offer, [:departure_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_arrival_at">
@@ -117,7 +132,7 @@
                   到达时间
                 </.text>
                 <.text id="detail_fields_arrival_at_value">
-                  <%= get_in(@train_offer, [:arrival_at]) || "" %>
+                  <%= get_in(@train_offer, [:arrival_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_seat_class">
@@ -125,7 +140,7 @@
                   席别名称
                 </.text>
                 <.text id="detail_fields_seat_class_value">
-                  <%= get_in(@train_offer, [:seat_class]) || "" %>
+                  <%= get_in(@train_offer, [:seat_class]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_seat_code">
@@ -133,7 +148,7 @@
                   席别编码
                 </.text>
                 <.text id="detail_fields_seat_code_value">
-                  <%= get_in(@train_offer, [:seat_code]) || "" %>
+                  <%= get_in(@train_offer, [:seat_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_is_no_seat">
@@ -141,7 +156,7 @@
                   是否无座票
                 </.text>
                 <.text id="detail_fields_is_no_seat_value">
-                  <%= get_in(@train_offer, [:is_no_seat]) || "" %>
+                  <%= get_in(@train_offer, [:is_no_seat]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_inventory_status">
@@ -149,7 +164,7 @@
                   余票或候补可用状态
                 </.text>
                 <.text id="detail_fields_inventory_status_value">
-                  <%= get_in(@train_offer, [:inventory_status]) || "" %>
+                  <%= get_in(@train_offer, [:inventory_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_waitlist_supported">
@@ -157,7 +172,7 @@
                   是否支持候补
                 </.text>
                 <.text id="detail_fields_waitlist_supported_value">
-                  <%= get_in(@train_offer, [:waitlist_supported]) || "" %>
+                  <%= get_in(@train_offer, [:waitlist_supported]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_listed_price">
@@ -165,7 +180,7 @@
                   对客展示价快照
                 </.text>
                 <.text id="detail_fields_listed_price_value">
-                  <%= get_in(@train_offer, [:listed_price]) || "" %>
+                  <%= get_in(@train_offer, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_settlement_price">
@@ -173,7 +188,7 @@
                   结算价快照
                 </.text>
                 <.text id="detail_fields_settlement_price_value">
-                  <%= get_in(@train_offer, [:settlement_price]) || "" %>
+                  <%= get_in(@train_offer, [:settlement_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_currency">
@@ -181,7 +196,7 @@
                   currency
                 </.text>
                 <.text id="detail_fields_currency_value">
-                  <%= get_in(@train_offer, [:currency]) || "" %>
+                  <%= get_in(@train_offer, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_booking_rules_snapshot">
@@ -189,7 +204,7 @@
                   预订规则快照
                 </.text>
                 <.text id="detail_fields_booking_rules_snapshot_value">
-                  <%= get_in(@train_offer, [:booking_rules_snapshot]) || "" %>
+                  <%= get_in(@train_offer, [:booking_rules_snapshot]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_change_rules_snapshot">
@@ -197,7 +212,7 @@
                   改签规则快照
                 </.text>
                 <.text id="detail_fields_change_rules_snapshot_value">
-                  <%= get_in(@train_offer, [:change_rules_snapshot]) || "" %>
+                  <%= get_in(@train_offer, [:change_rules_snapshot]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_refund_rules_snapshot">
@@ -205,7 +220,7 @@
                   退票规则快照
                 </.text>
                 <.text id="detail_fields_refund_rules_snapshot_value">
-                  <%= get_in(@train_offer, [:refund_rules_snapshot]) || "" %>
+                  <%= get_in(@train_offer, [:refund_rules_snapshot]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_sale_status">
@@ -213,51 +228,67 @@
                   可售状态
                 </.text>
                 <.text id="detail_fields_sale_status_value">
-                  <%= get_in(@train_offer, [:sale_status]) || "" %>
+                  <%= get_in(@train_offer, [:sale_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="train_offer_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="train_offer.tenant_id" size="md" id="update_tenant_id" />
-                <.input bind="train_offer.host_shop_id" size="md" id="update_host_shop_id" />
-                <.input bind="train_offer.supplier_code" size="md" id="update_supplier_code" />
-                <.input bind="train_offer.train_no" size="md" id="update_train_no" />
-                <.input bind="train_offer.departure_station_code" size="md" id="update_departure_station_code" />
-                <.input bind="train_offer.departure_station_name" size="md" id="update_departure_station_name" />
-                <.input bind="train_offer.arrival_station_code" size="md" id="update_arrival_station_code" />
-                <.input bind="train_offer.arrival_station_name" size="md" id="update_arrival_station_name" />
-                <.input bind="train_offer.travel_date" size="md" id="update_travel_date" />
-                <.input bind="train_offer.departure_at" size="md" id="update_departure_at" />
-                <.input bind="train_offer.arrival_at" size="md" id="update_arrival_at" />
-                <.input bind="train_offer.seat_class" size="md" id="update_seat_class" />
-                <.input bind="train_offer.seat_code" size="md" id="update_seat_code" />
-                <.switch bind="train_offer.is_no_seat" size="md" id="update_is_no_seat" />
-                <.select bind="train_offer.inventory_status" size="md" id="update_inventory_status" options={[%{label: "available", value: "available"}, %{label: "waitlist_only", value: "waitlist_only"}, %{label: "sold_out", value: "sold_out"}, %{label: "unavailable", value: "unavailable"}]}>
-
+                <.input size="md" name="train_offer[tenant_id]" id="train_offer_form_tenant_id" value={get_in(@train_offer, [:tenant_id]) || ""} />
+                <.input size="md" name="train_offer[host_shop_id]" id="train_offer_form_host_shop_id" value={get_in(@train_offer, [:host_shop_id]) || ""} />
+                <.input size="md" name="train_offer[supplier_code]" id="train_offer_form_supplier_code" value={get_in(@train_offer, [:supplier_code]) || ""} />
+                <.input size="md" name="train_offer[train_no]" id="train_offer_form_train_no" value={get_in(@train_offer, [:train_no]) || ""} />
+                <.input size="md" name="train_offer[departure_station_code]" id="train_offer_form_departure_station_code" value={get_in(@train_offer, [:departure_station_code]) || ""} />
+                <.input size="md" name="train_offer[departure_station_ref_id]" id="train_offer_form_departure_station_ref_id" value={get_in(@train_offer, [:departure_station_ref_id]) || ""} />
+                <.input size="md" name="train_offer[departure_station_name]" id="train_offer_form_departure_station_name" value={get_in(@train_offer, [:departure_station_name]) || ""} />
+                <.input size="md" name="train_offer[arrival_station_code]" id="train_offer_form_arrival_station_code" value={get_in(@train_offer, [:arrival_station_code]) || ""} />
+                <.input size="md" name="train_offer[arrival_station_ref_id]" id="train_offer_form_arrival_station_ref_id" value={get_in(@train_offer, [:arrival_station_ref_id]) || ""} />
+                <.input size="md" name="train_offer[arrival_station_name]" id="train_offer_form_arrival_station_name" value={get_in(@train_offer, [:arrival_station_name]) || ""} />
+                <.input size="md" name="train_offer[travel_date]" id="train_offer_form_travel_date" value={get_in(@train_offer, [:travel_date]) || ""} />
+                <.input size="md" name="train_offer[departure_at]" id="train_offer_form_departure_at" value={get_in(@train_offer, [:departure_at]) || ""} />
+                <.input size="md" name="train_offer[arrival_at]" id="train_offer_form_arrival_at" value={get_in(@train_offer, [:arrival_at]) || ""} />
+                <.input size="md" name="train_offer[seat_class]" id="train_offer_form_seat_class" value={get_in(@train_offer, [:seat_class]) || ""} />
+                <.input size="md" name="train_offer[seat_code]" id="train_offer_form_seat_code" value={get_in(@train_offer, [:seat_code]) || ""} />
+                <.switch size="md" name="train_offer[is_no_seat]" id="train_offer_form_is_no_seat" value={get_in(@train_offer, [:is_no_seat]) || ""} />
+                <.select size="md" name="train_offer[inventory_status]" id="train_offer_form_inventory_status" :let={builder} value={get_in(@train_offer, [:inventory_status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="available" label="available">available</.select_item>
+                      <.select_item builder={builder} value="waitlist_only" label="waitlist_only">waitlist_only</.select_item>
+                      <.select_item builder={builder} value="sold_out" label="sold_out">sold_out</.select_item>
+                      <.select_item builder={builder} value="unavailable" label="unavailable">unavailable</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
-                <.switch bind="train_offer.waitlist_supported" size="md" id="update_waitlist_supported" />
-                <.input bind="train_offer.listed_price" size="md" id="update_listed_price" />
-                <.input bind="train_offer.settlement_price" size="md" id="update_settlement_price" />
-                <.input bind="train_offer.currency" size="md" id="update_currency" />
-                <.textarea bind="train_offer.booking_rules_snapshot" id="update_booking_rules_snapshot" />
-                <.textarea bind="train_offer.change_rules_snapshot" id="update_change_rules_snapshot" />
-                <.textarea bind="train_offer.refund_rules_snapshot" id="update_refund_rules_snapshot" />
-                <.select bind="train_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
-
+                <.switch size="md" name="train_offer[waitlist_supported]" id="train_offer_form_waitlist_supported" value={get_in(@train_offer, [:waitlist_supported]) || ""} />
+                <.input size="md" name="train_offer[listed_price]" id="train_offer_form_listed_price" value={get_in(@train_offer, [:listed_price]) || ""} />
+                <.input size="md" name="train_offer[settlement_price]" id="train_offer_form_settlement_price" value={get_in(@train_offer, [:settlement_price]) || ""} />
+                <.input size="md" name="train_offer[currency]" id="train_offer_form_currency" value={get_in(@train_offer, [:currency]) || ""} />
+                <.textarea name="train_offer[booking_rules_snapshot]" id="train_offer_form_booking_rules_snapshot" value={get_in(@train_offer, [:booking_rules_snapshot]) || ""} />
+                <.textarea name="train_offer[change_rules_snapshot]" id="train_offer_form_change_rules_snapshot" value={get_in(@train_offer, [:change_rules_snapshot]) || ""} />
+                <.textarea name="train_offer[refund_rules_snapshot]" id="train_offer_form_refund_rules_snapshot" value={get_in(@train_offer, [:refund_rules_snapshot]) || ""} />
+                <.select size="md" name="train_offer[sale_status]" id="train_offer_form_sale_status" :let={builder} value={get_in(@train_offer, [:sale_status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="draft" label="draft">draft</.select_item>
+                      <.select_item builder={builder} value="active" label="active">active</.select_item>
+                      <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                      <.select_item builder={builder} value="expired" label="expired">expired</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
-                <.input bind="train_offer.departure_station_ref_id" size="md" id="update_departure_station_ref_id" />
-                <.input bind="train_offer.arrival_station_ref_id" size="md" id="update_arrival_station_ref_id" />
               </.stack>
             </.grid>
             <.flex justify="end" gap={2} direction="row" id="form_actions">
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

@@ -49,6 +49,24 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
+      <.button variant="secondary" phx-click="action_confirm_booking" size="md" id="travel_fulfillment_action_confirm_booking">
+        confirm_booking
+      </.button>
+      <.button variant="secondary" phx-click="action_issue_voucher_or_ticket" size="md" id="travel_fulfillment_action_issue_voucher_or_ticket">
+        issue_voucher_or_ticket
+      </.button>
+      <.button variant="secondary" phx-click="action_mark_in_use" size="md" id="travel_fulfillment_action_mark_in_use">
+        mark_in_use
+      </.button>
+      <.button variant="secondary" phx-click="action_complete_fulfillment" size="md" id="travel_fulfillment_action_complete_fulfillment">
+        complete_fulfillment
+      </.button>
+      <.button variant="secondary" phx-click="action_cancel_fulfillment" size="md" id="travel_fulfillment_action_cancel_fulfillment">
+        cancel_fulfillment
+      </.button>
+      <.button variant="secondary" phx-click="action_fail_fulfillment" size="md" id="travel_fulfillment_action_fail_fulfillment">
+        fail_fulfillment
+      </.button>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
@@ -70,7 +88,7 @@
                   fulfillment_type
                 </.text>
                 <.text id="detail_fields_fulfillment_type_value">
-                  <%= get_in(@travel_fulfillment, [:fulfillment_type]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:fulfillment_type]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_status">
@@ -78,7 +96,7 @@
                   status
                 </.text>
                 <.text id="detail_fields_status_value">
-                  <%= get_in(@travel_fulfillment, [:status]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_supplier_booking_ref">
@@ -86,7 +104,7 @@
                   供应商预订号
                 </.text>
                 <.text id="detail_fields_supplier_booking_ref_value">
-                  <%= get_in(@travel_fulfillment, [:supplier_booking_ref]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:supplier_booking_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_voucher_or_ticket_ref">
@@ -94,7 +112,7 @@
                   凭证号或票号
                 </.text>
                 <.text id="detail_fields_voucher_or_ticket_ref_value">
-                  <%= get_in(@travel_fulfillment, [:voucher_or_ticket_ref]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:voucher_or_ticket_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_ticket_refs">
@@ -102,7 +120,7 @@
                   多张票号、座席和乘客映射结果
                 </.text>
                 <.text id="detail_fields_ticket_refs_value">
-                  <%= get_in(@travel_fulfillment, [:ticket_refs]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:ticket_refs]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_waitlist_result">
@@ -110,7 +128,7 @@
                   train 候补兑现结果
                 </.text>
                 <.text id="detail_fields_waitlist_result_value">
-                  <%= get_in(@travel_fulfillment, [:waitlist_result]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:waitlist_result]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_change_result">
@@ -118,7 +136,7 @@
                   train 改签结果
                 </.text>
                 <.text id="detail_fields_change_result_value">
-                  <%= get_in(@travel_fulfillment, [:change_result]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:change_result]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_boarding_status">
@@ -126,7 +144,7 @@
                   train 乘车状态
                 </.text>
                 <.text id="detail_fields_boarding_status_value">
-                  <%= get_in(@travel_fulfillment, [:boarding_status]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:boarding_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_confirmation_payload">
@@ -134,7 +152,7 @@
                   确认结果快照
                 </.text>
                 <.text id="detail_fields_confirmation_payload_value">
-                  <%= get_in(@travel_fulfillment, [:confirmation_payload]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:confirmation_payload]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_failure_reason">
@@ -142,7 +160,7 @@
                   失败原因
                 </.text>
                 <.text id="detail_fields_failure_reason_value">
-                  <%= get_in(@travel_fulfillment, [:failure_reason]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:failure_reason]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_used_at">
@@ -150,45 +168,27 @@
                   实际使用时间
                 </.text>
                 <.text id="detail_fields_used_at_value">
-                  <%= get_in(@travel_fulfillment, [:used_at]) || "" %>
+                  <%= get_in(@travel_fulfillment, [:used_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="travel_fulfillment_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="travel_fulfillment.tenant_id" size="md" id="update_tenant_id" />
-                <.select bind="travel_fulfillment.fulfillment_type" size="md" id="update_fulfillment_type" options={[%{label: "reserve_room", value: "reserve_room"}, %{label: "issue_ticket", value: "issue_ticket"}, %{label: "issue_voucher", value: "issue_voucher"}, %{label: "issue_train_ticket", value: "issue_train_ticket"}]}>
-
-                </.select>
-                <.select bind="travel_fulfillment.status" size="md" id="update_status" options={[%{label: "pending", value: "pending"}, %{label: "confirmed", value: "confirmed"}, %{label: "issued", value: "issued"}, %{label: "in_use", value: "in_use"}, %{label: "completed", value: "completed"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
-
-                </.select>
-                <.input bind="travel_fulfillment.supplier_booking_ref" size="md" id="update_supplier_booking_ref" />
-                <.input bind="travel_fulfillment.voucher_or_ticket_ref" size="md" id="update_voucher_or_ticket_ref" />
-                <.input bind="travel_fulfillment.ticket_refs" size="md" id="update_ticket_refs" />
-                <.select bind="travel_fulfillment.waitlist_result" size="md" id="update_waitlist_result" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "fulfilled", value: "fulfilled"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
-
-                </.select>
-                <.select bind="travel_fulfillment.change_result" size="md" id="update_change_result" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "changed", value: "changed"}, %{label: "failed", value: "failed"}]}>
-
-                </.select>
-                <.select bind="travel_fulfillment.boarding_status" size="md" id="update_boarding_status" options={[%{label: "not_started", value: "not_started"}, %{label: "boarded", value: "boarded"}, %{label: "completed", value: "completed"}]}>
-
-                </.select>
-                <.textarea bind="travel_fulfillment.confirmation_payload" id="update_confirmation_payload" />
-                <.textarea bind="travel_fulfillment.failure_reason" id="update_failure_reason" />
-                <.input bind="travel_fulfillment.used_at" size="md" id="update_used_at" />
-                <.input bind="travel_fulfillment.shipment_id" size="md" id="update_shipment_id" />
+                <.input size="md" name="travel_fulfillment[supplier_booking_ref]" id="travel_fulfillment_form_supplier_booking_ref" value={get_in(@travel_fulfillment, [:supplier_booking_ref]) || ""} />
+                <.input size="md" name="travel_fulfillment[voucher_or_ticket_ref]" id="travel_fulfillment_form_voucher_or_ticket_ref" value={get_in(@travel_fulfillment, [:voucher_or_ticket_ref]) || ""} />
+                <.input size="md" name="travel_fulfillment[ticket_refs]" id="travel_fulfillment_form_ticket_refs" value={get_in(@travel_fulfillment, [:ticket_refs]) || ""} />
+                <.textarea name="travel_fulfillment[confirmation_payload]" id="travel_fulfillment_form_confirmation_payload" value={get_in(@travel_fulfillment, [:confirmation_payload]) || ""} />
+                <.textarea name="travel_fulfillment[failure_reason]" id="travel_fulfillment_form_failure_reason" value={get_in(@travel_fulfillment, [:failure_reason]) || ""} />
               </.stack>
             </.grid>
             <.flex justify="end" gap={2} direction="row" id="form_actions">
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

@@ -12,6 +12,26 @@
         }
       ]
     },
+    "action_activate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_action_activate",
+          "prop": "click",
+          "raw": "action_activate"
+        }
+      ]
+    },
+    "action_deactivate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_action_deactivate",
+          "prop": "click",
+          "raw": "action_deactivate"
+        }
+      ]
+    },
     "action_destroy": {
       "triggers": [
         {

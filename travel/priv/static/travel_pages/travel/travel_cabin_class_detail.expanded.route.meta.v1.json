@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_cabin_class_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelCabinClassDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_cabin_class/:id",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

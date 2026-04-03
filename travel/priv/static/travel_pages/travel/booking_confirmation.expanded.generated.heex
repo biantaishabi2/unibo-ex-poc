@@ -53,6 +53,72 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
+      <%= if get_in(@record, [:status]) == "draft" do %>
+        <.button variant="secondary" phx-click="action_confirm_quote" size="md" id="travel_order_action_confirm_quote">
+          confirm_quote
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "quoted" do %>
+        <.button variant="secondary" phx-click="action_submit_order" size="md" id="travel_order_action_submit_order">
+          submit_order
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "quoted" do %>
+        <.button variant="secondary" phx-click="action_submit_waitlist" size="md" id="travel_order_action_submit_waitlist">
+          submit_waitlist
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "submitted" do %>
+        <.button variant="secondary" phx-click="action_mark_payment_succeeded" size="md" id="travel_order_action_mark_payment_succeeded">
+          mark_payment_succeeded
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "booking_pending" do %>
+        <.button variant="secondary" phx-click="action_mark_booked" size="md" id="travel_order_action_mark_booked">
+          mark_booked
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "booking_pending" do %>
+        <.button variant="secondary" phx-click="action_fulfill_waitlist" size="md" id="travel_order_action_fulfill_waitlist">
+          fulfill_waitlist
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "booked" do %>
+        <.button variant="secondary" phx-click="action_mark_completed" size="md" id="travel_order_action_mark_completed">
+          mark_completed
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "booked" do %>
+        <.button variant="secondary" phx-click="action_request_cancel" size="md" id="travel_order_action_request_cancel">
+          request_cancel
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "booking_pending" do %>
+        <.button variant="secondary" phx-click="action_cancel_waitlist" size="md" id="travel_order_action_cancel_waitlist">
+          cancel_waitlist
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "cancel_pending" do %>
+        <.button variant="secondary" phx-click="action_execute_cancel" size="md" id="travel_order_action_execute_cancel">
+          execute_cancel
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:status]) == "cancel_pending" do %>
+        <.button variant="secondary" phx-click="action_cancel_cancel_request" size="md" id="travel_order_action_cancel_cancel_request">
+          cancel_cancel_request
+        </.button>
+      <% end %>
+      <.button variant="secondary" phx-click="action_request_change" size="md" id="travel_order_action_request_change">
+        request_change
+      </.button>
+      <.button variant="secondary" phx-click="action_confirm_change" size="md" id="travel_order_action_confirm_change">
+        confirm_change
+      </.button>
+      <%= if get_in(@record, [:status]) == "submitted" do %>
+        <.button variant="secondary" phx-click="action_mark_order_failed" size="md" id="travel_order_action_mark_order_failed">
+          mark_order_failed
+        </.button>
+      <% end %>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
@@ -74,7 +140,7 @@
                   订单号
                 </.text>
                 <.text id="detail_fields_order_no_value">
-                  <%= get_in(@travel_order, [:order_no]) || "" %>
+                  <%= get_in(@travel_order, [:order_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_product_type">
@@ -82,7 +148,7 @@
                   商品类型
                 </.text>
                 <.text id="detail_fields_product_type_value">
-                  <%= get_in(@travel_order, [:product_type]) || "" %>
+                  <%= get_in(@travel_order, [:product_type]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_booking_mode">
@@ -90,7 +156,7 @@
                   train 订单预订模式
                 </.text>
                 <.text id="detail_fields_booking_mode_value">
-                  <%= get_in(@travel_order, [:booking_mode]) || "" %>
+                  <%= get_in(@travel_order, [:booking_mode]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_contact_name">
@@ -98,7 +164,7 @@
                   contact_name
                 </.text>
                 <.text id="detail_fields_contact_name_value">
-                  <%= get_in(@travel_order, [:contact_name]) || "" %>
+                  <%= get_in(@travel_order, [:contact_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_contact_phone">
@@ -106,7 +172,7 @@
                   contact_phone
                 </.text>
                 <.text id="detail_fields_contact_phone_value">
-                  <%= get_in(@travel_order, [:contact_phone]) || "" %>
+                  <%= get_in(@travel_order, [:contact_phone]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_traveler_count">
@@ -114,7 +180,7 @@
                   出行人数量
                 </.text>
                 <.text id="detail_fields_traveler_count_value">
-                  <%= get_in(@travel_order, [:traveler_count]) || "" %>
+                  <%= get_in(@travel_order, [:traveler_count]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_total_amount">
@@ -122,7 +188,7 @@
                   订单总金额
                 </.text>
                 <.text id="detail_fields_total_amount_value">
-                  <%= get_in(@travel_order, [:total_amount]) || "" %>
+                  <%= get_in(@travel_order, [:total_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_points_to_use">
@@ -130,7 +196,7 @@
                   计划使用的积分数量
                 </.text>
                 <.text id="detail_fields_points_to_use_value">
-                  <%= get_in(@travel_order, [:points_to_use]) || "" %>
+                  <%= get_in(@travel_order, [:points_to_use]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_points_deduction_amount">
@@ -138,7 +204,7 @@
                   积分抵现金额
                 </.text>
                 <.text id="detail_fields_points_deduction_amount_value">
-                  <%= get_in(@travel_order, [:points_deduction_amount]) || "" %>
+                  <%= get_in(@travel_order, [:points_deduction_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_recommended_payment_method">
@@ -146,7 +212,7 @@
                   宿主 quote 返回的推荐支付方式
                 </.text>
                 <.text id="detail_fields_recommended_payment_method_value">
-                  <%= get_in(@travel_order, [:recommended_payment_method]) || "" %>
+                  <%= get_in(@travel_order, [:recommended_payment_method]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_currency">
@@ -154,7 +220,7 @@
                   currency
                 </.text>
                 <.text id="detail_fields_currency_value">
-                  <%= get_in(@travel_order, [:currency]) || "" %>
+                  <%= get_in(@travel_order, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_status">
@@ -162,7 +228,7 @@
                   status
                 </.text>
                 <.text id="detail_fields_status_value">
-                  <%= get_in(@travel_order, [:status]) || "" %>
+                  <%= get_in(@travel_order, [:status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_change_status">
@@ -170,7 +236,7 @@
                   change_status
                 </.text>
                 <.text id="detail_fields_change_status_value">
-                  <%= get_in(@travel_order, [:change_status]) || "" %>
+                  <%= get_in(@travel_order, [:change_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_waitlist_status">
@@ -178,7 +244,7 @@
                   waitlist_status
                 </.text>
                 <.text id="detail_fields_waitlist_status_value">
-                  <%= get_in(@travel_order, [:waitlist_status]) || "" %>
+                  <%= get_in(@travel_order, [:waitlist_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_original_order_ref">
@@ -186,7 +252,7 @@
                   改签链路引用的原订单号或原票号
                 </.text>
                 <.text id="detail_fields_original_order_ref_value">
-                  <%= get_in(@travel_order, [:original_order_ref]) || "" %>
+                  <%= get_in(@travel_order, [:original_order_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_ticket_passenger_infos">
@@ -194,7 +260,7 @@
                   乘车人信息快照
                 </.text>
                 <.text id="detail_fields_ticket_passenger_infos_value">
-                  <%= get_in(@travel_order, [:ticket_passenger_infos]) || "" %>
+                  <%= get_in(@travel_order, [:ticket_passenger_infos]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_seat_selection_snapshot">
@@ -202,7 +268,7 @@
                   选座与席别偏好快照
                 </.text>
                 <.text id="detail_fields_seat_selection_snapshot_value">
-                  <%= get_in(@travel_order, [:seat_selection_snapshot]) || "" %>
+                  <%= get_in(@travel_order, [:seat_selection_snapshot]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_supplier_order_ref">
@@ -210,7 +276,7 @@
                   供应商订单号
                 </.text>
                 <.text id="detail_fields_supplier_order_ref_value">
-                  <%= get_in(@travel_order, [:supplier_order_ref]) || "" %>
+                  <%= get_in(@travel_order, [:supplier_order_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_payment_external_ref">
@@ -218,57 +284,46 @@
                   宿主支付侧外部支付流水号
                 </.text>
                 <.text id="detail_fields_payment_external_ref_value">
-                  <%= get_in(@travel_order, [:payment_external_ref]) || "" %>
+                  <%= get_in(@travel_order, [:payment_external_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="travel_order.tenant_id" size="md" id="update_tenant_id" />
-                <.input bind="travel_order.host_shop_id" size="md" id="update_host_shop_id" />
-                <.input bind="travel_order.host_member_id" size="md" id="update_host_member_id" />
-                <.input bind="travel_order.host_enterprise_id" size="md" id="update_host_enterprise_id" />
-                <.input bind="travel_order.order_no" size="md" id="update_order_no" />
-                <.select bind="travel_order.product_type" size="md" id="update_product_type" options={[%{label: "hotel", value: "hotel"}, %{label: "flight", value: "flight"}, %{label: "vacation", value: "vacation"}, %{label: "train", value: "train"}]}>
-
+                <.input size="md" name="travel_order[tenant_id]" id="form_tenant_id" value={get_in(@travel_order, [:tenant_id]) || ""} />
+                <.input size="md" name="travel_order[host_shop_id]" id="form_host_shop_id" value={get_in(@travel_order, [:host_shop_id]) || ""} />
+                <.input size="md" name="travel_order[order_no]" id="form_order_no" value={get_in(@travel_order, [:order_no]) || ""} />
+                <.select size="md" name="travel_order[product_type]" id="form_product_type" :let={builder} value={get_in(@travel_order, [:product_type]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="hotel" label="hotel">hotel</.select_item>
+                      <.select_item builder={builder} value="flight" label="flight">flight</.select_item>
+                      <.select_item builder={builder} value="vacation" label="vacation">vacation</.select_item>
+                      <.select_item builder={builder} value="train" label="train">train</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
-                <.select bind="travel_order.booking_mode" size="md" id="update_booking_mode" options={[%{label: "standard", value: "standard"}, %{label: "waitlist", value: "waitlist"}]}>
-
-                </.select>
-                <.input bind="travel_order.contact_name" size="md" id="update_contact_name" />
-                <.input bind="travel_order.contact_phone" size="md" id="update_contact_phone" />
-                <.input bind="travel_order.traveler_count" size="md" id="update_traveler_count" />
-                <.input bind="travel_order.total_amount" size="md" id="update_total_amount" />
-                <.input bind="travel_order.points_to_use" size="md" id="update_points_to_use" />
-                <.input bind="travel_order.points_deduction_amount" size="md" id="update_points_deduction_amount" />
-                <.input bind="travel_order.recommended_payment_method" size="md" id="update_recommended_payment_method" />
-                <.input bind="travel_order.currency" size="md" id="update_currency" />
-                <.select bind="travel_order.status" size="md" id="update_status" options={[%{label: "draft", value: "draft"}, %{label: "quoted", value: "quoted"}, %{label: "submitted", value: "submitted"}, %{label: "booking_pending", value: "booking_pending"}, %{label: "booked", value: "booked"}, %{label: "cancel_pending", value: "cancel_pending"}, %{label: "cancelled", value: "cancelled"}, %{label: "completed", value: "completed"}, %{label: "failed", value: "failed"}]}>
-
-                </.select>
-                <.select bind="travel_order.change_status" size="md" id="update_change_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "changed", value: "changed"}, %{label: "failed", value: "failed"}]}>
-
-                </.select>
-                <.select bind="travel_order.waitlist_status" size="md" id="update_waitlist_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "fulfilled", value: "fulfilled"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
-
-                </.select>
-                <.input bind="travel_order.original_order_ref" size="md" id="update_original_order_ref" />
-                <.input bind="travel_order.ticket_passenger_infos" size="md" id="update_ticket_passenger_infos" />
-                <.input bind="travel_order.seat_selection_snapshot" size="md" id="update_seat_selection_snapshot" />
-                <.input bind="travel_order.supplier_order_ref" size="md" id="update_supplier_order_ref" />
-                <.input bind="travel_order.payment_external_ref" size="md" id="update_payment_external_ref" />
-                <.input bind="travel_order.customer_id" size="md" id="update_customer_id" />
-                <.input bind="travel_order.payment_id" size="md" id="update_payment_id" />
+                <.input size="md" name="travel_order[customer_id]" id="form_customer_id" value={get_in(@travel_order, [:customer_id]) || ""} />
+                <.input size="md" name="travel_order[contact_name]" id="form_contact_name" value={get_in(@travel_order, [:contact_name]) || ""} />
+                <.input size="md" name="travel_order[contact_phone]" id="form_contact_phone" value={get_in(@travel_order, [:contact_phone]) || ""} />
+                <.input size="md" name="travel_order[traveler_count]" id="form_traveler_count" value={get_in(@travel_order, [:traveler_count]) || ""} />
+                <.input size="md" name="travel_order[total_amount]" id="form_total_amount" value={get_in(@travel_order, [:total_amount]) || ""} />
+                <.input size="md" name="travel_order[points_to_use]" id="form_points_to_use" value={get_in(@travel_order, [:points_to_use]) || ""} />
+                <.input size="md" name="travel_order[points_deduction_amount]" id="form_points_deduction_amount" value={get_in(@travel_order, [:points_deduction_amount]) || ""} />
+                <.input size="md" name="travel_order[currency]" id="form_currency" value={get_in(@travel_order, [:currency]) || ""} />
+                <.input size="md" name="travel_order[ticket_passenger_infos]" id="form_ticket_passenger_infos" value={get_in(@travel_order, [:ticket_passenger_infos]) || ""} />
+                <.input size="md" name="travel_order[seat_selection_snapshot]" id="form_seat_selection_snapshot" value={get_in(@travel_order, [:seat_selection_snapshot]) || ""} />
               </.stack>
             </.grid>
             <.flex justify="end" gap={2} direction="row" id="form_actions">
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "supplier_code": "",
       "train_no": "",
       "departure_station_code": "",
@@ -29,6 +30,7 @@
       "sale_status": ""
     },
     {
+      "id": "row_02",
       "supplier_code": "",
       "train_no": "",
       "departure_station_code": "",
@@ -52,6 +54,7 @@
       "sale_status": ""
     },
     {
+      "id": "row_03",
       "supplier_code": "",
       "train_no": "",
       "departure_station_code": "",

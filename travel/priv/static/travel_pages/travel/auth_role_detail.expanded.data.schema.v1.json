@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "travel_policy.approval_mode",
     "travel_policy.cabin_class_limit",
     "travel_policy.city_tier",
@@ -17,9 +18,21 @@
   ],
   "requiredRoots": [
     "editing",
+    "record",
     "travel_policy"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "is_active": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

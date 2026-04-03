@@ -1,4 +1,7 @@
 {
+  "record": {
+    "sale_status": true
+  },
   "flight_offer": {
     "supplier_code": "",
     "itinerary_code": "",

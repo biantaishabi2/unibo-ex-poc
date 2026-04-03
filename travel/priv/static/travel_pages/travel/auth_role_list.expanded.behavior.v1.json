@@ -1,0 +1,49 @@
+{
+  "backend": {
+    "api_map": {
+      "list": "Travel.TravelPolicy.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "id"
+    },
+    "params": {
+      "accept": []
+    }
+  },
+  "delivery_mode": "runtime",
+  "domain": "Travel",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/pages/travel/auth_role_list",
+      "cases": [],
+      "page_kind": "list",
+      "page_spec": {
+        "page_kind": "list",
+        "route_role": "list",
+        "supports_runtime_record_identity": false,
+        "template_kind": "list_report"
+      }
+    }
+  },
+  "entity": "TravelPolicy",
+  "extends": "base_list_report",
+  "page_id": "auth_role_list",
+  "page_type": "list_report",
+  "state_transitions": [],
+  "status_keys": [],
+  "transitions": {},
+  "ui": {
+    "sections": [],
+    "template": {
+      "list": "list_report"
+    }
+  },
+  "version": 2
+}

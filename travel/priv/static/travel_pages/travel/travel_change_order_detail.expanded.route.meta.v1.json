@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_change_order_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_change_order/:id?original_order_id={{original_order_id}}",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

@@ -54,20 +54,20 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:cabin_class_code]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="travel_cabin_class_row">
+            <.table_cell id="td_cabin_class_code">
+              <%= get_in(row, [:cabin_class_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:cabin_class_name]) || "" %>
+            <.table_cell id="td_cabin_class_name">
+              <%= get_in(row, [:cabin_class_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:cabin_rank]) || "" %>
+            <.table_cell id="td_cabin_rank">
+              <%= get_in(row, [:cabin_rank]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_status">
               <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -88,7 +88,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@travel_cabin_class, [:page]) || "" %> / <%= get_in(@travel_cabin_class, [:total_pages]) || "" %>
+        <%= get_in(@travel_cabin_class, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@travel_cabin_class, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="travel_cabin_class_page_next" variant="primary" size="md" id="page_next">
         下一页

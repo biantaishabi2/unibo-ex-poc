@@ -99,84 +99,84 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:order_no]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="travel_order_row">
+            <.table_cell id="td_order_no">
+              <%= get_in(row, [:order_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_product_type">
               <%= if (val = get_in(row, [:product_type])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_product_type">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_booking_mode">
               <%= if (val = get_in(row, [:booking_mode])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_booking_mode">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:contact_name]) || "" %>
+            <.table_cell id="td_contact_name">
+              <%= get_in(row, [:contact_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:contact_phone]) || "" %>
+            <.table_cell id="td_contact_phone">
+              <%= get_in(row, [:contact_phone]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:traveler_count]) || "" %>
+            <.table_cell id="td_traveler_count">
+              <%= get_in(row, [:traveler_count]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:total_amount]) || "" %>
+            <.table_cell id="td_total_amount">
+              <%= get_in(row, [:total_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:points_to_use]) || "" %>
+            <.table_cell id="td_points_to_use">
+              <%= get_in(row, [:points_to_use]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:points_deduction_amount]) || "" %>
+            <.table_cell id="td_points_deduction_amount">
+              <%= get_in(row, [:points_deduction_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:recommended_payment_method]) || "" %>
+            <.table_cell id="td_recommended_payment_method">
+              <%= get_in(row, [:recommended_payment_method]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:currency]) || "" %>
+            <.table_cell id="td_currency">
+              <%= get_in(row, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_status">
               <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_change_status">
               <%= if (val = get_in(row, [:change_status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_change_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_waitlist_status">
               <%= if (val = get_in(row, [:waitlist_status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_waitlist_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:original_order_ref]) || "" %>
+            <.table_cell id="td_original_order_ref">
+              <%= get_in(row, [:original_order_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:ticket_passenger_infos]) || "" %>
+            <.table_cell id="td_ticket_passenger_infos">
+              <%= get_in(row, [:ticket_passenger_infos]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:seat_selection_snapshot]) || "" %>
+            <.table_cell id="td_seat_selection_snapshot">
+              <%= get_in(row, [:seat_selection_snapshot]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:supplier_order_ref]) || "" %>
+            <.table_cell id="td_supplier_order_ref">
+              <%= get_in(row, [:supplier_order_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:payment_external_ref]) || "" %>
+            <.table_cell id="td_payment_external_ref">
+              <%= get_in(row, [:payment_external_ref]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
           </.table_row>
         <% end %>
@@ -194,7 +194,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@travel_order, [:page]) || "" %> / <%= get_in(@travel_order, [:total_pages]) || "" %>
+        <%= get_in(@travel_order, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@travel_order, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="travel_order_page_next" variant="primary" size="md" id="page_next">
         下一页

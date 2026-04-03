@@ -19,167 +19,684 @@
     },
     "load": {
       "assigns": {},
-      "selection": "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id shipment_id: shipmentId status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
+      "selection": "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
     },
     "params": {
       "accept": [
-        "id"
+        "id",
+        "travel_order_id",
+        "fulfillment_type",
+        "supplier_booking_ref",
+        "ticket_refs",
+        "voucher_or_ticket_ref",
+        "failure_reason",
+        "confirmation_payload"
       ]
     }
   },
   "children": [],
+  "delivery_mode": "compiled",
   "domain": "Travel",
   "e2e": {
     "playwright": {
-      "auto": true,
-      "base_path": "/travel/travel_fulfillment/:id",
+      "auto": false,
+      "base_path": "/pages/travel/travel_fulfillment/:id?travel_order_id={{travel_order_id}}",
+      "capabilities": {
+        "supports_backend_verification": true,
+        "supports_children": false,
+        "supports_custom_actions": true,
+        "supports_custom_page": false,
+        "supports_data_lifecycle": true,
+        "supports_destroy": true,
+        "supports_edit_form": true,
+        "supports_embedded_form": false,
+        "supports_fcl": false,
+        "supports_state_machine": false,
+        "supports_wait_contract": true,
+        "supports_wizard": false
+      },
       "cases": [
         {
           "covers": [],
+          "kind": "load",
           "name": "页面加载 + 结构可见",
           "steps": [
             {
               "action": "expect_visible",
-              "selector": "[data-page='travel_fulfillment_detail']"
+              "selector": "#travel_fulfillment_detail"
             }
-          ]
+          ],
+          "verification_key": "load",
+          "wait_key": "load"
         },
         {
           "covers": [
-            "toggle_edit"
+            "toggle_edit",
+            "cancel_edit"
           ],
+          "kind": "flow",
           "name": "编辑模式切换",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='toggle_edit']"
+              "event": "toggle_edit"
             },
             {
               "action": "expect_visible",
-              "selector": "form, [data-mode='edit']"
+              "selector": "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "click",
+              "event": "cancel_edit"
+            },
+            {
+              "action": "expect_not_visible",
+              "selector": "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             }
-          ]
+          ],
+          "verification_key": "toggle_edit",
+          "wait_key": null
         },
         {
           "covers": [
+            "toggle_edit",
+            "form_change",
             "form_submit"
           ],
-          "name": "表单提交",
+          "kind": "crud",
+          "name": "CRUD：编辑记录",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='form_submit'], button[type='submit']"
+              "event": "toggle_edit"
             },
             {
-              "action": "expect_text_contains",
-              "selector": "#flash-group, [data-flash], [role='alert']",
-              "value": "成功"
+              "action": "expect_visible",
+              "selector": "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "type",
+              "field": "ticket_refs",
+              "value": "{\"updated\":true}"
+            },
+            {
+              "action": "type",
+              "field": "voucher_or_ticket_ref",
+              "value": "UPDATED_{{__run_id}}_voucher_or_ticket_ref"
+            },
+            {
+              "action": "type",
+              "field": "confirmation_payload",
+              "value": "UPDATED_{{__run_id}}_confirmation_payload"
+            },
+            {
+              "action": "type",
+              "field": "failure_reason",
+              "value": "UPDATED_{{__run_id}}_failure_reason"
+            },
+            {
+              "action": "type",
+              "field": "supplier_booking_ref",
+              "value": "UPDATED_{{__run_id}}_supplier_booking_ref"
+            },
+            {
+              "action": "click",
+              "event": "form_submit"
             }
-          ]
+          ],
+          "verification_key": "update",
+          "wait_key": "form_submit"
         },
         {
           "covers": [
             "action_confirm_booking"
           ],
+          "kind": "custom",
           "name": "动作：confirm_booking",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='action_confirm_booking']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_confirm_booking']"
+              "event": "action_confirm_booking",
+              "selector": "#travel_fulfillment_action_confirm_booking"
             }
-          ]
+          ],
+          "verification_key": null,
+          "wait_key": "action_confirm_booking"
         },
         {
           "covers": [
             "action_issue_voucher_or_ticket"
           ],
+          "kind": "custom",
           "name": "动作：issue_voucher_or_ticket",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='action_issue_voucher_or_ticket']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_issue_voucher_or_ticket']"
+              "event": "action_issue_voucher_or_ticket",
+              "selector": "#travel_fulfillment_action_issue_voucher_or_ticket"
             }
-          ]
+          ],
+          "verification_key": null,
+          "wait_key": "action_issue_voucher_or_ticket"
         },
         {
           "covers": [
             "action_mark_in_use"
           ],
+          "kind": "custom",
           "name": "动作：mark_in_use",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='action_mark_in_use']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_mark_in_use']"
+              "event": "action_mark_in_use",
+              "selector": "#travel_fulfillment_action_mark_in_use"
             }
-          ]
+          ],
+          "verification_key": null,
+          "wait_key": "action_mark_in_use"
         },
         {
           "covers": [
             "action_complete_fulfillment"
           ],
+          "kind": "custom",
           "name": "动作：complete_fulfillment",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='action_complete_fulfillment']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_complete_fulfillment']"
+              "event": "action_complete_fulfillment",
+              "selector": "#travel_fulfillment_action_complete_fulfillment"
             }
-          ]
+          ],
+          "verification_key": null,
+          "wait_key": "action_complete_fulfillment"
         },
         {
           "covers": [
             "action_cancel_fulfillment"
           ],
+          "kind": "custom",
           "name": "动作：cancel_fulfillment",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='action_cancel_fulfillment']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_cancel_fulfillment']"
+              "event": "action_cancel_fulfillment",
+              "selector": "#travel_fulfillment_action_cancel_fulfillment"
             }
-          ]
+          ],
+          "verification_key": null,
+          "wait_key": "action_cancel_fulfillment"
         },
         {
           "covers": [
             "action_fail_fulfillment"
           ],
+          "kind": "custom",
           "name": "动作：fail_fulfillment",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='action_fail_fulfillment']"
+              "event": "action_fail_fulfillment",
+              "selector": "#travel_fulfillment_action_fail_fulfillment"
+            }
+          ],
+          "verification_key": null,
+          "wait_key": "action_fail_fulfillment"
+        },
+        {
+          "covers": [
+            "action_destroy"
+          ],
+          "kind": "crud",
+          "name": "动作：删除",
+          "steps": [
+            {
+              "action": "click",
+              "event": "action_destroy",
+              "selector": "#delete_btn"
+            }
+          ],
+          "verification_key": "destroy",
+          "wait_key": "destroy"
+        }
+      ],
+      "data_contract": {
+        "binds": [
+          {
+            "name": "route_record_id",
+            "path": "id",
+            "source": "route"
+          },
+          {
+            "name": "created_display_value",
+            "path": "supplier_booking_ref",
+            "source": "form"
+          }
+        ],
+        "cleanup": [
+          {
+            "api": "destroy",
+            "ignore_missing": true,
+            "path": "id",
+            "source": "created_record_id"
+          }
+        ],
+        "inputs": [
+          "route",
+          "form",
+          "generated_form_values"
+        ],
+        "setup": [
+          {
+            "binds": [
+              {
+                "name": "hotel_offer_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "match_only",
+            "graphql_field": "listTravelHotelOffers",
+            "kind": "related_list_first",
+            "name": "resolve_hotel_offer_id",
+            "owner": "dependent"
+          },
+          {
+            "binds": [
+              {
+                "name": "travel_order_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelOrders",
+            "kind": "related_list_first",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_travel_order_id",
+            "owner": "dependent"
+          },
+          {
+            "binds": [
+              {
+                "name": "seed_record_id",
+                "path": "id",
+                "source": "result"
+              },
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelFulfillment",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelFulfillments",
+            "kind": "entity_list_first",
+            "name": "resolve_current_record",
+            "owner": "root"
+          }
+        ]
+      },
+      "dto_smoke": [],
+      "graphql_path": "/api/graphql",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#travel_fulfillment_detail",
+          "submit": "#travel_fulfillment_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "protocol": {
+        "case_fields": [
+          "name",
+          "kind",
+          "covers",
+          "wait_key",
+          "verification_key",
+          "steps"
+        ],
+        "contract_fields": [
+          "strategy",
+          "capabilities",
+          "wait_contract",
+          "verification_contract",
+          "data_contract"
+        ],
+        "step_fields": [
+          "action",
+          "selector",
+          "value",
+          "url",
+          "timeout"
+        ],
+        "transition_fields": [
+          "name",
+          "from",
+          "to",
+          "trigger",
+          "description",
+          "navigate_to"
+        ],
+        "version": 4
+      },
+      "strategy": "object_detail_flow",
+      "template_kind": "object_page",
+      "verification_contract": {
+        "create": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "created_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              },
+              {
+                "name": "created_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": "$form.supplier_booking_ref",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelFulfillment",
+            "op": "field_equals",
+            "path": "supplier_booking_ref",
+            "source": "created_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_fulfillment_detail",
+              "value": null
+            }
+          ]
+        },
+        "destroy": {
+          "backend": {
+            "api": "list",
+            "args": [],
+            "binds": [],
+            "equals": null,
+            "excludes_source": "active_record_id",
+            "graphql_field": "listTravelTravelFulfillments",
+            "op": "not_contains",
+            "path": "results[].id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "url_contains",
+              "selector": null,
+              "value": "/pages/travel/travel_fulfillment"
             },
             {
-              "action": "expect_visible",
-              "selector": "[data-action='action_fail_fulfillment']"
+              "assert": "visible",
+              "selector": "#travel_fulfillment_list",
+              "value": null
+            }
+          ]
+        },
+        "load": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelFulfillment",
+            "op": "exists",
+            "path": "id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_fulfillment_detail",
+              "value": null
+            }
+          ]
+        },
+        "state_transitions": [],
+        "toggle_edit": {
+          "backend": null,
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_fulfillment_detail",
+              "value": null
+            }
+          ]
+        },
+        "update": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "$form.supplier_booking_ref",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelFulfillment",
+            "op": "equals",
+            "path": "supplier_booking_ref",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_fulfillment_detail",
+              "value": null
             }
           ]
         }
-      ],
-      "dto_smoke": []
+      },
+      "wait_contract": {
+        "action_cancel_fulfillment": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_complete_fulfillment": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_confirm_booking": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_fail_fulfillment": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_issue_voucher_or_ticket": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_mark_in_use": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "form_submit": {
+          "mode": "form_settled",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "#travel_fulfillment_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "form_settled",
+            "selector": "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "toggle_edit": {
+          "mode": "dom_visible",
+          "reload_messages": [],
+          "selectors": [
+            "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+          ],
+          "state_keys": [],
+          "timeout": 3000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_fulfillment_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        }
+      }
     }
   },
   "entity": "TravelFulfillment",
   "page_id": "travel_fulfillment_detail",
   "page_type": "object_page",
+  "resource_type": "transaction",
   "runtime_monitoring": null,
   "schema_version": "1.0",
   "state_transitions": [
@@ -257,7 +774,6 @@
       "description": "删除记录",
       "from": "*",
       "name": "action_destroy",
-      "navigate_to": "/travel/travel_fulfillment",
       "to": "loading",
       "trigger": "user_action"
     }
@@ -268,11 +784,49 @@
     "form",
     "loading"
   ],
+  "transitions": {
+    "action_cancel_fulfillment": [],
+    "action_complete_fulfillment": [],
+    "action_confirm_booking": [],
+    "action_destroy": [
+      {
+        "effect": {
+          "to": "/pages/travel/travel_fulfillment",
+          "type": "navigate"
+        },
+        "op": "effect"
+      }
+    ],
+    "action_fail_fulfillment": [],
+    "action_issue_voucher_or_ticket": [],
+    "action_mark_in_use": [],
+    "cancel_edit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "form_change": [],
+    "form_submit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "toggle_edit": [
+      {
+        "op": "toggle",
+        "path": "editing"
+      }
+    ]
+  },
   "ui": {
     "sections": [],
     "template": {
       "detail": "object_page"
     }
   },
-  "version": 1
+  "version": 2
 }

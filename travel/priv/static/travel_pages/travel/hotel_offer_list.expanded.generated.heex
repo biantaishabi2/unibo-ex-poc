@@ -87,53 +87,53 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:supplier_code]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="hotel_offer_row">
+            <.table_cell id="td_supplier_code">
+              <%= get_in(row, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:hotel_code]) || "" %>
+            <.table_cell id="td_hotel_code">
+              <%= get_in(row, [:hotel_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:hotel_name]) || "" %>
+            <.table_cell id="td_hotel_name">
+              <%= get_in(row, [:hotel_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:city_code]) || "" %>
+            <.table_cell id="td_city_code">
+              <%= get_in(row, [:city_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:room_type_code]) || "" %>
+            <.table_cell id="td_room_type_code">
+              <%= get_in(row, [:room_type_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:rate_plan_code]) || "" %>
+            <.table_cell id="td_rate_plan_code">
+              <%= get_in(row, [:rate_plan_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:checkin_date]) || "" %>
+            <.table_cell id="td_checkin_date">
+              <%= get_in(row, [:checkin_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:checkout_date]) || "" %>
+            <.table_cell id="td_checkout_date">
+              <%= get_in(row, [:checkout_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:listed_price]) || "" %>
+            <.table_cell id="td_listed_price">
+              <%= get_in(row, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:settlement_price]) || "" %>
+            <.table_cell id="td_settlement_price">
+              <%= get_in(row, [:settlement_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:currency]) || "" %>
+            <.table_cell id="td_currency">
+              <%= get_in(row, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:inventory_count]) || "" %>
+            <.table_cell id="td_inventory_count">
+              <%= get_in(row, [:inventory_count]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:cancellation_policy]) || "" %>
+            <.table_cell id="td_cancellation_policy">
+              <%= get_in(row, [:cancellation_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:guarantee_policy]) || "" %>
+            <.table_cell id="td_guarantee_policy">
+              <%= get_in(row, [:guarantee_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_sale_status">
               <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_sale_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -154,7 +154,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@hotel_offer, [:page]) || "" %> / <%= get_in(@hotel_offer, [:total_pages]) || "" %>
+        <%= get_in(@hotel_offer, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@hotel_offer, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="hotel_offer_page_next" variant="primary" size="md" id="page_next">
         下一页

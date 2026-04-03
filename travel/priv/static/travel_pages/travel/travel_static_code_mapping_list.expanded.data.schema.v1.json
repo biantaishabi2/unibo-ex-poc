@@ -4,6 +4,7 @@
     "row.canonical_entity",
     "row.external_code",
     "row.external_name",
+    "row.id",
     "row.object_type",
     "row.status",
     "row.supplier_code",
@@ -26,6 +27,11 @@
         "type": "object",
         "required": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
+          },
           "supplier_code": {
             "type": "string",
             "required": false,
@@ -64,6 +70,10 @@
       "type": "object",
       "required": true,
       "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
         "supplier_code": {
           "type": "unknown",
           "required": true

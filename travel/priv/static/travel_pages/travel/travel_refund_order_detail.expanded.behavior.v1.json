@@ -21,147 +21,879 @@
     },
     "params": {
       "accept": [
-        "id"
+        "id",
+        "original_order_id",
+        "refund_fee",
+        "refund_amount",
+        "approval_mode",
+        "refund_reason"
       ]
     }
   },
   "children": [],
+  "delivery_mode": "compiled",
   "domain": "Travel",
   "e2e": {
     "playwright": {
-      "auto": true,
-      "base_path": "/travel/travel_refund_order/:id",
+      "auto": false,
+      "base_path": "/pages/travel/travel_refund_order/:id?original_order_id={{original_order_id}}",
+      "capabilities": {
+        "supports_backend_verification": true,
+        "supports_children": false,
+        "supports_custom_actions": true,
+        "supports_custom_page": false,
+        "supports_data_lifecycle": true,
+        "supports_destroy": false,
+        "supports_edit_form": true,
+        "supports_embedded_form": false,
+        "supports_fcl": false,
+        "supports_state_machine": true,
+        "supports_wait_contract": true,
+        "supports_wizard": false
+      },
       "cases": [
         {
           "covers": [],
+          "kind": "load",
           "name": "页面加载 + 结构可见",
           "steps": [
             {
               "action": "expect_visible",
-              "selector": "[data-page='travel_refund_order_detail']"
+              "selector": "#travel_refund_order_detail"
             }
-          ]
+          ],
+          "verification_key": "load",
+          "wait_key": "load"
         },
         {
           "covers": [
-            "toggle_edit"
+            "toggle_edit",
+            "cancel_edit"
           ],
+          "kind": "flow",
           "name": "编辑模式切换",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='toggle_edit']"
+              "event": "toggle_edit"
             },
             {
               "action": "expect_visible",
-              "selector": "form, [data-mode='edit']"
+              "selector": "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "click",
+              "event": "cancel_edit"
+            },
+            {
+              "action": "expect_not_visible",
+              "selector": "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             }
-          ]
+          ],
+          "verification_key": "toggle_edit",
+          "wait_key": null
         },
         {
           "covers": [
+            "toggle_edit",
+            "form_change",
             "form_submit"
           ],
-          "name": "表单提交",
+          "kind": "crud",
+          "name": "CRUD：编辑记录",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='form_submit'], button[type='submit']"
-            },
-            {
-              "action": "expect_text_contains",
-              "selector": "#flash-group, [data-flash], [role='alert']",
-              "value": "成功"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_submit"
-          ],
-          "name": "动作：提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_submit']"
+              "event": "toggle_edit"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_submit']"
+              "selector": "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "type",
+              "field": "refund_fee",
+              "value": "UPDATED_{{__run_id}}_refund_fee"
+            },
+            {
+              "action": "type",
+              "field": "refund_amount",
+              "value": "UPDATED_{{__run_id}}_refund_amount"
+            },
+            {
+              "action": "type",
+              "field": "refund_reason",
+              "value": "UPDATED_{{__run_id}}_refund_reason"
+            },
+            {
+              "action": "click",
+              "event": "form_submit"
             }
-          ]
+          ],
+          "verification_key": "update",
+          "wait_key": "form_submit"
         },
         {
           "covers": [
             "action_confirm_refund"
           ],
-          "name": "动作：confirm_refund",
+          "kind": "state",
+          "name": "状态转换：pending → approved（confirm_refund）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_confirm_refund']"
+              "action": "goto",
+              "url": "/pages/travel/travel_refund_order/{{state_action_record_id_confirm_refund}}",
+              "value": "/pages/travel/travel_refund_order/{{state_action_record_id_confirm_refund}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_confirm_refund']"
+              "selector": "#travel_refund_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_confirm_refund",
+              "selector": "#travel_refund_order_action_confirm_refund"
             }
-          ]
+          ],
+          "verification_key": "action_confirm_refund",
+          "wait_key": "action_confirm_refund"
         },
         {
           "covers": [
             "action_reject_refund"
           ],
-          "name": "动作：reject_refund",
+          "kind": "state",
+          "name": "状态转换：pending → rejected（reject_refund）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_reject_refund']"
+              "action": "goto",
+              "url": "/pages/travel/travel_refund_order/{{state_action_record_id_reject_refund}}",
+              "value": "/pages/travel/travel_refund_order/{{state_action_record_id_reject_refund}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_reject_refund']"
+              "selector": "#travel_refund_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_reject_refund",
+              "selector": "#travel_refund_order_action_reject_refund"
             }
-          ]
+          ],
+          "verification_key": "action_reject_refund",
+          "wait_key": "action_reject_refund"
         },
         {
           "covers": [
             "action_refund"
           ],
-          "name": "动作：refund",
+          "kind": "state",
+          "name": "状态转换：approved → refunded（refund）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_refund']"
+              "action": "goto",
+              "url": "/pages/travel/travel_refund_order/{{state_action_record_id_refund}}",
+              "value": "/pages/travel/travel_refund_order/{{state_action_record_id_refund}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_refund']"
+              "selector": "#travel_refund_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_refund",
+              "selector": "#travel_refund_order_action_refund"
             }
-          ]
+          ],
+          "verification_key": "action_refund",
+          "wait_key": "action_refund"
         },
         {
           "covers": [
             "action_refund_direct"
           ],
-          "name": "动作：refund_direct",
+          "kind": "state",
+          "name": "状态转换：pending → refunded（refund_direct）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_refund_direct']"
+              "action": "goto",
+              "url": "/pages/travel/travel_refund_order/{{state_action_record_id_refund_direct}}",
+              "value": "/pages/travel/travel_refund_order/{{state_action_record_id_refund_direct}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_refund_direct']"
+              "selector": "#travel_refund_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_refund_direct",
+              "selector": "#travel_refund_order_action_refund_direct"
+            }
+          ],
+          "verification_key": "action_refund_direct",
+          "wait_key": "action_refund_direct"
+        },
+        {
+          "covers": [
+            "action_submit"
+          ],
+          "kind": "custom",
+          "name": "动作：提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance",
+          "steps": [
+            {
+              "action": "click",
+              "event": "action_submit",
+              "selector": "#travel_refund_order_action_submit"
+            }
+          ],
+          "verification_key": null,
+          "wait_key": "action_submit"
+        }
+      ],
+      "data_contract": {
+        "binds": [
+          {
+            "name": "route_record_id",
+            "path": "id",
+            "source": "route"
+          },
+          {
+            "name": "created_display_value",
+            "path": "refund_reason",
+            "source": "form"
+          }
+        ],
+        "cleanup": [],
+        "inputs": [
+          "route",
+          "form",
+          "generated_form_values"
+        ],
+        "setup": [
+          {
+            "binds": [
+              {
+                "name": "hotel_offer_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "match_only",
+            "graphql_field": "listTravelHotelOffers",
+            "kind": "related_list_first",
+            "name": "resolve_hotel_offer_id",
+            "owner": "dependent"
+          },
+          {
+            "binds": [
+              {
+                "name": "original_order_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelOrders",
+            "kind": "related_list_first",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_original_order_id",
+            "owner": "dependent"
+          },
+          {
+            "binds": [
+              {
+                "name": "seed_record_id",
+                "path": "id",
+                "source": "result"
+              },
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelRefundOrder",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelRefundOrders",
+            "index": 0,
+            "kind": "entity_list_first",
+            "name": "resolve_current_record",
+            "owner": "root",
+            "where_equals": "pending",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_confirm_refund",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelRefundOrder",
+            "create_input": {
+              "approval_mode": "none",
+              "original_order_id": "{{original_order_id}}",
+              "refund_amount": "E2E_{{__run_id}}_refund_amount_state_confirm_refund_0",
+              "refund_fee": "E2E_{{__run_id}}_refund_fee_state_confirm_refund_0",
+              "refund_reason": "E2E_{{__run_id}}_refund_reason_state_confirm_refund_0"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelRefundOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelRefundOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{original_order_id}}",
+                "path": "original_order_id"
+              }
+            ],
+            "name": "resolve_state_action_record_confirm_refund",
+            "owner": "root",
+            "prepare_actions": [],
+            "where_equals": "pending",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_reject_refund",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelRefundOrder",
+            "create_input": {
+              "approval_mode": "none",
+              "original_order_id": "{{original_order_id}}",
+              "refund_amount": "E2E_{{__run_id}}_refund_amount_state_reject_refund_1",
+              "refund_fee": "E2E_{{__run_id}}_refund_fee_state_reject_refund_1",
+              "refund_reason": "E2E_{{__run_id}}_refund_reason_state_reject_refund_1"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelRefundOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelRefundOrders",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{original_order_id}}",
+                "path": "original_order_id"
+              }
+            ],
+            "name": "resolve_state_action_record_reject_refund",
+            "owner": "root",
+            "prepare_actions": [],
+            "where_equals": "pending",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_refund",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelRefundOrder",
+            "create_input": {
+              "approval_mode": "none",
+              "original_order_id": "{{original_order_id}}",
+              "refund_amount": "E2E_{{__run_id}}_refund_amount_state_refund_0",
+              "refund_fee": "E2E_{{__run_id}}_refund_fee_state_refund_0",
+              "refund_reason": "E2E_{{__run_id}}_refund_reason_state_refund_0"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelRefundOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelRefundOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{original_order_id}}",
+                "path": "original_order_id"
+              }
+            ],
+            "name": "resolve_state_action_record_refund",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_refund"
+            ],
+            "where_equals": "pending",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_refund_direct",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelRefundOrder",
+            "create_input": {
+              "approval_mode": "none",
+              "original_order_id": "{{original_order_id}}",
+              "refund_amount": "E2E_{{__run_id}}_refund_amount_state_refund_direct_2",
+              "refund_fee": "E2E_{{__run_id}}_refund_fee_state_refund_direct_2",
+              "refund_reason": "E2E_{{__run_id}}_refund_reason_state_refund_direct_2"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelRefundOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelRefundOrders",
+            "index": 2,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{original_order_id}}",
+                "path": "original_order_id"
+              }
+            ],
+            "name": "resolve_state_action_record_refund_direct",
+            "owner": "root",
+            "prepare_actions": [],
+            "where_equals": "pending",
+            "where_path": "status"
+          }
+        ]
+      },
+      "dto_smoke": [],
+      "graphql_path": "/api/graphql",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#travel_refund_order_detail",
+          "submit": "#travel_refund_order_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "protocol": {
+        "case_fields": [
+          "name",
+          "kind",
+          "covers",
+          "wait_key",
+          "verification_key",
+          "steps"
+        ],
+        "contract_fields": [
+          "strategy",
+          "capabilities",
+          "wait_contract",
+          "verification_contract",
+          "data_contract"
+        ],
+        "step_fields": [
+          "action",
+          "selector",
+          "value",
+          "url",
+          "timeout"
+        ],
+        "transition_fields": [
+          "name",
+          "from",
+          "to",
+          "trigger",
+          "description",
+          "navigate_to"
+        ],
+        "version": 4
+      },
+      "strategy": "object_detail_flow",
+      "template_kind": "object_page",
+      "verification_contract": {
+        "action_confirm_refund": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "approved",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "confirm_refund",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_refund_order_status_badge, #travel_refund_order_fcl_status_badge, #state_badge",
+              "value": "approved"
+            }
+          ]
+        },
+        "action_refund": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "refunded",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "refund",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_refund_order_status_badge, #travel_refund_order_fcl_status_badge, #state_badge",
+              "value": "refunded"
+            }
+          ]
+        },
+        "action_refund_direct": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "refunded",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "refund_direct",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_refund_order_status_badge, #travel_refund_order_fcl_status_badge, #state_badge",
+              "value": "refunded"
+            }
+          ]
+        },
+        "action_reject_refund": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "rejected",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "reject_refund",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_refund_order_status_badge, #travel_refund_order_fcl_status_badge, #state_badge",
+              "value": "rejected"
+            }
+          ]
+        },
+        "create": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "created_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              },
+              {
+                "name": "created_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": "$form.refund_reason",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "field_equals",
+            "path": "refund_reason",
+            "source": "created_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_refund_order_detail",
+              "value": null
+            }
+          ]
+        },
+        "load": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "exists",
+            "path": "id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_refund_order_detail",
+              "value": null
+            }
+          ]
+        },
+        "state_transitions": [],
+        "toggle_edit": {
+          "backend": null,
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_refund_order_detail",
+              "value": null
+            }
+          ]
+        },
+        "update": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "$form.refund_reason",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelRefundOrder",
+            "op": "equals",
+            "path": "refund_reason",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_refund_order_detail",
+              "value": null
             }
           ]
         }
-      ],
-      "dto_smoke": []
+      },
+      "wait_contract": {
+        "action_confirm_refund": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_refund_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_refund_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_refund": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_refund_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_refund_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_refund_direct": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_refund_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_refund_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_reject_refund": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_refund_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_refund_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_submit": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_refund_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_refund_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "form_submit": {
+          "mode": "form_settled",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "#travel_refund_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "form_settled",
+            "selector": "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "toggle_edit": {
+          "mode": "dom_visible",
+          "reload_messages": [],
+          "selectors": [
+            "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+          ],
+          "state_keys": [],
+          "timeout": 3000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_refund_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        }
+      }
     }
   },
   "entity": "TravelRefundOrder",
   "page_id": "travel_refund_order_detail",
   "page_type": "object_page",
+  "resource_type": "transaction",
   "runtime_monitoring": null,
   "schema_version": "1.0",
   "state_transitions": [
@@ -235,11 +967,39 @@
     "form",
     "loading"
   ],
+  "transitions": {
+    "action_confirm_refund": [],
+    "action_refund": [],
+    "action_refund_direct": [],
+    "action_reject_refund": [],
+    "action_submit": [],
+    "cancel_edit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "form_change": [],
+    "form_submit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "toggle_edit": [
+      {
+        "op": "toggle",
+        "path": "editing"
+      }
+    ]
+  },
   "ui": {
     "sections": [],
     "template": {
       "detail": "object_page"
     }
   },
-  "version": 1
+  "version": 2
 }

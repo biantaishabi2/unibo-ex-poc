@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "hotel_code": "",
       "hotel_name": "",
       "city_code": "",
@@ -13,6 +14,7 @@
       "status": ""
     },
     {
+      "id": "row_02",
       "hotel_code": "",
       "hotel_name": "",
       "city_code": "",
@@ -20,6 +22,7 @@
       "status": ""
     },
     {
+      "id": "row_03",
       "hotel_code": "",
       "hotel_name": "",
       "city_code": "",

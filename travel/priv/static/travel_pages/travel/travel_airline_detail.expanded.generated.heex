@@ -60,7 +60,7 @@
                   航司规范编码
                 </.text>
                 <.text id="detail_fields_airline_code_value">
-                  <%= get_in(@travel_airline, [:airline_code]) || "" %>
+                  <%= get_in(@travel_airline, [:airline_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_airline_name">
@@ -68,7 +68,7 @@
                   航司名称
                 </.text>
                 <.text id="detail_fields_airline_name_value">
-                  <%= get_in(@travel_airline, [:airline_name]) || "" %>
+                  <%= get_in(@travel_airline, [:airline_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_iata_code">
@@ -76,7 +76,7 @@
                   IATA 二字码
                 </.text>
                 <.text id="detail_fields_iata_code_value">
-                  <%= get_in(@travel_airline, [:iata_code]) || "" %>
+                  <%= get_in(@travel_airline, [:iata_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_icao_code">
@@ -84,7 +84,7 @@
                   ICAO 三字码
                 </.text>
                 <.text id="detail_fields_icao_code_value">
-                  <%= get_in(@travel_airline, [:icao_code]) || "" %>
+                  <%= get_in(@travel_airline, [:icao_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_status">
@@ -92,21 +92,27 @@
                   status
                 </.text>
                 <.text id="detail_fields_status_value">
-                  <%= get_in(@travel_airline, [:status]) || "" %>
+                  <%= get_in(@travel_airline, [:status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="travel_airline_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="travel_airline.airline_code" size="md" id="update_airline_code" />
-                <.input bind="travel_airline.airline_name" size="md" id="update_airline_name" />
-                <.input bind="travel_airline.iata_code" size="md" id="update_iata_code" />
-                <.input bind="travel_airline.icao_code" size="md" id="update_icao_code" />
-                <.select bind="travel_airline.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
-
+                <.input size="md" name="travel_airline[airline_code]" id="travel_airline_form_airline_code" value={get_in(@travel_airline, [:airline_code]) || ""} />
+                <.input size="md" name="travel_airline[airline_name]" id="travel_airline_form_airline_name" value={get_in(@travel_airline, [:airline_name]) || ""} />
+                <.input size="md" name="travel_airline[iata_code]" id="travel_airline_form_iata_code" value={get_in(@travel_airline, [:iata_code]) || ""} />
+                <.input size="md" name="travel_airline[icao_code]" id="travel_airline_form_icao_code" value={get_in(@travel_airline, [:icao_code]) || ""} />
+                <.select size="md" name="travel_airline[status]" id="travel_airline_form_status" :let={builder} value={get_in(@travel_airline, [:status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="active" label="active">active</.select_item>
+                      <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
               </.stack>
             </.grid>
@@ -114,7 +120,7 @@
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

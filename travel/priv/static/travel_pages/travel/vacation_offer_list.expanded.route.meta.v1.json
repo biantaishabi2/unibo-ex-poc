@@ -1,0 +1,12 @@
+{
+  "page_id": "vacation_offer_list",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.VacationOfferListLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/vacation_offer",
+    "kind": "list",
+    "params": []
+  }
+}

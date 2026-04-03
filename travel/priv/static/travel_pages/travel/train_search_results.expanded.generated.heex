@@ -15,7 +15,7 @@
     <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="train_date_slider">
       <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
         <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
-          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm" id="train_date_badge">
             <%= to_string(val) %>
           </.badge>
         <% end %>
@@ -39,7 +39,7 @@
     </.flex>
   </.section>
   <.section layout="none" id="alert_section">
-    <%= if @policy.exceeded == true do %>
+    <%= if get_in(@policy, [:exceeded]) == true do %>
       <.alert variant="warning" title="超标提示" id="train_policy_alert">
         标记超标的车次超出差旅标准,预订需审批
       </.alert>
@@ -48,67 +48,67 @@
   <.section layout="none" id="results_section">
     <.stack gap={3} padding={3} direction="column" id="train_results_list">
       <%= for item <- (get_in(@trains, [:items]) || []) do %>
-        <.card phx-click="navigate" params={"/travel/train/#{get_in(item, [:id])}"} variant="default">
-          <.card_header>
-            <.flex gap={2} align="center" direction="row">
-              <.text variant="body" weight="bold">
-                <%= get_in(item, [:train_no]) || "" %>
+        <.card phx-click="navigate" params={"/travel/train/#{get_in(item, [:id])}"} variant="default" id="train_card">
+          <.card_header id="train_card_header">
+            <.flex gap={2} align="center" direction="row" id="train_header_row">
+              <.text variant="body" weight="bold" id="train_no">
+                <%= get_in(item, [:train_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
               <%= if (val = get_in(item, [:train_type_label])) && to_string(val) != "" do %>
-                <.badge variant="outline" size="sm">
+                <.badge variant="outline" size="sm" id="train_type_badge">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
-              <%= if item.is_policy_compliant == false do %>
-                <.badge variant="destructive" size="sm">
+              <%= if get_in(item, [:is_policy_compliant]) == false do %>
+                <.badge variant="destructive" size="sm" id="train_exceed_badge">
                   超标
                 </.badge>
               <% end %>
             </.flex>
           </.card_header>
-          <.card_content>
-            <.stack gap={2} direction="column">
-              <.flex justify="between" align="center" direction="row">
-                <.stack gap={0} align="center" direction="column">
-                  <.text variant="h2" weight="bold">
-                    <%= get_in(item, [:departure_time]) || "" %>
+          <.card_content id="train_card_content">
+            <.stack gap={2} direction="column" id="train_detail_stack">
+              <.flex justify="between" align="center" direction="row" id="train_time_row">
+                <.stack gap={0} align="center" direction="column" id="train_departure_info">
+                  <.text variant="h2" weight="bold" id="train_departure_time">
+                    <%= get_in(item, [:departure_time]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
-                  <.text variant="caption" color="muted">
-                    <%= get_in(item, [:departure_station_name]) || "" %>
-                  </.text>
-                </.stack>
-                <.stack gap={0} align="center" direction="column">
-                  <.text variant="caption" color="muted">
-                    <%= get_in(item, [:duration_label]) || "" %>
-                  </.text>
-                  <.separator />
-                  <.text variant="caption" color="muted">
-                    <%= get_in(item, [:stop_count_label]) || "" %>
+                  <.text variant="caption" color="muted" id="train_departure_station">
+                    <%= get_in(item, [:departure_station_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
                 </.stack>
-                <.stack gap={0} align="center" direction="column">
-                  <.text variant="h2" weight="bold">
-                    <%= get_in(item, [:arrival_time]) || "" %>
+                <.stack gap={0} align="center" direction="column" id="train_duration_info">
+                  <.text variant="caption" color="muted" id="train_duration">
+                    <%= get_in(item, [:duration_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
-                  <.text variant="caption" color="muted">
-                    <%= get_in(item, [:arrival_station_name]) || "" %>
+                  <.separator id="train_sep" />
+                  <.text variant="caption" color="muted" id="train_stop_count">
+                    <%= get_in(item, [:stop_count_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+                  </.text>
+                </.stack>
+                <.stack gap={0} align="center" direction="column" id="train_arrival_info">
+                  <.text variant="h2" weight="bold" id="train_arrival_time">
+                    <%= get_in(item, [:arrival_time]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+                  </.text>
+                  <.text variant="caption" color="muted" id="train_arrival_station">
+                    <%= get_in(item, [:arrival_station_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
                 </.stack>
               </.flex>
             </.stack>
           </.card_content>
-          <.card_footer>
-            <.flex gap={2} wrap={true} direction="row">
+          <.card_footer id="train_card_footer">
+            <.flex gap={2} wrap={true} direction="row" id="seat_options_row">
               <%= for seat <- (get_in(item, [:seat_options]) || []) do %>
-                <.stack gap={0} align="center" direction="column">
-                  <.text variant="caption" color="muted">
-                    <%= get_in(seat, [:seat_class_name]) || "" %>
+                <.stack gap={0} align="center" direction="column" id="seat_option">
+                  <.text variant="caption" color="muted" id="seat_class_name">
+                    <%= get_in(seat, [:seat_class_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
-                  <.text variant="body" color="primary" weight="bold">
-                    <%= get_in(seat, [:price]) || "" %>
+                  <.text variant="body" color="primary" weight="bold" id="seat_price">
+                    <%= get_in(seat, [:price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
-                  <.text variant="caption" color="muted">
-                    <%= get_in(seat, [:tickets_label]) || "" %>
+                  <.text variant="caption" color="muted" id="seat_tickets">
+                    <%= get_in(seat, [:tickets_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                   </.text>
                 </.stack>
               <% end %>
@@ -119,7 +119,7 @@
     </.stack>
   </.section>
   <.section layout="none" id="empty_section">
-    <%= if @trains.total_count == 0 do %>
+    <%= if get_in(@trains, [:total_count]) == 0 do %>
       <.empty_state title="未找到车次" description="请调整搜索条件后重试" id="no_trains" />
     <% end %>
   </.section>

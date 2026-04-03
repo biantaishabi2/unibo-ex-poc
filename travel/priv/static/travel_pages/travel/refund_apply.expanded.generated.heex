@@ -26,7 +26,7 @@
     </.flex>
   </.section>
   <.section layout="none" id="form_section">
-    <.form phx-submit="form_submit" phx-change="form_change" id="main_form">
+    <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="main_form">
       <.card variant="default" id="basic_info_card">
         <.card_header id="basic_info_header">
           <.card_title id="basic_info_title">
@@ -35,14 +35,18 @@
         </.card_header>
         <.card_content id="basic_info_content">
           <.stack direction="column" id="basic_info_grid">
-            <.input bind="travel_refund_order.refund_reason" size="md" id="create_refund_reason" />
-            <.input bind="travel_refund_order.refund_fee" size="md" id="create_refund_fee" />
-            <.input bind="travel_refund_order.refund_amount" size="md" id="create_refund_amount" />
-            <.select bind="travel_refund_order.status" size="md" id="create_status" options={[%{label: "pending", value: "pending"}, %{label: "approved", value: "approved"}, %{label: "refunded", value: "refunded"}, %{label: "rejected", value: "rejected"}]}>
-
-            </.select>
-            <.select bind="travel_refund_order.approval_mode" size="md" id="create_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
-
+            <.input size="md" name="travel_refund_order[refund_reason]" id="form_refund_reason" />
+            <.input size="md" name="travel_refund_order[refund_fee]" id="form_refund_fee" />
+            <.input size="md" name="travel_refund_order[refund_amount]" id="form_refund_amount" />
+            <.select size="md" name="travel_refund_order[approval_mode]" id="form_approval_mode" :let={builder}>
+              <.select_trigger builder={builder} />
+              <.select_content builder={builder}>
+                <.select_group>
+                  <.select_item builder={builder} value="none" label="none">none</.select_item>
+                  <.select_item builder={builder} value="self" label="self">self</.select_item>
+                  <.select_item builder={builder} value="oa" label="oa">oa</.select_item>
+                </.select_group>
+              </.select_content>
             </.select>
           </.stack>
         </.card_content>

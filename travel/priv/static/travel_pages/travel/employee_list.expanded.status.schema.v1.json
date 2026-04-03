@@ -8,6 +8,7 @@
     "rows_empty": true,
     "rows": [
       {
+        "id": "row_01",
         "order_no": "",
         "product_type": "",
         "booking_mode": "",
@@ -29,6 +30,7 @@
         "payment_external_ref": ""
       },
       {
+        "id": "row_02",
         "order_no": "",
         "product_type": "",
         "booking_mode": "",
@@ -50,6 +52,7 @@
         "payment_external_ref": ""
       },
       {
+        "id": "row_03",
         "order_no": "",
         "product_type": "",
         "booking_mode": "",
@@ -80,6 +83,7 @@
     "rows[].contact_name",
     "rows[].contact_phone",
     "rows[].currency",
+    "rows[].id",
     "rows[].order_no",
     "rows[].original_order_ref",
     "rows[].payment_external_ref",
@@ -105,5 +109,54 @@
     "travel_order"
   ],
   "urlParams": {},
-  "notes": []
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "list": "Travel.TravelOrder.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "runtime",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/employee_list",
+        "cases": [],
+        "page_kind": "list",
+        "page_spec": {
+          "page_kind": "list",
+          "route_role": "list",
+          "supports_runtime_record_identity": false,
+          "template_kind": "list_report"
+        }
+      }
+    },
+    "entity": "TravelOrder",
+    "extends": "base_list_report",
+    "page_id": "employee_list",
+    "page_type": "list_report",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "list": "list_report"
+      }
+    },
+    "version": 2
+  }
 }

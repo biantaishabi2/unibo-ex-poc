@@ -57,23 +57,23 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:airline_code]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="travel_airline_row">
+            <.table_cell id="td_airline_code">
+              <%= get_in(row, [:airline_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:airline_name]) || "" %>
+            <.table_cell id="td_airline_name">
+              <%= get_in(row, [:airline_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:iata_code]) || "" %>
+            <.table_cell id="td_iata_code">
+              <%= get_in(row, [:iata_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:icao_code]) || "" %>
+            <.table_cell id="td_icao_code">
+              <%= get_in(row, [:icao_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_status">
               <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -94,7 +94,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@travel_airline, [:page]) || "" %> / <%= get_in(@travel_airline, [:total_pages]) || "" %>
+        <%= get_in(@travel_airline, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@travel_airline, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="travel_airline_page_next" variant="primary" size="md" id="page_next">
         下一页

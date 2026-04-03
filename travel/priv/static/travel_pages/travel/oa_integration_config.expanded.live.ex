@@ -6,26 +6,63 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   - Backend API names are placeholders by design; wire them to real services later.
   """
 
-  use MyAppWeb, :live_view
+  use Phoenix.LiveView, layout: {MyAppWeb.Layouts, :app}
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  import StitchUI.Components.Basic, except: [link: 1]
+  import StitchUI.Components.Card
+  import StitchUI.Components.Hero
+  import StitchUI.Components.Feedback
+  import StitchUI.Components.Forms
+  import StitchUI.Components.Tabs
+  import StitchUI.Components.Stepper
+  import StitchUI.Components.Timeline
+  import StitchUI.Components.Statistic
+  import StitchUI.Components.Avatar
+  import StitchUI.Components.Accordion
+  import StitchUI.Components.Breadcrumb
+  import StitchUI.Components.List
+  import StitchUI.Components.Table
+  import StitchUI.Components.Select
+  import StitchUI.Components.Toggle
+  import StitchUI.Components.ControlBar
+  import StitchUI.Components.Tree
+  import StitchUI.Layouts.Core
+
+  @page_id "oa_integration_config"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): record, record.logo, record.notify_frequency, record.notify_method, record.password_policy, record.session_timeout, record.site_description, record.site_name, record.status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"record\": {
+    \"status\": true,
+    \"site_name\": \"\",
+    \"logo\": \"\",
+    \"site_description\": \"\",
+    \"notify_method\": \"\",
+    \"notify_frequency\": \"\",
+    \"session_timeout\": \"\",
+    \"password_policy\": \"\"
+  }
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
   @backend_mode "api"
-  @backend_mod __MODULE__.Backend
-  @backend_fun :handle_event
-  @backend_load_event nil
-  @backend_load_selection nil
-  @backend_load_assigns %{}
+  @backend_mod MyAppWeb.Graphql.StitchBackend
+  @runtime_config_mod MyAppWeb.Graphql.RuntimeConfig
+  @backend_fun :dispatch
+  @backend_load_event "get"
+  @backend_load_selection "id"
+  @backend_load_assigns %{travel_order: %{}}
   @backend_params_accept []
-  @backend_info_reload_messages []
-  @backend_api_map %{}
+  @backend_info_reload_messages ["page_host_reload"]
+  @backend_api_map %{
+    "get" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.get"},
+    "list" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.list"}
+  }
+  @backend_embedded_page nil
+  @entity_assign_fields []
   @status_key_roots []
   @auth_mode "optional"
   @user_context_assigns []
@@ -33,6 +70,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @impl true
   def mount(params, _session, socket) do
     socket = ensure_user_context(socket)
+    socket = __assign_tenant_context(socket, params)
     socket = assign(socket, :page_title, @page_title)
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
@@ -40,14 +78,22 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    backend_params = __filter_backend_params(params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
+    backend_params = params |> __filter_backend_params() |> __inject_backend_tenant(socket)
+    socket = assign(socket, :__backend_params, backend_params)
+    is_new_mode = socket.assigns.live_action == :new or Map.get(params, "id") == "new"
+    socket = if is_new_mode, do: assign(socket, editing: true), else: socket
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event) and not is_new_mode, do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
   @impl true
   def handle_params(params, _uri, socket) do
     socket = __maybe_assign_self_path(socket, _uri)
+    socket = __assign_tenant_context(socket, params)
+    backend_params = params |> __filter_backend_params() |> __inject_backend_tenant(socket)
+    socket = assign(socket, :__backend_params, backend_params)
+    is_new_mode = socket.assigns.live_action == :new or Map.get(params, "id") == "new"
+    socket = if is_new_mode and not Map.get(socket.assigns, :editing, false), do: assign(socket, editing: true), else: socket
     {:noreply, apply_params(socket, params)}
   end
 
@@ -65,9 +111,107 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
+  def handle_event("action_cancel_cancel_request", params, socket) do
+    # UI action event name: action_cancel_cancel_request
+    socket = dispatch_backend("action_cancel_cancel_request", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_cancel_waitlist", params, socket) do
+    # UI action event name: action_cancel_waitlist
+    socket = dispatch_backend("action_cancel_waitlist", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_confirm_change", params, socket) do
+    # UI action event name: action_confirm_change
+    socket = dispatch_backend("action_confirm_change", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_confirm_quote", params, socket) do
+    # UI action event name: action_confirm_quote
+    socket = dispatch_backend("action_confirm_quote", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_execute_cancel", params, socket) do
+    # UI action event name: action_execute_cancel
+    socket = dispatch_backend("action_execute_cancel", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_fulfill_waitlist", params, socket) do
+    # UI action event name: action_fulfill_waitlist
+    socket = dispatch_backend("action_fulfill_waitlist", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_mark_booked", params, socket) do
+    # UI action event name: action_mark_booked
+    socket = dispatch_backend("action_mark_booked", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_mark_completed", params, socket) do
+    # UI action event name: action_mark_completed
+    socket = dispatch_backend("action_mark_completed", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_mark_order_failed", params, socket) do
+    # UI action event name: action_mark_order_failed
+    socket = dispatch_backend("action_mark_order_failed", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_mark_payment_succeeded", params, socket) do
+    # UI action event name: action_mark_payment_succeeded
+    socket = dispatch_backend("action_mark_payment_succeeded", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_request_cancel", params, socket) do
+    # UI action event name: action_request_cancel
+    socket = dispatch_backend("action_request_cancel", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_request_change", params, socket) do
+    # UI action event name: action_request_change
+    socket = dispatch_backend("action_request_change", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_submit_order", params, socket) do
+    # UI action event name: action_submit_order
+    socket = dispatch_backend("action_submit_order", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_submit_waitlist", params, socket) do
+    # UI action event name: action_submit_waitlist
+    socket = dispatch_backend("action_submit_waitlist", params, socket)
     {:noreply, socket}
   end
 
@@ -126,6 +270,25 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
   defp __filter_backend_params(params), do: params
 
+  defp __inject_backend_tenant(params, socket) when is_map(params) do
+    case Map.get(socket.assigns, :tenant_id) do
+      nil -> params
+      tenant_id -> Map.put_new(params, "tenant_id", tenant_id)
+    end
+  end
+  defp __inject_backend_tenant(params, _socket), do: params
+
+  defp __merge_backend_params(params, socket) when is_map(params) do
+    base = Map.get(socket.assigns, :__backend_params, %{})
+    merged = if is_map(base), do: Map.merge(base, params), else: params
+    __inject_backend_tenant(merged, socket)
+  end
+  defp __merge_backend_params(_params, socket) do
+    base = Map.get(socket.assigns, :__backend_params, %{})
+    merged = if is_map(base), do: base, else: %{}
+    __inject_backend_tenant(merged, socket)
+  end
+
   defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
     kind == :page_host_reload and value in @backend_info_reload_messages
   end
@@ -141,6 +304,28 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     Enum.reduce(@user_context_assigns, socket, fn key, s ->
       assign_new(s, key, fn -> nil end)
     end)
+  end
+
+  defp __assign_tenant_context(socket, params) when is_map(params) do
+    tenant_id =
+      Map.get(params, "tenant_id") ||
+        Map.get(socket.assigns, :tenant_id) ||
+        __default_tenant_id()
+
+    if is_binary(tenant_id) and String.trim(tenant_id) != "" do
+      assign(socket, :tenant_id, String.trim(tenant_id))
+    else
+      socket
+    end
+  end
+  defp __assign_tenant_context(socket, _params), do: socket
+
+  defp __default_tenant_id do
+    if Code.ensure_loaded?(@runtime_config_mod) and function_exported?(@runtime_config_mod, :default_tenant_id, 0) do
+      @runtime_config_mod.default_tenant_id()
+    else
+      nil
+    end
   end
 
   defp __maybe_assign_self_path(socket, uri) when is_binary(uri) do
@@ -184,21 +369,69 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     #   {:ok, %{dto: map, status: map, effects: list, errors: list, meta: map}}
     #
     # Template compatibility note: this skeleton still assigns flat keys.
+    params = params |> __merge_backend_params(socket) |> __inject_backend_id(socket) |> Map.put("__page_id", @page_id)
     result =
       case @backend_mode do
         "transitions" ->
           state0 = __take_status(socket.assigns)
+          state0 = __inject_backend_tenant(state0, socket)
           %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
           {dto, st} = __split_dto_status(assigns2)
           {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "transitions"}}}
         "api" ->
-          _mapping = Map.get(@backend_api_map, event)
           state0 = __take_status(socket.assigns)
-          apply(@backend_mod, @backend_fun, [event, params, state0])
+          state0 = __inject_backend_tenant(state0, socket)
+          state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
+          backend_api = __resolve_backend_api(event, socket)
+          case backend_api do
+            nil ->
+              # 纯 UI 事件不应硬塞给后端；compiled 页面这里直接走本地 transition。
+              %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
+              {dto, st} = __split_dto_status(assigns2)
+              {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
+            _mapping ->
+              apply(@backend_mod, @backend_fun, [event, params, state0])
+          end
       end
 
     apply_backend_result(socket, result)
   end
+
+  defp __resolve_backend_api(event, socket) do
+    normalized = to_string(event)
+    direct = Map.get(@backend_api_map, normalized) || Map.get(@backend_api_map, String.replace_prefix(normalized, "action_", ""))
+    case direct do
+      nil ->
+        is_new_mode = socket.assigns.live_action == :new or get_in(socket.assigns, [:record, :id]) in [nil, ""]
+        cond do
+          normalized == "form_submit" and is_new_mode -> Map.get(@backend_api_map, "create")
+          normalized == "form_submit" -> Map.get(@backend_api_map, "update")
+          true -> nil
+        end
+      mapping ->
+        mapping
+    end
+  end
+
+  defp __inject_backend_id(params, socket) when is_map(params) do
+    has_id = Map.has_key?(params, "id") or Map.has_key?(params, :id)
+    if has_id do
+      params
+    else
+      id =
+        Map.get(params, "id") ||
+          Map.get(params, :id) ||
+          get_in(socket.assigns, [:record, :id]) ||
+          get_in(socket.assigns, [:record, "id"]) ||
+          get_in(socket.assigns, [:travel_order, :id]) ||
+          get_in(socket.assigns, [:travel_order, "id"])
+      case id do
+        value when is_binary(value) and value != "" -> Map.put(params, "id", value)
+        _ -> params
+      end
+    end
+  end
+  defp __inject_backend_id(params, _socket), do: params
 
   defp __split_dto_status(assigns) when is_map(assigns) do
     # Split is a hint only. Both dto/status are still assigned as flat keys.
@@ -216,7 +449,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     errors = Map.get(result, :errors, [])
     meta = Map.get(result, :meta, %{})
 
+    dto = atomize_keys(dto)
+    st = atomize_keys(st)
     socket = socket |> assign(dto) |> assign(st)
+    socket = __sync_entity_assign(socket, dto)
+    socket = __sync_record_alias(socket)
     socket = assign(socket, :errors, errors)
     socket = assign(socket, :_dto, dto)
     socket = assign(socket, :_status, st)
@@ -228,7 +465,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
   defp apply_backend_result(socket, {:ok, assigns}) when is_map(assigns) do
     # Backward compat: treat {:ok, assigns} as dto-only.
-    socket |> assign(assigns) |> assign(:_dto, assigns) |> assign(:_status, %{})
+    assigns = atomize_keys(assigns)
+    socket = socket |> assign(assigns)
+    socket = __sync_entity_assign(socket, assigns)
+    socket = __sync_record_alias(socket)
+    socket |> assign(:_dto, assigns) |> assign(:_status, %{})
   end
   defp apply_backend_result(socket, {:error, reason}) do
     assign(socket, :error, inspect(reason))
@@ -269,11 +510,59 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
   defp __normalize_to(_base, _to), do: nil
 
-  defmodule Backend do
-    @moduledoc false
-    # Default no-op backend: keeps the skeleton runnable in mock/dev.
-    def handle_event(_event, _params, assigns), do: {:ok, %{dto: assigns, status: %{}, effects: [], errors: [], meta: %{}}}
+  defp __sync_entity_assign(socket, dto) when is_map(dto) do
+    case dto do
+      %{travel_order: entity} when is_map(entity) and map_size(entity) > 0 -> assign(socket, :travel_order, entity)
+      %{record: entity} when is_map(entity) ->
+        case __assign_map_present?(entity) do
+          true -> assign(socket, :travel_order, entity)
+          false -> socket
+        end
+      _ ->
+        source =
+          Enum.reduce(@entity_assign_fields, %{}, fn key, acc ->
+            case Map.fetch(dto, key) do
+              {:ok, value} -> Map.put(acc, key, value)
+              :error ->
+                atom_key = if is_binary(key), do: String.to_atom(key), else: key
+                case Map.fetch(dto, atom_key) do
+                  {:ok, value} -> Map.put(acc, key, value)
+                  :error -> acc
+                end
+            end
+          end)
+        if map_size(source) == 0 do
+          socket
+        else
+          entity = Map.get(socket.assigns, :travel_order, %{})
+          entity = if is_map(entity), do: Map.merge(entity, source), else: source
+          assign(socket, :travel_order, entity)
+        end
+    end
   end
+  defp __sync_entity_assign(socket, _dto), do: socket
+
+  defp __sync_record_alias(socket) do
+    case socket.assigns do
+      %{travel_order: entity} when is_map(entity) ->
+        case __assign_map_present?(entity) do
+          true -> assign(socket, :record, entity)
+          false -> socket
+        end
+      _ -> socket
+    end
+  end
+
+  defp __assign_map_present?(value) when is_map(value) do
+    Enum.any?(value, fn
+      {_key, nested} when is_map(nested) -> __assign_map_present?(nested)
+      {_key, nested} when is_list(nested) -> nested != []
+      {_key, nested} when is_binary(nested) -> String.trim(nested) != ""
+      {_key, nil} -> false
+      {_key, _nested} -> true
+    end)
+  end
+  defp __assign_map_present?(_value), do: false
 
   defp apply_derived(socket), do: socket
 

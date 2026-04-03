@@ -1,0 +1,12 @@
+{
+  "page_id": "travel_room_type_list",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelRoomTypeListLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_room_type",
+    "kind": "list",
+    "params": []
+  }
+}

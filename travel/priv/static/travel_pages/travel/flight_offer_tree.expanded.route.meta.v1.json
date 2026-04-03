@@ -1,0 +1,12 @@
+{
+  "page_id": "flight_offer_tree",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.FlightOfferTreeLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/flight_offer_tree",
+    "kind": "list",
+    "params": []
+  }
+}

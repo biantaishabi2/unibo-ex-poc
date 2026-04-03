@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "travel_refund_order.approval_mode",
     "travel_refund_order.refund_amount",
     "travel_refund_order.refund_fee",
@@ -10,9 +11,21 @@
   ],
   "requiredRoots": [
     "editing",
+    "record",
     "travel_refund_order"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

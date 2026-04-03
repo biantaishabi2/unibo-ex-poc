@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "train_offer.arrival_at",
     "train_offer.arrival_station_code",
     "train_offer.arrival_station_name",
@@ -26,9 +27,21 @@
   ],
   "requiredRoots": [
     "editing",
+    "record",
     "train_offer"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "sale_status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

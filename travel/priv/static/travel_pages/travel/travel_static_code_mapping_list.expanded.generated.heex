@@ -60,30 +60,30 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:supplier_code]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="travel_static_code_mapping_row">
+            <.table_cell id="td_supplier_code">
+              <%= get_in(row, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_object_type">
               <%= if (val = get_in(row, [:object_type])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_object_type">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:canonical_entity]) || "" %>
+            <.table_cell id="td_canonical_entity">
+              <%= get_in(row, [:canonical_entity]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:external_code]) || "" %>
+            <.table_cell id="td_external_code">
+              <%= get_in(row, [:external_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:external_name]) || "" %>
+            <.table_cell id="td_external_name">
+              <%= get_in(row, [:external_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_status">
               <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -104,7 +104,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@travel_static_code_mapping, [:page]) || "" %> / <%= get_in(@travel_static_code_mapping, [:total_pages]) || "" %>
+        <%= get_in(@travel_static_code_mapping, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@travel_static_code_mapping, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="travel_static_code_mapping_page_next" variant="primary" size="md" id="page_next">
         下一页

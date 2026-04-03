@@ -93,14 +93,8 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "edit_form",
+          "node_id": "travel_static_code_mapping_edit_form",
           "prop": "submit",
-          "raw": "form_submit"
-        },
-        {
-          "node_type": "Button",
-          "node_id": "save_btn",
-          "prop": "click",
           "raw": "form_submit"
         }
       ]
@@ -109,7 +103,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "edit_form",
+          "node_id": "travel_static_code_mapping_edit_form",
           "prop": "change",
           "raw": "form_change"
         }

@@ -32,6 +32,21 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
+      <%= if get_in(@record, [:sale_status]) == "draft" || get_in(@record, [:sale_status]) == "inactive" do %>
+        <.button variant="secondary" phx-click="action_activate" size="md" id="flight_offer_action_activate">
+          activate
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:sale_status]) == "active" do %>
+        <.button variant="secondary" phx-click="action_deactivate" size="md" id="flight_offer_action_deactivate">
+          deactivate
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:sale_status]) == "active" do %>
+        <.button variant="secondary" phx-click="action_expire" size="md" id="flight_offer_action_expire">
+          expire
+        </.button>
+      <% end %>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
@@ -53,7 +68,7 @@
                   供应商编码
                 </.text>
                 <.text id="detail_fields_supplier_code_value">
-                  <%= get_in(@flight_offer, [:supplier_code]) || "" %>
+                  <%= get_in(@flight_offer, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_itinerary_code">
@@ -61,7 +76,7 @@
                   行程编码
                 </.text>
                 <.text id="detail_fields_itinerary_code_value">
-                  <%= get_in(@flight_offer, [:itinerary_code]) || "" %>
+                  <%= get_in(@flight_offer, [:itinerary_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_flight_no">
@@ -69,7 +84,7 @@
                   航班号
                 </.text>
                 <.text id="detail_fields_flight_no_value">
-                  <%= get_in(@flight_offer, [:flight_no]) || "" %>
+                  <%= get_in(@flight_offer, [:flight_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_departure_airport_code">
@@ -77,7 +92,7 @@
                   出发机场编码
                 </.text>
                 <.text id="detail_fields_departure_airport_code_value">
-                  <%= get_in(@flight_offer, [:departure_airport_code]) || "" %>
+                  <%= get_in(@flight_offer, [:departure_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_arrival_airport_code">
@@ -85,7 +100,7 @@
                   到达机场编码
                 </.text>
                 <.text id="detail_fields_arrival_airport_code_value">
-                  <%= get_in(@flight_offer, [:arrival_airport_code]) || "" %>
+                  <%= get_in(@flight_offer, [:arrival_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_departure_at">
@@ -93,7 +108,7 @@
                   起飞时间
                 </.text>
                 <.text id="detail_fields_departure_at_value">
-                  <%= get_in(@flight_offer, [:departure_at]) || "" %>
+                  <%= get_in(@flight_offer, [:departure_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_arrival_at">
@@ -101,7 +116,7 @@
                   到达时间
                 </.text>
                 <.text id="detail_fields_arrival_at_value">
-                  <%= get_in(@flight_offer, [:arrival_at]) || "" %>
+                  <%= get_in(@flight_offer, [:arrival_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_cabin_class">
@@ -109,7 +124,7 @@
                   舱等
                 </.text>
                 <.text id="detail_fields_cabin_class_value">
-                  <%= get_in(@flight_offer, [:cabin_class]) || "" %>
+                  <%= get_in(@flight_offer, [:cabin_class]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_fare_family">
@@ -117,7 +132,7 @@
                   运价族
                 </.text>
                 <.text id="detail_fields_fare_family_value">
-                  <%= get_in(@flight_offer, [:fare_family]) || "" %>
+                  <%= get_in(@flight_offer, [:fare_family]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_listed_price">
@@ -125,7 +140,7 @@
                   对客展示价快照
                 </.text>
                 <.text id="detail_fields_listed_price_value">
-                  <%= get_in(@flight_offer, [:listed_price]) || "" %>
+                  <%= get_in(@flight_offer, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_settlement_price">
@@ -133,7 +148,7 @@
                   结算价快照
                 </.text>
                 <.text id="detail_fields_settlement_price_value">
-                  <%= get_in(@flight_offer, [:settlement_price]) || "" %>
+                  <%= get_in(@flight_offer, [:settlement_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_currency">
@@ -141,7 +156,7 @@
                   currency
                 </.text>
                 <.text id="detail_fields_currency_value">
-                  <%= get_in(@flight_offer, [:currency]) || "" %>
+                  <%= get_in(@flight_offer, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_seats_available">
@@ -149,7 +164,7 @@
                   可售座位快照
                 </.text>
                 <.text id="detail_fields_seats_available_value">
-                  <%= get_in(@flight_offer, [:seats_available]) || "" %>
+                  <%= get_in(@flight_offer, [:seats_available]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_baggage_policy">
@@ -157,7 +172,7 @@
                   行李规则快照
                 </.text>
                 <.text id="detail_fields_baggage_policy_value">
-                  <%= get_in(@flight_offer, [:baggage_policy]) || "" %>
+                  <%= get_in(@flight_offer, [:baggage_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_refund_change_policy">
@@ -165,7 +180,7 @@
                   退改规则快照
                 </.text>
                 <.text id="detail_fields_refund_change_policy_value">
-                  <%= get_in(@flight_offer, [:refund_change_policy]) || "" %>
+                  <%= get_in(@flight_offer, [:refund_change_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_sale_status">
@@ -173,44 +188,52 @@
                   sale_status
                 </.text>
                 <.text id="detail_fields_sale_status_value">
-                  <%= get_in(@flight_offer, [:sale_status]) || "" %>
+                  <%= get_in(@flight_offer, [:sale_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="flight_offer_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="flight_offer.tenant_id" size="md" id="update_tenant_id" />
-                <.input bind="flight_offer.host_shop_id" size="md" id="update_host_shop_id" />
-                <.input bind="flight_offer.supplier_code" size="md" id="update_supplier_code" />
-                <.input bind="flight_offer.itinerary_code" size="md" id="update_itinerary_code" />
-                <.input bind="flight_offer.flight_no" size="md" id="update_flight_no" />
-                <.input bind="flight_offer.departure_airport_code" size="md" id="update_departure_airport_code" />
-                <.input bind="flight_offer.arrival_airport_code" size="md" id="update_arrival_airport_code" />
-                <.input bind="flight_offer.departure_at" size="md" id="update_departure_at" />
-                <.input bind="flight_offer.arrival_at" size="md" id="update_arrival_at" />
-                <.input bind="flight_offer.cabin_class" size="md" id="update_cabin_class" />
-                <.input bind="flight_offer.fare_family" size="md" id="update_fare_family" />
-                <.input bind="flight_offer.listed_price" size="md" id="update_listed_price" />
-                <.input bind="flight_offer.settlement_price" size="md" id="update_settlement_price" />
-                <.input bind="flight_offer.currency" size="md" id="update_currency" />
-                <.input bind="flight_offer.seats_available" size="md" id="update_seats_available" />
-                <.textarea bind="flight_offer.baggage_policy" id="update_baggage_policy" />
-                <.textarea bind="flight_offer.refund_change_policy" id="update_refund_change_policy" />
-                <.select bind="flight_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
-
+                <.input size="md" name="flight_offer[tenant_id]" id="flight_offer_form_tenant_id" value={get_in(@flight_offer, [:tenant_id]) || ""} />
+                <.input size="md" name="flight_offer[host_shop_id]" id="flight_offer_form_host_shop_id" value={get_in(@flight_offer, [:host_shop_id]) || ""} />
+                <.input size="md" name="flight_offer[supplier_code]" id="flight_offer_form_supplier_code" value={get_in(@flight_offer, [:supplier_code]) || ""} />
+                <.input size="md" name="flight_offer[itinerary_code]" id="flight_offer_form_itinerary_code" value={get_in(@flight_offer, [:itinerary_code]) || ""} />
+                <.input size="md" name="flight_offer[flight_no]" id="flight_offer_form_flight_no" value={get_in(@flight_offer, [:flight_no]) || ""} />
+                <.input size="md" name="flight_offer[departure_airport_code]" id="flight_offer_form_departure_airport_code" value={get_in(@flight_offer, [:departure_airport_code]) || ""} />
+                <.input size="md" name="flight_offer[departure_airport_ref_id]" id="flight_offer_form_departure_airport_ref_id" value={get_in(@flight_offer, [:departure_airport_ref_id]) || ""} />
+                <.input size="md" name="flight_offer[arrival_airport_code]" id="flight_offer_form_arrival_airport_code" value={get_in(@flight_offer, [:arrival_airport_code]) || ""} />
+                <.input size="md" name="flight_offer[arrival_airport_ref_id]" id="flight_offer_form_arrival_airport_ref_id" value={get_in(@flight_offer, [:arrival_airport_ref_id]) || ""} />
+                <.input size="md" name="flight_offer[departure_at]" id="flight_offer_form_departure_at" value={get_in(@flight_offer, [:departure_at]) || ""} />
+                <.input size="md" name="flight_offer[arrival_at]" id="flight_offer_form_arrival_at" value={get_in(@flight_offer, [:arrival_at]) || ""} />
+                <.input size="md" name="flight_offer[cabin_class]" id="flight_offer_form_cabin_class" value={get_in(@flight_offer, [:cabin_class]) || ""} />
+                <.input size="md" name="flight_offer[fare_family]" id="flight_offer_form_fare_family" value={get_in(@flight_offer, [:fare_family]) || ""} />
+                <.input size="md" name="flight_offer[listed_price]" id="flight_offer_form_listed_price" value={get_in(@flight_offer, [:listed_price]) || ""} />
+                <.input size="md" name="flight_offer[settlement_price]" id="flight_offer_form_settlement_price" value={get_in(@flight_offer, [:settlement_price]) || ""} />
+                <.input size="md" name="flight_offer[currency]" id="flight_offer_form_currency" value={get_in(@flight_offer, [:currency]) || ""} />
+                <.input size="md" name="flight_offer[seats_available]" id="flight_offer_form_seats_available" value={get_in(@flight_offer, [:seats_available]) || ""} />
+                <.textarea name="flight_offer[baggage_policy]" id="flight_offer_form_baggage_policy" value={get_in(@flight_offer, [:baggage_policy]) || ""} />
+                <.textarea name="flight_offer[refund_change_policy]" id="flight_offer_form_refund_change_policy" value={get_in(@flight_offer, [:refund_change_policy]) || ""} />
+                <.select size="md" name="flight_offer[sale_status]" id="flight_offer_form_sale_status" :let={builder} value={get_in(@flight_offer, [:sale_status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="draft" label="draft">draft</.select_item>
+                      <.select_item builder={builder} value="active" label="active">active</.select_item>
+                      <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                      <.select_item builder={builder} value="expired" label="expired">expired</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
-                <.input bind="flight_offer.departure_airport_ref_id" size="md" id="update_departure_airport_ref_id" />
-                <.input bind="flight_offer.arrival_airport_ref_id" size="md" id="update_arrival_airport_ref_id" />
               </.stack>
             </.grid>
             <.flex justify="end" gap={2} direction="row" id="form_actions">
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

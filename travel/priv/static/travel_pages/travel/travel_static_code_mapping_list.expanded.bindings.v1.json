@@ -45,6 +45,16 @@
         }
       ]
     },
+    "row_click": {
+      "triggers": [
+        {
+          "node_type": "TableRow",
+          "node_id": "travel_static_code_mapping_row",
+          "prop": "click",
+          "raw": "'row_click', id: '{{row.id}}'"
+        }
+      ]
+    },
     "travel_static_code_mapping_page_prev": {
       "triggers": [
         {

@@ -8,6 +8,27 @@
       ],
       "params": {}
     },
+    "action_activate": {
+      "name": "action_activate",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_deactivate": {
+      "name": "action_deactivate",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_expire": {
+      "name": "action_expire",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
     "action_destroy": {
       "name": "action_destroy",
       "triggers": [
@@ -18,7 +39,6 @@
     "form_submit": {
       "name": "form_submit",
       "triggers": [
-        "click",
         "submit"
       ],
       "params": {}

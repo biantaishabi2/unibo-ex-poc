@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_fulfillment_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelFulfillmentDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_fulfillment/:id?travel_order_id={{travel_order_id}}",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

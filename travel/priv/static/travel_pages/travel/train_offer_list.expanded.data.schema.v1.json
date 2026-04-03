@@ -10,6 +10,7 @@
     "row.departure_at",
     "row.departure_station_code",
     "row.departure_station_name",
+    "row.id",
     "row.inventory_status",
     "row.is_no_seat",
     "row.listed_price",
@@ -41,6 +42,11 @@
         "type": "object",
         "required": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
+          },
           "supplier_code": {
             "type": "string",
             "required": false,
@@ -154,6 +160,10 @@
       "type": "object",
       "required": true,
       "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
         "supplier_code": {
           "type": "unknown",
           "required": true

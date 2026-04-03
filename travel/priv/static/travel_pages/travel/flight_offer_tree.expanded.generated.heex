@@ -28,8 +28,16 @@
       <.card_content id="filter_content">
         <.flex gap={4} align="center" direction="row" id="filter_row">
           <.input name="departure_at_from" label="起飞时间 起" size="md" id="filter_departure_at" />
-          <.select bind="flight_offer.sale_status" size="md" id="filter_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: ""}]}>
-
+          <.select size="md" name="flight_offer[sale_status]" id="filter_sale_status" :let={builder}>
+            <.select_trigger builder={builder} />
+            <.select_content builder={builder}>
+              <.select_group>
+                <.select_item builder={builder} value="draft" label="draft">draft</.select_item>
+                <.select_item builder={builder} value="active" label="active">active</.select_item>
+                <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                <.select_item builder={builder} value="" label="expired">expired</.select_item>
+              </.select_group>
+            </.select_content>
           </.select>
           <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
             查询
@@ -99,56 +107,56 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:supplier_code]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="flight_offer_row">
+            <.table_cell id="td_supplier_code">
+              <%= get_in(row, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:itinerary_code]) || "" %>
+            <.table_cell id="td_itinerary_code">
+              <%= get_in(row, [:itinerary_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:flight_no]) || "" %>
+            <.table_cell id="td_flight_no">
+              <%= get_in(row, [:flight_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:departure_airport_code]) || "" %>
+            <.table_cell id="td_departure_airport_code">
+              <%= get_in(row, [:departure_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:arrival_airport_code]) || "" %>
+            <.table_cell id="td_arrival_airport_code">
+              <%= get_in(row, [:arrival_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:departure_at]) || "" %>
+            <.table_cell id="td_departure_at">
+              <%= get_in(row, [:departure_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:arrival_at]) || "" %>
+            <.table_cell id="td_arrival_at">
+              <%= get_in(row, [:arrival_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:cabin_class]) || "" %>
+            <.table_cell id="td_cabin_class">
+              <%= get_in(row, [:cabin_class]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:fare_family]) || "" %>
+            <.table_cell id="td_fare_family">
+              <%= get_in(row, [:fare_family]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:listed_price]) || "" %>
+            <.table_cell id="td_listed_price">
+              <%= get_in(row, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:settlement_price]) || "" %>
+            <.table_cell id="td_settlement_price">
+              <%= get_in(row, [:settlement_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:currency]) || "" %>
+            <.table_cell id="td_currency">
+              <%= get_in(row, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:seats_available]) || "" %>
+            <.table_cell id="td_seats_available">
+              <%= get_in(row, [:seats_available]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:baggage_policy]) || "" %>
+            <.table_cell id="td_baggage_policy">
+              <%= get_in(row, [:baggage_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:refund_change_policy]) || "" %>
+            <.table_cell id="td_refund_change_policy">
+              <%= get_in(row, [:refund_change_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_sale_status">
               <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_sale_status">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -169,7 +177,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@flight_offer, [:page]) || "" %> / <%= get_in(@flight_offer, [:total_pages]) || "" %>
+        <%= get_in(@flight_offer, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@flight_offer, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="flight_offer_page_next" variant="primary" size="md" id="page_next">
         下一页

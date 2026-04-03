@@ -8,6 +8,41 @@
       ],
       "params": {}
     },
+    "action_submit": {
+      "name": "action_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_confirm_change": {
+      "name": "action_confirm_change",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_reject_change": {
+      "name": "action_reject_change",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_complete": {
+      "name": "action_complete",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_complete_direct": {
+      "name": "action_complete_direct",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
     "action_destroy": {
       "name": "action_destroy",
       "triggers": [
@@ -18,7 +53,6 @@
     "form_submit": {
       "name": "form_submit",
       "triggers": [
-        "click",
         "submit"
       ],
       "params": {}
