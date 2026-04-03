@@ -28,6 +28,10 @@ defmodule HospitalScheduling.Solver.ResultWriter do
       # 1. 创建 ScheduleVersion
       {:ok, version} = create_version(period, solver_run, status)
 
+      # 1.5 清理该 period 下旧的自动排班和约束违规记录，支持幂等重跑
+      cleanup_previous_auto_assignments(period.id)
+      cleanup_previous_violations(period.id)
+
       # 2. 创建 ShiftAssignment 记录
       assignments =
         Enum.map(assignments_data, fn a ->
@@ -143,6 +147,24 @@ defmodule HospitalScheduling.Solver.ResultWriter do
     |> Ash.Changeset.force_change_attribute(:current_version_id, version.id)
     |> Ash.Changeset.force_change_attribute(:last_solver_run_id, solver_run.id)
     |> Ash.update(authorize?: false)
+  end
+
+  # 清理该 period 下旧的自动生成的排班记录，避免唯一约束冲突
+  defp cleanup_previous_auto_assignments(period_id) do
+    require Ash.Query
+
+    Scheduling.ShiftAssignment
+    |> Ash.Query.filter(period_id == ^period_id and source == :auto)
+    |> Ash.bulk_destroy(:destroy, %{}, authorize?: false)
+  end
+
+  # 清理该 period 下旧的约束违规记录，避免重跑时堆积
+  defp cleanup_previous_violations(period_id) do
+    require Ash.Query
+
+    Scheduling.ConstraintViolation
+    |> Ash.Query.filter(period_id == ^period_id)
+    |> Ash.bulk_destroy(:destroy, %{}, authorize?: false)
   end
 
   defp parse_datetime(nil), do: nil

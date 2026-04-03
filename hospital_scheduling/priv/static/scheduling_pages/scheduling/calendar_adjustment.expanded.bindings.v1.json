@@ -86,26 +86,6 @@
           "raw": "filter_submit"
         }
       ]
-    },
-    "save_draft": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "save_draft_btn",
-          "prop": "click",
-          "raw": "save_draft"
-        }
-      ]
-    },
-    "navigate_publish_preview": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "publish_preview_btn",
-          "prop": "click",
-          "raw": "navigate_publish_preview"
-        }
-      ]
     }
   }
 }

@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "action_1_label",
+    "action_2_label",
+    "action_3_label",
+    "action_4_label",
+    "chart_1_title",
+    "chart_2_title"
+  ],
+  "requiredRoots": [
+    "action_1_label",
+    "action_2_label",
+    "action_3_label",
+    "action_4_label",
+    "chart_1_title",
+    "chart_2_title"
+  ],
+  "schema": {
+    "chart_1_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "chart_2_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "action_1_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "action_2_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "action_3_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "action_4_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

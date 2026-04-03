@@ -1,38 +1,139 @@
 {
-  "version": 1,
-  "page_id": "requirement_matrix",
-  "page_type": "composition",
-  "entity": "CoverageRequirement",
-  "domain": "Scheduling",
   "backend": {
     "api_map": {
-      "list": "Scheduling.CoverageRequirement.list",
-      "save_requirements": "Scheduling.CoverageRequirement.update",
+      "__load__": "Scheduling.SchedulingPeriod.get",
+      "action_start_generating": "Scheduling.SchedulingPeriod.start_generating",
       "batch_fill_requirements": "Scheduling.CoverageRequirement.update",
-      "action_start_generating": "Scheduling.SchedulingPeriod.start_generating"
+      "get": "Scheduling.SchedulingPeriod.get",
+      "list": "Scheduling.CoverageRequirement.list",
+      "save_requirements": "Scheduling.CoverageRequirement.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {
+        "period": "record",
+        "shift_types": {
+          "from": "record.coverage_requirements",
+          "transform": "group_requirements_by_shift_type"
+        }
+      },
+      "selection": "id title state start_date: startDate end_date: endDate coverage_requirements: coverageRequirements { id requirement_date: requirementDate role_code: roleCode role_name: roleName min_headcount: minHeadcount target_headcount: targetHeadcount shift_type: shiftType { id name } }"
+    },
+    "params": {
+      "accept": [
+        "id",
+        "role_code",
+        "week_offset",
+        "shift_type_id"
+      ]
     }
   },
+  "domain": "Scheduling",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/scheduling/requirement_matrix",
+      "cases": [
+        {
+          "covers": [],
+          "name": "页面加载 + 矩阵表格可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "#req_matrix_table"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#page_title"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#state_badge"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "batch_fill_requirements"
+          ],
+          "name": "批量填充需求",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#batch_fill_btn"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#req_matrix_table"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "save_requirements"
+          ],
+          "name": "保存需求",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#save_btn"
+            },
+            {
+              "action": "expect_text_contains",
+              "selector": "#flash-group, [data-flash], [role='alert']",
+              "value": "保存"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "action_start_generating"
+          ],
+          "name": "开始生成排班",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#start_btn"
+            },
+            {
+              "action": "expect_text_contains",
+              "selector": "#flash-group, [data-flash], [role='alert']",
+              "value": "生成"
+            }
+          ]
+        }
+      ],
+      "dto_smoke": []
+    }
+  },
+  "entity": "CoverageRequirement",
+  "page_id": "requirement_matrix",
+  "page_type": "composition",
   "state_transitions": [
     {
+      "description": "批量填充需求矩阵",
+      "from": "*",
       "name": "batch_fill_requirements",
-      "from": "*",
       "to": "*",
-      "trigger": "user_action",
-      "description": "批量填充需求矩阵"
+      "trigger": "user_action"
     },
     {
+      "description": "保存需求矩阵",
+      "from": "*",
       "name": "save_requirements",
-      "from": "*",
       "to": "loading",
-      "trigger": "user_action",
-      "description": "保存需求矩阵"
+      "trigger": "user_action"
     },
     {
-      "name": "action_start_generating",
+      "description": "开始自动排班",
       "from": "*",
+      "name": "action_start_generating",
       "to": "loading",
-      "trigger": "user_action",
-      "description": "开始自动排班"
+      "trigger": "user_action"
     }
   ],
   "status_keys": [
@@ -42,46 +143,5 @@
     "rows_empty",
     "filter"
   ],
-  "e2e": {
-    "playwright": {
-      "auto": true,
-      "base_path": "/scheduling/requirement_matrix",
-      "dto_smoke": [],
-      "cases": [
-        {
-          "name": "页面加载 + 矩阵表格可见",
-          "covers": [],
-          "steps": [
-            { "action": "expect_visible", "selector": "#req_matrix_table" },
-            { "action": "expect_visible", "selector": "#page_title" },
-            { "action": "expect_visible", "selector": "#state_badge" }
-          ]
-        },
-        {
-          "name": "批量填充需求",
-          "covers": ["batch_fill_requirements"],
-          "steps": [
-            { "action": "click", "selector": "#batch_fill_btn" },
-            { "action": "expect_visible", "selector": "#req_matrix_table" }
-          ]
-        },
-        {
-          "name": "保存需求",
-          "covers": ["save_requirements"],
-          "steps": [
-            { "action": "click", "selector": "#save_btn" },
-            { "action": "expect_text_contains", "selector": "#flash-group, [data-flash], [role='alert']", "value": "保存" }
-          ]
-        },
-        {
-          "name": "开始生成排班",
-          "covers": ["action_start_generating"],
-          "steps": [
-            { "action": "click", "selector": "#start_btn" },
-            { "action": "expect_text_contains", "selector": "#flash-group, [data-flash], [role='alert']", "value": "生成" }
-          ]
-        }
-      ]
-    }
-  }
+  "version": 1
 }

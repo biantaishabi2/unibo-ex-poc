@@ -4,6 +4,20 @@
       "destroy": "Scheduling.ShiftType.destroy",
       "get": "Scheduling.ShiftType.get",
       "update": "Scheduling.ShiftType.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "code color coverage_requirements { id min_headcount: minHeadcount notes priority required_lead_count: requiredLeadCount required_skill_tags: requiredSkillTags requirement_date: requirementDate role_code: roleCode role_name: roleName target_headcount: targetHeadcount } duration_hours: durationHours enabled end_time: endTime id is_night: isNight name sort_order: sortOrder start_time: startTime"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
     }
   },
   "children": [

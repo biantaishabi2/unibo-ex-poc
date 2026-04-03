@@ -26,7 +26,7 @@ config :hospital_scheduling, HospitalSchedulingWeb.Endpoint,
     formats: [html: HospitalSchedulingWeb.ErrorHTML, json: HospitalSchedulingWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: HospitalScheduling.PubSub,
+  pubsub_server: HospitalScheduling.InternalPubSub,
   live_view: [signing_salt: "gPpJgBBF"]
 
 # Configure esbuild (the version is required)

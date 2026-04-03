@@ -11,6 +11,28 @@
           "template": "{{page_title|排班约束配置}}"
         }
       ]
+    },
+    "scheduling_constraint.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{scheduling_constraint.page|}} / {{scheduling_constraint.total_pages|}}"
+        }
+      ]
+    },
+    "scheduling_constraint.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{scheduling_constraint.page|}} / {{scheduling_constraint.total_pages|}}"
+        }
+      ]
     }
   },
   "events": {
@@ -71,6 +93,26 @@
           "node_id": "delete_btn",
           "prop": "click",
           "raw": "action_destroy"
+        }
+      ]
+    },
+    "scheduling_constraint_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "scheduling_constraint_page_prev"
+        }
+      ]
+    },
+    "scheduling_constraint_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "scheduling_constraint_page_next"
         }
       ]
     }

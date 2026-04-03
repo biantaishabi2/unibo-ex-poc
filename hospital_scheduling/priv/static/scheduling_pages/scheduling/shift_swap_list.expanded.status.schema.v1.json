@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "defaults": {
+    "shift_preference": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "rows": [
+      {
+        "preferred_shift_tags": "",
+        "unavailable_dates": "",
+        "max_night_shifts": "",
+        "notes": ""
+      },
+      {
+        "preferred_shift_tags": "",
+        "unavailable_dates": "",
+        "max_night_shifts": "",
+        "notes": ""
+      },
+      {
+        "preferred_shift_tags": "",
+        "unavailable_dates": "",
+        "max_night_shifts": "",
+        "notes": ""
+      }
+    ]
+  },
+  "keys": [
+    "rows",
+    "rows[]",
+    "rows[].max_night_shifts",
+    "rows[].notes",
+    "rows[].preferred_shift_tags",
+    "rows[].unavailable_dates",
+    "rows_empty",
+    "shift_preference",
+    "shift_preference.page",
+    "shift_preference.total_pages"
+  ],
+  "required": [
+    "rows",
+    "rows_empty",
+    "shift_preference"
+  ],
+  "urlParams": {},
+  "notes": []
+}

@@ -42,6 +42,20 @@
         "click"
       ],
       "params": {}
+    },
+    "scheduling_constraint_page_prev": {
+      "name": "scheduling_constraint_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "scheduling_constraint_page_next": {
+      "name": "scheduling_constraint_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
     }
   },
   "notes": []

@@ -1,0 +1,83 @@
+<.page title="排期" id="team_schedule">
+  <.section layout="none" id="date_nav_section">
+    <.flex gap={2} paddingx={3} paddingy={2} direction="row" id="date_navigator">
+      <.stack direction="column" id="nav_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          ShiftAssignment
+        </.text>
+        <.text variant="h1" id="page_title">
+          把某个覆盖需求分配给具体护士和时段
+        </.text>
+      </.stack>
+    </.flex>
+  </.section>
+  <.section layout="none" id="resource_section">
+    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="resource_filter">
+      <.stack direction="column" id="resource_filters" />
+    </.flex>
+  </.section>
+  <.section layout="none" id="matrix_section">
+    <.card variant="default" id="matrix_card">
+      <.card_content id="matrix_content">
+        <.table id="schedule_matrix">
+          <.text variant="caption" color="muted" id="no_schedule_data">
+            无排期数据
+          </.text>
+        </.table>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="summary_section">
+    <.card variant="default" id="summary_card">
+      <.card_header id="summary_header">
+        <.card_title id="summary_title">
+          摘要
+        </.card_title>
+      </.card_header>
+      <.card_content id="summary_content">
+        <.grid columns={2} gap={3} id="summary_fields">
+          <.stack gap={0} direction="column" id="summary_fields_starts_at">
+            <.text variant="caption" color="muted" id="summary_fields_starts_at_label">
+              开始时间（UTC）
+            </.text>
+            <.text id="summary_fields_starts_at_value">
+              <%= @shift_assignment.starts_at %>
+            </.text>
+          </.stack>
+          <.stack gap={0} direction="column" id="summary_fields_ends_at">
+            <.text variant="caption" color="muted" id="summary_fields_ends_at_label">
+              结束时间（UTC）
+            </.text>
+            <.text id="summary_fields_ends_at_value">
+              <%= @shift_assignment.ends_at %>
+            </.text>
+          </.stack>
+          <.stack gap={0} direction="column" id="summary_fields_source">
+            <.text variant="caption" color="muted" id="summary_fields_source_label">
+              分配来源（copied = 从上一期复制）
+            </.text>
+            <.text id="summary_fields_source_value">
+              <%= @shift_assignment.source %>
+            </.text>
+          </.stack>
+          <.stack gap={0} direction="column" id="summary_fields_is_locked">
+            <.text variant="caption" color="muted" id="summary_fields_is_locked_label">
+              锁定后重排不动
+            </.text>
+            <.text id="summary_fields_is_locked_value">
+              <%= @shift_assignment.is_locked %>
+            </.text>
+          </.stack>
+          <.stack gap={0} direction="column" id="summary_fields_notes">
+            <.text variant="caption" color="muted" id="summary_fields_notes_label">
+              人工调班说明
+            </.text>
+            <.text id="summary_fields_notes_value">
+              <%= @shift_assignment.notes %>
+            </.text>
+          </.stack>
+        </.grid>
+      </.card_content>
+    </.card>
+  </.section>
+</.page>

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "defaults": {
+    "chart_1_title": "趋势图",
+    "chart_2_title": "分布图",
+    "action_1_label": "操作一",
+    "action_2_label": "操作二",
+    "action_3_label": "操作三",
+    "action_4_label": "操作四"
+  },
+  "keys": [
+    "action_1_label",
+    "action_2_label",
+    "action_3_label",
+    "action_4_label",
+    "chart_1_title",
+    "chart_2_title"
+  ],
+  "required": [
+    "action_1_label",
+    "action_2_label",
+    "action_3_label",
+    "action_4_label",
+    "chart_1_title",
+    "chart_2_title"
+  ],
+  "urlParams": {},
+  "notes": []
+}

@@ -10,7 +10,7 @@
       "enabled": "",
       "notes": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
@@ -35,6 +35,20 @@
         "destroy": "Scheduling.SchedulingConstraint.destroy",
         "get": "Scheduling.SchedulingConstraint.get",
         "update": "Scheduling.SchedulingConstraint.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "category constraint_type: constraintType enabled id name notes params weight"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],

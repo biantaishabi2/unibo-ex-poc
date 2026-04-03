@@ -2,6 +2,18 @@
   "backend": {
     "api_map": {
       "list": "Scheduling.ShiftType.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "code color duration_hours: durationHours enabled end_time: endTime id is_night: isNight name sort_order: sortOrder start_time: startTime"
+    },
+    "params": {
+      "accept": []
     }
   },
   "domain": "Scheduling",

@@ -9,9 +9,11 @@
           <.badge variant="default" size="sm" id="version_badge">
             v<%= @version.version_no %>
           </.badge>
-          <.badge variant="secondary" size="sm" id="origin_badge">
-            <%= @version.origin_type %>
-          </.badge>
+          <.select bind="schedule_version.origin_type" size="md" id="origin_badge">
+            <option value="manual">manual</option>
+            <option value="solver">solver</option>
+            <option><%= @version.origin_type %></option>
+          </.select>
         </.flex>
       </.stack>
       <.button variant="secondary" phx-click="navigate_back" size="md" id="back_btn">
@@ -35,7 +37,7 @@
             变更对比
           </.card_title>
           <.flex gap={2} direction="row" id="diff_controls">
-            <.select name="base_version" label="对比基准" size="md" id="diff_base">
+            <.select name="base_version" label="对比基准" size="md" id="diff_base" value={@record.base_version}>
 
             </.select>
             <.button variant="outline" size="sm" phx-click="toggle_diff_mode" id="toggle_diff_btn">

@@ -15,8 +15,8 @@
     "period.state": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "state_badge",
+          "node_type": "Option",
+          "node_id": "opt_published",
           "location": "prop",
           "prop": "content",
           "template": "{{period.state|}}"
