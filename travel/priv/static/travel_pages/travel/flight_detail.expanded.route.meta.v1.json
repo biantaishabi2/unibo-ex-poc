@@ -1,0 +1,12 @@
+{
+  "page_id": "flight_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.FlightDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/flight_detail",
+    "kind": "detail",
+    "params": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "page_id": "approval_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.ApprovalDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/approval_detail",
+    "kind": "detail",
+    "params": []
+  }
+}

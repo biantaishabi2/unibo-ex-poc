@@ -1,0 +1,12 @@
+{
+  "page_id": "payment_confirmation",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.PaymentConfirmationLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/payment_confirmation",
+    "kind": "detail",
+    "params": []
+  }
+}

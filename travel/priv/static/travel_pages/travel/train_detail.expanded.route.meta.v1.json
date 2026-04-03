@@ -1,0 +1,12 @@
+{
+  "page_id": "train_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TrainDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/train_detail",
+    "kind": "detail",
+    "params": []
+  }
+}
