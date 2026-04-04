@@ -496,6 +496,19 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
         record = extract_record(value)
         record_var = detect_record_variable(defaults)
 
+        # 把实际数据设到所有 record-like key（值为 map 的 defaults key），
+        # 避免 detect_record_variable 非确定性导致空默认值覆盖实际数据 (#2155)
+        skip_keys = MapSet.new(["editing", "loading", "filter", "form", "rows", "rows_empty"])
+
+        state =
+          Enum.reduce(defaults, state, fn
+            {key, default_val}, acc when is_map(default_val) and is_binary(key) ->
+              if MapSet.member?(skip_keys, key), do: acc, else: Map.put(acc, key, record)
+
+            _, acc ->
+              acc
+          end)
+
         state
         |> Map.put(record_var, record)
         |> Map.put("form", state["form"] || record)
