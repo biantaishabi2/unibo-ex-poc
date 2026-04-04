@@ -63,19 +63,19 @@ Call log:
         - generic [ref=e44]:
           - generic [ref=e45]:
             - paragraph [ref=e46]: 改签原因
-            - paragraph [ref=e47]: UPDATED_1775269802214_b2iv0x_change_reason
+            - paragraph [ref=e47]: UPDATED_1775273270405_abltvi_change_reason
           - generic [ref=e48]:
             - paragraph [ref=e49]: 差价
-            - paragraph [ref=e50]: UPDATED_1775269802214_b2iv0x_price_difference
+            - paragraph [ref=e50]: UPDATED_1775273270405_abltvi_price_difference
           - generic [ref=e51]:
             - paragraph [ref=e52]: 改签手续费
-            - paragraph [ref=e53]: UPDATED_1775269802214_b2iv0x_change_fee
+            - paragraph [ref=e53]: UPDATED_1775273270405_abltvi_change_fee
           - generic [ref=e54]:
             - paragraph [ref=e55]: status
             - paragraph [ref=e56]: approved
           - generic [ref=e57]:
             - paragraph [ref=e58]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-            - paragraph [ref=e59]: oa
+            - paragraph [ref=e59]: none
 ```
 
 # Test source
@@ -129,18 +129,18 @@ Call log:
   1427 |         __ctx.form["change_fee"] = resolvedValue; refreshDataBindings(__ctx);
   1428 |       }
   1429 |       {
-  1430 |         const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
+  1430 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
   1431 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1432 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
+  1432 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
   1433 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1434 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
+  1434 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
   1435 |       }
   1436 |       {
-  1437 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
+  1437 |         const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
   1438 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1439 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
+  1439 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
   1440 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1441 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
+  1441 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
   1442 |       }
   1443 |       {
   1444 |         const loc = page.locator(`#travel_change_order_edit_form button[type="submit"], #travel_change_order_edit_form [phx-click="form_submit"]`).first();

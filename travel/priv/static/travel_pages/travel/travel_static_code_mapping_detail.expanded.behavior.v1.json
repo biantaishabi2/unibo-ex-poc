@@ -17,13 +17,13 @@
     "params": {
       "accept": [
         "id",
+        "external_code",
         "supplier_code",
         "object_type",
-        "canonical_entity",
-        "canonical_id",
         "external_name",
         "status",
-        "external_code"
+        "canonical_entity",
+        "canonical_id"
       ]
     }
   },
@@ -109,6 +109,11 @@
             },
             {
               "action": "type",
+              "field": "canonical_entity",
+              "value": "UPDATED_{{__run_id}}_canonical_entity"
+            },
+            {
+              "action": "type",
               "field": "external_name",
               "value": "UPDATED_{{__run_id}}_external_name"
             },
@@ -116,11 +121,6 @@
               "action": "type",
               "field": "canonical_id",
               "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
-            },
-            {
-              "action": "type",
-              "field": "canonical_entity",
-              "value": "UPDATED_{{__run_id}}_canonical_entity"
             },
             {
               "action": "select_option",
@@ -326,11 +326,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.canonical_id",
+            "equals": "$form.canonical_entity",
             "excludes_source": null,
             "graphql_field": "getTravelTravelStaticCodeMapping",
             "op": "equals",
-            "path": "canonical_id",
+            "path": "canonical_entity",
             "source": "active_record_id"
           },
           "ui": [

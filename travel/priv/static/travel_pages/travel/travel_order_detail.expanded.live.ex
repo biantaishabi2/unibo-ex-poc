@@ -70,7 +70,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
   @backend_load_assigns %{travel_order: %{}}
-  @backend_params_accept ["id", "hotel_offer_id", "points_to_use", "total_amount", "contact_phone", "traveler_count", "host_shop_id", "seat_selection_snapshot", "points_deduction_amount", "product_type", "ticket_passenger_infos", "customer_id", "currency", "order_no", "contact_name"]
+  @backend_params_accept ["id", "hotel_offer_id", "seat_selection_snapshot", "customer_id", "points_deduction_amount", "traveler_count", "currency", "product_type", "contact_name", "order_no", "total_amount", "points_to_use", "ticket_passenger_infos", "host_shop_id", "contact_phone"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "cancel_cancel_request" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.cancel_cancel_request"},

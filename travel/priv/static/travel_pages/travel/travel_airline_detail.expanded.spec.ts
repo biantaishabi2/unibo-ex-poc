@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.icao_code",
+      "equals": "$form.iata_code",
       "excludes_source": null,
       "graphql_field": "getTravelTravelAirline",
       "op": "equals",
-      "path": "icao_code",
+      "path": "iata_code",
       "source": "active_record_id"
     },
     "ui": [

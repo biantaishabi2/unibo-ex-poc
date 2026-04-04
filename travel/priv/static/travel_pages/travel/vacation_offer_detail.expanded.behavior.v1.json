@@ -21,24 +21,24 @@
     "params": {
       "accept": [
         "id",
-        "listed_price",
-        "settlement_price",
+        "departure_city_ref_id",
         "package_type",
         "destination_ref_id",
-        "cancellation_policy",
-        "departure_city_code",
         "host_shop_id",
-        "package_name",
-        "inventory_count",
-        "start_date",
-        "departure_city_ref_id",
-        "currency",
-        "sale_status",
-        "supplier_code",
-        "end_date",
+        "departure_city_code",
+        "cancellation_policy",
         "package_code",
-        "destination_code",
-        "booking_rules"
+        "settlement_price",
+        "sale_status",
+        "package_name",
+        "listed_price",
+        "currency",
+        "supplier_code",
+        "inventory_count",
+        "booking_rules",
+        "end_date",
+        "start_date",
+        "destination_code"
       ]
     }
   },
@@ -123,18 +123,8 @@
             },
             {
               "action": "type",
-              "field": "booking_rules",
-              "value": "UPDATED_{{__run_id}}_booking_rules"
-            },
-            {
-              "action": "type",
-              "field": "package_name",
-              "value": "UPDATED_{{__run_id}}_package_name"
-            },
-            {
-              "action": "type",
-              "field": "inventory_count",
-              "value": "2"
+              "field": "currency",
+              "value": "UPDATED_{{__run_id}}_currency"
             },
             {
               "action": "type",
@@ -143,23 +133,13 @@
             },
             {
               "action": "type",
-              "field": "currency",
-              "value": "UPDATED_{{__run_id}}_currency"
-            },
-            {
-              "action": "type",
               "field": "listed_price",
               "value": "200.00"
             },
             {
               "action": "type",
-              "field": "cancellation_policy",
-              "value": "UPDATED_{{__run_id}}_cancellation_policy"
-            },
-            {
-              "action": "select_option",
-              "field": "package_type",
-              "value": "free_travel"
+              "field": "settlement_price",
+              "value": "200.00"
             },
             {
               "action": "type",
@@ -168,8 +148,28 @@
             },
             {
               "action": "type",
-              "field": "settlement_price",
-              "value": "200.00"
+              "field": "package_name",
+              "value": "UPDATED_{{__run_id}}_package_name"
+            },
+            {
+              "action": "type",
+              "field": "cancellation_policy",
+              "value": "UPDATED_{{__run_id}}_cancellation_policy"
+            },
+            {
+              "action": "type",
+              "field": "inventory_count",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "booking_rules",
+              "value": "UPDATED_{{__run_id}}_booking_rules"
+            },
+            {
+              "action": "select_option",
+              "field": "package_type",
+              "value": "free_travel"
             },
             {
               "action": "click",
@@ -707,11 +707,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.currency",
+            "equals": "$form.package_type",
             "excludes_source": null,
             "graphql_field": "getTravelVacationOffer",
             "op": "equals",
-            "path": "currency",
+            "path": "package_type",
             "source": "active_record_id"
           },
           "ui": [

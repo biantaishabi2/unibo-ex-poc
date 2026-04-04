@@ -1362,11 +1362,11 @@ const __VERIFICATION_CONTRACT = {
           "source": "backend_result"
         }
       ],
-      "equals": "$form.order_no",
+      "equals": "$form.customer_id",
       "excludes_source": null,
       "graphql_field": "getTravelTravelOrder",
       "op": "field_equals",
-      "path": "order_no",
+      "path": "customer_id",
       "source": "created_record_id"
     },
     "ui": [
@@ -1585,11 +1585,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.ticket_passenger_infos",
+      "equals": "$form.contact_name",
       "excludes_source": null,
       "graphql_field": "getTravelTravelOrder",
       "op": "equals",
-      "path": "ticket_passenger_infos",
+      "path": "contact_name",
       "source": "active_record_id"
     },
     "ui": [
@@ -2321,6 +2321,20 @@ test.describe("travel_order_detail", () => {
       }
       await expect(page.locator(`#travel_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_order_form_traveler_count, [name='traveler_count']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["traveler_count"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_order_form_contact_phone, [name='contact_phone']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_contact_phone");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["contact_phone"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#travel_order_form_ticket_passenger_infos, [name='ticket_passenger_infos']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
@@ -2335,25 +2349,11 @@ test.describe("travel_order_detail", () => {
         __ctx.form["seat_selection_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_order_form_contact_phone, [name='contact_phone']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_contact_phone");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["contact_phone"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_order_form_contact_name, [name='contact_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_contact_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["contact_name"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_order_form_traveler_count, [name='traveler_count']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["traveler_count"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_order_edit_form button[type="submit"], #travel_order_edit_form [phx-click="form_submit"]`).first();

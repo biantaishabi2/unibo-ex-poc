@@ -17,11 +17,11 @@
     "params": {
       "accept": [
         "id",
+        "hotel_code",
         "status",
         "city_id",
-        "city_code",
-        "hotel_code",
         "hotel_star",
+        "city_code",
         "hotel_name"
       ]
     }
@@ -108,6 +108,16 @@
             },
             {
               "action": "type",
+              "field": "hotel_name",
+              "value": "UPDATED_{{__run_id}}_hotel_name"
+            },
+            {
+              "action": "type",
+              "field": "city_id",
+              "value": "UPDATED_{{__run_id}}_city_id"
+            },
+            {
+              "action": "type",
               "field": "hotel_star",
               "value": "UPDATED_{{__run_id}}_hotel_star"
             },
@@ -117,19 +127,9 @@
               "value": "UPDATED_{{__run_id}}_city_code"
             },
             {
-              "action": "type",
-              "field": "hotel_name",
-              "value": "UPDATED_{{__run_id}}_hotel_name"
-            },
-            {
               "action": "select_option",
               "field": "status",
               "value": "inactive"
-            },
-            {
-              "action": "type",
-              "field": "city_id",
-              "value": "UPDATED_{{__run_id}}_city_id"
             },
             {
               "action": "click",

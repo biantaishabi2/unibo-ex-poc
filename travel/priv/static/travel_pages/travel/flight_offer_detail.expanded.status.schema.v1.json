@@ -76,25 +76,25 @@
       "params": {
         "accept": [
           "id",
-          "itinerary_code",
-          "settlement_price",
+          "cabin_class",
+          "listed_price",
+          "flight_no",
           "refund_change_policy",
-          "fare_family",
-          "currency",
-          "sale_status",
+          "supplier_code",
+          "itinerary_code",
           "arrival_airport_code",
+          "fare_family",
+          "departure_at",
+          "currency",
+          "departure_airport_code",
+          "settlement_price",
           "seats_available",
           "host_shop_id",
-          "cabin_class",
-          "departure_airport_code",
+          "baggage_policy",
           "arrival_airport_ref_id",
-          "departure_airport_ref_id",
-          "departure_at",
           "arrival_at",
-          "flight_no",
-          "supplier_code",
-          "listed_price",
-          "baggage_policy"
+          "departure_airport_ref_id",
+          "sale_status"
         ]
       }
     },
@@ -179,8 +179,8 @@
               },
               {
                 "action": "type",
-                "field": "arrival_airport_ref_id",
-                "value": "UPDATED_{{__run_id}}_arrival_airport_ref_id"
+                "field": "listed_price",
+                "value": "200.00"
               },
               {
                 "action": "type",
@@ -189,13 +189,8 @@
               },
               {
                 "action": "type",
-                "field": "baggage_policy",
-                "value": "UPDATED_{{__run_id}}_baggage_policy"
-              },
-              {
-                "action": "type",
-                "field": "currency",
-                "value": "UPDATED_{{__run_id}}_currency"
+                "field": "departure_airport_ref_id",
+                "value": "UPDATED_{{__run_id}}_departure_airport_ref_id"
               },
               {
                 "action": "type",
@@ -204,13 +199,18 @@
               },
               {
                 "action": "type",
-                "field": "departure_airport_ref_id",
-                "value": "UPDATED_{{__run_id}}_departure_airport_ref_id"
+                "field": "refund_change_policy",
+                "value": "UPDATED_{{__run_id}}_refund_change_policy"
               },
               {
                 "action": "type",
-                "field": "listed_price",
-                "value": "200.00"
+                "field": "arrival_airport_ref_id",
+                "value": "UPDATED_{{__run_id}}_arrival_airport_ref_id"
+              },
+              {
+                "action": "type",
+                "field": "currency",
+                "value": "UPDATED_{{__run_id}}_currency"
               },
               {
                 "action": "type",
@@ -219,8 +219,8 @@
               },
               {
                 "action": "type",
-                "field": "refund_change_policy",
-                "value": "UPDATED_{{__run_id}}_refund_change_policy"
+                "field": "baggage_policy",
+                "value": "UPDATED_{{__run_id}}_baggage_policy"
               },
               {
                 "action": "click",

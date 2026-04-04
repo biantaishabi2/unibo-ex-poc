@@ -19,16 +19,16 @@
         "id",
         "order_id",
         "policy_id",
-        "actual_amount",
-        "approval_mode",
-        "exceed_amount",
         "policy_amount",
-        "personal_pay_amount",
+        "exceed_amount",
         "exceed_strategy",
-        "exceed_reason",
-        "approval_request_id",
+        "check_result",
         "exceed_ratio",
-        "check_result"
+        "approval_request_id",
+        "actual_amount",
+        "exceed_reason",
+        "personal_pay_amount",
+        "approval_mode"
       ]
     }
   },
@@ -113,6 +113,16 @@
               "selector": "#travel_policy_check_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
+              "action": "select_option",
+              "field": "check_result",
+              "value": "exceeded"
+            },
+            {
+              "action": "type",
+              "field": "exceed_strategy",
+              "value": "UPDATED_{{__run_id}}_exceed_strategy"
+            },
+            {
               "action": "type",
               "field": "exceed_reason",
               "value": "UPDATED_{{__run_id}}_exceed_reason"
@@ -121,16 +131,6 @@
               "action": "type",
               "field": "personal_pay_amount",
               "value": "2"
-            },
-            {
-              "action": "type",
-              "field": "exceed_strategy",
-              "value": "UPDATED_{{__run_id}}_exceed_strategy"
-            },
-            {
-              "action": "select_option",
-              "field": "check_result",
-              "value": "exceeded"
             },
             {
               "action": "click",
@@ -399,11 +399,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.exceed_reason",
+            "equals": "$form.exceed_strategy",
             "excludes_source": null,
             "graphql_field": "getTravelTravelPolicyCheck",
             "op": "equals",
-            "path": "exceed_reason",
+            "path": "exceed_strategy",
             "source": "active_record_id"
           },
           "ui": [

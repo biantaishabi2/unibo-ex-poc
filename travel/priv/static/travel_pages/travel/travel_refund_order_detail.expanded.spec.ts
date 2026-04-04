@@ -1409,13 +1409,6 @@ test.describe("travel_refund_order_detail", () => {
       }
       await expect(page.locator(`#travel_refund_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
@@ -1428,6 +1421,13 @@ test.describe("travel_refund_order_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_reason");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["refund_reason"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_refund_order_edit_form button[type="submit"], #travel_refund_order_edit_form [phx-click="form_submit"]`).first();

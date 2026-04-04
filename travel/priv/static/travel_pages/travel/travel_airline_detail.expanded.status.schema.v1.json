@@ -44,11 +44,11 @@
       "params": {
         "accept": [
           "id",
+          "icao_code",
           "iata_code",
           "airline_code",
-          "icao_code",
-          "status",
-          "airline_name"
+          "airline_name",
+          "status"
         ]
       }
     },
@@ -351,11 +351,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.icao_code",
+              "equals": "$form.iata_code",
               "excludes_source": null,
               "graphql_field": "getTravelTravelAirline",
               "op": "equals",
-              "path": "icao_code",
+              "path": "iata_code",
               "source": "active_record_id"
             },
             "ui": [

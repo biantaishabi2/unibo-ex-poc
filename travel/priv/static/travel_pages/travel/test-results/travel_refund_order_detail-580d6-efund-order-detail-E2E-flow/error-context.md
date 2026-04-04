@@ -63,19 +63,19 @@ Call log:
         - generic [ref=e44]:
           - generic [ref=e45]:
             - paragraph [ref=e46]: 退票原因
-            - paragraph [ref=e47]: UPDATED_1775269802232_0y7qhr_refund_reason
+            - paragraph [ref=e47]: UPDATED_1775273270417_eutpqe_refund_reason
           - generic [ref=e48]:
             - paragraph [ref=e49]: 退票手续费
-            - paragraph [ref=e50]: UPDATED_1775269802232_0y7qhr_refund_fee
+            - paragraph [ref=e50]: UPDATED_1775273270417_eutpqe_refund_fee
           - generic [ref=e51]:
             - paragraph [ref=e52]: 实退金额
-            - paragraph [ref=e53]: UPDATED_1775269802232_0y7qhr_refund_amount
+            - paragraph [ref=e53]: UPDATED_1775273270417_eutpqe_refund_amount
           - generic [ref=e54]:
             - paragraph [ref=e55]: status
             - paragraph [ref=e56]: approved
           - generic [ref=e57]:
             - paragraph [ref=e58]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-            - paragraph [ref=e59]: none
+            - paragraph [ref=e59]: self
 ```
 
 # Test source
@@ -122,25 +122,25 @@ Call log:
   1409 |       }
   1410 |       await expect(page.locator(`#travel_refund_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
   1411 |       {
-  1412 |         const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
+  1412 |         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
   1413 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1414 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
+  1414 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
   1415 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1416 |         __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
+  1416 |         __ctx.form["refund_amount"] = resolvedValue; refreshDataBindings(__ctx);
   1417 |       }
   1418 |       {
-  1419 |         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
+  1419 |         const loc = page.locator(`#travel_refund_order_form_refund_reason, [name='refund_reason']`).first();
   1420 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1421 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
+  1421 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_reason");
   1422 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1423 |         __ctx.form["refund_amount"] = resolvedValue; refreshDataBindings(__ctx);
+  1423 |         __ctx.form["refund_reason"] = resolvedValue; refreshDataBindings(__ctx);
   1424 |       }
   1425 |       {
-  1426 |         const loc = page.locator(`#travel_refund_order_form_refund_reason, [name='refund_reason']`).first();
+  1426 |         const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
   1427 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1428 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_reason");
+  1428 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
   1429 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1430 |         __ctx.form["refund_reason"] = resolvedValue; refreshDataBindings(__ctx);
+  1430 |         __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
   1431 |       }
   1432 |       {
   1433 |         const loc = page.locator(`#travel_refund_order_edit_form button[type="submit"], #travel_refund_order_edit_form [phx-click="form_submit"]`).first();

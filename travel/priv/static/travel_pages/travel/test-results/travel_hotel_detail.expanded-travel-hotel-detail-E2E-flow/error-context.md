@@ -12,7 +12,7 @@
 # Error details
 
 ```
-Error: backend get equals assertion failed: expected UPDATED_1775269802241_ctwpin_city_id got 
+Error: backend get equals assertion failed: expected UPDATED_1775273270415_6z7act_city_id got 
 ```
 
 # Page snapshot
@@ -58,16 +58,16 @@ Error: backend get equals assertion failed: expected UPDATED_1775269802241_ctwpi
         - generic [ref=e42]:
           - generic [ref=e43]:
             - paragraph [ref=e44]: 酒店规范编码
-            - paragraph [ref=e45]: hotel_code_002
+            - paragraph [ref=e45]: hotel_code_003
           - generic [ref=e46]:
             - paragraph [ref=e47]: 酒店名称
-            - paragraph [ref=e48]: UPDATED_1775269802241_ctwpin_hotel_name
+            - paragraph [ref=e48]: UPDATED_1775273270415_6z7act_hotel_name
           - generic [ref=e49]:
             - paragraph [ref=e50]: 城市编码冗余（便于兼容检索）
-            - paragraph [ref=e51]: UPDATED_1775269802241_ctwpin_city_code
+            - paragraph [ref=e51]: UPDATED_1775273270415_6z7act_city_code
           - generic [ref=e52]:
             - paragraph [ref=e53]: 酒店星级
-            - paragraph [ref=e54]: UPDATED_1775269802241_ctwpin_hotel_star
+            - paragraph [ref=e54]: UPDATED_1775273270415_6z7act_hotel_star
           - generic [ref=e55]:
             - paragraph [ref=e56]: status
             - paragraph [ref=e57]: inactive
@@ -177,7 +177,7 @@ Error: backend get equals assertion failed: expected UPDATED_1775269802241_ctwpi
   695 |       if (assertion.op === 'equals' || assertion.op === 'field_equals') {
   696 |         const expected = resolveTemplateString(ctx, String(assertion.equals || ''));
 > 697 |         if (String(actual ?? '') !== expected) throw new Error('backend get equals assertion failed: expected ' + expected + ' got ' + String(actual ?? ''));
-      |                                                      ^ Error: backend get equals assertion failed: expected UPDATED_1775269802241_ctwpin_city_id got 
+      |                                                      ^ Error: backend get equals assertion failed: expected UPDATED_1775273270415_6z7act_city_id got 
   698 |       }
   699 |       applyBindings(ctx, assertion.binds, record);
   700 |       refreshDataBindings(ctx);

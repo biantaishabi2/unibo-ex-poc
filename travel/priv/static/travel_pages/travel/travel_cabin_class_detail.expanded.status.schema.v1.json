@@ -42,10 +42,10 @@
       "params": {
         "accept": [
           "id",
-          "status",
-          "cabin_class_code",
           "cabin_class_name",
-          "cabin_rank"
+          "cabin_rank",
+          "status",
+          "cabin_class_code"
         ]
       }
     },

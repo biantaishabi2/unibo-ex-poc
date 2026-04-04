@@ -961,6 +961,20 @@ test.describe("travel_hotel_detail", () => {
       }
       await expect(page.locator(`#travel_hotel_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_hotel_form_hotel_name, [name='hotel_name']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_name");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["hotel_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_hotel_form_city_id, [name='city_id']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_id");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["city_id"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#travel_hotel_form_hotel_star, [name='hotel_star']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star");
@@ -973,13 +987,6 @@ test.describe("travel_hotel_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_code");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["city_code"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_hotel_form_hotel_name, [name='hotel_name']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_name");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["hotel_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_hotel_form_status`).first();
@@ -996,13 +1003,6 @@ test.describe("travel_hotel_detail", () => {
         __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
-      }
-      {
-        const loc = page.locator(`#travel_hotel_form_city_id, [name='city_id']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_id");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["city_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_hotel_edit_form button[type="submit"], #travel_hotel_edit_form [phx-click="form_submit"]`).first();

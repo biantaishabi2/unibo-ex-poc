@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.canonical_id",
+      "equals": "$form.canonical_entity",
       "excludes_source": null,
       "graphql_field": "getTravelTravelStaticCodeMapping",
       "op": "equals",
-      "path": "canonical_id",
+      "path": "canonical_entity",
       "source": "active_record_id"
     },
     "ui": [
@@ -961,6 +961,13 @@ test.describe("travel_static_code_mapping_detail", () => {
       }
       await expect(page.locator(`#travel_static_code_mapping_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_static_code_mapping_form_canonical_entity, [name='canonical_entity']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_canonical_entity");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["canonical_entity"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#travel_static_code_mapping_form_external_name, [name='external_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_external_name");
@@ -973,13 +980,6 @@ test.describe("travel_static_code_mapping_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "d4d9c861-7465-4f63-a16e-6f6e6963616c");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["canonical_id"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_static_code_mapping_form_canonical_entity, [name='canonical_entity']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_canonical_entity");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["canonical_entity"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_static_code_mapping_form_status`).first();
