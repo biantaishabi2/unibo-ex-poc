@@ -1150,20 +1150,6 @@ test.describe("travel_fulfillment_detail", () => {
       }
       await expect(page.locator(`#travel_fulfillment_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_fulfillment_form_supplier_booking_ref, [name='supplier_booking_ref']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_supplier_booking_ref");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["supplier_booking_ref"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_fulfillment_form_voucher_or_ticket_ref, [name='voucher_or_ticket_ref']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_voucher_or_ticket_ref");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["voucher_or_ticket_ref"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_fulfillment_form_ticket_refs, [name='ticket_refs']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
@@ -1176,6 +1162,20 @@ test.describe("travel_fulfillment_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_confirmation_payload");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["confirmation_payload"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_fulfillment_form_voucher_or_ticket_ref, [name='voucher_or_ticket_ref']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_voucher_or_ticket_ref");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["voucher_or_ticket_ref"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_fulfillment_form_supplier_booking_ref, [name='supplier_booking_ref']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_supplier_booking_ref");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["supplier_booking_ref"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_fulfillment_form_failure_reason, [name='failure_reason']`).first();

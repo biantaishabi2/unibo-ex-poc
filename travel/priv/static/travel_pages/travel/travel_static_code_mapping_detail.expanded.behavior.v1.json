@@ -18,12 +18,12 @@
       "accept": [
         "id",
         "external_code",
-        "supplier_code",
-        "object_type",
-        "external_name",
         "status",
         "canonical_entity",
-        "canonical_id"
+        "external_name",
+        "object_type",
+        "canonical_id",
+        "supplier_code"
       ]
     }
   },
@@ -108,14 +108,14 @@
               "selector": "#travel_static_code_mapping_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "type",
-              "field": "canonical_entity",
-              "value": "UPDATED_{{__run_id}}_canonical_entity"
+              "action": "select_option",
+              "field": "status",
+              "value": "inactive"
             },
             {
               "action": "type",
-              "field": "external_name",
-              "value": "UPDATED_{{__run_id}}_external_name"
+              "field": "canonical_entity",
+              "value": "UPDATED_{{__run_id}}_canonical_entity"
             },
             {
               "action": "type",
@@ -123,9 +123,9 @@
               "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
             },
             {
-              "action": "select_option",
-              "field": "status",
-              "value": "inactive"
+              "action": "type",
+              "field": "external_name",
+              "value": "UPDATED_{{__run_id}}_external_name"
             },
             {
               "action": "click",
@@ -326,11 +326,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.canonical_entity",
+            "equals": "$form.status",
             "excludes_source": null,
             "graphql_field": "getTravelTravelStaticCodeMapping",
             "op": "equals",
-            "path": "canonical_entity",
+            "path": "status",
             "source": "active_record_id"
           },
           "ui": [

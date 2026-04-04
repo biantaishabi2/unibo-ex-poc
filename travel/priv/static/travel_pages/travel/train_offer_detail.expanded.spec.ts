@@ -597,11 +597,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.departure_station_ref_id",
+      "equals": "$form.is_no_seat",
       "excludes_source": null,
       "graphql_field": "getTravelTrainOffer",
       "op": "equals",
-      "path": "departure_station_ref_id",
+      "path": "is_no_seat",
       "source": "active_record_id"
     },
     "ui": [
@@ -1333,74 +1333,6 @@ test.describe("train_offer_detail", () => {
       }
       await expect(page.locator(`#train_offer_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#train_offer_form_listed_price, [name='listed_price']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#train_offer_form_arrival_at, [name='arrival_at']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2026-02-01T09:00:00Z");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["arrival_at"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#train_offer_form_waitlist_supported`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "false");
-        const wantChecked = resolvedValue !== 'false';
-        const currentChecked = (await loc.getAttribute('aria-checked')) === 'true';
-        if (currentChecked !== wantChecked) {
-          await loc.click({ timeout: 15000 });
-          __ctx.form["waitlist_supported"] = wantChecked ? 'true' : 'false'; refreshDataBindings(__ctx);
-          await waitForLiveViewReady(page, 15000);
-          await syncRouteContext(page, __ctx);
-        }
-      }
-      {
-        const loc = page.locator(`#train_offer_form_seat_class, [name='seat_class']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_seat_class");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["seat_class"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#train_offer_form_is_no_seat`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "false");
-        const wantChecked = resolvedValue !== 'false';
-        const currentChecked = (await loc.getAttribute('aria-checked')) === 'true';
-        if (currentChecked !== wantChecked) {
-          await loc.click({ timeout: 15000 });
-          __ctx.form["is_no_seat"] = wantChecked ? 'true' : 'false'; refreshDataBindings(__ctx);
-          await waitForLiveViewReady(page, 15000);
-          await syncRouteContext(page, __ctx);
-        }
-      }
-      {
-        const loc = page.locator(`#train_offer_form_departure_at, [name='departure_at']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2026-02-01T09:00:00Z");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["departure_at"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#train_offer_form_currency, [name='currency']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_currency");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#train_offer_form_change_rules_snapshot, [name='change_rules_snapshot']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_rules_snapshot");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["change_rules_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const root = page.locator(`#train_offer_form_inventory_status`).first();
         await root.waitFor({ state: 'visible', timeout: 15000 });
         const trigger = root.locator('button').first();
@@ -1417,25 +1349,18 @@ test.describe("train_offer_detail", () => {
         await syncRouteContext(page, __ctx);
       }
       {
-        const loc = page.locator(`#train_offer_form_settlement_price, [name='settlement_price']`).first();
+        const loc = page.locator(`#train_offer_form_arrival_station_ref_id, [name='arrival_station_ref_id']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_station_ref_id");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["arrival_station_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#train_offer_form_booking_rules_snapshot, [name='booking_rules_snapshot']`).first();
+        const loc = page.locator(`#train_offer_form_arrival_at, [name='arrival_at']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_booking_rules_snapshot");
+        const resolvedValue = resolveTemplateString(__ctx, "2026-02-01T09:00:00Z");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["booking_rules_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#train_offer_form_departure_station_name, [name='departure_station_name']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_departure_station_name");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["departure_station_name"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["arrival_at"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#train_offer_form_refund_rules_snapshot, [name='refund_rules_snapshot']`).first();
@@ -1445,11 +1370,86 @@ test.describe("train_offer_detail", () => {
         __ctx.form["refund_rules_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#train_offer_form_arrival_station_ref_id, [name='arrival_station_ref_id']`).first();
+        const loc = page.locator(`#train_offer_form_is_no_seat`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_station_ref_id");
+        const resolvedValue = resolveTemplateString(__ctx, "false");
+        const wantChecked = resolvedValue !== 'false';
+        const currentChecked = (await loc.getAttribute('aria-checked')) === 'true';
+        if (currentChecked !== wantChecked) {
+          await loc.click({ timeout: 15000 });
+          __ctx.form["is_no_seat"] = wantChecked ? 'true' : 'false'; refreshDataBindings(__ctx);
+          await waitForLiveViewReady(page, 15000);
+          await syncRouteContext(page, __ctx);
+        }
+      }
+      {
+        const loc = page.locator(`#train_offer_form_currency, [name='currency']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_currency");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["arrival_station_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_departure_station_name, [name='departure_station_name']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_departure_station_name");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["departure_station_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_listed_price, [name='listed_price']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_settlement_price, [name='settlement_price']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_arrival_station_name, [name='arrival_station_name']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_station_name");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["arrival_station_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_booking_rules_snapshot, [name='booking_rules_snapshot']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_booking_rules_snapshot");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["booking_rules_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_waitlist_supported`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "false");
+        const wantChecked = resolvedValue !== 'false';
+        const currentChecked = (await loc.getAttribute('aria-checked')) === 'true';
+        if (currentChecked !== wantChecked) {
+          await loc.click({ timeout: 15000 });
+          __ctx.form["waitlist_supported"] = wantChecked ? 'true' : 'false'; refreshDataBindings(__ctx);
+          await waitForLiveViewReady(page, 15000);
+          await syncRouteContext(page, __ctx);
+        }
+      }
+      {
+        const loc = page.locator(`#train_offer_form_departure_at, [name='departure_at']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2026-02-01T09:00:00Z");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["departure_at"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#train_offer_form_change_rules_snapshot, [name='change_rules_snapshot']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_rules_snapshot");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["change_rules_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#train_offer_form_departure_station_ref_id, [name='departure_station_ref_id']`).first();
@@ -1459,11 +1459,11 @@ test.describe("train_offer_detail", () => {
         __ctx.form["departure_station_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#train_offer_form_arrival_station_name, [name='arrival_station_name']`).first();
+        const loc = page.locator(`#train_offer_form_seat_class, [name='seat_class']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_station_name");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_seat_class");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["arrival_station_name"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["seat_class"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#train_offer_edit_form button[type="submit"], #train_offer_edit_form [phx-click="form_submit"]`).first();

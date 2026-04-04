@@ -59,7 +59,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelFulfillmentDetailLive do
   @backend_load_event "get"
   @backend_load_selection "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
   @backend_load_assigns %{travel_fulfillment: %{}}
-  @backend_params_accept ["id", "travel_order_id", "supplier_booking_ref", "fulfillment_type", "voucher_or_ticket_ref", "failure_reason", "ticket_refs", "confirmation_payload"]
+  @backend_params_accept ["id", "travel_order_id", "fulfillment_type", "supplier_booking_ref", "voucher_or_ticket_ref", "failure_reason", "ticket_refs", "confirmation_payload"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "cancel_fulfillment" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelFulfillment.cancel_fulfillment"},

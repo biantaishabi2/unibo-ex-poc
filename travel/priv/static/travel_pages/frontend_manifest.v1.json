@@ -12,6 +12,9 @@
         "api_map": {
           "list": "Travel.FlightOffer.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_flight_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -35,6 +38,9 @@
       "dsl_file": "travel/flight_offer_list.dsl",
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
+      "graphql_field_map": {
+        "list": "list_travel_flight_offers"
+      },
       "page_id": "flight_offer_list",
       "page_kind": "list",
       "page_spec": {
@@ -217,6 +223,9 @@
         "api_map": {
           "list": "Travel.HotelOffer.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_hotel_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -240,6 +249,9 @@
       "dsl_file": "travel/hotel_offer_list.dsl",
       "entity": "HotelOffer",
       "entity_snake": "hotel_offer",
+      "graphql_field_map": {
+        "list": "list_travel_hotel_offers"
+      },
       "page_id": "hotel_offer_list",
       "page_kind": "list",
       "page_spec": {
@@ -417,6 +429,9 @@
         "api_map": {
           "list": "Travel.TrainOffer.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_train_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -442,6 +457,9 @@
       "dsl_file": "travel/train_offer_list.dsl",
       "entity": "TrainOffer",
       "entity_snake": "train_offer",
+      "graphql_field_map": {
+        "list": "list_travel_train_offers"
+      },
       "page_id": "train_offer_list",
       "page_kind": "list",
       "page_spec": {
@@ -653,6 +671,11 @@
           "get": "Travel.TravelAirline.get",
           "update": "Travel.TravelAirline.update"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_airline",
+          "get": "get_travel_travel_airline",
+          "update": "update_travel_travel_airline"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -679,6 +702,11 @@
       "dsl_file": "travel/travel_airline_detail.dsl",
       "entity": "TravelAirline",
       "entity_snake": "travel_airline",
+      "graphql_field_map": {
+        "create": "create_travel_travel_airline",
+        "get": "get_travel_travel_airline",
+        "update": "update_travel_travel_airline"
+      },
       "page_id": "travel_airline_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -778,6 +806,9 @@
         "api_map": {
           "list": "Travel.TravelAirline.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_airlines"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -799,6 +830,9 @@
       "dsl_file": "travel/travel_airline_list.dsl",
       "entity": "TravelAirline",
       "entity_snake": "travel_airline",
+      "graphql_field_map": {
+        "list": "list_travel_travel_airlines"
+      },
       "page_id": "travel_airline_list",
       "page_kind": "list",
       "page_spec": {
@@ -930,6 +964,11 @@
           "get": "Travel.TravelCabinClass.get",
           "update": "Travel.TravelCabinClass.update"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_cabin_class",
+          "get": "get_travel_travel_cabin_class",
+          "update": "update_travel_travel_cabin_class"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -955,6 +994,11 @@
       "dsl_file": "travel/travel_cabin_class_detail.dsl",
       "entity": "TravelCabinClass",
       "entity_snake": "travel_cabin_class",
+      "graphql_field_map": {
+        "create": "create_travel_travel_cabin_class",
+        "get": "get_travel_travel_cabin_class",
+        "update": "update_travel_travel_cabin_class"
+      },
       "page_id": "travel_cabin_class_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -1051,6 +1095,9 @@
         "api_map": {
           "list": "Travel.TravelCabinClass.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_cabin_classs"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -1072,6 +1119,9 @@
       "dsl_file": "travel/travel_cabin_class_list.dsl",
       "entity": "TravelCabinClass",
       "entity_snake": "travel_cabin_class",
+      "graphql_field_map": {
+        "list": "list_travel_travel_cabin_classs"
+      },
       "page_id": "travel_cabin_class_list",
       "page_kind": "list",
       "page_spec": {
@@ -1208,6 +1258,16 @@
           "submit": "Travel.TravelChangeOrder.submit",
           "update": "Travel.TravelChangeOrder.update"
         },
+        "graphql_field_map": {
+          "complete": "complete_travel_travel_change_order",
+          "complete_direct": "complete_direct_travel_travel_change_order",
+          "confirm_change": "confirm_change_travel_travel_change_order",
+          "create": "create_travel_travel_change_order",
+          "get": "get_travel_travel_change_order",
+          "reject_change": "reject_change_travel_travel_change_order",
+          "submit": "submit_travel_travel_change_order",
+          "update": "update_travel_travel_change_order"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -1235,6 +1295,16 @@
       "dsl_file": "travel/travel_change_order_detail.dsl",
       "entity": "TravelChangeOrder",
       "entity_snake": "travel_change_order",
+      "graphql_field_map": {
+        "complete": "complete_travel_travel_change_order",
+        "complete_direct": "complete_direct_travel_travel_change_order",
+        "confirm_change": "confirm_change_travel_travel_change_order",
+        "create": "create_travel_travel_change_order",
+        "get": "get_travel_travel_change_order",
+        "reject_change": "reject_change_travel_travel_change_order",
+        "submit": "submit_travel_travel_change_order",
+        "update": "update_travel_travel_change_order"
+      },
       "page_id": "travel_change_order_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -1376,6 +1446,9 @@
         "api_map": {
           "list": "Travel.TravelChangeOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_change_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -1398,6 +1471,9 @@
       "dsl_file": "travel/travel_change_order_list.dsl",
       "entity": "TravelChangeOrder",
       "entity_snake": "travel_change_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_change_orders"
+      },
       "page_id": "travel_change_order_list",
       "page_kind": "list",
       "page_spec": {
@@ -1543,6 +1619,17 @@
           "mark_in_use": "Travel.TravelFulfillment.mark_in_use",
           "update": "Travel.TravelFulfillment.update"
         },
+        "graphql_field_map": {
+          "cancel_fulfillment": "cancel_fulfillment_travel_travel_fulfillment",
+          "complete_fulfillment": "complete_fulfillment_travel_travel_fulfillment",
+          "confirm_booking": "confirm_booking_travel_travel_fulfillment",
+          "destroy": "delete_travel_travel_fulfillment",
+          "fail_fulfillment": "fail_fulfillment_travel_travel_fulfillment",
+          "get": "get_travel_travel_fulfillment",
+          "issue_voucher_or_ticket": "issue_voucher_or_ticket_travel_travel_fulfillment",
+          "mark_in_use": "mark_in_use_travel_travel_fulfillment",
+          "update": "update_travel_travel_fulfillment"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -1571,6 +1658,17 @@
       "dsl_file": "travel/travel_fulfillment_detail.dsl",
       "entity": "TravelFulfillment",
       "entity_snake": "travel_fulfillment",
+      "graphql_field_map": {
+        "cancel_fulfillment": "cancel_fulfillment_travel_travel_fulfillment",
+        "complete_fulfillment": "complete_fulfillment_travel_travel_fulfillment",
+        "confirm_booking": "confirm_booking_travel_travel_fulfillment",
+        "destroy": "delete_travel_travel_fulfillment",
+        "fail_fulfillment": "fail_fulfillment_travel_travel_fulfillment",
+        "get": "get_travel_travel_fulfillment",
+        "issue_voucher_or_ticket": "issue_voucher_or_ticket_travel_travel_fulfillment",
+        "mark_in_use": "mark_in_use_travel_travel_fulfillment",
+        "update": "update_travel_travel_fulfillment"
+      },
       "page_id": "travel_fulfillment_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -1737,6 +1835,9 @@
         "api_map": {
           "list": "Travel.TravelFulfillment.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_fulfillments"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -1763,6 +1864,9 @@
       "dsl_file": "travel/travel_fulfillment_list.dsl",
       "entity": "TravelFulfillment",
       "entity_snake": "travel_fulfillment",
+      "graphql_field_map": {
+        "list": "list_travel_travel_fulfillments"
+      },
       "page_id": "travel_fulfillment_list",
       "page_kind": "list",
       "page_spec": {
@@ -1924,6 +2028,11 @@
           "get": "Travel.TravelHotel.get",
           "update": "Travel.TravelHotel.update"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_hotel",
+          "get": "get_travel_travel_hotel",
+          "update": "update_travel_travel_hotel"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -1950,6 +2059,11 @@
       "dsl_file": "travel/travel_hotel_detail.dsl",
       "entity": "TravelHotel",
       "entity_snake": "travel_hotel",
+      "graphql_field_map": {
+        "create": "create_travel_travel_hotel",
+        "get": "get_travel_travel_hotel",
+        "update": "update_travel_travel_hotel"
+      },
       "page_id": "travel_hotel_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -2049,6 +2163,9 @@
         "api_map": {
           "list": "Travel.TravelHotel.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_hotels"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -2070,6 +2187,9 @@
       "dsl_file": "travel/travel_hotel_list.dsl",
       "entity": "TravelHotel",
       "entity_snake": "travel_hotel",
+      "graphql_field_map": {
+        "list": "list_travel_travel_hotels"
+      },
       "page_id": "travel_hotel_list",
       "page_kind": "list",
       "page_spec": {
@@ -2231,6 +2351,26 @@
           "submit_waitlist": "Travel.TravelOrder.submit_waitlist",
           "update": "Travel.TravelOrder.update"
         },
+        "graphql_field_map": {
+          "cancel_cancel_request": "cancel_cancel_request_travel_travel_order",
+          "cancel_waitlist": "cancel_waitlist_travel_travel_order",
+          "confirm_change": "confirm_change_travel_travel_order",
+          "confirm_quote": "confirm_quote_travel_travel_order",
+          "create": "create_travel_travel_order",
+          "destroy": "delete_travel_travel_order",
+          "execute_cancel": "execute_cancel_travel_travel_order",
+          "fulfill_waitlist": "fulfill_waitlist_travel_travel_order",
+          "get": "get_travel_travel_order",
+          "mark_booked": "mark_booked_travel_travel_order",
+          "mark_completed": "mark_completed_travel_travel_order",
+          "mark_order_failed": "mark_order_failed_travel_travel_order",
+          "mark_payment_succeeded": "mark_payment_succeeded_travel_travel_order",
+          "request_cancel": "request_cancel_travel_travel_order",
+          "request_change": "request_change_travel_travel_order",
+          "submit_order": "submit_order_travel_travel_order",
+          "submit_waitlist": "submit_waitlist_travel_travel_order",
+          "update": "update_travel_travel_order"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -2264,6 +2404,26 @@
       "dsl_file": "travel/travel_order_detail.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "cancel_cancel_request": "cancel_cancel_request_travel_travel_order",
+        "cancel_waitlist": "cancel_waitlist_travel_travel_order",
+        "confirm_change": "confirm_change_travel_travel_order",
+        "confirm_quote": "confirm_quote_travel_travel_order",
+        "create": "create_travel_travel_order",
+        "destroy": "delete_travel_travel_order",
+        "execute_cancel": "execute_cancel_travel_travel_order",
+        "fulfill_waitlist": "fulfill_waitlist_travel_travel_order",
+        "get": "get_travel_travel_order",
+        "mark_booked": "mark_booked_travel_travel_order",
+        "mark_completed": "mark_completed_travel_travel_order",
+        "mark_order_failed": "mark_order_failed_travel_travel_order",
+        "mark_payment_succeeded": "mark_payment_succeeded_travel_travel_order",
+        "request_cancel": "request_cancel_travel_travel_order",
+        "request_change": "request_change_travel_travel_order",
+        "submit_order": "submit_order_travel_travel_order",
+        "submit_waitlist": "submit_waitlist_travel_travel_order",
+        "update": "update_travel_travel_order"
+      },
       "page_id": "travel_order_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -2517,6 +2677,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -2542,6 +2705,9 @@
       "dsl_file": "travel/travel_order_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "travel_order_list",
       "page_kind": "list",
       "page_spec": {
@@ -2743,6 +2909,11 @@
           "get": "Travel.TravelPolicyCheck.get",
           "update": "Travel.TravelPolicyCheck.update"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_policy_check",
+          "get": "get_travel_travel_policy_check",
+          "update": "update_travel_travel_policy_check"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -2776,6 +2947,11 @@
       "dsl_file": "travel/travel_policy_check_detail.dsl",
       "entity": "TravelPolicyCheck",
       "entity_snake": "travel_policy_check",
+      "graphql_field_map": {
+        "create": "create_travel_travel_policy_check",
+        "get": "get_travel_travel_policy_check",
+        "update": "update_travel_travel_policy_check"
+      },
       "page_id": "travel_policy_check_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -2887,6 +3063,9 @@
         "api_map": {
           "list": "Travel.TravelPolicyCheck.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_policy_checks"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -2909,6 +3088,9 @@
       "dsl_file": "travel/travel_policy_check_list.dsl",
       "entity": "TravelPolicyCheck",
       "entity_snake": "travel_policy_check",
+      "graphql_field_map": {
+        "list": "list_travel_travel_policy_checks"
+      },
       "page_id": "travel_policy_check_list",
       "page_kind": "list",
       "page_spec": {
@@ -3064,6 +3246,13 @@
           "get": "Travel.TravelPolicy.get",
           "update": "Travel.TravelPolicy.update"
         },
+        "graphql_field_map": {
+          "activate": "activate_travel_travel_policy",
+          "create": "create_travel_travel_policy",
+          "deactivate": "deactivate_travel_travel_policy",
+          "get": "get_travel_travel_policy",
+          "update": "update_travel_travel_policy"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -3097,6 +3286,13 @@
       "dsl_file": "travel/travel_policy_detail.dsl",
       "entity": "TravelPolicy",
       "entity_snake": "travel_policy",
+      "graphql_field_map": {
+        "activate": "activate_travel_travel_policy",
+        "create": "create_travel_travel_policy",
+        "deactivate": "deactivate_travel_travel_policy",
+        "get": "get_travel_travel_policy",
+        "update": "update_travel_travel_policy"
+      },
       "page_id": "travel_policy_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -3231,6 +3427,9 @@
         "api_map": {
           "list": "Travel.TravelPolicy.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_policys"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -3254,6 +3453,9 @@
       "dsl_file": "travel/travel_policy_list.dsl",
       "entity": "TravelPolicy",
       "entity_snake": "travel_policy",
+      "graphql_field_map": {
+        "list": "list_travel_travel_policys"
+      },
       "page_id": "travel_policy_list",
       "page_kind": "list",
       "page_spec": {
@@ -3430,6 +3632,16 @@
           "submit": "Travel.TravelRefundOrder.submit",
           "update": "Travel.TravelRefundOrder.update"
         },
+        "graphql_field_map": {
+          "confirm_refund": "confirm_refund_travel_travel_refund_order",
+          "create": "create_travel_travel_refund_order",
+          "get": "get_travel_travel_refund_order",
+          "refund": "refund_travel_travel_refund_order",
+          "refund_direct": "refund_direct_travel_travel_refund_order",
+          "reject_refund": "reject_refund_travel_travel_refund_order",
+          "submit": "submit_travel_travel_refund_order",
+          "update": "update_travel_travel_refund_order"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -3456,6 +3668,16 @@
       "dsl_file": "travel/travel_refund_order_detail.dsl",
       "entity": "TravelRefundOrder",
       "entity_snake": "travel_refund_order",
+      "graphql_field_map": {
+        "confirm_refund": "confirm_refund_travel_travel_refund_order",
+        "create": "create_travel_travel_refund_order",
+        "get": "get_travel_travel_refund_order",
+        "refund": "refund_travel_travel_refund_order",
+        "refund_direct": "refund_direct_travel_travel_refund_order",
+        "reject_refund": "reject_refund_travel_travel_refund_order",
+        "submit": "submit_travel_travel_refund_order",
+        "update": "update_travel_travel_refund_order"
+      },
       "page_id": "travel_refund_order_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -3597,6 +3819,9 @@
         "api_map": {
           "list": "Travel.TravelRefundOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_refund_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -3619,6 +3844,9 @@
       "dsl_file": "travel/travel_refund_order_list.dsl",
       "entity": "TravelRefundOrder",
       "entity_snake": "travel_refund_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_refund_orders"
+      },
       "page_id": "travel_refund_order_list",
       "page_kind": "list",
       "page_spec": {
@@ -3750,6 +3978,11 @@
           "get": "Travel.TravelRoomType.get",
           "update": "Travel.TravelRoomType.update"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_room_type",
+          "get": "get_travel_travel_room_type",
+          "update": "update_travel_travel_room_type"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -3776,6 +4009,11 @@
       "dsl_file": "travel/travel_room_type_detail.dsl",
       "entity": "TravelRoomType",
       "entity_snake": "travel_room_type",
+      "graphql_field_map": {
+        "create": "create_travel_travel_room_type",
+        "get": "get_travel_travel_room_type",
+        "update": "update_travel_travel_room_type"
+      },
       "page_id": "travel_room_type_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -3875,6 +4113,9 @@
         "api_map": {
           "list": "Travel.TravelRoomType.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_room_types"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -3896,6 +4137,9 @@
       "dsl_file": "travel/travel_room_type_list.dsl",
       "entity": "TravelRoomType",
       "entity_snake": "travel_room_type",
+      "graphql_field_map": {
+        "list": "list_travel_travel_room_types"
+      },
       "page_id": "travel_room_type_list",
       "page_kind": "list",
       "page_spec": {
@@ -4027,6 +4271,11 @@
           "get": "Travel.TravelStaticCodeMapping.get",
           "update": "Travel.TravelStaticCodeMapping.update"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_static_code_mapping",
+          "get": "get_travel_travel_static_code_mapping",
+          "update": "update_travel_travel_static_code_mapping"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4055,6 +4304,11 @@
       "dsl_file": "travel/travel_static_code_mapping_detail.dsl",
       "entity": "TravelStaticCodeMapping",
       "entity_snake": "travel_static_code_mapping",
+      "graphql_field_map": {
+        "create": "create_travel_travel_static_code_mapping",
+        "get": "get_travel_travel_static_code_mapping",
+        "update": "update_travel_travel_static_code_mapping"
+      },
       "page_id": "travel_static_code_mapping_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -4157,6 +4411,9 @@
         "api_map": {
           "list": "Travel.TravelStaticCodeMapping.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_static_code_mappings"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4179,6 +4436,9 @@
       "dsl_file": "travel/travel_static_code_mapping_list.dsl",
       "entity": "TravelStaticCodeMapping",
       "entity_snake": "travel_static_code_mapping",
+      "graphql_field_map": {
+        "list": "list_travel_travel_static_code_mappings"
+      },
       "page_id": "travel_static_code_mapping_list",
       "page_kind": "list",
       "page_spec": {
@@ -4311,6 +4571,9 @@
         "api_map": {
           "list": "Travel.VacationOffer.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_vacation_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4335,6 +4598,9 @@
       "dsl_file": "travel/vacation_offer_list.dsl",
       "entity": "VacationOffer",
       "entity_snake": "vacation_offer",
+      "graphql_field_map": {
+        "list": "list_travel_vacation_offers"
+      },
       "page_id": "vacation_offer_list",
       "page_kind": "list",
       "page_spec": {
@@ -4514,6 +4780,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4532,6 +4802,10 @@
       "dsl_file": "travel/order_detail.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "order_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -4636,6 +4910,9 @@
         "api_map": {
           "list": "Travel.FlightOffer.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_flight_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4654,6 +4931,9 @@
       "dsl_file": "travel/flight_offer_tree.dsl",
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
+      "graphql_field_map": {
+        "list": "list_travel_flight_offers"
+      },
       "page_id": "flight_offer_tree",
       "page_kind": "list",
       "page_spec": {
@@ -4797,6 +5077,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4815,6 +5098,9 @@
       "dsl_file": "travel/home.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "home",
       "page_kind": "list",
       "page_spec": {
@@ -4929,6 +5215,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -4947,6 +5236,9 @@
       "dsl_file": "travel/order_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "order_list",
       "page_kind": "list",
       "page_spec": {
@@ -5037,6 +5329,10 @@
           "create": "Travel.TravelOrder.create",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5055,6 +5351,10 @@
       "dsl_file": "travel/travel_request.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "create": "create_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "travel_request",
       "page_kind": "detail",
       "page_spec": {
@@ -5097,6 +5397,9 @@
         "api_map": {
           "search": "Travel.TrainOffer.list"
         },
+        "graphql_field_map": {
+          "search": "list_travel_train_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5116,6 +5419,9 @@
       "dsl_file": "travel/train_search_results.dsl",
       "entity": "TrainOffer",
       "entity_snake": "train_offer",
+      "graphql_field_map": {
+        "search": "list_travel_train_offers"
+      },
       "page_id": "train_search_results",
       "page_kind": "search",
       "page_spec": {
@@ -5307,6 +5613,9 @@
         "api_map": {
           "search": "Travel.FlightOffer.list"
         },
+        "graphql_field_map": {
+          "search": "list_travel_flight_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5326,6 +5635,9 @@
       "dsl_file": "travel/flight_search_results.dsl",
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
+      "graphql_field_map": {
+        "search": "list_travel_flight_offers"
+      },
       "page_id": "flight_search_results",
       "page_kind": "search",
       "page_spec": {
@@ -5550,6 +5862,10 @@
           "get": "Travel.HotelOffer.get",
           "list": "Travel.HotelOffer.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_hotel_offer",
+          "list": "list_travel_hotel_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5569,6 +5885,10 @@
       "dsl_file": "travel/hotel_detail.dsl",
       "entity": "HotelOffer",
       "entity_snake": "hotel_offer",
+      "graphql_field_map": {
+        "get": "get_travel_hotel_offer",
+        "list": "list_travel_hotel_offers"
+      },
       "page_id": "hotel_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -5626,6 +5946,9 @@
         "api_map": {
           "search": "Travel.FlightOffer.list"
         },
+        "graphql_field_map": {
+          "search": "list_travel_flight_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5645,6 +5968,9 @@
       "dsl_file": "travel/change_flight_search.dsl",
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
+      "graphql_field_map": {
+        "search": "list_travel_flight_offers"
+      },
       "page_id": "change_flight_search",
       "page_kind": "search",
       "page_spec": {
@@ -5722,6 +6048,10 @@
           "get": "Travel.TravelPolicyCheck.get",
           "list": "Travel.TravelPolicyCheck.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_policy_check",
+          "list": "list_travel_travel_policy_checks"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5741,6 +6071,10 @@
       "dsl_file": "travel/approval_detail.dsl",
       "entity": "TravelPolicyCheck",
       "entity_snake": "travel_policy_check",
+      "graphql_field_map": {
+        "get": "get_travel_travel_policy_check",
+        "list": "list_travel_travel_policy_checks"
+      },
       "page_id": "approval_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -5812,6 +6146,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5831,6 +6169,10 @@
       "dsl_file": "travel/payment_confirmation.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "payment_confirmation",
       "page_kind": "detail",
       "page_spec": {
@@ -5939,6 +6281,10 @@
           "get": "Travel.FlightOffer.get",
           "list": "Travel.FlightOffer.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_flight_offer",
+          "list": "list_travel_flight_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -5958,6 +6304,10 @@
       "dsl_file": "travel/flight_detail.dsl",
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
+      "graphql_field_map": {
+        "get": "get_travel_flight_offer",
+        "list": "list_travel_flight_offers"
+      },
       "page_id": "flight_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -6055,6 +6405,9 @@
         "api_map": {
           "search": "Travel.HotelOffer.list"
         },
+        "graphql_field_map": {
+          "search": "list_travel_hotel_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -6074,6 +6427,9 @@
       "dsl_file": "travel/hotel_search_results.dsl",
       "entity": "HotelOffer",
       "entity_snake": "hotel_offer",
+      "graphql_field_map": {
+        "search": "list_travel_hotel_offers"
+      },
       "page_id": "hotel_search_results",
       "page_kind": "search",
       "page_spec": {
@@ -6208,6 +6564,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -6227,6 +6587,10 @@
       "dsl_file": "travel/booking_confirmation.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "booking_confirmation",
       "page_kind": "detail",
       "page_spec": {
@@ -6335,6 +6699,10 @@
           "get": "Travel.TrainOffer.get",
           "list": "Travel.TrainOffer.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_train_offer",
+          "list": "list_travel_train_offers"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -6354,6 +6722,10 @@
       "dsl_file": "travel/train_detail.dsl",
       "entity": "TrainOffer",
       "entity_snake": "train_offer",
+      "graphql_field_map": {
+        "get": "get_travel_train_offer",
+        "list": "list_travel_train_offers"
+      },
       "page_id": "train_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -6468,6 +6840,10 @@
           "create": "Travel.TravelChangeOrder.create",
           "list": "Travel.TravelChangeOrder.list"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_change_order",
+          "list": "list_travel_travel_change_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -6487,6 +6863,10 @@
       "dsl_file": "travel/change_confirm.dsl",
       "entity": "TravelChangeOrder",
       "entity_snake": "travel_change_order",
+      "graphql_field_map": {
+        "create": "create_travel_travel_change_order",
+        "list": "list_travel_travel_change_orders"
+      },
       "page_id": "change_confirm",
       "page_kind": "detail",
       "page_spec": {
@@ -6810,6 +7190,10 @@
           "get": "Travel.TravelRefundOrder.get",
           "list": "Travel.TravelRefundOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_refund_order",
+          "list": "list_travel_travel_refund_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -6829,6 +7213,10 @@
       "dsl_file": "travel/refund_result.dsl",
       "entity": "TravelRefundOrder",
       "entity_snake": "travel_refund_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_refund_order",
+        "list": "list_travel_travel_refund_orders"
+      },
       "page_id": "refund_result",
       "page_kind": "detail",
       "page_spec": {
@@ -7021,6 +7409,10 @@
           "get": "Travel.TravelPolicyCheck.get",
           "list": "Travel.TravelPolicyCheck.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_policy_check",
+          "list": "list_travel_travel_policy_checks"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7040,6 +7432,10 @@
       "dsl_file": "travel/policy_check_detail.dsl",
       "entity": "TravelPolicyCheck",
       "entity_snake": "travel_policy_check",
+      "graphql_field_map": {
+        "get": "get_travel_travel_policy_check",
+        "list": "list_travel_travel_policy_checks"
+      },
       "page_id": "policy_check_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -7111,6 +7507,10 @@
           "create": "Travel.TravelRefundOrder.create",
           "list": "Travel.TravelRefundOrder.list"
         },
+        "graphql_field_map": {
+          "create": "create_travel_travel_refund_order",
+          "list": "list_travel_travel_refund_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7130,6 +7530,10 @@
       "dsl_file": "travel/refund_apply.dsl",
       "entity": "TravelRefundOrder",
       "entity_snake": "travel_refund_order",
+      "graphql_field_map": {
+        "create": "create_travel_travel_refund_order",
+        "list": "list_travel_travel_refund_orders"
+      },
       "page_id": "refund_apply",
       "page_kind": "detail",
       "page_spec": {
@@ -7170,6 +7574,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7189,6 +7597,10 @@
       "dsl_file": "travel/personal_center.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "personal_center",
       "page_kind": "detail",
       "page_spec": {
@@ -7314,6 +7726,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7333,6 +7749,10 @@
       "dsl_file": "travel/job_position_detail.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "job_position_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -7441,6 +7861,10 @@
           "get": "Travel.TravelPolicy.get",
           "list": "Travel.TravelPolicy.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_policy",
+          "list": "list_travel_travel_policys"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7460,6 +7884,10 @@
       "dsl_file": "travel/enterprise_settings.dsl",
       "entity": "TravelPolicy",
       "entity_snake": "travel_policy",
+      "graphql_field_map": {
+        "get": "get_travel_travel_policy",
+        "list": "list_travel_travel_policys"
+      },
       "page_id": "enterprise_settings",
       "page_kind": "detail",
       "page_spec": {
@@ -7520,6 +7948,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7539,6 +7970,9 @@
       "dsl_file": "travel/department_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "department_list",
       "page_kind": "list",
       "page_spec": {
@@ -7699,6 +8133,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7718,6 +8155,9 @@
       "dsl_file": "travel/oa_sync_log_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "oa_sync_log_list",
       "page_kind": "list",
       "page_spec": {
@@ -7878,6 +8318,9 @@
         "api_map": {
           "list": "Travel.TravelPolicy.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_policys"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -7897,6 +8340,9 @@
       "dsl_file": "travel/auth_role_list.dsl",
       "entity": "TravelPolicy",
       "entity_snake": "travel_policy",
+      "graphql_field_map": {
+        "list": "list_travel_travel_policys"
+      },
       "page_id": "auth_role_list",
       "page_kind": "list",
       "page_spec": {
@@ -8024,6 +8470,10 @@
           "get": "Travel.TravelPolicy.get",
           "list": "Travel.TravelPolicy.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_policy",
+          "list": "list_travel_travel_policys"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8043,6 +8493,10 @@
       "dsl_file": "travel/auth_role_detail.dsl",
       "entity": "TravelPolicy",
       "entity_snake": "travel_policy",
+      "graphql_field_map": {
+        "get": "get_travel_travel_policy",
+        "list": "list_travel_travel_policys"
+      },
       "page_id": "auth_role_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -8123,6 +8577,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8142,6 +8600,10 @@
       "dsl_file": "travel/employee_detail.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "employee_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -8250,6 +8712,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8269,6 +8735,10 @@
       "dsl_file": "travel/oa_integration_config.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "oa_integration_config",
       "page_kind": "detail",
       "page_spec": {
@@ -8332,6 +8802,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8351,6 +8824,9 @@
       "dsl_file": "travel/job_position_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "job_position_list",
       "page_kind": "list",
       "page_spec": {
@@ -8513,6 +8989,10 @@
           "get": "Travel.TravelOrder.get",
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_order",
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8532,6 +9012,10 @@
       "dsl_file": "travel/department_detail.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "department_detail",
       "page_kind": "detail",
       "page_spec": {
@@ -8638,6 +9122,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8657,6 +9144,9 @@
       "dsl_file": "travel/employee_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "employee_list",
       "page_kind": "list",
       "page_spec": {
@@ -8817,6 +9307,9 @@
         "api_map": {
           "list": "Travel.TravelOrder.list"
         },
+        "graphql_field_map": {
+          "list": "list_travel_travel_orders"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -8836,6 +9329,9 @@
       "dsl_file": "travel/traveler_management.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "page_id": "traveler_management",
       "page_kind": "list",
       "page_spec": {
@@ -8998,6 +9494,10 @@
           "get": "Travel.TravelPolicyCheck.get",
           "list": "Travel.TravelPolicyCheck.list"
         },
+        "graphql_field_map": {
+          "get": "get_travel_travel_policy_check",
+          "list": "list_travel_travel_policy_checks"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -9017,6 +9517,10 @@
       "dsl_file": "travel/approval_category_config.dsl",
       "entity": "TravelPolicyCheck",
       "entity_snake": "travel_policy_check",
+      "graphql_field_map": {
+        "get": "get_travel_travel_policy_check",
+        "list": "list_travel_travel_policy_checks"
+      },
       "page_id": "approval_category_config",
       "page_kind": "detail",
       "page_spec": {
@@ -9101,25 +9605,25 @@
         "params": {
           "accept": [
             "id",
-            "cabin_class",
-            "listed_price",
-            "flight_no",
-            "refund_change_policy",
-            "supplier_code",
-            "itinerary_code",
-            "arrival_airport_code",
-            "fare_family",
-            "departure_at",
             "currency",
-            "departure_airport_code",
-            "settlement_price",
             "seats_available",
-            "host_shop_id",
-            "baggage_policy",
-            "arrival_airport_ref_id",
-            "arrival_at",
+            "itinerary_code",
+            "departure_airport_code",
             "departure_airport_ref_id",
-            "sale_status"
+            "supplier_code",
+            "refund_change_policy",
+            "sale_status",
+            "arrival_airport_ref_id",
+            "arrival_airport_code",
+            "flight_no",
+            "fare_family",
+            "baggage_policy",
+            "departure_at",
+            "listed_price",
+            "host_shop_id",
+            "arrival_at",
+            "settlement_price",
+            "cabin_class"
           ]
         }
       },
@@ -9320,23 +9824,23 @@
         "params": {
           "accept": [
             "id",
-            "guarantee_policy",
-            "hotel_code",
-            "rate_plan_code",
-            "sale_status",
-            "cancellation_policy",
-            "currency",
             "supplier_code",
-            "room_type_code",
-            "host_shop_id",
             "hotel_name",
-            "city_code",
-            "checkin_date",
-            "checkout_date",
             "inventory_count",
+            "rate_plan_code",
+            "host_shop_id",
+            "checkin_date",
+            "cancellation_policy",
+            "city_code",
+            "checkout_date",
             "listed_price",
             "city_ref_id",
-            "settlement_price"
+            "settlement_price",
+            "hotel_code",
+            "currency",
+            "guarantee_policy",
+            "room_type_code",
+            "sale_status"
           ]
         }
       },
@@ -9534,30 +10038,30 @@
         "params": {
           "accept": [
             "id",
-            "arrival_at",
-            "train_no",
-            "departure_station_ref_id",
-            "arrival_station_code",
             "departure_station_name",
-            "host_shop_id",
+            "listed_price",
+            "currency",
+            "change_rules_snapshot",
+            "refund_rules_snapshot",
+            "arrival_at",
+            "departure_station_ref_id",
+            "sale_status",
             "departure_at",
+            "seat_class",
+            "departure_station_code",
             "seat_code",
-            "is_no_seat",
+            "host_shop_id",
+            "arrival_station_name",
             "arrival_station_ref_id",
             "supplier_code",
-            "listed_price",
-            "arrival_station_name",
-            "waitlist_supported",
             "travel_date",
-            "settlement_price",
+            "waitlist_supported",
             "booking_rules_snapshot",
-            "refund_rules_snapshot",
-            "sale_status",
-            "currency",
-            "departure_station_code",
-            "change_rules_snapshot",
             "inventory_status",
-            "seat_class"
+            "settlement_price",
+            "arrival_station_code",
+            "is_no_seat",
+            "train_no"
           ]
         }
       },
@@ -9773,24 +10277,24 @@
         "params": {
           "accept": [
             "id",
-            "departure_city_ref_id",
-            "package_type",
-            "destination_ref_id",
-            "host_shop_id",
-            "departure_city_code",
             "cancellation_policy",
-            "package_code",
-            "settlement_price",
-            "sale_status",
             "package_name",
-            "listed_price",
-            "currency",
+            "package_type",
             "supplier_code",
-            "inventory_count",
-            "booking_rules",
+            "listed_price",
+            "package_code",
             "end_date",
+            "departure_city_ref_id",
+            "sale_status",
+            "departure_city_code",
+            "booking_rules",
+            "settlement_price",
+            "destination_code",
+            "destination_ref_id",
             "start_date",
-            "destination_code"
+            "host_shop_id",
+            "currency",
+            "inventory_count"
           ]
         }
       },

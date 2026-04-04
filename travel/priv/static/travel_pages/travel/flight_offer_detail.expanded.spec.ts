@@ -582,11 +582,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.departure_airport_ref_id",
+      "equals": "$form.seats_available",
       "excludes_source": null,
       "graphql_field": "getTravelFlightOffer",
       "op": "equals",
-      "path": "departure_airport_ref_id",
+      "path": "seats_available",
       "source": "active_record_id"
     },
     "ui": [
@@ -1325,11 +1325,11 @@ test.describe("flight_offer_detail", () => {
         __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#flight_offer_form_seats_available, [name='seats_available']`).first();
+        const loc = page.locator(`#flight_offer_form_baggage_policy, [name='baggage_policy']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_baggage_policy");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["seats_available"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["baggage_policy"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#flight_offer_form_departure_airport_ref_id, [name='departure_airport_ref_id']`).first();
@@ -1339,11 +1339,11 @@ test.describe("flight_offer_detail", () => {
         __ctx.form["departure_airport_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#flight_offer_form_settlement_price, [name='settlement_price']`).first();
+        const loc = page.locator(`#flight_offer_form_arrival_airport_ref_id, [name='arrival_airport_ref_id']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_airport_ref_id");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["arrival_airport_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#flight_offer_form_refund_change_policy, [name='refund_change_policy']`).first();
@@ -1353,11 +1353,18 @@ test.describe("flight_offer_detail", () => {
         __ctx.form["refund_change_policy"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#flight_offer_form_arrival_airport_ref_id, [name='arrival_airport_ref_id']`).first();
+        const loc = page.locator(`#flight_offer_form_fare_family, [name='fare_family']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_airport_ref_id");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_fare_family");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["arrival_airport_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["fare_family"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#flight_offer_form_seats_available, [name='seats_available']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["seats_available"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#flight_offer_form_currency, [name='currency']`).first();
@@ -1367,18 +1374,11 @@ test.describe("flight_offer_detail", () => {
         __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#flight_offer_form_fare_family, [name='fare_family']`).first();
+        const loc = page.locator(`#flight_offer_form_settlement_price, [name='settlement_price']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_fare_family");
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["fare_family"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#flight_offer_form_baggage_policy, [name='baggage_policy']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_baggage_policy");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["baggage_policy"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#flight_offer_edit_form button[type="submit"], #flight_offer_edit_form [phx-click="form_submit"]`).first();

@@ -64,8 +64,8 @@
         "accept": [
           "id",
           "travel_order_id",
-          "supplier_booking_ref",
           "fulfillment_type",
+          "supplier_booking_ref",
           "voucher_or_ticket_ref",
           "failure_reason",
           "ticket_refs",
@@ -155,8 +155,13 @@
               },
               {
                 "action": "type",
-                "field": "supplier_booking_ref",
-                "value": "UPDATED_{{__run_id}}_supplier_booking_ref"
+                "field": "ticket_refs",
+                "value": "{\"updated\":true}"
+              },
+              {
+                "action": "type",
+                "field": "confirmation_payload",
+                "value": "UPDATED_{{__run_id}}_confirmation_payload"
               },
               {
                 "action": "type",
@@ -165,13 +170,8 @@
               },
               {
                 "action": "type",
-                "field": "ticket_refs",
-                "value": "{\"updated\":true}"
-              },
-              {
-                "action": "type",
-                "field": "confirmation_payload",
-                "value": "UPDATED_{{__run_id}}_confirmation_payload"
+                "field": "supplier_booking_ref",
+                "value": "UPDATED_{{__run_id}}_supplier_booking_ref"
               },
               {
                 "action": "type",

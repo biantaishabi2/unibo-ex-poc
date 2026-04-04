@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.iata_code",
+      "equals": "$form.icao_code",
       "excludes_source": null,
       "graphql_field": "getTravelTravelAirline",
       "op": "equals",
-      "path": "iata_code",
+      "path": "icao_code",
       "source": "active_record_id"
     },
     "ui": [
@@ -961,6 +961,22 @@ test.describe("travel_airline_detail", () => {
       }
       await expect(page.locator(`#travel_airline_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const root = page.locator(`#travel_airline_form_status`).first();
+        await root.waitFor({ state: 'visible', timeout: 15000 });
+        const trigger = root.locator('button').first();
+        await trigger.waitFor({ state: 'visible', timeout: 15000 });
+        await trigger.click({ timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "inactive");
+        const option = root.locator(`.select-content label:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has-text("${resolvedValue}")`).first();
+        await option.waitFor({ state: 'visible', timeout: 15000 });
+        await option.click({ timeout: 15000 });
+        await page.keyboard.press('Escape').catch(() => null);
+        await root.locator('.select-content').first().waitFor({ state: 'hidden', timeout: 3000 }).catch(() => null);
+        __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
+        await waitForLiveViewReady(page, 15000);
+        await syncRouteContext(page, __ctx);
+      }
+      {
         const loc = page.locator(`#travel_airline_form_iata_code, [name='iata_code']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_iata_code");
@@ -980,22 +996,6 @@ test.describe("travel_airline_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_icao_code");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["icao_code"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const root = page.locator(`#travel_airline_form_status`).first();
-        await root.waitFor({ state: 'visible', timeout: 15000 });
-        const trigger = root.locator('button').first();
-        await trigger.waitFor({ state: 'visible', timeout: 15000 });
-        await trigger.click({ timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "inactive");
-        const option = root.locator(`.select-content label:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has-text("${resolvedValue}")`).first();
-        await option.waitFor({ state: 'visible', timeout: 15000 });
-        await option.click({ timeout: 15000 });
-        await page.keyboard.press('Escape').catch(() => null);
-        await root.locator('.select-content').first().waitFor({ state: 'hidden', timeout: 3000 }).catch(() => null);
-        __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
-        await waitForLiveViewReady(page, 15000);
-        await syncRouteContext(page, __ctx);
       }
       {
         const loc = page.locator(`#travel_airline_edit_form button[type="submit"], #travel_airline_edit_form [phx-click="form_submit"]`).first();

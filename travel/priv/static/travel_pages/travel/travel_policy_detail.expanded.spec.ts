@@ -1010,20 +1010,6 @@ test.describe("travel_policy_detail", () => {
         __ctx.form["policy_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_policy_form_season, [name='season']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_season");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["season"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_policy_form_cabin_class_limit, [name='cabin_class_limit']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cabin_class_limit");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["cabin_class_limit"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const root = page.locator(`#travel_policy_form_exceed_strategy`).first();
         await root.waitFor({ state: 'visible', timeout: 15000 });
         const trigger = root.locator('button').first();
@@ -1061,6 +1047,20 @@ test.describe("travel_policy_detail", () => {
         __ctx.form["approval_mode"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
+      }
+      {
+        const loc = page.locator(`#travel_policy_form_season, [name='season']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_season");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["season"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_policy_form_cabin_class_limit, [name='cabin_class_limit']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cabin_class_limit");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["cabin_class_limit"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_policy_form_max_amount, [name='max_amount']`).first();

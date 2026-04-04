@@ -1413,18 +1413,18 @@ test.describe("travel_change_order_detail", () => {
       }
       await expect(page.locator(`#travel_change_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_fee");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["change_fee"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
@@ -1434,11 +1434,11 @@ test.describe("travel_change_order_detail", () => {
         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
+        const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_change_order_edit_form button[type="submit"], #travel_change_order_edit_form [phx-click="form_submit"]`).first();

@@ -21,30 +21,30 @@
     "params": {
       "accept": [
         "id",
-        "arrival_at",
-        "train_no",
-        "departure_station_ref_id",
-        "arrival_station_code",
         "departure_station_name",
-        "host_shop_id",
+        "listed_price",
+        "currency",
+        "change_rules_snapshot",
+        "refund_rules_snapshot",
+        "arrival_at",
+        "departure_station_ref_id",
+        "sale_status",
         "departure_at",
+        "seat_class",
+        "departure_station_code",
         "seat_code",
-        "is_no_seat",
+        "host_shop_id",
+        "arrival_station_name",
         "arrival_station_ref_id",
         "supplier_code",
-        "listed_price",
-        "arrival_station_name",
-        "waitlist_supported",
         "travel_date",
-        "settlement_price",
+        "waitlist_supported",
         "booking_rules_snapshot",
-        "refund_rules_snapshot",
-        "sale_status",
-        "currency",
-        "departure_station_code",
-        "change_rules_snapshot",
         "inventory_status",
-        "seat_class"
+        "settlement_price",
+        "arrival_station_code",
+        "is_no_seat",
+        "train_no"
       ]
     }
   },
@@ -128,9 +128,14 @@
               "selector": "#train_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
+              "action": "select_option",
+              "field": "inventory_status",
+              "value": "waitlist_only"
+            },
+            {
               "action": "type",
-              "field": "listed_price",
-              "value": "200.00"
+              "field": "arrival_station_ref_id",
+              "value": "UPDATED_{{__run_id}}_arrival_station_ref_id"
             },
             {
               "action": "type",
@@ -138,18 +143,48 @@
               "value": "2026-02-01T09:00:00Z"
             },
             {
-              "action": "set_switch",
-              "field": "waitlist_supported",
-              "value": "false"
-            },
-            {
               "action": "type",
-              "field": "seat_class",
-              "value": "UPDATED_{{__run_id}}_seat_class"
+              "field": "refund_rules_snapshot",
+              "value": "UPDATED_{{__run_id}}_refund_rules_snapshot"
             },
             {
               "action": "set_switch",
               "field": "is_no_seat",
+              "value": "false"
+            },
+            {
+              "action": "type",
+              "field": "currency",
+              "value": "UPDATED_{{__run_id}}_currency"
+            },
+            {
+              "action": "type",
+              "field": "departure_station_name",
+              "value": "UPDATED_{{__run_id}}_departure_station_name"
+            },
+            {
+              "action": "type",
+              "field": "listed_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
+              "field": "settlement_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
+              "field": "arrival_station_name",
+              "value": "UPDATED_{{__run_id}}_arrival_station_name"
+            },
+            {
+              "action": "type",
+              "field": "booking_rules_snapshot",
+              "value": "UPDATED_{{__run_id}}_booking_rules_snapshot"
+            },
+            {
+              "action": "set_switch",
+              "field": "waitlist_supported",
               "value": "false"
             },
             {
@@ -159,43 +194,8 @@
             },
             {
               "action": "type",
-              "field": "currency",
-              "value": "UPDATED_{{__run_id}}_currency"
-            },
-            {
-              "action": "type",
               "field": "change_rules_snapshot",
               "value": "UPDATED_{{__run_id}}_change_rules_snapshot"
-            },
-            {
-              "action": "select_option",
-              "field": "inventory_status",
-              "value": "waitlist_only"
-            },
-            {
-              "action": "type",
-              "field": "settlement_price",
-              "value": "200.00"
-            },
-            {
-              "action": "type",
-              "field": "booking_rules_snapshot",
-              "value": "UPDATED_{{__run_id}}_booking_rules_snapshot"
-            },
-            {
-              "action": "type",
-              "field": "departure_station_name",
-              "value": "UPDATED_{{__run_id}}_departure_station_name"
-            },
-            {
-              "action": "type",
-              "field": "refund_rules_snapshot",
-              "value": "UPDATED_{{__run_id}}_refund_rules_snapshot"
-            },
-            {
-              "action": "type",
-              "field": "arrival_station_ref_id",
-              "value": "UPDATED_{{__run_id}}_arrival_station_ref_id"
             },
             {
               "action": "type",
@@ -204,8 +204,8 @@
             },
             {
               "action": "type",
-              "field": "arrival_station_name",
-              "value": "UPDATED_{{__run_id}}_arrival_station_name"
+              "field": "seat_class",
+              "value": "UPDATED_{{__run_id}}_seat_class"
             },
             {
               "action": "click",
@@ -761,11 +761,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.departure_station_ref_id",
+            "equals": "$form.is_no_seat",
             "excludes_source": null,
             "graphql_field": "getTravelTrainOffer",
             "op": "equals",
-            "path": "departure_station_ref_id",
+            "path": "is_no_seat",
             "source": "active_record_id"
           },
           "ui": [
