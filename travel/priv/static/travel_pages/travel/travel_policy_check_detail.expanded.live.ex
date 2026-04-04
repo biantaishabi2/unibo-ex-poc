@@ -57,7 +57,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
   @backend_load_event "get"
   @backend_load_selection "actual_amount: actualAmount approval_mode: approvalMode approval_request_id: approvalRequestId check_result: checkResult exceed_amount: exceedAmount exceed_ratio: exceedRatio exceed_reason: exceedReason exceed_strategy: exceedStrategy id personal_pay_amount: personalPayAmount policy_amount: policyAmount"
   @backend_load_assigns %{travel_policy_check: %{}}
-  @backend_params_accept ["id", "order_id", "policy_id", "personal_pay_amount", "approval_mode", "policy_amount", "check_result", "actual_amount", "exceed_amount", "exceed_ratio", "exceed_reason", "approval_request_id", "exceed_strategy"]
+  @backend_params_accept ["id", "order_id", "policy_id", "actual_amount", "approval_mode", "exceed_amount", "policy_amount", "personal_pay_amount", "exceed_strategy", "exceed_reason", "approval_request_id", "exceed_ratio", "check_result"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicyCheck.create"},

@@ -1362,11 +1362,11 @@ const __VERIFICATION_CONTRACT = {
           "source": "backend_result"
         }
       ],
-      "equals": "$form.currency",
+      "equals": "$form.order_no",
       "excludes_source": null,
       "graphql_field": "getTravelTravelOrder",
       "op": "field_equals",
-      "path": "currency",
+      "path": "order_no",
       "source": "created_record_id"
     },
     "ui": [
@@ -1585,11 +1585,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.contact_name",
+      "equals": "$form.ticket_passenger_infos",
       "excludes_source": null,
       "graphql_field": "getTravelTravelOrder",
       "op": "equals",
-      "path": "contact_name",
+      "path": "ticket_passenger_infos",
       "source": "active_record_id"
     },
     "ui": [
@@ -1866,6 +1866,7 @@ async function runSetupAction(ctx, item, recordId, actionName) {
 async function runSetupItem(page, ctx, item) {
   if (!item) return;
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
+    const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
@@ -1874,6 +1875,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -1891,7 +1893,6 @@ async function runSetupItem(page, ctx, item) {
         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
       }
       result = createPayload?.data?.[createField]?.result || null;
-      rememberTenantContext(ctx, inputValue);
       if (result?.id) {
         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
@@ -1905,7 +1906,7 @@ async function runSetupItem(page, ctx, item) {
     }
     applyBindings(ctx, item.binds, result);
     refreshDataBindings(ctx);
-    // tenant context 保持 create_input 设置的值，不恢复
+    ctx.tenant_id = savedTenantId;
   }
 }
 
@@ -2327,11 +2328,11 @@ test.describe("travel_order_detail", () => {
         __ctx.form["ticket_passenger_infos"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_order_form_traveler_count, [name='traveler_count']`).first();
+        const loc = page.locator(`#travel_order_form_seat_selection_snapshot, [name='seat_selection_snapshot']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
+        const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["traveler_count"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["seat_selection_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_order_form_contact_phone, [name='contact_phone']`).first();
@@ -2341,18 +2342,18 @@ test.describe("travel_order_detail", () => {
         __ctx.form["contact_phone"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_order_form_seat_selection_snapshot, [name='seat_selection_snapshot']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["seat_selection_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_order_form_contact_name, [name='contact_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_contact_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["contact_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_order_form_traveler_count, [name='traveler_count']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["traveler_count"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_order_edit_form button[type="submit"], #travel_order_edit_form [phx-click="form_submit"]`).first();

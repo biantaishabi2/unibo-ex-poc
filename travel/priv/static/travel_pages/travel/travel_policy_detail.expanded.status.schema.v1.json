@@ -61,17 +61,17 @@
         "accept": [
           "id",
           "cabin_class_limit",
-          "max_amount",
-          "employee_level",
-          "personal_pay_ratio",
-          "policy_name",
-          "approval_mode",
-          "hotel_star_limit",
-          "exceed_strategy",
           "city_tier",
+          "approval_mode",
+          "product_type",
+          "hotel_star_limit",
+          "personal_pay_ratio",
           "enterprise_id",
           "season",
-          "product_type"
+          "exceed_strategy",
+          "employee_level",
+          "max_amount",
+          "policy_name"
         ]
       }
     },
@@ -157,8 +157,8 @@
               },
               {
                 "action": "type",
-                "field": "season",
-                "value": "UPDATED_{{__run_id}}_season"
+                "field": "personal_pay_ratio",
+                "value": "2"
               },
               {
                 "action": "type",
@@ -167,8 +167,8 @@
               },
               {
                 "action": "type",
-                "field": "max_amount",
-                "value": "2"
+                "field": "hotel_star_limit",
+                "value": "UPDATED_{{__run_id}}_hotel_star_limit"
               },
               {
                 "action": "select_option",
@@ -176,24 +176,24 @@
                 "value": "self"
               },
               {
-                "action": "select_option",
-                "field": "exceed_strategy",
-                "value": "require_reason"
+                "action": "type",
+                "field": "cabin_class_limit",
+                "value": "UPDATED_{{__run_id}}_cabin_class_limit"
               },
               {
                 "action": "type",
-                "field": "personal_pay_ratio",
+                "field": "max_amount",
                 "value": "2"
               },
               {
                 "action": "type",
-                "field": "hotel_star_limit",
-                "value": "UPDATED_{{__run_id}}_hotel_star_limit"
+                "field": "season",
+                "value": "UPDATED_{{__run_id}}_season"
               },
               {
-                "action": "type",
-                "field": "cabin_class_limit",
-                "value": "UPDATED_{{__run_id}}_cabin_class_limit"
+                "action": "select_option",
+                "field": "exceed_strategy",
+                "value": "require_reason"
               },
               {
                 "action": "click",

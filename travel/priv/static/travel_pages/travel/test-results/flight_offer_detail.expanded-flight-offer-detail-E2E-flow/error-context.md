@@ -7,7 +7,7 @@
 # Test info
 
 - Name: flight_offer_detail.expanded.spec.ts >> flight_offer_detail >> E2E flow
-- Location: flight_offer_detail.expanded.spec.ts:1219:7
+- Location: flight_offer_detail.expanded.spec.ts:1220:7
 
 # Error details
 
@@ -127,97 +127,97 @@ Error: setup action failed for activate
   863 | async function runSetupItem(page, ctx, item) {
   864 |   if (!item) return;
   865 |   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
-  866 |     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
-  867 |     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
-  868 |     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
-  869 |     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
-  870 |     const whereField = /^[A-Za-z_][A-Za-z0-9_]*$/.test(wherePath) ? wherePath : '';
-  871 |     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
-  872 |     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
-  873 |     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
-  874 |     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
-  875 |     const matched = whereField
-  876 |       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
-  877 |       : rows;
-  878 |     const rawIndex = Number.isInteger(item.index) ? Number(item.index) : Number(item.index || 0);
-  879 |     const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex : 0;
-  880 |     let result = matched[index] || matched[0];
-  881 |     const prepareActions = Array.isArray(item.prepare_actions) ? item.prepare_actions : [];
-  882 |     if (!result && (item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create')) {
-  883 |       const createField = await resolveContractGraphqlField(ctx, 'mutation', item.create_graphql_field, item.domain, item.entity, 'create');
-  884 |       if (!createField) throw new Error('missing GraphQL create field for setup ' + JSON.stringify(item));
-  885 |       const createPayload = await graphqlRequest(ctx, `mutation ContractSetupCreate { ${createField}(input: ${toGraphqlLiteral(inputValue)}) { result { id } errors { message } } }`, {});
-  886 |       const errors = createPayload?.errors || createPayload?.data?.[createField]?.errors || [];
-  887 |       if (Array.isArray(errors) && errors.length > 0) {
-  888 |         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
-  889 |       }
-  890 |       result = createPayload?.data?.[createField]?.result || null;
-  891 |       rememberTenantContext(ctx, inputValue);
-  892 |       if (result?.id) {
-  893 |         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
-  894 |         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
-  895 |       }
-  896 |     }
-  897 |     if (item.cleanup_policy === 'never') { for (const row of rows) { if (row?.id) ctx.__seed_ids.add(row.id); } }
-  898 |     if (!result) throw new Error('setup returned no rows for ' + String(item.name || field));
-  899 |     for (const actionName of prepareActions) {
-  900 |       if (!result?.id) break;
-  901 |       result = await runSetupAction(ctx, item, result.id, String(actionName || '').trim()) || result;
-  902 |     }
-  903 |     applyBindings(ctx, item.binds, result);
-  904 |     refreshDataBindings(ctx);
-  905 |     // tenant context 保持 create_input 设置的值，不恢复
-  906 |   }
-  907 | }
-  908 | 
-  909 | async function ensureContractSetup(page, ctx) {
-  910 |   if (ctx.__setupDone) return;
-  911 |   for (const item of Array.isArray(__DATA_CONTRACT.setup) ? __DATA_CONTRACT.setup : []) {
-  912 |     await runSetupItem(page, ctx, item);
-  913 |   }
-  914 |   ctx.__setupDone = true;
-  915 | }
-  916 | 
-  917 | function parseApiRef(apiRef) {
-  918 |   const parts = String(apiRef || '').split('.');
-  919 |   if (parts.length < 3) return null;
-  920 |   return { domain: parts[0], entity: parts[1], action: parts[2] };
-  921 | }
-  922 | 
-  923 | function collectVerificationEntries(verificationKey, caseKind, covers) {
-  924 |   const entries = [];
-  925 |   const pushEntry = (entry) => {
-  926 |     if (!entry) return;
-  927 |     if (!entries.includes(entry)) entries.push(entry);
-  928 |   };
-  929 |   if (verificationKey && verificationKey !== '__AUTO__') {
-  930 |     pushEntry(__VERIFICATION_CONTRACT[verificationKey]);
-  931 |   } else {
-  932 |     if (caseKind === 'load') pushEntry(__VERIFICATION_CONTRACT.load);
-  933 |     for (const cover of Array.isArray(covers) ? covers : []) {
-  934 |       pushEntry(__VERIFICATION_CONTRACT[cover]);
-  935 |     }
-  936 |   }
-  937 |   for (const cover of Array.isArray(covers) ? covers : []) {
-  938 |     if (!String(cover).startsWith('action_')) continue;
-  939 |     const event = String(cover).slice('action_'.length);
-  940 |     const matches = Array.isArray(__VERIFICATION_CONTRACT.state_transitions) ? __VERIFICATION_CONTRACT.state_transitions.filter((item) => item?.event === event) : [];
-  941 |     for (const match of matches) pushEntry(match);
-  942 |   }
-  943 |   return entries;
-  944 | }
-  945 | 
-  946 | async function runWaitEntry(page, ctx, entry) {
-  947 |   if (!entry) return;
-  948 |   const timeout = Number(entry?.timeout) > 0 ? Number(entry.timeout) : 15000;
-  949 |   await waitForLiveViewReady(page, timeout);
-  950 |   const until = entry?.until || {};
-  951 |   const kind = String(until?.kind || entry?.mode || '').trim();
-  952 |   const selector = typeof until?.selector === 'string' ? until.selector : (Array.isArray(entry?.selectors) ? entry.selectors[0] : null);
-  953 |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
-  954 |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
-  955 |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
-  956 |   }
-  957 |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
-  958 |     await expect(locatorFor(page, selector)).toBeHidden({ timeout });
+  866 |     const savedTenantId = ctx.tenant_id;
+  867 |     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
+  868 |     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
+  869 |     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
+  870 |     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
+  871 |     const whereField = /^[A-Za-z_][A-Za-z0-9_]*$/.test(wherePath) ? wherePath : '';
+  872 |     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
+  873 |     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
+  874 |     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+  875 |     rememberTenantContext(ctx, inputValue);
+  876 |     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
+  877 |     const matched = whereField
+  878 |       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
+  879 |       : rows;
+  880 |     const rawIndex = Number.isInteger(item.index) ? Number(item.index) : Number(item.index || 0);
+  881 |     const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex : 0;
+  882 |     let result = matched[index] || matched[0];
+  883 |     const prepareActions = Array.isArray(item.prepare_actions) ? item.prepare_actions : [];
+  884 |     if (!result && (item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create')) {
+  885 |       const createField = await resolveContractGraphqlField(ctx, 'mutation', item.create_graphql_field, item.domain, item.entity, 'create');
+  886 |       if (!createField) throw new Error('missing GraphQL create field for setup ' + JSON.stringify(item));
+  887 |       const createPayload = await graphqlRequest(ctx, `mutation ContractSetupCreate { ${createField}(input: ${toGraphqlLiteral(inputValue)}) { result { id } errors { message } } }`, {});
+  888 |       const errors = createPayload?.errors || createPayload?.data?.[createField]?.errors || [];
+  889 |       if (Array.isArray(errors) && errors.length > 0) {
+  890 |         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
+  891 |       }
+  892 |       result = createPayload?.data?.[createField]?.result || null;
+  893 |       if (result?.id) {
+  894 |         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
+  895 |         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
+  896 |       }
+  897 |     }
+  898 |     if (item.cleanup_policy === 'never') { for (const row of rows) { if (row?.id) ctx.__seed_ids.add(row.id); } }
+  899 |     if (!result) throw new Error('setup returned no rows for ' + String(item.name || field));
+  900 |     for (const actionName of prepareActions) {
+  901 |       if (!result?.id) break;
+  902 |       result = await runSetupAction(ctx, item, result.id, String(actionName || '').trim()) || result;
+  903 |     }
+  904 |     applyBindings(ctx, item.binds, result);
+  905 |     refreshDataBindings(ctx);
+  906 |     ctx.tenant_id = savedTenantId;
+  907 |   }
+  908 | }
+  909 | 
+  910 | async function ensureContractSetup(page, ctx) {
+  911 |   if (ctx.__setupDone) return;
+  912 |   for (const item of Array.isArray(__DATA_CONTRACT.setup) ? __DATA_CONTRACT.setup : []) {
+  913 |     await runSetupItem(page, ctx, item);
+  914 |   }
+  915 |   ctx.__setupDone = true;
+  916 | }
+  917 | 
+  918 | function parseApiRef(apiRef) {
+  919 |   const parts = String(apiRef || '').split('.');
+  920 |   if (parts.length < 3) return null;
+  921 |   return { domain: parts[0], entity: parts[1], action: parts[2] };
+  922 | }
+  923 | 
+  924 | function collectVerificationEntries(verificationKey, caseKind, covers) {
+  925 |   const entries = [];
+  926 |   const pushEntry = (entry) => {
+  927 |     if (!entry) return;
+  928 |     if (!entries.includes(entry)) entries.push(entry);
+  929 |   };
+  930 |   if (verificationKey && verificationKey !== '__AUTO__') {
+  931 |     pushEntry(__VERIFICATION_CONTRACT[verificationKey]);
+  932 |   } else {
+  933 |     if (caseKind === 'load') pushEntry(__VERIFICATION_CONTRACT.load);
+  934 |     for (const cover of Array.isArray(covers) ? covers : []) {
+  935 |       pushEntry(__VERIFICATION_CONTRACT[cover]);
+  936 |     }
+  937 |   }
+  938 |   for (const cover of Array.isArray(covers) ? covers : []) {
+  939 |     if (!String(cover).startsWith('action_')) continue;
+  940 |     const event = String(cover).slice('action_'.length);
+  941 |     const matches = Array.isArray(__VERIFICATION_CONTRACT.state_transitions) ? __VERIFICATION_CONTRACT.state_transitions.filter((item) => item?.event === event) : [];
+  942 |     for (const match of matches) pushEntry(match);
+  943 |   }
+  944 |   return entries;
+  945 | }
+  946 | 
+  947 | async function runWaitEntry(page, ctx, entry) {
+  948 |   if (!entry) return;
+  949 |   const timeout = Number(entry?.timeout) > 0 ? Number(entry.timeout) : 15000;
+  950 |   await waitForLiveViewReady(page, timeout);
+  951 |   const until = entry?.until || {};
+  952 |   const kind = String(until?.kind || entry?.mode || '').trim();
+  953 |   const selector = typeof until?.selector === 'string' ? until.selector : (Array.isArray(entry?.selectors) ? entry.selectors[0] : null);
+  954 |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
+  955 |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
+  956 |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
+  957 |   }
+  958 |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
 ```

@@ -564,17 +564,17 @@ defmodule UniboExPocWeb.Pages.Travel.HotelDetailLive do
           <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
             编辑
           </.button>
-          <%= if to_string(get_in(@record, [:sale_status])) == "draft" || to_string(get_in(@record, [:sale_status])) == "inactive" do %>
+          <%= if get_in(@record, [:sale_status]) == "draft" || get_in(@record, [:sale_status]) == "inactive" do %>
             <.button variant="secondary" phx-click="action_activate" size="md" id="hotel_offer_action_activate">
               activate
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:sale_status])) == "active" do %>
+          <%= if get_in(@record, [:sale_status]) == "active" do %>
             <.button variant="secondary" phx-click="action_deactivate" size="md" id="hotel_offer_action_deactivate">
               deactivate
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:sale_status])) == "active" do %>
+          <%= if get_in(@record, [:sale_status]) == "active" do %>
             <.button variant="secondary" phx-click="action_expire" size="md" id="hotel_offer_action_expire">
               expire
             </.button>

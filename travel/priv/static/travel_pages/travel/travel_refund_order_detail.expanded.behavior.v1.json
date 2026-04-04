@@ -24,8 +24,8 @@
         "id",
         "original_order_id",
         "refund_amount",
-        "refund_reason",
         "approval_mode",
+        "refund_reason",
         "refund_fee"
       ]
     }

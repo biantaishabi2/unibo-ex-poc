@@ -579,11 +579,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.departure_city_ref_id",
+      "equals": "$form.currency",
       "excludes_source": null,
       "graphql_field": "getTravelVacationOffer",
       "op": "equals",
-      "path": "departure_city_ref_id",
+      "path": "currency",
       "source": "active_record_id"
     },
     "ui": [
@@ -860,6 +860,7 @@ async function runSetupAction(ctx, item, recordId, actionName) {
 async function runSetupItem(page, ctx, item) {
   if (!item) return;
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
+    const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
@@ -868,6 +869,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -885,7 +887,6 @@ async function runSetupItem(page, ctx, item) {
         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
       }
       result = createPayload?.data?.[createField]?.result || null;
-      rememberTenantContext(ctx, inputValue);
       if (result?.id) {
         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
@@ -899,7 +900,7 @@ async function runSetupItem(page, ctx, item) {
     }
     applyBindings(ctx, item.binds, result);
     refreshDataBindings(ctx);
-    // tenant context 保持 create_input 设置的值，不恢复
+    ctx.tenant_id = savedTenantId;
   }
 }
 
@@ -1321,32 +1322,11 @@ test.describe("vacation_offer_detail", () => {
         __ctx.form["booking_rules"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#vacation_offer_form_destination_ref_id, [name='destination_ref_id']`).first();
+        const loc = page.locator(`#vacation_offer_form_package_name, [name='package_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_destination_ref_id");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_package_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["destination_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#vacation_offer_form_listed_price, [name='listed_price']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#vacation_offer_form_departure_city_ref_id, [name='departure_city_ref_id']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_departure_city_ref_id");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["departure_city_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#vacation_offer_form_settlement_price, [name='settlement_price']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["package_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_form_inventory_count, [name='inventory_count']`).first();
@@ -1356,11 +1336,11 @@ test.describe("vacation_offer_detail", () => {
         __ctx.form["inventory_count"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#vacation_offer_form_cancellation_policy, [name='cancellation_policy']`).first();
+        const loc = page.locator(`#vacation_offer_form_departure_city_ref_id, [name='departure_city_ref_id']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cancellation_policy");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_departure_city_ref_id");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["cancellation_policy"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["departure_city_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_form_currency, [name='currency']`).first();
@@ -1370,11 +1350,18 @@ test.describe("vacation_offer_detail", () => {
         __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#vacation_offer_form_package_name, [name='package_name']`).first();
+        const loc = page.locator(`#vacation_offer_form_listed_price, [name='listed_price']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_package_name");
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["package_name"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#vacation_offer_form_cancellation_policy, [name='cancellation_policy']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cancellation_policy");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["cancellation_policy"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#vacation_offer_form_package_type`).first();
@@ -1391,6 +1378,20 @@ test.describe("vacation_offer_detail", () => {
         __ctx.form["package_type"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
+      }
+      {
+        const loc = page.locator(`#vacation_offer_form_destination_ref_id, [name='destination_ref_id']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_destination_ref_id");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["destination_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#vacation_offer_form_settlement_price, [name='settlement_price']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_edit_form button[type="submit"], #vacation_offer_edit_form [phx-click="form_submit"]`).first();

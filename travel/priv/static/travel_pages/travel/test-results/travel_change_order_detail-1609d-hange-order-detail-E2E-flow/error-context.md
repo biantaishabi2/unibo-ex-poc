@@ -7,7 +7,7 @@
 # Test info
 
 - Name: travel_change_order_detail.expanded.spec.ts >> travel_change_order_detail >> E2E flow
-- Location: travel_change_order_detail.expanded.spec.ts:1314:7
+- Location: travel_change_order_detail.expanded.spec.ts:1315:7
 
 # Error details
 
@@ -63,224 +63,224 @@ Call log:
         - generic [ref=e44]:
           - generic [ref=e45]:
             - paragraph [ref=e46]: 改签原因
-            - paragraph [ref=e47]: UPDATED_1775257572250_h2bc1p_change_reason
+            - paragraph [ref=e47]: UPDATED_1775269802214_b2iv0x_change_reason
           - generic [ref=e48]:
             - paragraph [ref=e49]: 差价
-            - paragraph [ref=e50]: UPDATED_1775257572250_h2bc1p_price_difference
+            - paragraph [ref=e50]: UPDATED_1775269802214_b2iv0x_price_difference
           - generic [ref=e51]:
             - paragraph [ref=e52]: 改签手续费
-            - paragraph [ref=e53]: UPDATED_1775257572250_h2bc1p_change_fee
+            - paragraph [ref=e53]: UPDATED_1775269802214_b2iv0x_change_fee
           - generic [ref=e54]:
             - paragraph [ref=e55]: status
             - paragraph [ref=e56]: approved
           - generic [ref=e57]:
             - paragraph [ref=e58]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-            - paragraph [ref=e59]: self
+            - paragraph [ref=e59]: oa
 ```
 
 # Test source
 
 ```ts
-  1381 |         await runCaseWait(page, __ctx, null, ["toggle_edit","cancel_edit"]);
-  1382 |         await captureCreatedRecordId(__ctx, "flow", ["toggle_edit","cancel_edit"]);
-  1383 |         await runCaseVerification(page, __ctx, "toggle_edit", "flow", ["toggle_edit","cancel_edit"]);
-  1384 |       });
-  1385 |       await test.step("CRUD：编辑记录", async () => {
-  1386 |         await snapshotPreCreateIds(__ctx);
-  1387 |         await ensureSeedRecord(page, __ctx);
-  1388 |         await page.goto(resolveContractUrl(__ctx));
-  1389 |         await syncRouteContext(page, __ctx);
-  1390 |         await waitForLiveViewReady(page, 15000);
-  1391 |       {
-  1392 |         const loc = page.locator(`#edit_btn`).first();
-  1393 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1394 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1395 |         const confirmText = await loc.getAttribute('data-confirm');
-  1396 |         await loc.scrollIntoViewIfNeeded();
-  1397 |         if (confirmText) {
-  1398 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1399 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1400 |             .catch(() => null);
-  1401 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1402 |           await dialogPromise;
-  1403 |         } else {
-  1404 |           await loc.click({ timeout: 15000 });
-  1405 |         }
-  1406 |         if (clickedId) {
-  1407 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1408 |           refreshDataBindings(__ctx);
-  1409 |         }
-  1410 |         await waitForLiveViewReady(page, 15000);
-  1411 |         await syncRouteContext(page, __ctx);
-  1412 |       }
-  1413 |       await expect(page.locator(`#travel_change_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
-  1414 |       {
-  1415 |         const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
-  1416 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1417 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
-  1418 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1419 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
-  1420 |       }
-  1421 |       {
-  1422 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
-  1423 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1424 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
-  1425 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1426 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
-  1427 |       }
-  1428 |       {
-  1429 |         const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
-  1430 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1431 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
-  1432 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1433 |         __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
-  1434 |       }
-  1435 |       {
-  1436 |         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();
-  1437 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1438 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_fee");
-  1439 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1440 |         __ctx.form["change_fee"] = resolvedValue; refreshDataBindings(__ctx);
-  1441 |       }
-  1442 |       {
-  1443 |         const loc = page.locator(`#travel_change_order_edit_form button[type="submit"], #travel_change_order_edit_form [phx-click="form_submit"]`).first();
-  1444 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1445 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1446 |         const confirmText = await loc.getAttribute('data-confirm');
-  1447 |         await loc.scrollIntoViewIfNeeded();
-  1448 |         if (confirmText) {
-  1449 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1450 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1451 |             .catch(() => null);
-  1452 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1453 |           await dialogPromise;
-  1454 |         } else {
-  1455 |           await loc.click({ timeout: 15000 });
-  1456 |         }
-  1457 |         if (clickedId) {
-  1458 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1459 |           refreshDataBindings(__ctx);
-  1460 |         }
-  1461 |         await waitForLiveViewReady(page, 15000);
-  1462 |         await syncRouteContext(page, __ctx);
-  1463 |       }
-  1464 |         await runCaseWait(page, __ctx, "form_submit", ["toggle_edit","form_change","form_submit"]);
-  1465 |         await captureCreatedRecordId(__ctx, "crud", ["toggle_edit","form_change","form_submit"]);
-  1466 |         await runCaseVerification(page, __ctx, "update", "crud", ["toggle_edit","form_change","form_submit"]);
-  1467 |       });
-  1468 |       await test.step("状态转换：pending → approved（confirm_change）", async () => {
-  1469 |       {
-  1470 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_change_order/{{state_action_record_id_confirm_change}}");
-  1471 |         const target = /^https?:\/\//.test(targetValue)
-  1472 |           ? targetValue
-  1473 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1474 |         await page.goto(target);
-  1475 |       }
-  1476 |       await waitForLiveViewReady(page, 15000);
-  1477 |       await syncRouteContext(page, __ctx);
-  1478 |       await expect(page.locator(`#travel_change_order_detail`)).toBeVisible({ timeout: 15000 });
-  1479 |       {
-  1480 |         const loc = page.locator(`#travel_change_order_action_confirm_change`).first();
-> 1481 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1382 |         await runCaseWait(page, __ctx, null, ["toggle_edit","cancel_edit"]);
+  1383 |         await captureCreatedRecordId(__ctx, "flow", ["toggle_edit","cancel_edit"]);
+  1384 |         await runCaseVerification(page, __ctx, "toggle_edit", "flow", ["toggle_edit","cancel_edit"]);
+  1385 |       });
+  1386 |       await test.step("CRUD：编辑记录", async () => {
+  1387 |         await snapshotPreCreateIds(__ctx);
+  1388 |         await ensureSeedRecord(page, __ctx);
+  1389 |         await page.goto(resolveContractUrl(__ctx));
+  1390 |         await syncRouteContext(page, __ctx);
+  1391 |         await waitForLiveViewReady(page, 15000);
+  1392 |       {
+  1393 |         const loc = page.locator(`#edit_btn`).first();
+  1394 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1395 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1396 |         const confirmText = await loc.getAttribute('data-confirm');
+  1397 |         await loc.scrollIntoViewIfNeeded();
+  1398 |         if (confirmText) {
+  1399 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1400 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1401 |             .catch(() => null);
+  1402 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1403 |           await dialogPromise;
+  1404 |         } else {
+  1405 |           await loc.click({ timeout: 15000 });
+  1406 |         }
+  1407 |         if (clickedId) {
+  1408 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1409 |           refreshDataBindings(__ctx);
+  1410 |         }
+  1411 |         await waitForLiveViewReady(page, 15000);
+  1412 |         await syncRouteContext(page, __ctx);
+  1413 |       }
+  1414 |       await expect(page.locator(`#travel_change_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
+  1415 |       {
+  1416 |         const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
+  1417 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1418 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
+  1419 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1420 |         __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
+  1421 |       }
+  1422 |       {
+  1423 |         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();
+  1424 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1425 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_fee");
+  1426 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1427 |         __ctx.form["change_fee"] = resolvedValue; refreshDataBindings(__ctx);
+  1428 |       }
+  1429 |       {
+  1430 |         const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
+  1431 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1432 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
+  1433 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1434 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
+  1435 |       }
+  1436 |       {
+  1437 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
+  1438 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1439 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
+  1440 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1441 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
+  1442 |       }
+  1443 |       {
+  1444 |         const loc = page.locator(`#travel_change_order_edit_form button[type="submit"], #travel_change_order_edit_form [phx-click="form_submit"]`).first();
+  1445 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1446 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1447 |         const confirmText = await loc.getAttribute('data-confirm');
+  1448 |         await loc.scrollIntoViewIfNeeded();
+  1449 |         if (confirmText) {
+  1450 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1451 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1452 |             .catch(() => null);
+  1453 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1454 |           await dialogPromise;
+  1455 |         } else {
+  1456 |           await loc.click({ timeout: 15000 });
+  1457 |         }
+  1458 |         if (clickedId) {
+  1459 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1460 |           refreshDataBindings(__ctx);
+  1461 |         }
+  1462 |         await waitForLiveViewReady(page, 15000);
+  1463 |         await syncRouteContext(page, __ctx);
+  1464 |       }
+  1465 |         await runCaseWait(page, __ctx, "form_submit", ["toggle_edit","form_change","form_submit"]);
+  1466 |         await captureCreatedRecordId(__ctx, "crud", ["toggle_edit","form_change","form_submit"]);
+  1467 |         await runCaseVerification(page, __ctx, "update", "crud", ["toggle_edit","form_change","form_submit"]);
+  1468 |       });
+  1469 |       await test.step("状态转换：pending → approved（confirm_change）", async () => {
+  1470 |       {
+  1471 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_change_order/{{state_action_record_id_confirm_change}}");
+  1472 |         const target = /^https?:\/\//.test(targetValue)
+  1473 |           ? targetValue
+  1474 |           : new URL(targetValue, "http://localhost:4100/").toString();
+  1475 |         await page.goto(target);
+  1476 |       }
+  1477 |       await waitForLiveViewReady(page, 15000);
+  1478 |       await syncRouteContext(page, __ctx);
+  1479 |       await expect(page.locator(`#travel_change_order_detail`)).toBeVisible({ timeout: 15000 });
+  1480 |       {
+  1481 |         const loc = page.locator(`#travel_change_order_action_confirm_change`).first();
+> 1482 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
        |                   ^ TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-  1482 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1483 |         const confirmText = await loc.getAttribute('data-confirm');
-  1484 |         await loc.scrollIntoViewIfNeeded();
-  1485 |         if (confirmText) {
-  1486 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1487 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1488 |             .catch(() => null);
-  1489 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1490 |           await dialogPromise;
-  1491 |         } else {
-  1492 |           await loc.click({ timeout: 15000 });
-  1493 |         }
-  1494 |         if (clickedId) {
-  1495 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1496 |           __ctx["state_action_record_id_confirm_change"] = clickedId;
-  1497 |           refreshDataBindings(__ctx);
-  1498 |         }
-  1499 |         if (!clickedId) {
-  1500 |           __ctx["state_action_record_id_confirm_change"] = defaultRecordId(__ctx);
-  1501 |         }
-  1502 |         await waitForLiveViewReady(page, 15000);
-  1503 |         await syncRouteContext(page, __ctx);
-  1504 |       }
-  1505 |         await runCaseWait(page, __ctx, "action_confirm_change", ["action_confirm_change"]);
-  1506 |         await captureCreatedRecordId(__ctx, "state", ["action_confirm_change"]);
-  1507 |         await runCaseVerification(page, __ctx, "action_confirm_change", "state", ["action_confirm_change"]);
-  1508 |       });
-  1509 |       await test.step("状态转换：pending → rejected（reject_change）", async () => {
-  1510 |       {
-  1511 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_change_order/{{state_action_record_id_reject_change}}");
-  1512 |         const target = /^https?:\/\//.test(targetValue)
-  1513 |           ? targetValue
-  1514 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1515 |         await page.goto(target);
-  1516 |       }
-  1517 |       await waitForLiveViewReady(page, 15000);
-  1518 |       await syncRouteContext(page, __ctx);
-  1519 |       await expect(page.locator(`#travel_change_order_detail`)).toBeVisible({ timeout: 15000 });
-  1520 |       {
-  1521 |         const loc = page.locator(`#travel_change_order_action_reject_change`).first();
-  1522 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1523 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1524 |         const confirmText = await loc.getAttribute('data-confirm');
-  1525 |         await loc.scrollIntoViewIfNeeded();
-  1526 |         if (confirmText) {
-  1527 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1528 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1529 |             .catch(() => null);
-  1530 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1531 |           await dialogPromise;
-  1532 |         } else {
-  1533 |           await loc.click({ timeout: 15000 });
-  1534 |         }
-  1535 |         if (clickedId) {
-  1536 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1537 |           __ctx["state_action_record_id_reject_change"] = clickedId;
-  1538 |           refreshDataBindings(__ctx);
-  1539 |         }
-  1540 |         if (!clickedId) {
-  1541 |           __ctx["state_action_record_id_reject_change"] = defaultRecordId(__ctx);
-  1542 |         }
-  1543 |         await waitForLiveViewReady(page, 15000);
-  1544 |         await syncRouteContext(page, __ctx);
-  1545 |       }
-  1546 |         await runCaseWait(page, __ctx, "action_reject_change", ["action_reject_change"]);
-  1547 |         await captureCreatedRecordId(__ctx, "state", ["action_reject_change"]);
-  1548 |         await runCaseVerification(page, __ctx, "action_reject_change", "state", ["action_reject_change"]);
-  1549 |       });
-  1550 |       await test.step("状态转换：approved → completed（complete）", async () => {
-  1551 |       {
-  1552 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_change_order/{{state_action_record_id_complete}}");
-  1553 |         const target = /^https?:\/\//.test(targetValue)
-  1554 |           ? targetValue
-  1555 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1556 |         await page.goto(target);
-  1557 |       }
-  1558 |       await waitForLiveViewReady(page, 15000);
-  1559 |       await syncRouteContext(page, __ctx);
-  1560 |       await expect(page.locator(`#travel_change_order_detail`)).toBeVisible({ timeout: 15000 });
-  1561 |       {
-  1562 |         const loc = page.locator(`#travel_change_order_action_complete`).first();
-  1563 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1564 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1565 |         const confirmText = await loc.getAttribute('data-confirm');
-  1566 |         await loc.scrollIntoViewIfNeeded();
-  1567 |         if (confirmText) {
-  1568 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1569 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1570 |             .catch(() => null);
-  1571 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1572 |           await dialogPromise;
-  1573 |         } else {
-  1574 |           await loc.click({ timeout: 15000 });
-  1575 |         }
-  1576 |         if (clickedId) {
-  1577 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1578 |           __ctx["state_action_record_id_complete"] = clickedId;
-  1579 |           refreshDataBindings(__ctx);
-  1580 |         }
-  1581 |         if (!clickedId) {
+  1483 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1484 |         const confirmText = await loc.getAttribute('data-confirm');
+  1485 |         await loc.scrollIntoViewIfNeeded();
+  1486 |         if (confirmText) {
+  1487 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1488 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1489 |             .catch(() => null);
+  1490 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1491 |           await dialogPromise;
+  1492 |         } else {
+  1493 |           await loc.click({ timeout: 15000 });
+  1494 |         }
+  1495 |         if (clickedId) {
+  1496 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1497 |           __ctx["state_action_record_id_confirm_change"] = clickedId;
+  1498 |           refreshDataBindings(__ctx);
+  1499 |         }
+  1500 |         if (!clickedId) {
+  1501 |           __ctx["state_action_record_id_confirm_change"] = defaultRecordId(__ctx);
+  1502 |         }
+  1503 |         await waitForLiveViewReady(page, 15000);
+  1504 |         await syncRouteContext(page, __ctx);
+  1505 |       }
+  1506 |         await runCaseWait(page, __ctx, "action_confirm_change", ["action_confirm_change"]);
+  1507 |         await captureCreatedRecordId(__ctx, "state", ["action_confirm_change"]);
+  1508 |         await runCaseVerification(page, __ctx, "action_confirm_change", "state", ["action_confirm_change"]);
+  1509 |       });
+  1510 |       await test.step("状态转换：pending → rejected（reject_change）", async () => {
+  1511 |       {
+  1512 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_change_order/{{state_action_record_id_reject_change}}");
+  1513 |         const target = /^https?:\/\//.test(targetValue)
+  1514 |           ? targetValue
+  1515 |           : new URL(targetValue, "http://localhost:4100/").toString();
+  1516 |         await page.goto(target);
+  1517 |       }
+  1518 |       await waitForLiveViewReady(page, 15000);
+  1519 |       await syncRouteContext(page, __ctx);
+  1520 |       await expect(page.locator(`#travel_change_order_detail`)).toBeVisible({ timeout: 15000 });
+  1521 |       {
+  1522 |         const loc = page.locator(`#travel_change_order_action_reject_change`).first();
+  1523 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1524 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1525 |         const confirmText = await loc.getAttribute('data-confirm');
+  1526 |         await loc.scrollIntoViewIfNeeded();
+  1527 |         if (confirmText) {
+  1528 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1529 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1530 |             .catch(() => null);
+  1531 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1532 |           await dialogPromise;
+  1533 |         } else {
+  1534 |           await loc.click({ timeout: 15000 });
+  1535 |         }
+  1536 |         if (clickedId) {
+  1537 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1538 |           __ctx["state_action_record_id_reject_change"] = clickedId;
+  1539 |           refreshDataBindings(__ctx);
+  1540 |         }
+  1541 |         if (!clickedId) {
+  1542 |           __ctx["state_action_record_id_reject_change"] = defaultRecordId(__ctx);
+  1543 |         }
+  1544 |         await waitForLiveViewReady(page, 15000);
+  1545 |         await syncRouteContext(page, __ctx);
+  1546 |       }
+  1547 |         await runCaseWait(page, __ctx, "action_reject_change", ["action_reject_change"]);
+  1548 |         await captureCreatedRecordId(__ctx, "state", ["action_reject_change"]);
+  1549 |         await runCaseVerification(page, __ctx, "action_reject_change", "state", ["action_reject_change"]);
+  1550 |       });
+  1551 |       await test.step("状态转换：approved → completed（complete）", async () => {
+  1552 |       {
+  1553 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_change_order/{{state_action_record_id_complete}}");
+  1554 |         const target = /^https?:\/\//.test(targetValue)
+  1555 |           ? targetValue
+  1556 |           : new URL(targetValue, "http://localhost:4100/").toString();
+  1557 |         await page.goto(target);
+  1558 |       }
+  1559 |       await waitForLiveViewReady(page, 15000);
+  1560 |       await syncRouteContext(page, __ctx);
+  1561 |       await expect(page.locator(`#travel_change_order_detail`)).toBeVisible({ timeout: 15000 });
+  1562 |       {
+  1563 |         const loc = page.locator(`#travel_change_order_action_complete`).first();
+  1564 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1565 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1566 |         const confirmText = await loc.getAttribute('data-confirm');
+  1567 |         await loc.scrollIntoViewIfNeeded();
+  1568 |         if (confirmText) {
+  1569 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1570 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1571 |             .catch(() => null);
+  1572 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1573 |           await dialogPromise;
+  1574 |         } else {
+  1575 |           await loc.click({ timeout: 15000 });
+  1576 |         }
+  1577 |         if (clickedId) {
+  1578 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1579 |           __ctx["state_action_record_id_complete"] = clickedId;
+  1580 |           refreshDataBindings(__ctx);
+  1581 |         }
+  1582 |         if (!clickedId) {
 ```

@@ -70,7 +70,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
   @backend_load_assigns %{travel_order: %{}}
-  @backend_params_accept ["id", "hotel_offer_id", "contact_phone", "seat_selection_snapshot", "contact_name", "order_no", "customer_id", "host_shop_id", "product_type", "total_amount", "points_to_use", "points_deduction_amount", "traveler_count", "currency", "ticket_passenger_infos"]
+  @backend_params_accept ["id", "hotel_offer_id", "points_to_use", "total_amount", "contact_phone", "traveler_count", "host_shop_id", "seat_selection_snapshot", "points_deduction_amount", "product_type", "ticket_passenger_infos", "customer_id", "currency", "order_no", "contact_name"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "cancel_cancel_request" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.cancel_cancel_request"},
@@ -867,57 +867,57 @@ end
           <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
             编辑
           </.button>
-          <%= if to_string(get_in(@record, [:status])) == "draft" do %>
+          <%= if get_in(@record, [:status]) == "draft" do %>
             <.button variant="secondary" phx-click="action_confirm_quote" size="md" id="travel_order_action_confirm_quote">
               confirm_quote
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "quoted" do %>
+          <%= if get_in(@record, [:status]) == "quoted" do %>
             <.button variant="secondary" phx-click="action_submit_order" size="md" id="travel_order_action_submit_order">
               submit_order
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "quoted" do %>
+          <%= if get_in(@record, [:status]) == "quoted" do %>
             <.button variant="secondary" phx-click="action_submit_waitlist" size="md" id="travel_order_action_submit_waitlist">
               submit_waitlist
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "submitted" do %>
+          <%= if get_in(@record, [:status]) == "submitted" do %>
             <.button variant="secondary" phx-click="action_mark_payment_succeeded" size="md" id="travel_order_action_mark_payment_succeeded">
               mark_payment_succeeded
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "booking_pending" do %>
+          <%= if get_in(@record, [:status]) == "booking_pending" do %>
             <.button variant="secondary" phx-click="action_mark_booked" size="md" id="travel_order_action_mark_booked">
               mark_booked
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "booking_pending" do %>
+          <%= if get_in(@record, [:status]) == "booking_pending" do %>
             <.button variant="secondary" phx-click="action_fulfill_waitlist" size="md" id="travel_order_action_fulfill_waitlist">
               fulfill_waitlist
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "booked" do %>
+          <%= if get_in(@record, [:status]) == "booked" do %>
             <.button variant="secondary" phx-click="action_mark_completed" size="md" id="travel_order_action_mark_completed">
               mark_completed
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "booked" do %>
+          <%= if get_in(@record, [:status]) == "booked" do %>
             <.button variant="secondary" phx-click="action_request_cancel" size="md" id="travel_order_action_request_cancel">
               request_cancel
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "booking_pending" do %>
+          <%= if get_in(@record, [:status]) == "booking_pending" do %>
             <.button variant="secondary" phx-click="action_cancel_waitlist" size="md" id="travel_order_action_cancel_waitlist">
               cancel_waitlist
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "cancel_pending" do %>
+          <%= if get_in(@record, [:status]) == "cancel_pending" do %>
             <.button variant="secondary" phx-click="action_execute_cancel" size="md" id="travel_order_action_execute_cancel">
               execute_cancel
             </.button>
           <% end %>
-          <%= if to_string(get_in(@record, [:status])) == "cancel_pending" do %>
+          <%= if get_in(@record, [:status]) == "cancel_pending" do %>
             <.button variant="secondary" phx-click="action_cancel_cancel_request" size="md" id="travel_order_action_cancel_cancel_request">
               cancel_cancel_request
             </.button>
@@ -928,7 +928,7 @@ end
           <.button variant="secondary" phx-click="action_confirm_change" size="md" id="travel_order_action_confirm_change">
             confirm_change
           </.button>
-          <%= if to_string(get_in(@record, [:status])) == "submitted" do %>
+          <%= if get_in(@record, [:status]) == "submitted" do %>
             <.button variant="secondary" phx-click="action_mark_order_failed" size="md" id="travel_order_action_mark_order_failed">
               mark_order_failed
             </.button>

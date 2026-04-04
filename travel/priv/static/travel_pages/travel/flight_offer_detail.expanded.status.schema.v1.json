@@ -76,25 +76,25 @@
       "params": {
         "accept": [
           "id",
-          "listed_price",
-          "arrival_airport_code",
-          "departure_at",
-          "baggage_policy",
-          "refund_change_policy",
           "itinerary_code",
-          "arrival_at",
-          "departure_airport_code",
-          "seats_available",
-          "cabin_class",
-          "arrival_airport_ref_id",
           "settlement_price",
-          "supplier_code",
-          "currency",
-          "departure_airport_ref_id",
+          "refund_change_policy",
           "fare_family",
-          "flight_no",
+          "currency",
           "sale_status",
-          "host_shop_id"
+          "arrival_airport_code",
+          "seats_available",
+          "host_shop_id",
+          "cabin_class",
+          "departure_airport_code",
+          "arrival_airport_ref_id",
+          "departure_airport_ref_id",
+          "departure_at",
+          "arrival_at",
+          "flight_no",
+          "supplier_code",
+          "listed_price",
+          "baggage_policy"
         ]
       }
     },
@@ -179,33 +179,8 @@
               },
               {
                 "action": "type",
-                "field": "departure_airport_ref_id",
-                "value": "UPDATED_{{__run_id}}_departure_airport_ref_id"
-              },
-              {
-                "action": "type",
                 "field": "arrival_airport_ref_id",
                 "value": "UPDATED_{{__run_id}}_arrival_airport_ref_id"
-              },
-              {
-                "action": "type",
-                "field": "listed_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "refund_change_policy",
-                "value": "UPDATED_{{__run_id}}_refund_change_policy"
-              },
-              {
-                "action": "type",
-                "field": "settlement_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "currency",
-                "value": "UPDATED_{{__run_id}}_currency"
               },
               {
                 "action": "type",
@@ -219,8 +194,33 @@
               },
               {
                 "action": "type",
+                "field": "currency",
+                "value": "UPDATED_{{__run_id}}_currency"
+              },
+              {
+                "action": "type",
+                "field": "settlement_price",
+                "value": "200.00"
+              },
+              {
+                "action": "type",
+                "field": "departure_airport_ref_id",
+                "value": "UPDATED_{{__run_id}}_departure_airport_ref_id"
+              },
+              {
+                "action": "type",
+                "field": "listed_price",
+                "value": "200.00"
+              },
+              {
+                "action": "type",
                 "field": "fare_family",
                 "value": "UPDATED_{{__run_id}}_fare_family"
+              },
+              {
+                "action": "type",
+                "field": "refund_change_policy",
+                "value": "UPDATED_{{__run_id}}_refund_change_policy"
               },
               {
                 "action": "click",
@@ -814,11 +814,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.baggage_policy",
+              "equals": "$form.departure_airport_ref_id",
               "excludes_source": null,
               "graphql_field": "getTravelFlightOffer",
               "op": "equals",
-              "path": "baggage_policy",
+              "path": "departure_airport_ref_id",
               "source": "active_record_id"
             },
             "ui": [

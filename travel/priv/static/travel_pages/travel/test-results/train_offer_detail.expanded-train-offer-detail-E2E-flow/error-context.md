@@ -7,293 +7,217 @@
 # Test info
 
 - Name: train_offer_detail.expanded.spec.ts >> train_offer_detail >> E2E flow
-- Location: train_offer_detail.expanded.spec.ts:1234:7
+- Location: train_offer_detail.expanded.spec.ts:1235:7
 
 # Error details
 
 ```
-Error: backend get equals assertion failed: expected UPDATED_1775257572266_nlo6q8_departure_station_name got departure_station_name_003
-```
-
-# Page snapshot
-
-```yaml
-- generic [ref=e2]:
-  - banner [ref=e3]:
-    - generic [ref=e4]:
-      - generic [ref=e5]:
-        - link [ref=e6] [cursor=pointer]:
-          - /url: /
-          - img [ref=e7]
-        - paragraph [ref=e8]: v1.7.21
-      - generic [ref=e9]:
-        - link "@elixirphoenix" [ref=e10] [cursor=pointer]:
-          - /url: https://twitter.com/elixirphoenix
-        - link "GitHub" [ref=e11] [cursor=pointer]:
-          - /url: https://github.com/phoenixframework/phoenix
-        - link "Get Started" [ref=e12] [cursor=pointer]:
-          - /url: https://hexdocs.pm/phoenix/overview.html
-          - text: Get Started →
-  - main [ref=e13]:
-    - generic [ref=e15]:
-      - link "← 列表" [ref=e17] [cursor=pointer]:
-        - /url: /pages
-      - generic "详情" [ref=e18]:
-        - navigation "breadcrumb" [ref=e20]:
-          - list [ref=e21]:
-            - listitem [ref=e22]:
-              - generic [ref=e23]: 列表
-            - listitem [ref=e24]:
-              - img [ref=e25]
-            - listitem [ref=e27]:
-              - link "详情" [disabled] [ref=e28]
-        - generic [ref=e30]:
-          - generic [ref=e32]:
-            - paragraph [ref=e33]: TrainOffer
-            - paragraph [ref=e34]: 火车票可售 offer,承载车次、席别、候补和退改规则快照
-          - generic [ref=e36]:
-            - button "编辑" [ref=e37] [cursor=pointer]
-            - button "deactivate" [ref=e38] [cursor=pointer]
-            - button "expire" [ref=e39] [cursor=pointer]
-            - button "删除" [ref=e40] [cursor=pointer]
-        - generic [ref=e42]:
-          - heading "基本信息" [level=3] [ref=e44]
-          - generic [ref=e46]:
-            - generic [ref=e48]:
-              - textbox [ref=e50]
-              - textbox [ref=e52]
-              - textbox [ref=e54]
-              - textbox [ref=e56]
-              - textbox [ref=e58]
-              - textbox [ref=e60]: UPDATED_1775257572266_nlo6q8_departure_station_ref_id
-              - textbox [ref=e62]: UPDATED_1775257572266_nlo6q8_departure_station_name
-              - textbox [ref=e64]
-              - textbox [ref=e66]: UPDATED_1775257572266_nlo6q8_arrival_station_ref_id
-              - textbox [ref=e68]: UPDATED_1775257572266_nlo6q8_arrival_station_name
-              - textbox [ref=e70]
-              - textbox [ref=e72]: 2026-02-01T09:00:00Z
-              - textbox [ref=e74]: 2026-02-01T09:00:00Z
-              - textbox [ref=e76]: UPDATED_1775257572266_nlo6q8_seat_class
-              - textbox [ref=e78]
-              - switch [disabled] [ref=e79]
-              - button "waitlist_only" [disabled] [ref=e81]:
-                - generic: waitlist_only
-              - switch [disabled] [ref=e83]
-              - textbox [ref=e85]: "200.00"
-              - textbox [ref=e87]: "200.00"
-              - textbox [ref=e89]: UPDATED_1775257572266_nlo6q8_currency
-              - textbox [ref=e90]: UPDATED_1775257572266_nlo6q8_booking_rules_snapshot
-              - textbox [ref=e91]: UPDATED_1775257572266_nlo6q8_change_rules_snapshot
-              - textbox [ref=e92]: UPDATED_1775257572266_nlo6q8_refund_rules_snapshot
-              - button [disabled] [ref=e94]
-            - generic [ref=e96]:
-              - button "取消" [disabled]
-              - button "保存" [disabled]
+Error: setup action failed for activate
 ```
 
 # Test source
 
 ```ts
-  968  |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
-  969  |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
-  970  |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
-  971  |   }
-  972  |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
-  973  |     await expect(locatorFor(page, selector)).toBeHidden({ timeout });
-  974  |   }
-  975  |   if (kind === 'form_settled' && selector) {
-  976  |     const formLocator = locatorFor(page, selector);
-  977  |     const fallbackSelectors = Array.isArray(entry?.selectors) ? entry.selectors.filter((item) => item && item !== selector) : [];
-  978  |     try {
-  979  |       await formLocator.waitFor({ state: 'hidden', timeout });
-  980  |     } catch (error) {
-  981  |       let settled = false;
-  982  |       for (const candidate of fallbackSelectors) {
-  983  |         try {
-  984  |           await expect(locatorFor(page, candidate)).toBeVisible({ timeout: Math.max(1000, Math.floor(timeout / 2)) });
-  985  |           settled = true;
-  986  |           break;
-  987  |         } catch (_candidateError) {}
-  988  |       }
-  989  |       const stillVisible = await formLocator.isVisible().catch(() => false);
-  990  |       if (stillVisible && !settled) throw error;
-  991  |     }
-  992  |     await syncRouteContext(page, ctx);
-  993  |   }
-  994  |   if (kind === 'url_contains' || kind === 'url_and_root') {
-  995  |     const expectedUrl = resolveTemplateString(ctx, String(urlContains || ''));
-  996  |     if (expectedUrl) {
-  997  |       try {
-  998  |         await page.waitForFunction((v) => window.location.href.includes(v), expectedUrl, { timeout });
-  999  |       } catch (_e) {
-  1000 |         await page.waitForURL((url) => url.toString().includes(expectedUrl), { timeout });
-  1001 |       }
-  1002 |     }
-  1003 |     if (selector) await expect(locatorFor(page, selector)).toBeVisible({ timeout });
-  1004 |     await syncRouteContext(page, ctx);
-  1005 |   }
-  1006 | }
-  1007 | 
-  1008 | async function retryBackendAssertion(timeout, task) {
-  1009 |   const deadline = Date.now() + timeout;
-  1010 |   let lastError = null;
-  1011 |   while (Date.now() <= deadline) {
-  1012 |     try {
-  1013 |       return await task();
-  1014 |     } catch (error) {
-  1015 |       lastError = error;
-  1016 |       await new Promise((resolve) => setTimeout(resolve, 200));
-  1017 |     }
-  1018 |   }
-  1019 |   throw lastError || new Error('backend assertion timed out');
-  1020 | }
-  1021 | 
-  1022 | async function snapshotPreCreateIds(ctx) {
-  1023 |   if (ctx.__pre_create_ids) return;
-  1024 |   const listApiRef = parseApiRef(__BACKEND_API_MAP['list']);
-  1025 |   if (!listApiRef) return;
-  1026 |   try {
-  1027 |     const listField = await resolveContractGraphqlField(ctx, 'query', null, listApiRef.domain, listApiRef.entity, 'list');
-  1028 |     if (!listField) return;
-  1029 |     const payload = await graphqlRequest(ctx, `query CaptureBaseline { ${listField} { results { id } count } }`, {});
-  1030 |     const rows = Array.isArray(payload?.data?.[listField]?.results) ? payload.data[listField].results : [];
-  1031 |     ctx.__pre_create_ids = new Set(rows.map((r) => r?.id).filter(Boolean));
-  1032 |   } catch (e) { if (e && e.message) console.error('snapshotPreCreateIds failed:', e.message); }
-  1033 | }
-  1034 | 
-  1035 | async function runCaseWait(page, ctx, waitKey, covers) {
-  1036 |   const entries = [];
-  1037 |   const pushEntry = (entry) => {
-  1038 |     if (!entry) return;
-  1039 |     if (!entries.includes(entry)) entries.push(entry);
-  1040 |   };
-  1041 |   if (waitKey && waitKey !== '__AUTO__') {
-  1042 |     pushEntry(__WAIT_CONTRACT[waitKey]);
-  1043 |   } else if (Array.isArray(covers) && covers.length === 1) {
-  1044 |     pushEntry(__WAIT_CONTRACT[covers[0]]);
-  1045 |   }
-  1046 |   for (const entry of entries) {
-  1047 |     await runWaitEntry(page, ctx, entry);
-  1048 |   }
-  1049 | }
-  1050 | 
-  1051 | async function executeBackendAssertion(ctx, assertion) {
-  1052 |   if (!assertion || !assertion.api) return;
-  1053 |   const apiRef = parseApiRef(__BACKEND_API_MAP[assertion.api]);
-  1054 |   if (!apiRef) throw new Error('missing api_map entry for assertion.api=' + JSON.stringify(assertion.api) + '; available keys: ' + Object.keys(__BACKEND_API_MAP).join(', '));
-  1055 |   const field = await resolveContractGraphqlField(ctx, 'query', assertion.graphql_field, apiRef.domain, apiRef.entity, assertion.api);
-  1056 |   if (!field) throw new Error('missing GraphQL field for backend assertion ' + JSON.stringify(assertion));
-  1057 |   const timeout = Number(assertion?.timeout) > 0 ? Number(assertion.timeout) : 15000;
-  1058 |   await retryBackendAssertion(timeout, async () => {
-  1059 |     if (assertion.api === 'get') {
-  1060 |       const id = resolveBackendAssertionId(ctx, assertion);
-  1061 |       const payload = await graphqlRequest(ctx, `query ContractGet($id: ID!) { ${field}(id: $id) { ${__BACKEND_SELECTION} } }`, { id });
-  1062 |       if (Array.isArray(payload?.errors) && payload.errors.length > 0) throw new Error('backend get graphql errors: ' + JSON.stringify(payload.errors));
-  1063 |       const record = payload?.data?.[field];
-  1064 |       const actual = readValueAtPath(record, assertion.path || null);
-  1065 |       if (assertion.op === 'exists' && (actual == null || actual === '')) throw new Error('backend get exists assertion failed for ' + String(assertion.path || 'record'));
-  1066 |       if (assertion.op === 'equals' || assertion.op === 'field_equals') {
-  1067 |         const expected = resolveTemplateString(ctx, String(assertion.equals || ''));
-> 1068 |         if (String(actual ?? '') !== expected) throw new Error('backend get equals assertion failed: expected ' + expected + ' got ' + String(actual ?? ''));
-       |                                                      ^ Error: backend get equals assertion failed: expected UPDATED_1775257572266_nlo6q8_departure_station_name got departure_station_name_003
-  1069 |       }
-  1070 |       applyBindings(ctx, assertion.binds, record);
-  1071 |       refreshDataBindings(ctx);
-  1072 |       return;
-  1073 |     }
-  1074 |     if (assertion.api === 'list') {
-  1075 |       const payload = await graphqlRequest(ctx, `query ContractList { ${field} { results { ${__BACKEND_SELECTION} } count } }`, {});
-  1076 |       if (Array.isArray(payload?.errors) && payload.errors.length > 0) throw new Error('backend list graphql errors: ' + JSON.stringify(payload.errors));
-  1077 |       const results = payload?.data?.[field]?.results || [];
-  1078 |       if (assertion.op === 'exists' && !Array.isArray(results)) throw new Error('backend list exists assertion failed');
-  1079 |       if (assertion.op === 'contains_equals') {
-  1080 |         const expected = resolveTemplateString(ctx, String(assertion.equals || ''));
-  1081 |         const matched = Array.isArray(results)
-  1082 |           ? results.find((row) => String(readValueAtPath(row, assertion.path || null) ?? '') === expected)
-  1083 |           : null;
-  1084 |         if (!matched) throw new Error('backend list contains_equals assertion failed for ' + String(assertion.path || 'record'));
-  1085 |         applyBindings(ctx, assertion.binds, matched);
-  1086 |         refreshDataBindings(ctx);
-  1087 |         return;
-  1088 |       }
-  1089 |       if (assertion.op === 'not_contains') {
-  1090 |         const excluded = resolveTemplateString(ctx, '{{' + String(assertion.excludes_source || '') + '}}');
-  1091 |         const ids = Array.isArray(results) ? results.map((row) => readValueAtPath(row, 'id')) : [];
-  1092 |         if (ids.some((id) => String(id || '') === excluded)) throw new Error('backend list not_contains assertion failed for ' + excluded);
-  1093 |       }
-  1094 |     }
-  1095 |   });
-  1096 | }
-  1097 | 
-  1098 | async function captureCreatedRecordId(ctx, caseKind, covers) {
-  1099 |   const isCreate = caseKind === 'create' || caseKind === 'crud' || (Array.isArray(covers) && covers.some((c) => { const s = String(c); return s.includes('create') || s === 'form_submit' || s === 'action_create'; }));
-  1100 |   if (!isCreate) return;
-  1101 |   if (ctx.created_record_id) return;
-  1102 |   const listApiRef = parseApiRef(__BACKEND_API_MAP['list']);
-  1103 |   if (!listApiRef) return;
-  1104 |   try {
-  1105 |     const listField = await resolveContractGraphqlField(ctx, 'query', null, listApiRef.domain, listApiRef.entity, 'list');
-  1106 |     if (!listField) return;
-  1107 |     const payload = await graphqlRequest(ctx, `query CaptureCreated { ${listField} { results { id } count } }`, {});
-  1108 |     const rows = Array.isArray(payload?.data?.[listField]?.results) ? payload.data[listField].results : [];
-  1109 |     const allIds = rows.map((r) => r?.id).filter(Boolean);
-  1110 |     if (!ctx.__pre_create_ids) ctx.__pre_create_ids = new Set();
-  1111 |     const existing = new Set([...(ctx.__cleanup_queue || []).map((q) => q.id), ...(ctx.__seed_ids || []), ...[ctx.seed_record_id, ctx.active_record_id].filter(Boolean)]);
-  1112 |     const matched = rows.find((r) => r?.id && !ctx.__pre_create_ids.has(r.id) && !existing.has(r.id));
-  1113 |     if (matched?.id) {
-  1114 |       ctx.created_record_id = matched.id;
-  1115 |       ctx.__cleanup_queue = ctx.__cleanup_queue || [];
-  1116 |       ctx.__cleanup_queue.push({ id: matched.id, domain: listApiRef.domain, entity: listApiRef.entity });
-  1117 |       refreshDataBindings(ctx);
-  1118 |     }
-  1119 |   } catch (e) { if (e && e.message) console.error('captureCreatedRecordId failed:', e.message); }
-  1120 | }
-  1121 | 
-  1122 | async function runCaseVerification(page, ctx, verificationKey, caseKind, covers) {
-  1123 |   const entries = collectVerificationEntries(verificationKey, caseKind, covers);
-  1124 |   for (const entry of entries) {
-  1125 |     if (!entry) continue;
-  1126 |     for (const ui of Array.isArray(entry.ui) ? entry.ui : []) {
-  1127 |       if (ui?.assert === 'visible' && ui.selector) await expect(locatorFor(page, ui.selector)).toBeVisible({ timeout: 15000 });
-  1128 |       if (ui?.assert === 'text_contains' && ui.selector) await expect(locatorFor(page, ui.selector)).toContainText(resolveTemplateString(ctx, String(ui.value || '')), { timeout: 15000 });
-  1129 |       if (ui?.assert === 'url_contains' && ui.value) await expect(page).toHaveURL(new RegExp(escapeRegex(resolveTemplateString(ctx, String(ui.value)))));
-  1130 |     }
-  1131 |     await executeBackendAssertion(ctx, entry.backend);
-  1132 |   }
-  1133 | }
-  1134 | 
-  1135 | async function runContractCleanup(ctx) {
-  1136 |   const seedIds = ctx.__seed_ids || new Set();
-  1137 |   const dynamicQueue = Array.isArray(ctx.__cleanup_queue) ? [...ctx.__cleanup_queue].reverse() : [];
-  1138 |   for (const entry of dynamicQueue) {
-  1139 |     if (!entry?.id || !entry?.domain || !entry?.entity) continue;
-  1140 |     if (seedIds.has(entry.id)) continue;
-  1141 |     try {
-  1142 |       const field = await resolveContractGraphqlField(ctx, 'mutation', null, entry.domain, entry.entity, 'destroy');
-  1143 |       if (!field) continue;
-  1144 |       await graphqlRequest(ctx, `mutation DynamicCleanup($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id: entry.id });
-  1145 |     } catch (e) { console.error('cleanup failed for id=' + entry.id + ':', e?.message || e); }
-  1146 |   }
-  1147 |   for (const item of Array.isArray(__DATA_CONTRACT.cleanup) ? __DATA_CONTRACT.cleanup : []) {
-  1148 |     if (!item?.api) continue;
-  1149 |     const apiRef = parseApiRef(__BACKEND_API_MAP[item.api]);
-  1150 |     if (!apiRef) continue;
-  1151 |     const id = resolveCleanupSourceValue(ctx, item.source, item.path);
-  1152 |     if (id == null || id === '') {
-  1153 |       if (item.ignore_missing) continue;
-  1154 |       throw new Error('cleanup source value missing for ' + JSON.stringify(item));
-  1155 |     }
-  1156 |     if (seedIds.has(id)) continue;
-  1157 |     const field = await resolveContractGraphqlField(ctx, 'mutation', null, apiRef.domain, apiRef.entity, item.api);
-  1158 |     if (!field) {
-  1159 |       if (item.ignore_missing) continue;
-  1160 |       throw new Error('missing GraphQL mutation field for cleanup ' + JSON.stringify(item));
-  1161 |     }
-  1162 |     const payload = await graphqlRequest(ctx, `mutation ContractCleanup($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id });
-  1163 |     const errors = payload?.errors || payload?.data?.[field]?.errors || [];
-  1164 |     if (!item.ignore_missing && Array.isArray(errors) && errors.length > 0) {
-  1165 |       throw new Error('cleanup mutation failed for ' + String(field));
-  1166 |     }
-  1167 |   }
-  1168 | }
+  773 |   const mutationFields = (payload?.data?.__schema?.mutationType?.fields || []).map((field) => field.name);
+  774 |   if (queryFields.length === 0 && mutationFields.length === 0) {
+  775 |     throw new Error('GraphQL introspection at ' + __GRAPHQL_URL + ' returned no fields. Is the server running? Response: ' + JSON.stringify(payload).slice(0, 300));
+  776 |   }
+  777 |   ctx.__graphqlSchema = { query: queryFields, mutation: mutationFields };
+  778 |   return ctx.__graphqlSchema;
+  779 | }
+  780 | 
+  781 | async function resolveContractGraphqlField(ctx, mode, explicitField, domain, entity, actionName) {
+  782 |   const schema = await loadGraphqlSchemaCache(ctx);
+  783 |   const fields = mode === 'query' ? schema.query : schema.mutation;
+  784 |   const explicit = String(explicitField || '').trim();
+  785 |   if (explicit && fields.includes(explicit)) return explicit;
+  786 |   if (explicit) {
+  787 |     const camel = pascalize(explicit).replace(/^./, (ch) => ch.toLowerCase());
+  788 |     if (camel !== explicit && fields.includes(camel)) return camel;
+  789 |   }
+  790 |   return await resolveGraphqlField(ctx, mode, domain, entity, actionName);
+  791 | }
+  792 | 
+  793 | async function resolveGraphqlField(ctx, mode, domain, entity, actionName) {
+  794 |   const schema = await loadGraphqlSchemaCache(ctx);
+  795 |   const fields = mode === 'query' ? schema.query : schema.mutation;
+  796 |   const domainName = pascalize(domain);
+  797 |   const entityName = pascalize(entity);
+  798 |   const domainSnake = snakeize(domain);
+  799 |   const entitySnake = snakeize(entity);
+  800 |   const candidates = [];
+  801 |   let normalizedPrefix = (domainName + entityName).replace(/^./, (ch) => ch.toLowerCase());
+  802 |   if (mode === 'query') {
+  803 |     if (actionName === 'list') {
+  804 |       normalizedPrefix = 'list' + domainName + entityName;
+  805 |       candidates.push('list_' + domainSnake + '_' + pluralize(entitySnake));
+  806 |     } else if (actionName === 'get') {
+  807 |       normalizedPrefix = 'get' + domainName + entityName;
+  808 |       candidates.push('get_' + domainSnake + '_' + entitySnake);
+  809 |     }
+  810 |   } else if (actionName === 'destroy') {
+  811 |     normalizedPrefix = 'delete' + domainName + entityName;
+  812 |     candidates.push('delete_' + domainSnake + '_' + entitySnake);
+  813 |   } else if (actionName) {
+  814 |     const actionPrefix = pascalize(actionName);
+  815 |     normalizedPrefix = actionPrefix.charAt(0).toLowerCase() + actionPrefix.slice(1) + domainName + entityName;
+  816 |     candidates.push(snakeize(actionName) + '_' + domainSnake + '_' + entitySnake);
+  817 |   }
+  818 |   candidates.push(normalizedPrefix);
+  819 |   return candidates.find((candidate) => fields.includes(candidate)) || fields.find((field) => candidates.some((candidate) => field === candidate || (field.startsWith(candidate) && /^(s|es|_|$)/.test(field.slice(candidate.length))))) || null;
+  820 | }
+  821 | 
+  822 | function applyBindings(ctx, binds, resultValue) {
+  823 |   for (const bind of Array.isArray(binds) ? binds : []) {
+  824 |     const source = typeof bind?.source === 'string' ? bind.source : 'result';
+  825 |     const base = source === 'result' || source === 'backend_result'
+  826 |       ? resultValue
+  827 |       : readContextValue(ctx, source);
+  828 |     const value = readValueAtPath(base, bind?.path || null);
+  829 |     assignContextValue(ctx, bind?.name, value);
+  830 |   }
+  831 | }
+  832 | 
+  833 | function refreshDataBindings(ctx) {
+  834 |   applyBindings(ctx, __DATA_CONTRACT.binds, null);
+  835 | }
+  836 | 
+  837 | function resolveTemplateDeep(ctx, value) {
+  838 |   if (typeof value === 'string') return resolveTemplateString(ctx, value);
+  839 |   if (Array.isArray(value)) return value.map((item) => resolveTemplateDeep(ctx, item));
+  840 |   if (value && typeof value === 'object') {
+  841 |     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveTemplateDeep(ctx, item)]));
+  842 |   }
+  843 |   return value;
+  844 | }
+  845 | 
+  846 | function toGraphqlLiteral(value) {
+  847 |   if (value == null) return 'null';
+  848 |   if (Array.isArray(value)) return '[' + value.map((item) => toGraphqlLiteral(item)).join(', ') + ']';
+  849 |   if (typeof value === 'object') {
+  850 |     return '{ ' + Object.entries(value).map(([key, item]) => `${key}: ${toGraphqlLiteral(item)}`).join(', ') + ' }';
+  851 |   }
+  852 |   if (typeof value === 'string') return JSON.stringify(value);
+  853 |   if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  854 |   return JSON.stringify(String(value));
+  855 | }
+  856 | 
+  857 | function defaultRecordId(ctx) {
+  858 |   return ctx.active_record_id || ctx.route_record_id || ctx.seed_record_id || ctx.created_record_id || ctx.route?.id || '';
+  859 | }
+  860 | 
+  861 | function resolveBackendAssertionId(ctx, assertion) {
+  862 |   const idArg = (Array.isArray(assertion?.args) ? assertion.args : []).find((arg) => arg?.name === 'id');
+  863 |   const explicit = resolveTemplateString(ctx, idArg?.source ? '{{' + idArg.source + '}}' : '{{route.id}}');
+  864 |   return explicit || defaultRecordId(ctx);
+  865 | }
+  866 | 
+  867 | async function runSetupAction(ctx, item, recordId, actionName) {
+  868 |   const field = await resolveContractGraphqlField(ctx, 'mutation', null, item.domain, item.entity, actionName);
+  869 |   if (!field) throw new Error('missing GraphQL action field for setup ' + JSON.stringify({ item, actionName }));
+  870 |   const payload = await graphqlRequest(ctx, `mutation ContractSetupAction($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id: recordId });
+  871 |   const errors = payload?.errors || payload?.data?.[field]?.errors || [];
+  872 |   if (Array.isArray(errors) && errors.length > 0) {
+> 873 |     throw new Error('setup action failed for ' + String(actionName));
+      |           ^ Error: setup action failed for activate
+  874 |   }
+  875 |   return payload?.data?.[field]?.result || null;
+  876 | }
+  877 | 
+  878 | async function runSetupItem(page, ctx, item) {
+  879 |   if (!item) return;
+  880 |   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
+  881 |     const savedTenantId = ctx.tenant_id;
+  882 |     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
+  883 |     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
+  884 |     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
+  885 |     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
+  886 |     const whereField = /^[A-Za-z_][A-Za-z0-9_]*$/.test(wherePath) ? wherePath : '';
+  887 |     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
+  888 |     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
+  889 |     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+  890 |     rememberTenantContext(ctx, inputValue);
+  891 |     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
+  892 |     const matched = whereField
+  893 |       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
+  894 |       : rows;
+  895 |     const rawIndex = Number.isInteger(item.index) ? Number(item.index) : Number(item.index || 0);
+  896 |     const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex : 0;
+  897 |     let result = matched[index] || matched[0];
+  898 |     const prepareActions = Array.isArray(item.prepare_actions) ? item.prepare_actions : [];
+  899 |     if (!result && (item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create')) {
+  900 |       const createField = await resolveContractGraphqlField(ctx, 'mutation', item.create_graphql_field, item.domain, item.entity, 'create');
+  901 |       if (!createField) throw new Error('missing GraphQL create field for setup ' + JSON.stringify(item));
+  902 |       const createPayload = await graphqlRequest(ctx, `mutation ContractSetupCreate { ${createField}(input: ${toGraphqlLiteral(inputValue)}) { result { id } errors { message } } }`, {});
+  903 |       const errors = createPayload?.errors || createPayload?.data?.[createField]?.errors || [];
+  904 |       if (Array.isArray(errors) && errors.length > 0) {
+  905 |         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
+  906 |       }
+  907 |       result = createPayload?.data?.[createField]?.result || null;
+  908 |       if (result?.id) {
+  909 |         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
+  910 |         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
+  911 |       }
+  912 |     }
+  913 |     if (item.cleanup_policy === 'never') { for (const row of rows) { if (row?.id) ctx.__seed_ids.add(row.id); } }
+  914 |     if (!result) throw new Error('setup returned no rows for ' + String(item.name || field));
+  915 |     for (const actionName of prepareActions) {
+  916 |       if (!result?.id) break;
+  917 |       result = await runSetupAction(ctx, item, result.id, String(actionName || '').trim()) || result;
+  918 |     }
+  919 |     applyBindings(ctx, item.binds, result);
+  920 |     refreshDataBindings(ctx);
+  921 |     ctx.tenant_id = savedTenantId;
+  922 |   }
+  923 | }
+  924 | 
+  925 | async function ensureContractSetup(page, ctx) {
+  926 |   if (ctx.__setupDone) return;
+  927 |   for (const item of Array.isArray(__DATA_CONTRACT.setup) ? __DATA_CONTRACT.setup : []) {
+  928 |     await runSetupItem(page, ctx, item);
+  929 |   }
+  930 |   ctx.__setupDone = true;
+  931 | }
+  932 | 
+  933 | function parseApiRef(apiRef) {
+  934 |   const parts = String(apiRef || '').split('.');
+  935 |   if (parts.length < 3) return null;
+  936 |   return { domain: parts[0], entity: parts[1], action: parts[2] };
+  937 | }
+  938 | 
+  939 | function collectVerificationEntries(verificationKey, caseKind, covers) {
+  940 |   const entries = [];
+  941 |   const pushEntry = (entry) => {
+  942 |     if (!entry) return;
+  943 |     if (!entries.includes(entry)) entries.push(entry);
+  944 |   };
+  945 |   if (verificationKey && verificationKey !== '__AUTO__') {
+  946 |     pushEntry(__VERIFICATION_CONTRACT[verificationKey]);
+  947 |   } else {
+  948 |     if (caseKind === 'load') pushEntry(__VERIFICATION_CONTRACT.load);
+  949 |     for (const cover of Array.isArray(covers) ? covers : []) {
+  950 |       pushEntry(__VERIFICATION_CONTRACT[cover]);
+  951 |     }
+  952 |   }
+  953 |   for (const cover of Array.isArray(covers) ? covers : []) {
+  954 |     if (!String(cover).startsWith('action_')) continue;
+  955 |     const event = String(cover).slice('action_'.length);
+  956 |     const matches = Array.isArray(__VERIFICATION_CONTRACT.state_transitions) ? __VERIFICATION_CONTRACT.state_transitions.filter((item) => item?.event === event) : [];
+  957 |     for (const match of matches) pushEntry(match);
+  958 |   }
+  959 |   return entries;
+  960 | }
+  961 | 
+  962 | async function runWaitEntry(page, ctx, entry) {
+  963 |   if (!entry) return;
+  964 |   const timeout = Number(entry?.timeout) > 0 ? Number(entry.timeout) : 15000;
+  965 |   await waitForLiveViewReady(page, timeout);
+  966 |   const until = entry?.until || {};
+  967 |   const kind = String(until?.kind || entry?.mode || '').trim();
+  968 |   const selector = typeof until?.selector === 'string' ? until.selector : (Array.isArray(entry?.selectors) ? entry.selectors[0] : null);
+  969 |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
+  970 |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
+  971 |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
+  972 |   }
+  973 |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
 ```

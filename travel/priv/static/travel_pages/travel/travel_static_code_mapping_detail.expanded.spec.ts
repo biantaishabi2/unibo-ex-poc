@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.external_name",
+      "equals": "$form.canonical_id",
       "excludes_source": null,
       "graphql_field": "getTravelTravelStaticCodeMapping",
       "op": "equals",
-      "path": "external_name",
+      "path": "canonical_id",
       "source": "active_record_id"
     },
     "ui": [
@@ -506,6 +506,7 @@ async function runSetupAction(ctx, item, recordId, actionName) {
 async function runSetupItem(page, ctx, item) {
   if (!item) return;
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
+    const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
@@ -514,6 +515,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -531,7 +533,6 @@ async function runSetupItem(page, ctx, item) {
         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
       }
       result = createPayload?.data?.[createField]?.result || null;
-      rememberTenantContext(ctx, inputValue);
       if (result?.id) {
         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
@@ -545,7 +546,7 @@ async function runSetupItem(page, ctx, item) {
     }
     applyBindings(ctx, item.binds, result);
     refreshDataBindings(ctx);
-    // tenant context 保持 create_input 设置的值，不恢复
+    ctx.tenant_id = savedTenantId;
   }
 }
 
@@ -960,6 +961,13 @@ test.describe("travel_static_code_mapping_detail", () => {
       }
       await expect(page.locator(`#travel_static_code_mapping_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_static_code_mapping_form_external_name, [name='external_name']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_external_name");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["external_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#travel_static_code_mapping_form_canonical_id, [name='canonical_id']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "d4d9c861-7465-4f63-a16e-6f6e6963616c");
@@ -967,11 +975,11 @@ test.describe("travel_static_code_mapping_detail", () => {
         __ctx.form["canonical_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_static_code_mapping_form_external_name, [name='external_name']`).first();
+        const loc = page.locator(`#travel_static_code_mapping_form_canonical_entity, [name='canonical_entity']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_external_name");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_canonical_entity");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["external_name"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["canonical_entity"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_static_code_mapping_form_status`).first();
@@ -988,13 +996,6 @@ test.describe("travel_static_code_mapping_detail", () => {
         __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
-      }
-      {
-        const loc = page.locator(`#travel_static_code_mapping_form_canonical_entity, [name='canonical_entity']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_canonical_entity");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["canonical_entity"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_static_code_mapping_edit_form button[type="submit"], #travel_static_code_mapping_edit_form [phx-click="form_submit"]`).first();

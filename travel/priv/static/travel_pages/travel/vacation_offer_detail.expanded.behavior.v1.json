@@ -21,24 +21,24 @@
     "params": {
       "accept": [
         "id",
-        "departure_city_code",
-        "supplier_code",
-        "destination_code",
-        "settlement_price",
-        "sale_status",
-        "currency",
-        "host_shop_id",
-        "booking_rules",
-        "inventory_count",
-        "destination_ref_id",
-        "package_code",
-        "end_date",
-        "package_type",
-        "departure_city_ref_id",
-        "package_name",
-        "start_date",
         "listed_price",
-        "cancellation_policy"
+        "settlement_price",
+        "package_type",
+        "destination_ref_id",
+        "cancellation_policy",
+        "departure_city_code",
+        "host_shop_id",
+        "package_name",
+        "inventory_count",
+        "start_date",
+        "departure_city_ref_id",
+        "currency",
+        "sale_status",
+        "supplier_code",
+        "end_date",
+        "package_code",
+        "destination_code",
+        "booking_rules"
       ]
     }
   },
@@ -128,23 +128,8 @@
             },
             {
               "action": "type",
-              "field": "destination_ref_id",
-              "value": "UPDATED_{{__run_id}}_destination_ref_id"
-            },
-            {
-              "action": "type",
-              "field": "listed_price",
-              "value": "200.00"
-            },
-            {
-              "action": "type",
-              "field": "departure_city_ref_id",
-              "value": "UPDATED_{{__run_id}}_departure_city_ref_id"
-            },
-            {
-              "action": "type",
-              "field": "settlement_price",
-              "value": "200.00"
+              "field": "package_name",
+              "value": "UPDATED_{{__run_id}}_package_name"
             },
             {
               "action": "type",
@@ -153,8 +138,8 @@
             },
             {
               "action": "type",
-              "field": "cancellation_policy",
-              "value": "UPDATED_{{__run_id}}_cancellation_policy"
+              "field": "departure_city_ref_id",
+              "value": "UPDATED_{{__run_id}}_departure_city_ref_id"
             },
             {
               "action": "type",
@@ -163,13 +148,28 @@
             },
             {
               "action": "type",
-              "field": "package_name",
-              "value": "UPDATED_{{__run_id}}_package_name"
+              "field": "listed_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
+              "field": "cancellation_policy",
+              "value": "UPDATED_{{__run_id}}_cancellation_policy"
             },
             {
               "action": "select_option",
               "field": "package_type",
               "value": "free_travel"
+            },
+            {
+              "action": "type",
+              "field": "destination_ref_id",
+              "value": "UPDATED_{{__run_id}}_destination_ref_id"
+            },
+            {
+              "action": "type",
+              "field": "settlement_price",
+              "value": "200.00"
             },
             {
               "action": "click",
@@ -707,11 +707,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.departure_city_ref_id",
+            "equals": "$form.currency",
             "excludes_source": null,
             "graphql_field": "getTravelVacationOffer",
             "op": "equals",
-            "path": "departure_city_ref_id",
+            "path": "currency",
             "source": "active_record_id"
           },
           "ui": [
