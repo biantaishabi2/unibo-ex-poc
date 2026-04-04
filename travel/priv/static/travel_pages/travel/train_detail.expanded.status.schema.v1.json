@@ -69,6 +69,10 @@
         "get": "Travel.TrainOffer.get",
         "list": "Travel.TrainOffer.list"
       },
+      "graphql_field_map": {
+        "get": "get_travel_train_offer",
+        "list": "list_travel_train_offers"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"

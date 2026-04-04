@@ -34,6 +34,10 @@
         "get": "Travel.TravelOrder.get",
         "list": "Travel.TravelOrder.list"
       },
+      "graphql_field_map": {
+        "get": "get_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"

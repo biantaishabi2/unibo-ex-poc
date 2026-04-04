@@ -4,6 +4,10 @@
       "get": "Travel.TravelPolicyCheck.get",
       "list": "Travel.TravelPolicyCheck.list"
     },
+    "graphql_field_map": {
+      "get": "get_travel_travel_policy_check",
+      "list": "list_travel_travel_policy_checks"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

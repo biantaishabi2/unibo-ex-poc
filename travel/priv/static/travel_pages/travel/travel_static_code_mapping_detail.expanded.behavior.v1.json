@@ -5,10 +5,36 @@
       "get": "Travel.TravelStaticCodeMapping.get",
       "update": "Travel.TravelStaticCodeMapping.update"
     },
+    "graphql_field_map": {
+      "create": "create_travel_travel_static_code_mapping",
+      "get": "get_travel_travel_static_code_mapping",
+      "update": "update_travel_travel_static_code_mapping"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "supplier_code",
+        "object_type",
+        "canonical_entity",
+        "canonical_id",
+        "external_code",
+        "external_name",
+        "status"
+      ],
+      "update": [
+        "canonical_entity",
+        "canonical_id",
+        "external_name",
+        "status"
+      ]
+    },
+    "input_type_name_map": {
+      "create": "CreateTravelTravelStaticCodeMappingInput",
+      "update": "UpdateTravelTravelStaticCodeMappingInput"
     },
     "load": {
       "assigns": {},
@@ -17,13 +43,13 @@
     "params": {
       "accept": [
         "id",
+        "supplier_code",
         "external_code",
-        "status",
-        "canonical_entity",
         "external_name",
+        "canonical_entity",
         "object_type",
         "canonical_id",
-        "supplier_code"
+        "status"
       ]
     }
   },
@@ -108,14 +134,14 @@
               "selector": "#travel_static_code_mapping_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "select_option",
-              "field": "status",
-              "value": "inactive"
-            },
-            {
               "action": "type",
               "field": "canonical_entity",
               "value": "UPDATED_{{__run_id}}_canonical_entity"
+            },
+            {
+              "action": "type",
+              "field": "external_name",
+              "value": "UPDATED_{{__run_id}}_external_name"
             },
             {
               "action": "type",
@@ -123,9 +149,9 @@
               "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
             },
             {
-              "action": "type",
-              "field": "external_name",
-              "value": "UPDATED_{{__run_id}}_external_name"
+              "action": "select_option",
+              "field": "status",
+              "value": "inactive"
             },
             {
               "action": "click",

@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.hotel_star",
+      "equals": "$form.status",
       "excludes_source": null,
       "graphql_field": "getTravelTravelHotel",
       "op": "equals",
-      "path": "hotel_star",
+      "path": "status",
       "source": "active_record_id"
     },
     "ui": [
@@ -975,13 +975,6 @@ test.describe("travel_hotel_detail", () => {
         __ctx.form["city_code"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_hotel_form_hotel_star, [name='hotel_star']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["hotel_star"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const root = page.locator(`#travel_hotel_form_status`).first();
         await root.waitFor({ state: 'visible', timeout: 15000 });
         const trigger = root.locator('button').first();
@@ -1003,6 +996,13 @@ test.describe("travel_hotel_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["hotel_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_hotel_form_hotel_star, [name='hotel_star']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["hotel_star"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_hotel_edit_form button[type="submit"], #travel_hotel_edit_form [phx-click="form_submit"]`).first();

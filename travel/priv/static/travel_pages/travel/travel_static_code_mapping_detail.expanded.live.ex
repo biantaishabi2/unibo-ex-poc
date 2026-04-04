@@ -48,20 +48,21 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
   @backend_mode "api"
-  @backend_mod UniboExPocWeb.Graphql.StitchBackend
+  # compiled 模式：直连 GraphQL，不再经过 StitchBackend
   @runtime_config_mod UniboExPocWeb.Graphql.RuntimeConfig
-  @backend_fun :dispatch
   @backend_load_event "get"
   @backend_load_selection "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"
   @backend_load_assigns %{travel_static_code_mapping: %{}}
-  @backend_params_accept ["id", "external_code", "status", "canonical_entity", "external_name", "object_type", "canonical_id", "supplier_code"]
+  @backend_params_accept ["id", "supplier_code", "external_code", "external_name", "canonical_entity", "object_type", "canonical_id", "status"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelStaticCodeMapping.create"},
     "get" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelStaticCodeMapping.get"},
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelStaticCodeMapping.update"}
   }
-  @backend_embedded_page %{page_id: "travel_static_code_mapping_detail", page_kind: "detail", api_map: %{create: "Travel.TravelStaticCodeMapping.create", get: "Travel.TravelStaticCodeMapping.get", update: "Travel.TravelStaticCodeMapping.update"}, backend: %{load: %{selection: "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"}}, route: %{path: "/pages/travel/travel_static_code_mapping/:id", query: "", kind: "detail"}, state_schema: %{defaults: %{travel_static_code_mapping: %{supplier_code: "", object_type: "", canonical_entity: "", external_code: "", external_name: "", status: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
+  @graphql_field_map %{"create" => "create_travel_travel_static_code_mapping", "get" => "get_travel_travel_static_code_mapping", "update" => "update_travel_travel_static_code_mapping"}
+  @input_allowlist %{"create" => ~w(supplier_code object_type canonical_entity canonical_id external_code external_name status), "update" => ~w(canonical_entity canonical_id external_name status)}
+  @input_type_name_map %{"create" => "CreateTravelTravelStaticCodeMappingInput", "update" => "UpdateTravelTravelStaticCodeMappingInput"}
   @entity_assign_fields ["supplier_code", "object_type", "canonical_entity", "external_code", "external_name", "status"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -99,14 +100,8 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
-    socket =
-      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
-        state0 = __take_status(socket.assigns)
-        apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
-      else
-        socket
-      end
+    # compiled + graphql 模式：handle_info 不转发给 StitchBackend
+    _ = msg
     {:noreply, socket}
   end
 
@@ -253,35 +248,26 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
   defp __take_status(_), do: %{}
 
   defp dispatch_backend(event, params, socket) do
-    # Unified backend result format (v1):
-    #   {:ok, %{dto: map, status: map, effects: list, errors: list, meta: map}}
-    #
-    # Template compatibility note: this skeleton still assigns flat keys.
     params = params |> __merge_backend_params(socket) |> __inject_backend_id(socket) |> Map.put("__page_id", @page_id)
+    state0 = __take_status(socket.assigns)
+    state0 = __inject_backend_tenant(state0, socket)
     result =
       case @backend_mode do
         "transitions" ->
-          state0 = __take_status(socket.assigns)
-          state0 = __inject_backend_tenant(state0, socket)
           %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
           {dto, st} = __split_dto_status(assigns2)
           {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "transitions"}}}
         "api" ->
-          state0 = __take_status(socket.assigns)
-          state0 = __inject_backend_tenant(state0, socket)
-          state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
-          # 先获取本地 transition 定义的 effects（如 destroy 后的 navigate）
           %{effects: local_effects} = __apply_transitions(event, params, state0)
           backend_api = __resolve_backend_api(event, socket)
           case backend_api do
             nil ->
-              # 纯 UI 事件，直接走本地 transition
               %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
               {dto, st} = __split_dto_status(assigns2)
               {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
             _mapping ->
-              backend_result = apply(@backend_mod, @backend_fun, [event, params, state0])
-              # 合并本地 transition effects（如 destroy 后 navigate）到后端返回结果
+              backend_result = __compiled_graphql_dispatch(event, params, socket)
+              # 合并本地 transition effects
               case {backend_result, local_effects} do
                 {{:ok, %{} = data}, [_ | _]} ->
                   existing = Map.get(data, :effects, [])
@@ -291,10 +277,155 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
               end
           end
       end
-
-    # destroy 成功后自动跳转到 list 页（从 self_path 推导，去掉最后一段 /:id）
     result = __maybe_inject_destroy_redirect(event, result, socket)
     apply_backend_result(socket, result)
+  end
+
+  defp __compiled_graphql_dispatch(event, params, socket) do
+    action = __extract_compiled_action(event, socket)
+    graphql_field = Map.get(@graphql_field_map, action)
+    unless graphql_field do
+      {:ok, %{dto: %{}, status: %{}, effects: [], errors: [%{message: "no graphql_field for #{action}"}], meta: %{}}}
+    else
+      {query, variables} = __build_compiled_query(action, graphql_field, params, socket)
+      __exec_compiled_graphql(query, variables, socket)
+    end
+  end
+
+  defp __extract_compiled_action(event, socket) do
+    normalized = to_string(event) |> String.replace_prefix("action_", "")
+    case normalized do
+      "form_submit" ->
+        record_id = get_in(socket.assigns, [:record, :id]) || get_in(socket.assigns, [:record, "id"]) ||
+          get_in(socket.assigns, [:travel_static_code_mapping, :id]) || get_in(socket.assigns, [:travel_static_code_mapping, "id"])
+        is_new = socket.assigns.live_action == :new or record_id in [nil, ""]
+        if is_new, do: "create", else: "update"
+      other -> other
+    end
+  end
+
+  defp __build_compiled_query(action, field, params, socket) do
+    selection = @backend_load_selection || "id"
+    case action do
+      "list" ->
+        {~s|query { #{field} { results { #{selection} } count } }|, %{}}
+      "get" ->
+        id = __resolve_compiled_id(params, socket)
+        {~s|query($id: ID!) { #{field}(id: $id) { #{selection} } }|, %{"id" => id}}
+      action when action in ["create", "update"] ->
+        id = __resolve_compiled_id(params, socket)
+        input = __process_compiled_input(action, params)
+        input_type = Map.get(@input_type_name_map, action, "JSON")
+        if id && action == "update" do
+          {~s|mutation($id: ID!, $input: #{input_type}!) { #{field}(id: $id, input: $input) { result { #{selection} } errors { message } } }|, %{"id" => id, "input" => input}}
+        else
+          {~s|mutation($input: #{input_type}!) { #{field}(input: $input) { result { #{selection} } errors { message } } }|, %{"input" => input}}
+        end
+      "destroy" ->
+        id = __resolve_compiled_id(params, socket)
+        {~s|mutation($id: ID!) { #{field}(id: $id) { result { id } errors { message } } }|, %{"id" => id}}
+      _ ->
+        # 自定义 action（activate, deactivate 等）
+        id = __resolve_compiled_id(params, socket)
+        {~s|mutation($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message } } }|, %{"id" => id}}
+    end
+  end
+
+  defp __process_compiled_input(action, params) do
+    allowlist = Map.get(@input_allowlist, action, [])
+    params
+    |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
+    |> __extract_compiled_entity_input()
+    |> Map.take(allowlist)
+    |> __to_camel_keys()
+  end
+
+  defp __extract_compiled_entity_input(params) when is_map(params) do
+    nested = Enum.filter(params, fn {k, v} -> is_binary(k) and is_map(v) end)
+    case nested do
+      [{_key, nested_value}] ->
+        scalar = Map.reject(params, fn {_k, v} -> is_map(v) end)
+        Map.merge(nested_value, scalar)
+      _ -> params
+    end
+  end
+  defp __extract_compiled_entity_input(params), do: params
+
+  defp __resolve_compiled_id(params, socket) do
+    Map.get(params, "id") ||
+      Map.get(params, :id) ||
+      get_in(socket.assigns, [:record, :id]) ||
+      get_in(socket.assigns, [:record, "id"]) ||
+      get_in(socket.assigns, [:travel_static_code_mapping, :id]) ||
+      get_in(socket.assigns, [:travel_static_code_mapping, "id"]) ||
+      (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
+      (socket.assigns[:travel_static_code_mapping] && socket.assigns[:travel_static_code_mapping]["id"]) || ""
+  end
+
+  defp __to_camel_keys(map) when is_map(map) do
+    Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)
+  end
+  defp __to_camel_keys(other), do: other
+
+  defp __camelize_key(s) do
+    [first | rest] = String.split(s, "_")
+    first <> Enum.map_join(rest, "", &String.capitalize/1)
+  end
+
+  defp __exec_compiled_graphql(query, variables, socket) when is_binary(query) do
+    tenant_id = Map.get(socket.assigns, :tenant_id) ||
+      (if function_exported?(@runtime_config_mod, :default_tenant_id, 0), do: @runtime_config_mod.default_tenant_id(), else: nil)
+
+    base_context = %{
+      actor: Map.get(socket.assigns, :actor),
+      current_user: Map.get(socket.assigns, :current_user),
+      auth_claims: Map.get(socket.assigns, :auth_claims),
+      tenant_id: tenant_id,
+      tenant: Map.get(socket.assigns, :tenant) || tenant_id,
+      context_envelope: Map.get(socket.assigns, :context_envelope)
+    }
+
+    context = if function_exported?(@runtime_config_mod, :build_context, 1) do
+      @runtime_config_mod.build_context(base_context)
+    else
+      base_context
+    end
+
+    loader = if Code.ensure_loaded?(Dataloader) do
+      if function_exported?(@runtime_config_mod, :new_loader, 1),
+        do: @runtime_config_mod.new_loader(context),
+        else: Dataloader.new()
+    end
+    context = if loader, do: Map.put(context, :loader, loader), else: context
+
+    schema_mod = if function_exported?(@runtime_config_mod, :schema_module, 0),
+      do: @runtime_config_mod.schema_module(),
+      else: nil
+
+    if schema_mod do
+      case Absinthe.run(query, schema_mod, variables: variables, context: context) do
+        {:ok, %{data: data}} when is_map(data) ->
+          field_result = data |> Map.values() |> Enum.find(& &1) || %{}
+          case field_result do
+            %{"results" => results, "count" => count} ->
+              {:ok, %{dto: %{results: results, count: count}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            %{"result" => result, "errors" => errors} when is_list(errors) and length(errors) > 0 ->
+              {:error, %{errors: errors, meta: %{mode: "compiled_graphql"}}}
+            %{"result" => result} ->
+              {:ok, %{dto: result || %{}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            single when is_map(single) ->
+              {:ok, %{dto: single, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            _ ->
+              {:ok, %{dto: %{}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+          end
+        {:ok, %{errors: errors}} ->
+          {:error, %{errors: errors, meta: %{mode: "compiled_graphql"}}}
+        {:error, reason} ->
+          {:error, %{errors: [%{message: inspect(reason)}], meta: %{mode: "compiled_graphql"}}}
+      end
+    else
+      {:error, %{errors: [%{message: "schema module not available"}], meta: %{}}}
+    end
   end
 
   defp __resolve_backend_api(event, socket) do
@@ -448,7 +579,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
         end
       _ ->
         source =
-          Enum.reduce(@entity_assign_fields, %{}, fn key, acc ->
+          Enum.reduce(["id" | @entity_assign_fields], %{}, fn key, acc ->
             case Map.fetch(dto, key) do
               {:ok, value} -> Map.put(acc, key, value)
               :error ->

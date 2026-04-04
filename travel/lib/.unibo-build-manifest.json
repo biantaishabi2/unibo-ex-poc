@@ -4,7 +4,7 @@
   "domains": {
     "Travel": {
       "input_hashes": {
-        "./models/travel/travel.ubo.yaml": "sha256:27d86fcbb6545e9c2fb377b88de64fef3b63451ba445f9b7a990e3682f350df1"
+        "/tmp/.tmpG6m5Lv/travel/travel.ubo.yaml": "sha256:af13a19ac9424237e2f168c1084108c3bf513abd12de36549db7e81a5ed0b38d"
       },
       "output_files": [
         "unibo_ex_poc/travel/flight_offer.ex",

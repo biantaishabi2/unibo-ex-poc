@@ -48,34 +48,31 @@ Call log:
           - listitem [ref=e24]:
             - link "详情" [disabled] [ref=e25]
       - generic [ref=e27]:
-        - generic [ref=e28]:
-          - generic [ref=e29]:
-            - paragraph [ref=e30]: TravelChangeOrder
-            - paragraph [ref=e31]: 改签单,记录针对已有 TravelOrder 的改签请求、差价与审批状态;审批通过 overlay on Approvals 域
-          - generic [ref=e32]: approved
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: TravelChangeOrder
+          - paragraph [ref=e31]: 改签单,记录针对已有 TravelOrder 的改签请求、差价与审批状态;审批通过 overlay on Approvals 域
         - generic [ref=e33]:
           - button "编辑" [ref=e34] [cursor=pointer]
           - button "提交改签申请,如 approval_mode=oa 则通过 integration 创建 ApprovalInstance" [ref=e35] [cursor=pointer]
-          - button "complete" [ref=e36] [cursor=pointer]
-          - button "删除" [ref=e37] [cursor=pointer]
-      - generic [ref=e39]:
-        - heading "基本信息" [level=3] [ref=e41]
-        - generic [ref=e44]:
-          - generic [ref=e45]:
-            - paragraph [ref=e46]: 改签原因
-            - paragraph [ref=e47]: UPDATED_1775278898448_7orx12_change_reason
+          - button "删除" [ref=e36] [cursor=pointer]
+      - generic [ref=e38]:
+        - heading "基本信息" [level=3] [ref=e40]
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 改签原因
+            - paragraph
+          - generic [ref=e46]:
+            - paragraph [ref=e47]: 差价
+            - paragraph
           - generic [ref=e48]:
-            - paragraph [ref=e49]: 差价
-            - paragraph [ref=e50]: UPDATED_1775278898448_7orx12_price_difference
-          - generic [ref=e51]:
-            - paragraph [ref=e52]: 改签手续费
-            - paragraph [ref=e53]: UPDATED_1775278898448_7orx12_change_fee
-          - generic [ref=e54]:
-            - paragraph [ref=e55]: status
-            - paragraph [ref=e56]: approved
-          - generic [ref=e57]:
-            - paragraph [ref=e58]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-            - paragraph [ref=e59]: none
+            - paragraph [ref=e49]: 改签手续费
+            - paragraph
+          - generic [ref=e50]:
+            - paragraph [ref=e51]: status
+            - paragraph
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
+            - paragraph
 ```
 
 # Test source
@@ -115,18 +112,18 @@ Call log:
   1413 |       }
   1414 |       await expect(page.locator(`#travel_change_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
   1415 |       {
-  1416 |         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();
+  1416 |         const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
   1417 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1418 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_fee");
+  1418 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
   1419 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1420 |         __ctx.form["change_fee"] = resolvedValue; refreshDataBindings(__ctx);
+  1420 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
   1421 |       }
   1422 |       {
-  1423 |         const loc = page.locator(`#travel_change_order_form_price_difference, [name='price_difference']`).first();
+  1423 |         const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
   1424 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1425 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_price_difference");
+  1425 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
   1426 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1427 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
+  1427 |         __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
   1428 |       }
   1429 |       {
   1430 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
@@ -136,11 +133,11 @@ Call log:
   1434 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
   1435 |       }
   1436 |       {
-  1437 |         const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
+  1437 |         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();
   1438 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1439 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
+  1439 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_fee");
   1440 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1441 |         __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
+  1441 |         __ctx.form["change_fee"] = resolvedValue; refreshDataBindings(__ctx);
   1442 |       }
   1443 |       {
   1444 |         const loc = page.locator(`#travel_change_order_edit_form button[type="submit"], #travel_change_order_edit_form [phx-click="form_submit"]`).first();

@@ -62,10 +62,63 @@
         "get": "Travel.HotelOffer.get",
         "update": "Travel.HotelOffer.update"
       },
+      "graphql_field_map": {
+        "activate": "activate_travel_hotel_offer",
+        "create": "create_travel_hotel_offer",
+        "deactivate": "deactivate_travel_hotel_offer",
+        "destroy": "delete_travel_hotel_offer",
+        "expire": "expire_travel_hotel_offer",
+        "get": "get_travel_hotel_offer",
+        "update": "update_travel_hotel_offer"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "create": [
+          "tenant_id",
+          "host_shop_id",
+          "supplier_code",
+          "hotel_code",
+          "hotel_ref_id",
+          "hotel_name",
+          "city_code",
+          "city_ref_id",
+          "room_type_code",
+          "room_type_ref_id",
+          "rate_plan_code",
+          "checkin_date",
+          "checkout_date",
+          "listed_price",
+          "settlement_price",
+          "currency",
+          "inventory_count",
+          "cancellation_policy",
+          "guarantee_policy",
+          "sale_status"
+        ],
+        "update": [
+          "hotel_name",
+          "city_code",
+          "city_ref_id",
+          "hotel_ref_id",
+          "room_type_ref_id",
+          "listed_price",
+          "settlement_price",
+          "currency",
+          "inventory_count",
+          "cancellation_policy",
+          "guarantee_policy"
+        ]
+      },
+      "input_type_name_map": {
+        "activate": "ActivateTravelHotelOfferInput",
+        "create": "CreateTravelHotelOfferInput",
+        "deactivate": "DeactivateTravelHotelOfferInput",
+        "expire": "ExpireTravelHotelOfferInput",
+        "update": "UpdateTravelHotelOfferInput"
       },
       "load": {
         "assigns": {},
@@ -74,23 +127,23 @@
       "params": {
         "accept": [
           "id",
-          "supplier_code",
-          "hotel_name",
-          "inventory_count",
-          "rate_plan_code",
-          "host_shop_id",
-          "checkin_date",
-          "cancellation_policy",
-          "city_code",
-          "checkout_date",
-          "listed_price",
-          "city_ref_id",
-          "settlement_price",
-          "hotel_code",
           "currency",
-          "guarantee_policy",
+          "settlement_price",
+          "sale_status",
+          "city_ref_id",
           "room_type_code",
-          "sale_status"
+          "listed_price",
+          "hotel_name",
+          "hotel_code",
+          "checkout_date",
+          "guarantee_policy",
+          "city_code",
+          "cancellation_policy",
+          "rate_plan_code",
+          "inventory_count",
+          "checkin_date",
+          "host_shop_id",
+          "supplier_code"
         ]
       }
     },
@@ -175,8 +228,8 @@
               },
               {
                 "action": "type",
-                "field": "city_ref_id",
-                "value": "UPDATED_{{__run_id}}_city_ref_id"
+                "field": "listed_price",
+                "value": "200.00"
               },
               {
                 "action": "type",
@@ -185,23 +238,8 @@
               },
               {
                 "action": "type",
-                "field": "listed_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "inventory_count",
-                "value": "2"
-              },
-              {
-                "action": "type",
-                "field": "currency",
-                "value": "UPDATED_{{__run_id}}_currency"
-              },
-              {
-                "action": "type",
-                "field": "hotel_name",
-                "value": "UPDATED_{{__run_id}}_hotel_name"
+                "field": "city_ref_id",
+                "value": "UPDATED_{{__run_id}}_city_ref_id"
               },
               {
                 "action": "type",
@@ -212,6 +250,21 @@
                 "action": "type",
                 "field": "settlement_price",
                 "value": "200.00"
+              },
+              {
+                "action": "type",
+                "field": "currency",
+                "value": "UPDATED_{{__run_id}}_currency"
+              },
+              {
+                "action": "type",
+                "field": "inventory_count",
+                "value": "2"
+              },
+              {
+                "action": "type",
+                "field": "hotel_name",
+                "value": "UPDATED_{{__run_id}}_hotel_name"
               },
               {
                 "action": "type",

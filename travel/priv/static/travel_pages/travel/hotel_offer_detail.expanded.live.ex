@@ -66,7 +66,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_load_event "get"
   @backend_load_selection "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
   @backend_load_assigns %{hotel_offer: %{}}
-  @backend_params_accept ["id", "supplier_code", "hotel_name", "inventory_count", "rate_plan_code", "host_shop_id", "checkin_date", "cancellation_policy", "city_code", "checkout_date", "listed_price", "city_ref_id", "settlement_price", "hotel_code", "currency", "guarantee_policy", "room_type_code", "sale_status"]
+  @backend_params_accept ["id", "currency", "settlement_price", "sale_status", "city_ref_id", "room_type_code", "listed_price", "hotel_name", "hotel_code", "checkout_date", "guarantee_policy", "city_code", "cancellation_policy", "rate_plan_code", "inventory_count", "checkin_date", "host_shop_id", "supplier_code"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "activate" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.HotelOffer.activate"},
@@ -485,7 +485,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
         end
       _ ->
         source =
-          Enum.reduce(@entity_assign_fields, %{}, fn key, acc ->
+          Enum.reduce(["id" | @entity_assign_fields], %{}, fn key, acc ->
             case Map.fetch(dto, key) do
               {:ok, value} -> Map.put(acc, key, value)
               :error ->

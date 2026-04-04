@@ -57,6 +57,10 @@
         "get": "Travel.HotelOffer.get",
         "list": "Travel.HotelOffer.list"
       },
+      "graphql_field_map": {
+        "get": "get_travel_hotel_offer",
+        "list": "list_travel_hotel_offers"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"

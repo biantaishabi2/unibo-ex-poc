@@ -48,34 +48,31 @@ Call log:
           - listitem [ref=e24]:
             - link "详情" [disabled] [ref=e25]
       - generic [ref=e27]:
-        - generic [ref=e28]:
-          - generic [ref=e29]:
-            - paragraph [ref=e30]: TravelRefundOrder
-            - paragraph [ref=e31]: 退票/退订单,记录针对已有 TravelOrder 的退票请求、手续费与退款状态;审批通过 overlay on Approvals 域
-          - generic [ref=e32]: approved
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: TravelRefundOrder
+          - paragraph [ref=e31]: 退票/退订单,记录针对已有 TravelOrder 的退票请求、手续费与退款状态;审批通过 overlay on Approvals 域
         - generic [ref=e33]:
           - button "编辑" [ref=e34] [cursor=pointer]
           - button "提交退票申请,如 approval_mode=oa 则通过 integration 创建 ApprovalInstance" [ref=e35] [cursor=pointer]
-          - button "refund" [ref=e36] [cursor=pointer]
-          - button "删除" [ref=e37] [cursor=pointer]
-      - generic [ref=e39]:
-        - heading "基本信息" [level=3] [ref=e41]
-        - generic [ref=e44]:
-          - generic [ref=e45]:
-            - paragraph [ref=e46]: 退票原因
-            - paragraph [ref=e47]: UPDATED_1775278898448_4ca2e8_refund_reason
+          - button "删除" [ref=e36] [cursor=pointer]
+      - generic [ref=e38]:
+        - heading "基本信息" [level=3] [ref=e40]
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 退票原因
+            - paragraph
+          - generic [ref=e46]:
+            - paragraph [ref=e47]: 退票手续费
+            - paragraph
           - generic [ref=e48]:
-            - paragraph [ref=e49]: 退票手续费
-            - paragraph [ref=e50]: UPDATED_1775278898448_4ca2e8_refund_fee
-          - generic [ref=e51]:
-            - paragraph [ref=e52]: 实退金额
-            - paragraph [ref=e53]: UPDATED_1775278898448_4ca2e8_refund_amount
-          - generic [ref=e54]:
-            - paragraph [ref=e55]: status
-            - paragraph [ref=e56]: approved
-          - generic [ref=e57]:
-            - paragraph [ref=e58]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-            - paragraph [ref=e59]: none
+            - paragraph [ref=e49]: 实退金额
+            - paragraph
+          - generic [ref=e50]:
+            - paragraph [ref=e51]: status
+            - paragraph
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
+            - paragraph
 ```
 
 # Test source
@@ -129,18 +126,18 @@ Call log:
   1416 |         __ctx.form["refund_reason"] = resolvedValue; refreshDataBindings(__ctx);
   1417 |       }
   1418 |       {
-  1419 |         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
+  1419 |         const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
   1420 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1421 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
+  1421 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
   1422 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1423 |         __ctx.form["refund_amount"] = resolvedValue; refreshDataBindings(__ctx);
+  1423 |         __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
   1424 |       }
   1425 |       {
-  1426 |         const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
+  1426 |         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
   1427 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1428 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
+  1428 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
   1429 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1430 |         __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
+  1430 |         __ctx.form["refund_amount"] = resolvedValue; refreshDataBindings(__ctx);
   1431 |       }
   1432 |       {
   1433 |         const loc = page.locator(`#travel_refund_order_edit_form button[type="submit"], #travel_refund_order_edit_form [phx-click="form_submit"]`).first();

@@ -51,10 +51,45 @@
         "mark_in_use": "Travel.TravelFulfillment.mark_in_use",
         "update": "Travel.TravelFulfillment.update"
       },
+      "graphql_field_map": {
+        "cancel_fulfillment": "cancel_fulfillment_travel_travel_fulfillment",
+        "complete_fulfillment": "complete_fulfillment_travel_travel_fulfillment",
+        "confirm_booking": "confirm_booking_travel_travel_fulfillment",
+        "destroy": "delete_travel_travel_fulfillment",
+        "fail_fulfillment": "fail_fulfillment_travel_travel_fulfillment",
+        "get": "get_travel_travel_fulfillment",
+        "issue_voucher_or_ticket": "issue_voucher_or_ticket_travel_travel_fulfillment",
+        "mark_in_use": "mark_in_use_travel_travel_fulfillment",
+        "update": "update_travel_travel_fulfillment"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "fail_fulfillment": [
+          "failure_reason"
+        ],
+        "mark_in_use": [
+          "used_at"
+        ],
+        "update": [
+          "supplier_booking_ref",
+          "voucher_or_ticket_ref",
+          "ticket_refs",
+          "confirmation_payload",
+          "failure_reason"
+        ]
+      },
+      "input_type_name_map": {
+        "cancel_fulfillment": "CancelFulfillmentTravelTravelFulfillmentInput",
+        "complete_fulfillment": "CompleteFulfillmentTravelTravelFulfillmentInput",
+        "confirm_booking": "ConfirmBookingTravelTravelFulfillmentInput",
+        "fail_fulfillment": "FailFulfillmentTravelTravelFulfillmentInput",
+        "issue_voucher_or_ticket": "IssueVoucherOrTicketTravelTravelFulfillmentInput",
+        "mark_in_use": "MarkInUseTravelTravelFulfillmentInput",
+        "update": "UpdateTravelTravelFulfillmentInput"
       },
       "load": {
         "assigns": {},
@@ -66,10 +101,10 @@
           "travel_order_id",
           "fulfillment_type",
           "supplier_booking_ref",
-          "voucher_or_ticket_ref",
-          "failure_reason",
           "ticket_refs",
-          "confirmation_payload"
+          "failure_reason",
+          "confirmation_payload",
+          "voucher_or_ticket_ref"
         ]
       }
     },
@@ -155,13 +190,8 @@
               },
               {
                 "action": "type",
-                "field": "ticket_refs",
-                "value": "{\"updated\":true}"
-              },
-              {
-                "action": "type",
-                "field": "confirmation_payload",
-                "value": "UPDATED_{{__run_id}}_confirmation_payload"
+                "field": "supplier_booking_ref",
+                "value": "UPDATED_{{__run_id}}_supplier_booking_ref"
               },
               {
                 "action": "type",
@@ -170,8 +200,13 @@
               },
               {
                 "action": "type",
-                "field": "supplier_booking_ref",
-                "value": "UPDATED_{{__run_id}}_supplier_booking_ref"
+                "field": "confirmation_payload",
+                "value": "UPDATED_{{__run_id}}_confirmation_payload"
+              },
+              {
+                "action": "type",
+                "field": "ticket_refs",
+                "value": "{\"updated\":true}"
               },
               {
                 "action": "type",

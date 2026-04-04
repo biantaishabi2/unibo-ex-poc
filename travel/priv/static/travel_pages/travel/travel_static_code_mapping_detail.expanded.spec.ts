@@ -961,6 +961,27 @@ test.describe("travel_static_code_mapping_detail", () => {
       }
       await expect(page.locator(`#travel_static_code_mapping_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_static_code_mapping_form_canonical_entity, [name='canonical_entity']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_canonical_entity");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["canonical_entity"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_static_code_mapping_form_external_name, [name='external_name']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_external_name");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["external_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_static_code_mapping_form_canonical_id, [name='canonical_id']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "d4d9c861-7465-4f63-a16e-6f6e6963616c");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["canonical_id"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const root = page.locator(`#travel_static_code_mapping_form_status`).first();
         await root.waitFor({ state: 'visible', timeout: 15000 });
         const trigger = root.locator('button').first();
@@ -975,27 +996,6 @@ test.describe("travel_static_code_mapping_detail", () => {
         __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
-      }
-      {
-        const loc = page.locator(`#travel_static_code_mapping_form_canonical_entity, [name='canonical_entity']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_canonical_entity");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["canonical_entity"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_static_code_mapping_form_canonical_id, [name='canonical_id']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "d4d9c861-7465-4f63-a16e-6f6e6963616c");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["canonical_id"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_static_code_mapping_form_external_name, [name='external_name']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_external_name");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["external_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_static_code_mapping_edit_form button[type="submit"], #travel_static_code_mapping_edit_form [phx-click="form_submit"]`).first();

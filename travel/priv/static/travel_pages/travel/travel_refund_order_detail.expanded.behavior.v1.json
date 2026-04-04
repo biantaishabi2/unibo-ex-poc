@@ -10,10 +10,43 @@
       "submit": "Travel.TravelRefundOrder.submit",
       "update": "Travel.TravelRefundOrder.update"
     },
+    "graphql_field_map": {
+      "confirm_refund": "confirm_refund_travel_travel_refund_order",
+      "create": "create_travel_travel_refund_order",
+      "get": "get_travel_travel_refund_order",
+      "refund": "refund_travel_travel_refund_order",
+      "refund_direct": "refund_direct_travel_travel_refund_order",
+      "reject_refund": "reject_refund_travel_travel_refund_order",
+      "submit": "submit_travel_travel_refund_order",
+      "update": "update_travel_travel_refund_order"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "original_order_id",
+        "refund_reason",
+        "refund_fee",
+        "refund_amount",
+        "approval_mode"
+      ],
+      "update": [
+        "refund_reason",
+        "refund_fee",
+        "refund_amount"
+      ]
+    },
+    "input_type_name_map": {
+      "confirm_refund": "ConfirmRefundTravelTravelRefundOrderInput",
+      "create": "CreateTravelTravelRefundOrderInput",
+      "refund": "RefundTravelTravelRefundOrderInput",
+      "refund_direct": "RefundDirectTravelTravelRefundOrderInput",
+      "reject_refund": "RejectRefundTravelTravelRefundOrderInput",
+      "submit": "SubmitTravelTravelRefundOrderInput",
+      "update": "UpdateTravelTravelRefundOrderInput"
     },
     "load": {
       "assigns": {},
@@ -25,8 +58,8 @@
         "original_order_id",
         "refund_reason",
         "refund_fee",
-        "refund_amount",
-        "approval_mode"
+        "approval_mode",
+        "refund_amount"
       ]
     }
   },
@@ -117,13 +150,13 @@
             },
             {
               "action": "type",
-              "field": "refund_amount",
-              "value": "UPDATED_{{__run_id}}_refund_amount"
+              "field": "refund_fee",
+              "value": "UPDATED_{{__run_id}}_refund_fee"
             },
             {
               "action": "type",
-              "field": "refund_fee",
-              "value": "UPDATED_{{__run_id}}_refund_fee"
+              "field": "refund_amount",
+              "value": "UPDATED_{{__run_id}}_refund_amount"
             },
             {
               "action": "click",

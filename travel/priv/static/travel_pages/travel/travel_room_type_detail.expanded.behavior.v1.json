@@ -5,10 +5,36 @@
       "get": "Travel.TravelRoomType.get",
       "update": "Travel.TravelRoomType.update"
     },
+    "graphql_field_map": {
+      "create": "create_travel_travel_room_type",
+      "get": "get_travel_travel_room_type",
+      "update": "update_travel_travel_room_type"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "room_type_code",
+        "room_type_name",
+        "hotel_id",
+        "hotel_code",
+        "bed_type",
+        "status"
+      ],
+      "update": [
+        "room_type_name",
+        "hotel_id",
+        "hotel_code",
+        "bed_type",
+        "status"
+      ]
+    },
+    "input_type_name_map": {
+      "create": "CreateTravelTravelRoomTypeInput",
+      "update": "UpdateTravelTravelRoomTypeInput"
     },
     "load": {
       "assigns": {},
@@ -17,11 +43,11 @@
     "params": {
       "accept": [
         "id",
-        "status",
         "room_type_name",
-        "bed_type",
+        "room_type_code",
         "hotel_code",
-        "room_type_code"
+        "bed_type",
+        "status"
       ]
     }
   },
@@ -107,6 +133,11 @@
             },
             {
               "action": "type",
+              "field": "room_type_name",
+              "value": "UPDATED_{{__run_id}}_room_type_name"
+            },
+            {
+              "action": "type",
               "field": "hotel_code",
               "value": "UPDATED_{{__run_id}}_hotel_code"
             },
@@ -114,11 +145,6 @@
               "action": "type",
               "field": "bed_type",
               "value": "UPDATED_{{__run_id}}_bed_type"
-            },
-            {
-              "action": "type",
-              "field": "room_type_name",
-              "value": "UPDATED_{{__run_id}}_room_type_name"
             },
             {
               "action": "select_option",

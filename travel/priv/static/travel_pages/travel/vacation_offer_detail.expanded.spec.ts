@@ -579,11 +579,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.destination_ref_id",
+      "equals": "$form.inventory_count",
       "excludes_source": null,
       "graphql_field": "getTravelVacationOffer",
       "op": "equals",
-      "path": "destination_ref_id",
+      "path": "inventory_count",
       "source": "active_record_id"
     },
     "ui": [
@@ -1315,11 +1315,18 @@ test.describe("vacation_offer_detail", () => {
       }
       await expect(page.locator(`#vacation_offer_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#vacation_offer_form_settlement_price, [name='settlement_price']`).first();
+        const loc = page.locator(`#vacation_offer_form_inventory_count, [name='inventory_count']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        const resolvedValue = resolveTemplateString(__ctx, "2");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["inventory_count"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#vacation_offer_form_booking_rules, [name='booking_rules']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_booking_rules");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["booking_rules"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_form_cancellation_policy, [name='cancellation_policy']`).first();
@@ -1329,11 +1336,11 @@ test.describe("vacation_offer_detail", () => {
         __ctx.form["cancellation_policy"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#vacation_offer_form_package_name, [name='package_name']`).first();
+        const loc = page.locator(`#vacation_offer_form_settlement_price, [name='settlement_price']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_package_name");
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["package_name"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_form_departure_city_ref_id, [name='departure_city_ref_id']`).first();
@@ -1343,11 +1350,27 @@ test.describe("vacation_offer_detail", () => {
         __ctx.form["departure_city_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#vacation_offer_form_booking_rules, [name='booking_rules']`).first();
+        const loc = page.locator(`#vacation_offer_form_package_name, [name='package_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_booking_rules");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_package_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["booking_rules"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["package_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const root = page.locator(`#vacation_offer_form_package_type`).first();
+        await root.waitFor({ state: 'visible', timeout: 15000 });
+        const trigger = root.locator('button').first();
+        await trigger.waitFor({ state: 'visible', timeout: 15000 });
+        await trigger.click({ timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "free_travel");
+        const option = root.locator(`.select-content label:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has-text("${resolvedValue}")`).first();
+        await option.waitFor({ state: 'visible', timeout: 15000 });
+        await option.click({ timeout: 15000 });
+        await page.keyboard.press('Escape').catch(() => null);
+        await root.locator('.select-content').first().waitFor({ state: 'hidden', timeout: 3000 }).catch(() => null);
+        __ctx.form["package_type"] = resolvedValue; refreshDataBindings(__ctx);
+        await waitForLiveViewReady(page, 15000);
+        await syncRouteContext(page, __ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_form_listed_price, [name='listed_price']`).first();
@@ -1369,29 +1392,6 @@ test.describe("vacation_offer_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_destination_ref_id");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["destination_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#vacation_offer_form_inventory_count, [name='inventory_count']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["inventory_count"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const root = page.locator(`#vacation_offer_form_package_type`).first();
-        await root.waitFor({ state: 'visible', timeout: 15000 });
-        const trigger = root.locator('button').first();
-        await trigger.waitFor({ state: 'visible', timeout: 15000 });
-        await trigger.click({ timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "free_travel");
-        const option = root.locator(`.select-content label:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has(input[value="${resolvedValue}"]), .select-content [role="option"]:has-text("${resolvedValue}")`).first();
-        await option.waitFor({ state: 'visible', timeout: 15000 });
-        await option.click({ timeout: 15000 });
-        await page.keyboard.press('Escape').catch(() => null);
-        await root.locator('.select-content').first().waitFor({ state: 'hidden', timeout: 3000 }).catch(() => null);
-        __ctx.form["package_type"] = resolvedValue; refreshDataBindings(__ctx);
-        await waitForLiveViewReady(page, 15000);
-        await syncRouteContext(page, __ctx);
       }
       {
         const loc = page.locator(`#vacation_offer_edit_form button[type="submit"], #vacation_offer_edit_form [phx-click="form_submit"]`).first();

@@ -45,6 +45,10 @@
         "get": "Travel.TravelPolicy.get",
         "list": "Travel.TravelPolicy.list"
       },
+      "graphql_field_map": {
+        "get": "get_travel_travel_policy",
+        "list": "list_travel_travel_policys"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"

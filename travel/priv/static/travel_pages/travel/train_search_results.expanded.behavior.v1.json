@@ -3,6 +3,9 @@
     "api_map": {
       "search": "Travel.TrainOffer.list"
     },
+    "graphql_field_map": {
+      "search": "list_travel_train_offers"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

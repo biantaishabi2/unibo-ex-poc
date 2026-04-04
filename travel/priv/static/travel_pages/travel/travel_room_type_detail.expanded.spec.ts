@@ -961,6 +961,13 @@ test.describe("travel_room_type_detail", () => {
       }
       await expect(page.locator(`#travel_room_type_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_room_type_form_room_type_name, [name='room_type_name']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_room_type_name");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["room_type_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#travel_room_type_form_hotel_code, [name='hotel_code']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_code");
@@ -973,13 +980,6 @@ test.describe("travel_room_type_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_bed_type");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["bed_type"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_room_type_form_room_type_name, [name='room_type_name']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_room_type_name");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["room_type_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_room_type_form_status`).first();

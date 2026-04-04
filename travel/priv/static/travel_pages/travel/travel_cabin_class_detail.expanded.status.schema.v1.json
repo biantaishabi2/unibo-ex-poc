@@ -30,10 +30,32 @@
         "get": "Travel.TravelCabinClass.get",
         "update": "Travel.TravelCabinClass.update"
       },
+      "graphql_field_map": {
+        "create": "create_travel_travel_cabin_class",
+        "get": "get_travel_travel_cabin_class",
+        "update": "update_travel_travel_cabin_class"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "create": [
+          "cabin_class_code",
+          "cabin_class_name",
+          "cabin_rank",
+          "status"
+        ],
+        "update": [
+          "cabin_class_name",
+          "cabin_rank",
+          "status"
+        ]
+      },
+      "input_type_name_map": {
+        "create": "CreateTravelTravelCabinClassInput",
+        "update": "UpdateTravelTravelCabinClassInput"
       },
       "load": {
         "assigns": {},
@@ -43,9 +65,9 @@
         "accept": [
           "id",
           "cabin_class_code",
+          "cabin_rank",
           "status",
-          "cabin_class_name",
-          "cabin_rank"
+          "cabin_class_name"
         ]
       }
     },
@@ -131,11 +153,6 @@
               },
               {
                 "action": "type",
-                "field": "cabin_rank",
-                "value": "2"
-              },
-              {
-                "action": "type",
                 "field": "cabin_class_name",
                 "value": "UPDATED_{{__run_id}}_cabin_class_name"
               },
@@ -143,6 +160,11 @@
                 "action": "select_option",
                 "field": "status",
                 "value": "inactive"
+              },
+              {
+                "action": "type",
+                "field": "cabin_rank",
+                "value": "2"
               },
               {
                 "action": "click",
@@ -343,11 +365,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.cabin_class_name",
+              "equals": "$form.status",
               "excludes_source": null,
               "graphql_field": "getTravelTravelCabinClass",
               "op": "equals",
-              "path": "cabin_class_name",
+              "path": "status",
               "source": "active_record_id"
             },
             "ui": [

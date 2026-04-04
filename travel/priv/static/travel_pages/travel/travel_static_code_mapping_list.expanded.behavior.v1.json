@@ -3,6 +3,9 @@
     "api_map": {
       "list": "Travel.TravelStaticCodeMapping.list"
     },
+    "graphql_field_map": {
+      "list": "list_travel_travel_static_code_mappings"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

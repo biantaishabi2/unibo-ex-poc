@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.cabin_class_name",
+      "equals": "$form.status",
       "excludes_source": null,
       "graphql_field": "getTravelTravelCabinClass",
       "op": "equals",
-      "path": "cabin_class_name",
+      "path": "status",
       "source": "active_record_id"
     },
     "ui": [
@@ -961,13 +961,6 @@ test.describe("travel_cabin_class_detail", () => {
       }
       await expect(page.locator(`#travel_cabin_class_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_cabin_class_form_cabin_rank, [name='cabin_rank']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["cabin_rank"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_cabin_class_form_cabin_class_name, [name='cabin_class_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cabin_class_name");
@@ -989,6 +982,13 @@ test.describe("travel_cabin_class_detail", () => {
         __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
+      }
+      {
+        const loc = page.locator(`#travel_cabin_class_form_cabin_rank, [name='cabin_rank']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["cabin_rank"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_cabin_class_edit_form button[type="submit"], #travel_cabin_class_edit_form [phx-click="form_submit"]`).first();

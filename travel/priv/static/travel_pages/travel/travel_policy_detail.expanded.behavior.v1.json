@@ -7,10 +7,55 @@
       "get": "Travel.TravelPolicy.get",
       "update": "Travel.TravelPolicy.update"
     },
+    "graphql_field_map": {
+      "activate": "activate_travel_travel_policy",
+      "create": "create_travel_travel_policy",
+      "deactivate": "deactivate_travel_travel_policy",
+      "get": "get_travel_travel_policy",
+      "update": "update_travel_travel_policy"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "activate": [
+        "is_active"
+      ],
+      "create": [
+        "policy_name",
+        "product_type",
+        "employee_level",
+        "city_tier",
+        "season",
+        "max_amount",
+        "cabin_class_limit",
+        "hotel_star_limit",
+        "exceed_strategy",
+        "approval_mode",
+        "personal_pay_ratio",
+        "enterprise_id"
+      ],
+      "deactivate": [
+        "is_active"
+      ],
+      "update": [
+        "policy_name",
+        "season",
+        "max_amount",
+        "cabin_class_limit",
+        "hotel_star_limit",
+        "exceed_strategy",
+        "approval_mode",
+        "personal_pay_ratio"
+      ]
+    },
+    "input_type_name_map": {
+      "activate": "ActivateTravelTravelPolicyInput",
+      "create": "CreateTravelTravelPolicyInput",
+      "deactivate": "DeactivateTravelTravelPolicyInput",
+      "update": "UpdateTravelTravelPolicyInput"
     },
     "load": {
       "assigns": {},
@@ -19,18 +64,18 @@
     "params": {
       "accept": [
         "id",
-        "personal_pay_ratio",
-        "season",
-        "city_tier",
-        "employee_level",
-        "exceed_strategy",
-        "enterprise_id",
-        "policy_name",
-        "cabin_class_limit",
-        "hotel_star_limit",
         "max_amount",
+        "employee_level",
+        "policy_name",
+        "city_tier",
+        "season",
+        "hotel_star_limit",
+        "exceed_strategy",
+        "personal_pay_ratio",
         "product_type",
-        "approval_mode"
+        "approval_mode",
+        "enterprise_id",
+        "cabin_class_limit"
       ]
     }
   },
@@ -116,23 +161,8 @@
             },
             {
               "action": "type",
-              "field": "hotel_star_limit",
-              "value": "UPDATED_{{__run_id}}_hotel_star_limit"
-            },
-            {
-              "action": "type",
-              "field": "policy_name",
-              "value": "UPDATED_{{__run_id}}_policy_name"
-            },
-            {
-              "action": "select_option",
-              "field": "exceed_strategy",
-              "value": "require_reason"
-            },
-            {
-              "action": "type",
-              "field": "personal_pay_ratio",
-              "value": "2"
+              "field": "season",
+              "value": "UPDATED_{{__run_id}}_season"
             },
             {
               "action": "select_option",
@@ -141,8 +171,18 @@
             },
             {
               "action": "type",
-              "field": "season",
-              "value": "UPDATED_{{__run_id}}_season"
+              "field": "max_amount",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "personal_pay_ratio",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "hotel_star_limit",
+              "value": "UPDATED_{{__run_id}}_hotel_star_limit"
             },
             {
               "action": "type",
@@ -150,9 +190,14 @@
               "value": "UPDATED_{{__run_id}}_cabin_class_limit"
             },
             {
+              "action": "select_option",
+              "field": "exceed_strategy",
+              "value": "require_reason"
+            },
+            {
               "action": "type",
-              "field": "max_amount",
-              "value": "2"
+              "field": "policy_name",
+              "value": "UPDATED_{{__run_id}}_policy_name"
             },
             {
               "action": "click",

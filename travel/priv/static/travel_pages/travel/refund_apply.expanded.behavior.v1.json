@@ -4,10 +4,26 @@
       "create": "Travel.TravelRefundOrder.create",
       "list": "Travel.TravelRefundOrder.list"
     },
+    "graphql_field_map": {
+      "create": "create_travel_travel_refund_order",
+      "list": "list_travel_travel_refund_orders"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "original_order_id",
+        "refund_reason",
+        "refund_fee",
+        "refund_amount",
+        "approval_mode"
+      ]
+    },
+    "input_type_name_map": {
+      "create": "CreateTravelTravelRefundOrderInput"
     },
     "load": {
       "assigns": {},

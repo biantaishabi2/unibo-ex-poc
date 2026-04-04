@@ -5,10 +5,36 @@
       "get": "Travel.TravelHotel.get",
       "update": "Travel.TravelHotel.update"
     },
+    "graphql_field_map": {
+      "create": "create_travel_travel_hotel",
+      "get": "get_travel_travel_hotel",
+      "update": "update_travel_travel_hotel"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "hotel_code",
+        "hotel_name",
+        "city_id",
+        "city_code",
+        "hotel_star",
+        "status"
+      ],
+      "update": [
+        "hotel_name",
+        "city_id",
+        "city_code",
+        "hotel_star",
+        "status"
+      ]
+    },
+    "input_type_name_map": {
+      "create": "CreateTravelTravelHotelInput",
+      "update": "UpdateTravelTravelHotelInput"
     },
     "load": {
       "assigns": {},
@@ -18,11 +44,11 @@
       "accept": [
         "id",
         "hotel_name",
+        "status",
         "hotel_code",
-        "city_id",
         "city_code",
-        "hotel_star",
-        "status"
+        "city_id",
+        "hotel_star"
       ]
     }
   },
@@ -117,11 +143,6 @@
               "value": "UPDATED_{{__run_id}}_city_code"
             },
             {
-              "action": "type",
-              "field": "hotel_star",
-              "value": "UPDATED_{{__run_id}}_hotel_star"
-            },
-            {
               "action": "select_option",
               "field": "status",
               "value": "inactive"
@@ -130,6 +151,11 @@
               "action": "type",
               "field": "hotel_name",
               "value": "UPDATED_{{__run_id}}_hotel_name"
+            },
+            {
+              "action": "type",
+              "field": "hotel_star",
+              "value": "UPDATED_{{__run_id}}_hotel_star"
             },
             {
               "action": "click",
@@ -330,11 +356,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.hotel_star",
+            "equals": "$form.status",
             "excludes_source": null,
             "graphql_field": "getTravelTravelHotel",
             "op": "equals",
-            "path": "hotel_star",
+            "path": "status",
             "source": "active_record_id"
           },
           "ui": [

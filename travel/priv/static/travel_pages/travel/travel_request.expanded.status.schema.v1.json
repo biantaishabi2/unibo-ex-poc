@@ -23,10 +23,39 @@
         "create": "Travel.TravelOrder.create",
         "list": "Travel.TravelOrder.list"
       },
+      "graphql_field_map": {
+        "create": "create_travel_travel_order",
+        "list": "list_travel_travel_orders"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "create": [
+          "tenant_id",
+          "host_shop_id",
+          "hotel_offer_id",
+          "flight_offer_id",
+          "vacation_offer_id",
+          "train_offer_id",
+          "order_no",
+          "product_type",
+          "customer_id",
+          "contact_name",
+          "contact_phone",
+          "traveler_count",
+          "total_amount",
+          "points_to_use",
+          "points_deduction_amount",
+          "currency",
+          "ticket_passenger_infos",
+          "seat_selection_snapshot"
+        ]
+      },
+      "input_type_name_map": {
+        "create": "CreateTravelTravelOrderInput"
       },
       "load": {
         "assigns": {},

@@ -43,10 +43,45 @@
         "submit": "Travel.TravelChangeOrder.submit",
         "update": "Travel.TravelChangeOrder.update"
       },
+      "graphql_field_map": {
+        "complete": "complete_travel_travel_change_order",
+        "complete_direct": "complete_direct_travel_travel_change_order",
+        "confirm_change": "confirm_change_travel_travel_change_order",
+        "create": "create_travel_travel_change_order",
+        "get": "get_travel_travel_change_order",
+        "reject_change": "reject_change_travel_travel_change_order",
+        "submit": "submit_travel_travel_change_order",
+        "update": "update_travel_travel_change_order"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "create": [
+          "original_order_id",
+          "change_reason",
+          "price_difference",
+          "change_fee",
+          "new_offer_id",
+          "approval_mode"
+        ],
+        "update": [
+          "change_reason",
+          "price_difference",
+          "change_fee",
+          "new_offer_id"
+        ]
+      },
+      "input_type_name_map": {
+        "complete": "CompleteTravelTravelChangeOrderInput",
+        "complete_direct": "CompleteDirectTravelTravelChangeOrderInput",
+        "confirm_change": "ConfirmChangeTravelTravelChangeOrderInput",
+        "create": "CreateTravelTravelChangeOrderInput",
+        "reject_change": "RejectChangeTravelTravelChangeOrderInput",
+        "submit": "SubmitTravelTravelChangeOrderInput",
+        "update": "UpdateTravelTravelChangeOrderInput"
       },
       "load": {
         "assigns": {},
@@ -56,11 +91,11 @@
         "accept": [
           "id",
           "original_order_id",
-          "change_reason",
           "new_offer_id",
-          "approval_mode",
+          "change_reason",
           "price_difference",
-          "change_fee"
+          "change_fee",
+          "approval_mode"
         ]
       }
     },
@@ -146,13 +181,13 @@
               },
               {
                 "action": "type",
-                "field": "change_fee",
-                "value": "UPDATED_{{__run_id}}_change_fee"
+                "field": "price_difference",
+                "value": "UPDATED_{{__run_id}}_price_difference"
               },
               {
                 "action": "type",
-                "field": "price_difference",
-                "value": "UPDATED_{{__run_id}}_price_difference"
+                "field": "change_reason",
+                "value": "UPDATED_{{__run_id}}_change_reason"
               },
               {
                 "action": "type",
@@ -161,8 +196,8 @@
               },
               {
                 "action": "type",
-                "field": "change_reason",
-                "value": "UPDATED_{{__run_id}}_change_reason"
+                "field": "change_fee",
+                "value": "UPDATED_{{__run_id}}_change_fee"
               },
               {
                 "action": "click",

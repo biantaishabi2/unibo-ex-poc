@@ -115,6 +115,9 @@
       "api_map": {
         "list": "Travel.TravelOrder.list"
       },
+      "graphql_field_map": {
+        "list": "list_travel_travel_orders"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
