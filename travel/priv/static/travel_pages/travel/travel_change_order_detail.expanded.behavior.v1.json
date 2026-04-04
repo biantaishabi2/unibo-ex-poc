@@ -27,19 +27,35 @@
     },
     "input_allowlist": {
       "create": [
-        "original_order_id",
-        "change_reason",
-        "price_difference",
+        "approval_mode",
         "change_fee",
+        "change_reason",
         "new_offer_id",
-        "approval_mode"
+        "original_order_id",
+        "price_difference"
       ],
       "update": [
-        "change_reason",
-        "price_difference",
         "change_fee",
-        "new_offer_id"
+        "change_reason",
+        "new_offer_id",
+        "price_difference"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "approval_mode": "enum",
+        "change_fee": "string",
+        "change_reason": "string",
+        "new_offer_id": "string",
+        "original_order_id": "string",
+        "price_difference": "string"
+      },
+      "update": {
+        "change_fee": "string",
+        "change_reason": "string",
+        "new_offer_id": "string",
+        "price_difference": "string"
+      }
     },
     "input_type_name_map": {
       "complete": "CompleteTravelTravelChangeOrderInput",
@@ -58,11 +74,11 @@
       "accept": [
         "id",
         "original_order_id",
-        "new_offer_id",
         "change_reason",
-        "price_difference",
         "change_fee",
-        "approval_mode"
+        "price_difference",
+        "approval_mode",
+        "new_offer_id"
       ]
     }
   },
@@ -153,13 +169,13 @@
             },
             {
               "action": "type",
-              "field": "change_reason",
-              "value": "UPDATED_{{__run_id}}_change_reason"
+              "field": "new_offer_id",
+              "value": "UPDATED_{{__run_id}}_new_offer_id"
             },
             {
               "action": "type",
-              "field": "new_offer_id",
-              "value": "UPDATED_{{__run_id}}_new_offer_id"
+              "field": "change_reason",
+              "value": "UPDATED_{{__run_id}}_change_reason"
             },
             {
               "action": "type",

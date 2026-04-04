@@ -52,7 +52,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive do
   @backend_load_event "get"
   @backend_load_selection "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
   @backend_load_assigns %{travel_room_type: %{}}
-  @backend_params_accept ["id", "room_type_name", "room_type_code", "hotel_code", "bed_type", "status"]
+  @backend_params_accept ["id", "room_type_name", "status", "room_type_code", "hotel_code", "bed_type"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRoomType.create"},
@@ -60,8 +60,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRoomType.update"}
   }
   @graphql_field_map %{"create" => "create_travel_travel_room_type", "get" => "get_travel_travel_room_type", "update" => "update_travel_travel_room_type"}
-  @input_allowlist %{"create" => ~w(room_type_code room_type_name hotel_id hotel_code bed_type status), "update" => ~w(room_type_name hotel_id hotel_code bed_type status)}
+  @input_allowlist %{"create" => ~w(bed_type hotel_code hotel_id room_type_code room_type_name status), "update" => ~w(bed_type hotel_code hotel_id room_type_name status)}
   @input_type_name_map %{"create" => "CreateTravelTravelRoomTypeInput", "update" => "UpdateTravelTravelRoomTypeInput"}
+  @input_type_map %{"create" => %{"bed_type" => "string", "hotel_code" => "string", "hotel_id" => "string", "room_type_code" => "string", "room_type_name" => "string", "status" => "enum"}, "update" => %{"bed_type" => "string", "hotel_code" => "string", "hotel_id" => "string", "room_type_name" => "string", "status" => "enum"}}
   @entity_assign_fields ["room_type_code", "room_type_name", "hotel_code", "bed_type", "status"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -332,10 +333,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -360,6 +363,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_room_type] && socket.assigns[:travel_room_type]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

@@ -17,20 +17,37 @@
     },
     "input_allowlist": {
       "create": [
+        "city_code",
+        "city_id",
         "hotel_code",
         "hotel_name",
-        "city_id",
-        "city_code",
         "hotel_star",
         "status"
       ],
       "update": [
-        "hotel_name",
-        "city_id",
         "city_code",
+        "city_id",
+        "hotel_name",
         "hotel_star",
         "status"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "city_code": "string",
+        "city_id": "string",
+        "hotel_code": "string",
+        "hotel_name": "string",
+        "hotel_star": "string",
+        "status": "enum"
+      },
+      "update": {
+        "city_code": "string",
+        "city_id": "string",
+        "hotel_name": "string",
+        "hotel_star": "string",
+        "status": "enum"
+      }
     },
     "input_type_name_map": {
       "create": "CreateTravelTravelHotelInput",
@@ -44,11 +61,11 @@
       "accept": [
         "id",
         "hotel_name",
-        "status",
-        "hotel_code",
-        "city_code",
         "city_id",
-        "hotel_star"
+        "city_code",
+        "hotel_star",
+        "status",
+        "hotel_code"
       ]
     }
   },
@@ -133,19 +150,14 @@
               "selector": "#travel_hotel_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "type",
-              "field": "city_id",
-              "value": "UPDATED_{{__run_id}}_city_id"
-            },
-            {
-              "action": "type",
-              "field": "city_code",
-              "value": "UPDATED_{{__run_id}}_city_code"
-            },
-            {
               "action": "select_option",
               "field": "status",
               "value": "inactive"
+            },
+            {
+              "action": "type",
+              "field": "city_id",
+              "value": "UPDATED_{{__run_id}}_city_id"
             },
             {
               "action": "type",
@@ -156,6 +168,11 @@
               "action": "type",
               "field": "hotel_star",
               "value": "UPDATED_{{__run_id}}_hotel_star"
+            },
+            {
+              "action": "type",
+              "field": "city_code",
+              "value": "UPDATED_{{__run_id}}_city_code"
             },
             {
               "action": "click",

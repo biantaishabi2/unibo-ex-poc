@@ -28,12 +28,21 @@
       },
       "input_allowlist": {
         "create": [
+          "approval_mode",
           "original_order_id",
-          "refund_reason",
-          "refund_fee",
           "refund_amount",
-          "approval_mode"
+          "refund_fee",
+          "refund_reason"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "approval_mode": "enum",
+          "original_order_id": "string",
+          "refund_amount": "string",
+          "refund_fee": "string",
+          "refund_reason": "string"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelRefundOrderInput"

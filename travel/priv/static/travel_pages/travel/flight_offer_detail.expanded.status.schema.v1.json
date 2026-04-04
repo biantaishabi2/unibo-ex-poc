@@ -80,42 +80,81 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "supplier_code",
-          "itinerary_code",
-          "flight_no",
           "airline_ref_id",
-          "departure_airport_code",
-          "departure_airport_ref_id",
           "arrival_airport_code",
           "arrival_airport_ref_id",
-          "departure_at",
           "arrival_at",
+          "baggage_policy",
           "cabin_class",
           "cabin_class_ref_id",
-          "fare_family",
-          "listed_price",
-          "settlement_price",
           "currency",
-          "seats_available",
-          "baggage_policy",
+          "departure_airport_code",
+          "departure_airport_ref_id",
+          "departure_at",
+          "fare_family",
+          "flight_no",
+          "host_shop_id",
+          "itinerary_code",
+          "listed_price",
           "refund_change_policy",
-          "sale_status"
+          "sale_status",
+          "seats_available",
+          "settlement_price",
+          "supplier_code",
+          "tenant_id"
         ],
         "update": [
           "airline_ref_id",
-          "departure_airport_ref_id",
           "arrival_airport_ref_id",
-          "cabin_class_ref_id",
-          "listed_price",
-          "settlement_price",
-          "currency",
-          "seats_available",
           "baggage_policy",
+          "cabin_class_ref_id",
+          "currency",
+          "departure_airport_ref_id",
+          "fare_family",
+          "listed_price",
           "refund_change_policy",
-          "fare_family"
+          "seats_available",
+          "settlement_price"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "airline_ref_id": "string",
+          "arrival_airport_code": "string",
+          "arrival_airport_ref_id": "string",
+          "arrival_at": "datetime",
+          "baggage_policy": "text",
+          "cabin_class": "string",
+          "cabin_class_ref_id": "string",
+          "currency": "string",
+          "departure_airport_code": "string",
+          "departure_airport_ref_id": "string",
+          "departure_at": "datetime",
+          "fare_family": "string",
+          "flight_no": "string",
+          "host_shop_id": "uuid",
+          "itinerary_code": "string",
+          "listed_price": "decimal",
+          "refund_change_policy": "text",
+          "sale_status": "enum",
+          "seats_available": "integer",
+          "settlement_price": "decimal",
+          "supplier_code": "string",
+          "tenant_id": "uuid"
+        },
+        "update": {
+          "airline_ref_id": "string",
+          "arrival_airport_ref_id": "string",
+          "baggage_policy": "text",
+          "cabin_class_ref_id": "string",
+          "currency": "string",
+          "departure_airport_ref_id": "string",
+          "fare_family": "string",
+          "listed_price": "decimal",
+          "refund_change_policy": "text",
+          "seats_available": "integer",
+          "settlement_price": "decimal"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelFlightOfferInput",
@@ -131,25 +170,25 @@
       "params": {
         "accept": [
           "id",
-          "arrival_at",
-          "arrival_airport_ref_id",
-          "fare_family",
-          "refund_change_policy",
-          "departure_airport_code",
-          "listed_price",
-          "settlement_price",
-          "seats_available",
-          "currency",
-          "departure_airport_ref_id",
           "arrival_airport_code",
-          "itinerary_code",
-          "cabin_class",
           "supplier_code",
-          "host_shop_id",
-          "baggage_policy",
-          "departure_at",
+          "fare_family",
+          "listed_price",
+          "currency",
           "flight_no",
-          "sale_status"
+          "host_shop_id",
+          "departure_at",
+          "departure_airport_code",
+          "cabin_class",
+          "sale_status",
+          "settlement_price",
+          "departure_airport_ref_id",
+          "arrival_at",
+          "seats_available",
+          "baggage_policy",
+          "itinerary_code",
+          "arrival_airport_ref_id",
+          "refund_change_policy"
         ]
       }
     },
@@ -234,8 +273,13 @@
               },
               {
                 "action": "type",
-                "field": "seats_available",
-                "value": "2"
+                "field": "arrival_airport_ref_id",
+                "value": "UPDATED_{{__run_id}}_arrival_airport_ref_id"
+              },
+              {
+                "action": "type",
+                "field": "refund_change_policy",
+                "value": "UPDATED_{{__run_id}}_refund_change_policy"
               },
               {
                 "action": "type",
@@ -254,18 +298,13 @@
               },
               {
                 "action": "type",
-                "field": "baggage_policy",
-                "value": "UPDATED_{{__run_id}}_baggage_policy"
-              },
-              {
-                "action": "type",
                 "field": "departure_airport_ref_id",
                 "value": "UPDATED_{{__run_id}}_departure_airport_ref_id"
               },
               {
                 "action": "type",
-                "field": "arrival_airport_ref_id",
-                "value": "UPDATED_{{__run_id}}_arrival_airport_ref_id"
+                "field": "seats_available",
+                "value": "2"
               },
               {
                 "action": "type",
@@ -274,8 +313,8 @@
               },
               {
                 "action": "type",
-                "field": "refund_change_policy",
-                "value": "UPDATED_{{__run_id}}_refund_change_policy"
+                "field": "baggage_policy",
+                "value": "UPDATED_{{__run_id}}_baggage_policy"
               },
               {
                 "action": "click",
@@ -869,11 +908,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.currency",
+              "equals": "$form.arrival_airport_ref_id",
               "excludes_source": null,
               "graphql_field": "getTravelFlightOffer",
               "op": "equals",
-              "path": "currency",
+              "path": "arrival_airport_ref_id",
               "source": "active_record_id"
             },
             "ui": [

@@ -696,6 +696,21 @@
             "status"
           ]
         },
+        "input_type_map": {
+          "create": {
+            "airline_code": "string",
+            "airline_name": "string",
+            "iata_code": "string",
+            "icao_code": "string",
+            "status": "enum"
+          },
+          "update": {
+            "airline_name": "string",
+            "iata_code": "string",
+            "icao_code": "string",
+            "status": "enum"
+          }
+        },
         "input_type_name_map": {
           "create": "CreateTravelTravelAirlineInput",
           "update": "UpdateTravelTravelAirlineInput"
@@ -740,6 +755,21 @@
           "icao_code",
           "status"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "airline_code": "string",
+          "airline_name": "string",
+          "iata_code": "string",
+          "icao_code": "string",
+          "status": "enum"
+        },
+        "update": {
+          "airline_name": "string",
+          "iata_code": "string",
+          "icao_code": "string",
+          "status": "enum"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelAirlineInput",
@@ -1025,6 +1055,19 @@
             "status"
           ]
         },
+        "input_type_map": {
+          "create": {
+            "cabin_class_code": "string",
+            "cabin_class_name": "string",
+            "cabin_rank": "integer",
+            "status": "enum"
+          },
+          "update": {
+            "cabin_class_name": "string",
+            "cabin_rank": "integer",
+            "status": "enum"
+          }
+        },
         "input_type_name_map": {
           "create": "CreateTravelTravelCabinClassInput",
           "update": "UpdateTravelTravelCabinClassInput"
@@ -1066,6 +1109,19 @@
           "cabin_rank",
           "status"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "cabin_class_code": "string",
+          "cabin_class_name": "string",
+          "cabin_rank": "integer",
+          "status": "enum"
+        },
+        "update": {
+          "cabin_class_name": "string",
+          "cabin_rank": "integer",
+          "status": "enum"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelCabinClassInput",
@@ -1347,19 +1403,35 @@
         },
         "input_allowlist": {
           "create": [
-            "original_order_id",
-            "change_reason",
-            "price_difference",
+            "approval_mode",
             "change_fee",
+            "change_reason",
             "new_offer_id",
-            "approval_mode"
+            "original_order_id",
+            "price_difference"
           ],
           "update": [
-            "change_reason",
-            "price_difference",
             "change_fee",
-            "new_offer_id"
+            "change_reason",
+            "new_offer_id",
+            "price_difference"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "approval_mode": "enum",
+            "change_fee": "string",
+            "change_reason": "string",
+            "new_offer_id": "string",
+            "original_order_id": "string",
+            "price_difference": "string"
+          },
+          "update": {
+            "change_fee": "string",
+            "change_reason": "string",
+            "new_offer_id": "string",
+            "price_difference": "string"
+          }
         },
         "input_type_name_map": {
           "complete": "CompleteTravelTravelChangeOrderInput",
@@ -1404,19 +1476,35 @@
       },
       "input_allowlist": {
         "create": [
-          "original_order_id",
-          "change_reason",
-          "price_difference",
+          "approval_mode",
           "change_fee",
+          "change_reason",
           "new_offer_id",
-          "approval_mode"
+          "original_order_id",
+          "price_difference"
         ],
         "update": [
-          "change_reason",
-          "price_difference",
           "change_fee",
-          "new_offer_id"
+          "change_reason",
+          "new_offer_id",
+          "price_difference"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "approval_mode": "enum",
+          "change_fee": "string",
+          "change_reason": "string",
+          "new_offer_id": "string",
+          "original_order_id": "string",
+          "price_difference": "string"
+        },
+        "update": {
+          "change_fee": "string",
+          "change_reason": "string",
+          "new_offer_id": "string",
+          "price_difference": "string"
+        }
       },
       "input_type_name_map": {
         "complete": "CompleteTravelTravelChangeOrderInput",
@@ -1765,12 +1853,27 @@
             "used_at"
           ],
           "update": [
-            "supplier_booking_ref",
-            "voucher_or_ticket_ref",
-            "ticket_refs",
             "confirmation_payload",
-            "failure_reason"
+            "failure_reason",
+            "supplier_booking_ref",
+            "ticket_refs",
+            "voucher_or_ticket_ref"
           ]
+        },
+        "input_type_map": {
+          "fail_fulfillment": {
+            "failure_reason": "text"
+          },
+          "mark_in_use": {
+            "used_at": "datetime"
+          },
+          "update": {
+            "confirmation_payload": "text",
+            "failure_reason": "text",
+            "supplier_booking_ref": "string",
+            "ticket_refs": "map",
+            "voucher_or_ticket_ref": "string"
+          }
         },
         "input_type_name_map": {
           "cancel_fulfillment": "CancelFulfillmentTravelTravelFulfillmentInput",
@@ -1823,12 +1926,27 @@
           "used_at"
         ],
         "update": [
-          "supplier_booking_ref",
-          "voucher_or_ticket_ref",
-          "ticket_refs",
           "confirmation_payload",
-          "failure_reason"
+          "failure_reason",
+          "supplier_booking_ref",
+          "ticket_refs",
+          "voucher_or_ticket_ref"
         ]
+      },
+      "input_type_map": {
+        "fail_fulfillment": {
+          "failure_reason": "text"
+        },
+        "mark_in_use": {
+          "used_at": "datetime"
+        },
+        "update": {
+          "confirmation_payload": "text",
+          "failure_reason": "text",
+          "supplier_booking_ref": "string",
+          "ticket_refs": "map",
+          "voucher_or_ticket_ref": "string"
+        }
       },
       "input_type_name_map": {
         "cancel_fulfillment": "CancelFulfillmentTravelTravelFulfillmentInput",
@@ -2210,20 +2328,37 @@
         },
         "input_allowlist": {
           "create": [
+            "city_code",
+            "city_id",
             "hotel_code",
             "hotel_name",
-            "city_id",
-            "city_code",
             "hotel_star",
             "status"
           ],
           "update": [
-            "hotel_name",
-            "city_id",
             "city_code",
+            "city_id",
+            "hotel_name",
             "hotel_star",
             "status"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "city_code": "string",
+            "city_id": "string",
+            "hotel_code": "string",
+            "hotel_name": "string",
+            "hotel_star": "string",
+            "status": "enum"
+          },
+          "update": {
+            "city_code": "string",
+            "city_id": "string",
+            "hotel_name": "string",
+            "hotel_star": "string",
+            "status": "enum"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelHotelInput",
@@ -2257,20 +2392,37 @@
       },
       "input_allowlist": {
         "create": [
+          "city_code",
+          "city_id",
           "hotel_code",
           "hotel_name",
-          "city_id",
-          "city_code",
           "hotel_star",
           "status"
         ],
         "update": [
-          "hotel_name",
-          "city_id",
           "city_code",
+          "city_id",
+          "hotel_name",
           "hotel_star",
           "status"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "city_code": "string",
+          "city_id": "string",
+          "hotel_code": "string",
+          "hotel_name": "string",
+          "hotel_star": "string",
+          "status": "enum"
+        },
+        "update": {
+          "city_code": "string",
+          "city_id": "string",
+          "hotel_name": "string",
+          "hotel_star": "string",
+          "status": "enum"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelHotelInput",
@@ -2590,24 +2742,24 @@
         },
         "input_allowlist": {
           "create": [
-            "tenant_id",
-            "host_shop_id",
-            "hotel_offer_id",
-            "flight_offer_id",
-            "vacation_offer_id",
-            "train_offer_id",
-            "order_no",
-            "product_type",
-            "customer_id",
             "contact_name",
             "contact_phone",
-            "traveler_count",
-            "total_amount",
-            "points_to_use",
-            "points_deduction_amount",
             "currency",
+            "customer_id",
+            "flight_offer_id",
+            "host_shop_id",
+            "hotel_offer_id",
+            "order_no",
+            "points_deduction_amount",
+            "points_to_use",
+            "product_type",
+            "seat_selection_snapshot",
+            "tenant_id",
             "ticket_passenger_infos",
-            "seat_selection_snapshot"
+            "total_amount",
+            "train_offer_id",
+            "traveler_count",
+            "vacation_offer_id"
           ],
           "request_change": [
             "original_order_ref"
@@ -2615,10 +2767,42 @@
           "update": [
             "contact_name",
             "contact_phone",
-            "traveler_count",
+            "seat_selection_snapshot",
             "ticket_passenger_infos",
-            "seat_selection_snapshot"
+            "traveler_count"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "contact_name": "string",
+            "contact_phone": "string",
+            "currency": "string",
+            "customer_id": "string",
+            "flight_offer_id": "string",
+            "host_shop_id": "uuid",
+            "hotel_offer_id": "string",
+            "order_no": "string",
+            "points_deduction_amount": "decimal",
+            "points_to_use": "integer",
+            "product_type": "enum",
+            "seat_selection_snapshot": "map",
+            "tenant_id": "uuid",
+            "ticket_passenger_infos": "map",
+            "total_amount": "decimal",
+            "train_offer_id": "string",
+            "traveler_count": "integer",
+            "vacation_offer_id": "string"
+          },
+          "request_change": {
+            "original_order_ref": "string"
+          },
+          "update": {
+            "contact_name": "string",
+            "contact_phone": "string",
+            "seat_selection_snapshot": "map",
+            "ticket_passenger_infos": "map",
+            "traveler_count": "integer"
+          }
         },
         "input_type_name_map": {
           "cancel_cancel_request": "CancelCancelRequestTravelTravelOrderInput",
@@ -2688,24 +2872,24 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "hotel_offer_id",
-          "flight_offer_id",
-          "vacation_offer_id",
-          "train_offer_id",
-          "order_no",
-          "product_type",
-          "customer_id",
           "contact_name",
           "contact_phone",
-          "traveler_count",
-          "total_amount",
-          "points_to_use",
-          "points_deduction_amount",
           "currency",
+          "customer_id",
+          "flight_offer_id",
+          "host_shop_id",
+          "hotel_offer_id",
+          "order_no",
+          "points_deduction_amount",
+          "points_to_use",
+          "product_type",
+          "seat_selection_snapshot",
+          "tenant_id",
           "ticket_passenger_infos",
-          "seat_selection_snapshot"
+          "total_amount",
+          "train_offer_id",
+          "traveler_count",
+          "vacation_offer_id"
         ],
         "request_change": [
           "original_order_ref"
@@ -2713,10 +2897,42 @@
         "update": [
           "contact_name",
           "contact_phone",
-          "traveler_count",
+          "seat_selection_snapshot",
           "ticket_passenger_infos",
-          "seat_selection_snapshot"
+          "traveler_count"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "contact_name": "string",
+          "contact_phone": "string",
+          "currency": "string",
+          "customer_id": "string",
+          "flight_offer_id": "string",
+          "host_shop_id": "uuid",
+          "hotel_offer_id": "string",
+          "order_no": "string",
+          "points_deduction_amount": "decimal",
+          "points_to_use": "integer",
+          "product_type": "enum",
+          "seat_selection_snapshot": "map",
+          "tenant_id": "uuid",
+          "ticket_passenger_infos": "map",
+          "total_amount": "decimal",
+          "train_offer_id": "string",
+          "traveler_count": "integer",
+          "vacation_offer_id": "string"
+        },
+        "request_change": {
+          "original_order_ref": "string"
+        },
+        "update": {
+          "contact_name": "string",
+          "contact_phone": "string",
+          "seat_selection_snapshot": "map",
+          "ticket_passenger_infos": "map",
+          "traveler_count": "integer"
+        }
       },
       "input_type_name_map": {
         "cancel_cancel_request": "CancelCancelRequestTravelTravelOrderInput",
@@ -3233,18 +3449,18 @@
         },
         "input_allowlist": {
           "create": [
-            "order_id",
-            "policy_id",
-            "check_result",
-            "policy_amount",
             "actual_amount",
+            "approval_mode",
+            "approval_request_id",
+            "check_result",
             "exceed_amount",
             "exceed_ratio",
-            "exceed_strategy",
             "exceed_reason",
+            "exceed_strategy",
+            "order_id",
             "personal_pay_amount",
-            "approval_request_id",
-            "approval_mode"
+            "policy_amount",
+            "policy_id"
           ],
           "update": [
             "check_result",
@@ -3252,6 +3468,28 @@
             "exceed_strategy",
             "personal_pay_amount"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "actual_amount": "integer",
+            "approval_mode": "enum",
+            "approval_request_id": "string",
+            "check_result": "enum",
+            "exceed_amount": "integer",
+            "exceed_ratio": "string",
+            "exceed_reason": "string",
+            "exceed_strategy": "string",
+            "order_id": "string",
+            "personal_pay_amount": "integer",
+            "policy_amount": "integer",
+            "policy_id": "string"
+          },
+          "update": {
+            "check_result": "enum",
+            "exceed_reason": "string",
+            "exceed_strategy": "string",
+            "personal_pay_amount": "integer"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelPolicyCheckInput",
@@ -3292,18 +3530,18 @@
       },
       "input_allowlist": {
         "create": [
-          "order_id",
-          "policy_id",
-          "check_result",
-          "policy_amount",
           "actual_amount",
+          "approval_mode",
+          "approval_request_id",
+          "check_result",
           "exceed_amount",
           "exceed_ratio",
-          "exceed_strategy",
           "exceed_reason",
+          "exceed_strategy",
+          "order_id",
           "personal_pay_amount",
-          "approval_request_id",
-          "approval_mode"
+          "policy_amount",
+          "policy_id"
         ],
         "update": [
           "check_result",
@@ -3311,6 +3549,28 @@
           "exceed_strategy",
           "personal_pay_amount"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "actual_amount": "integer",
+          "approval_mode": "enum",
+          "approval_request_id": "string",
+          "check_result": "enum",
+          "exceed_amount": "integer",
+          "exceed_ratio": "string",
+          "exceed_reason": "string",
+          "exceed_strategy": "string",
+          "order_id": "string",
+          "personal_pay_amount": "integer",
+          "policy_amount": "integer",
+          "policy_id": "string"
+        },
+        "update": {
+          "check_result": "enum",
+          "exceed_reason": "string",
+          "exceed_strategy": "string",
+          "personal_pay_amount": "integer"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelPolicyCheckInput",
@@ -3627,32 +3887,64 @@
             "is_active"
           ],
           "create": [
+            "approval_mode",
+            "cabin_class_limit",
+            "city_tier",
+            "employee_level",
+            "enterprise_id",
+            "exceed_strategy",
+            "hotel_star_limit",
+            "max_amount",
+            "personal_pay_ratio",
             "policy_name",
             "product_type",
-            "employee_level",
-            "city_tier",
-            "season",
-            "max_amount",
-            "cabin_class_limit",
-            "hotel_star_limit",
-            "exceed_strategy",
-            "approval_mode",
-            "personal_pay_ratio",
-            "enterprise_id"
+            "season"
           ],
           "deactivate": [
             "is_active"
           ],
           "update": [
-            "policy_name",
-            "season",
-            "max_amount",
-            "cabin_class_limit",
-            "hotel_star_limit",
-            "exceed_strategy",
             "approval_mode",
-            "personal_pay_ratio"
+            "cabin_class_limit",
+            "exceed_strategy",
+            "hotel_star_limit",
+            "max_amount",
+            "personal_pay_ratio",
+            "policy_name",
+            "season"
           ]
+        },
+        "input_type_map": {
+          "activate": {
+            "is_active": "boolean"
+          },
+          "create": {
+            "approval_mode": "enum",
+            "cabin_class_limit": "string",
+            "city_tier": "string",
+            "employee_level": "string",
+            "enterprise_id": "string",
+            "exceed_strategy": "enum",
+            "hotel_star_limit": "string",
+            "max_amount": "integer",
+            "personal_pay_ratio": "integer",
+            "policy_name": "string",
+            "product_type": "enum",
+            "season": "string"
+          },
+          "deactivate": {
+            "is_active": "boolean"
+          },
+          "update": {
+            "approval_mode": "enum",
+            "cabin_class_limit": "string",
+            "exceed_strategy": "enum",
+            "hotel_star_limit": "string",
+            "max_amount": "integer",
+            "personal_pay_ratio": "integer",
+            "policy_name": "string",
+            "season": "string"
+          }
         },
         "input_type_name_map": {
           "activate": "ActivateTravelTravelPolicyInput",
@@ -3700,32 +3992,64 @@
           "is_active"
         ],
         "create": [
+          "approval_mode",
+          "cabin_class_limit",
+          "city_tier",
+          "employee_level",
+          "enterprise_id",
+          "exceed_strategy",
+          "hotel_star_limit",
+          "max_amount",
+          "personal_pay_ratio",
           "policy_name",
           "product_type",
-          "employee_level",
-          "city_tier",
-          "season",
-          "max_amount",
-          "cabin_class_limit",
-          "hotel_star_limit",
-          "exceed_strategy",
-          "approval_mode",
-          "personal_pay_ratio",
-          "enterprise_id"
+          "season"
         ],
         "deactivate": [
           "is_active"
         ],
         "update": [
-          "policy_name",
-          "season",
-          "max_amount",
-          "cabin_class_limit",
-          "hotel_star_limit",
-          "exceed_strategy",
           "approval_mode",
-          "personal_pay_ratio"
+          "cabin_class_limit",
+          "exceed_strategy",
+          "hotel_star_limit",
+          "max_amount",
+          "personal_pay_ratio",
+          "policy_name",
+          "season"
         ]
+      },
+      "input_type_map": {
+        "activate": {
+          "is_active": "boolean"
+        },
+        "create": {
+          "approval_mode": "enum",
+          "cabin_class_limit": "string",
+          "city_tier": "string",
+          "employee_level": "string",
+          "enterprise_id": "string",
+          "exceed_strategy": "enum",
+          "hotel_star_limit": "string",
+          "max_amount": "integer",
+          "personal_pay_ratio": "integer",
+          "policy_name": "string",
+          "product_type": "enum",
+          "season": "string"
+        },
+        "deactivate": {
+          "is_active": "boolean"
+        },
+        "update": {
+          "approval_mode": "enum",
+          "cabin_class_limit": "string",
+          "exceed_strategy": "enum",
+          "hotel_star_limit": "string",
+          "max_amount": "integer",
+          "personal_pay_ratio": "integer",
+          "policy_name": "string",
+          "season": "string"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelTravelPolicyInput",
@@ -4089,17 +4413,31 @@
         },
         "input_allowlist": {
           "create": [
+            "approval_mode",
             "original_order_id",
-            "refund_reason",
-            "refund_fee",
             "refund_amount",
-            "approval_mode"
+            "refund_fee",
+            "refund_reason"
           ],
           "update": [
-            "refund_reason",
+            "refund_amount",
             "refund_fee",
-            "refund_amount"
+            "refund_reason"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "approval_mode": "enum",
+            "original_order_id": "string",
+            "refund_amount": "string",
+            "refund_fee": "string",
+            "refund_reason": "string"
+          },
+          "update": {
+            "refund_amount": "string",
+            "refund_fee": "string",
+            "refund_reason": "string"
+          }
         },
         "input_type_name_map": {
           "confirm_refund": "ConfirmRefundTravelTravelRefundOrderInput",
@@ -4143,17 +4481,31 @@
       },
       "input_allowlist": {
         "create": [
+          "approval_mode",
           "original_order_id",
-          "refund_reason",
-          "refund_fee",
           "refund_amount",
-          "approval_mode"
+          "refund_fee",
+          "refund_reason"
         ],
         "update": [
-          "refund_reason",
+          "refund_amount",
           "refund_fee",
-          "refund_amount"
+          "refund_reason"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "approval_mode": "enum",
+          "original_order_id": "string",
+          "refund_amount": "string",
+          "refund_fee": "string",
+          "refund_reason": "string"
+        },
+        "update": {
+          "refund_amount": "string",
+          "refund_fee": "string",
+          "refund_reason": "string"
+        }
       },
       "input_type_name_map": {
         "confirm_refund": "ConfirmRefundTravelTravelRefundOrderInput",
@@ -4476,20 +4828,37 @@
         },
         "input_allowlist": {
           "create": [
+            "bed_type",
+            "hotel_code",
+            "hotel_id",
             "room_type_code",
             "room_type_name",
-            "hotel_id",
-            "hotel_code",
-            "bed_type",
             "status"
           ],
           "update": [
-            "room_type_name",
-            "hotel_id",
-            "hotel_code",
             "bed_type",
+            "hotel_code",
+            "hotel_id",
+            "room_type_name",
             "status"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "bed_type": "string",
+            "hotel_code": "string",
+            "hotel_id": "string",
+            "room_type_code": "string",
+            "room_type_name": "string",
+            "status": "enum"
+          },
+          "update": {
+            "bed_type": "string",
+            "hotel_code": "string",
+            "hotel_id": "string",
+            "room_type_name": "string",
+            "status": "enum"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelRoomTypeInput",
@@ -4523,20 +4892,37 @@
       },
       "input_allowlist": {
         "create": [
+          "bed_type",
+          "hotel_code",
+          "hotel_id",
           "room_type_code",
           "room_type_name",
-          "hotel_id",
-          "hotel_code",
-          "bed_type",
           "status"
         ],
         "update": [
-          "room_type_name",
-          "hotel_id",
-          "hotel_code",
           "bed_type",
+          "hotel_code",
+          "hotel_id",
+          "room_type_name",
           "status"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "bed_type": "string",
+          "hotel_code": "string",
+          "hotel_id": "string",
+          "room_type_code": "string",
+          "room_type_name": "string",
+          "status": "enum"
+        },
+        "update": {
+          "bed_type": "string",
+          "hotel_code": "string",
+          "hotel_id": "string",
+          "room_type_name": "string",
+          "status": "enum"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelRoomTypeInput",
@@ -4811,13 +5197,13 @@
         },
         "input_allowlist": {
           "create": [
-            "supplier_code",
-            "object_type",
             "canonical_entity",
             "canonical_id",
             "external_code",
             "external_name",
-            "status"
+            "object_type",
+            "status",
+            "supplier_code"
           ],
           "update": [
             "canonical_entity",
@@ -4825,6 +5211,23 @@
             "external_name",
             "status"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "canonical_entity": "string",
+            "canonical_id": "uuid",
+            "external_code": "string",
+            "external_name": "string",
+            "object_type": "enum",
+            "status": "enum",
+            "supplier_code": "string"
+          },
+          "update": {
+            "canonical_entity": "string",
+            "canonical_id": "uuid",
+            "external_name": "string",
+            "status": "enum"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelStaticCodeMappingInput",
@@ -4860,13 +5263,13 @@
       },
       "input_allowlist": {
         "create": [
-          "supplier_code",
-          "object_type",
           "canonical_entity",
           "canonical_id",
           "external_code",
           "external_name",
-          "status"
+          "object_type",
+          "status",
+          "supplier_code"
         ],
         "update": [
           "canonical_entity",
@@ -4874,6 +5277,23 @@
           "external_name",
           "status"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "canonical_entity": "string",
+          "canonical_id": "uuid",
+          "external_code": "string",
+          "external_name": "string",
+          "object_type": "enum",
+          "status": "enum",
+          "supplier_code": "string"
+        },
+        "update": {
+          "canonical_entity": "string",
+          "canonical_id": "uuid",
+          "external_name": "string",
+          "status": "enum"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelStaticCodeMappingInput",
@@ -5910,25 +6330,47 @@
         },
         "input_allowlist": {
           "create": [
-            "tenant_id",
-            "host_shop_id",
-            "hotel_offer_id",
-            "flight_offer_id",
-            "vacation_offer_id",
-            "train_offer_id",
-            "order_no",
-            "product_type",
-            "customer_id",
             "contact_name",
             "contact_phone",
-            "traveler_count",
-            "total_amount",
-            "points_to_use",
-            "points_deduction_amount",
             "currency",
+            "customer_id",
+            "flight_offer_id",
+            "host_shop_id",
+            "hotel_offer_id",
+            "order_no",
+            "points_deduction_amount",
+            "points_to_use",
+            "product_type",
+            "seat_selection_snapshot",
+            "tenant_id",
             "ticket_passenger_infos",
-            "seat_selection_snapshot"
+            "total_amount",
+            "train_offer_id",
+            "traveler_count",
+            "vacation_offer_id"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "contact_name": "string",
+            "contact_phone": "string",
+            "currency": "string",
+            "customer_id": "string",
+            "flight_offer_id": "string",
+            "host_shop_id": "uuid",
+            "hotel_offer_id": "string",
+            "order_no": "string",
+            "points_deduction_amount": "decimal",
+            "points_to_use": "integer",
+            "product_type": "enum",
+            "seat_selection_snapshot": "map",
+            "tenant_id": "uuid",
+            "ticket_passenger_infos": "map",
+            "total_amount": "decimal",
+            "train_offer_id": "string",
+            "traveler_count": "integer",
+            "vacation_offer_id": "string"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelOrderInput"
@@ -5952,25 +6394,47 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "hotel_offer_id",
-          "flight_offer_id",
-          "vacation_offer_id",
-          "train_offer_id",
-          "order_no",
-          "product_type",
-          "customer_id",
           "contact_name",
           "contact_phone",
-          "traveler_count",
-          "total_amount",
-          "points_to_use",
-          "points_deduction_amount",
           "currency",
+          "customer_id",
+          "flight_offer_id",
+          "host_shop_id",
+          "hotel_offer_id",
+          "order_no",
+          "points_deduction_amount",
+          "points_to_use",
+          "product_type",
+          "seat_selection_snapshot",
+          "tenant_id",
           "ticket_passenger_infos",
-          "seat_selection_snapshot"
+          "total_amount",
+          "train_offer_id",
+          "traveler_count",
+          "vacation_offer_id"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "contact_name": "string",
+          "contact_phone": "string",
+          "currency": "string",
+          "customer_id": "string",
+          "flight_offer_id": "string",
+          "host_shop_id": "uuid",
+          "hotel_offer_id": "string",
+          "order_no": "string",
+          "points_deduction_amount": "decimal",
+          "points_to_use": "integer",
+          "product_type": "enum",
+          "seat_selection_snapshot": "map",
+          "tenant_id": "uuid",
+          "ticket_passenger_infos": "map",
+          "total_amount": "decimal",
+          "train_offer_id": "string",
+          "traveler_count": "integer",
+          "vacation_offer_id": "string"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelOrderInput"
@@ -7471,13 +7935,23 @@
         },
         "input_allowlist": {
           "create": [
-            "original_order_id",
-            "change_reason",
-            "price_difference",
+            "approval_mode",
             "change_fee",
+            "change_reason",
             "new_offer_id",
-            "approval_mode"
+            "original_order_id",
+            "price_difference"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "approval_mode": "enum",
+            "change_fee": "string",
+            "change_reason": "string",
+            "new_offer_id": "string",
+            "original_order_id": "string",
+            "price_difference": "string"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelChangeOrderInput"
@@ -7502,13 +7976,23 @@
       },
       "input_allowlist": {
         "create": [
-          "original_order_id",
-          "change_reason",
-          "price_difference",
+          "approval_mode",
           "change_fee",
+          "change_reason",
           "new_offer_id",
-          "approval_mode"
+          "original_order_id",
+          "price_difference"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "approval_mode": "enum",
+          "change_fee": "string",
+          "change_reason": "string",
+          "new_offer_id": "string",
+          "original_order_id": "string",
+          "price_difference": "string"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelChangeOrderInput"
@@ -8164,12 +8648,21 @@
         },
         "input_allowlist": {
           "create": [
+            "approval_mode",
             "original_order_id",
-            "refund_reason",
-            "refund_fee",
             "refund_amount",
-            "approval_mode"
+            "refund_fee",
+            "refund_reason"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "approval_mode": "enum",
+            "original_order_id": "string",
+            "refund_amount": "string",
+            "refund_fee": "string",
+            "refund_reason": "string"
+          }
         },
         "input_type_name_map": {
           "create": "CreateTravelTravelRefundOrderInput"
@@ -8194,12 +8687,21 @@
       },
       "input_allowlist": {
         "create": [
+          "approval_mode",
           "original_order_id",
-          "refund_reason",
-          "refund_fee",
           "refund_amount",
-          "approval_mode"
+          "refund_fee",
+          "refund_reason"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "approval_mode": "enum",
+          "original_order_id": "string",
+          "refund_amount": "string",
+          "refund_fee": "string",
+          "refund_reason": "string"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelRefundOrderInput"
@@ -10279,42 +10781,81 @@
         },
         "input_allowlist": {
           "create": [
-            "tenant_id",
-            "host_shop_id",
-            "supplier_code",
-            "itinerary_code",
-            "flight_no",
             "airline_ref_id",
-            "departure_airport_code",
-            "departure_airport_ref_id",
             "arrival_airport_code",
             "arrival_airport_ref_id",
-            "departure_at",
             "arrival_at",
+            "baggage_policy",
             "cabin_class",
             "cabin_class_ref_id",
-            "fare_family",
-            "listed_price",
-            "settlement_price",
             "currency",
-            "seats_available",
-            "baggage_policy",
+            "departure_airport_code",
+            "departure_airport_ref_id",
+            "departure_at",
+            "fare_family",
+            "flight_no",
+            "host_shop_id",
+            "itinerary_code",
+            "listed_price",
             "refund_change_policy",
-            "sale_status"
+            "sale_status",
+            "seats_available",
+            "settlement_price",
+            "supplier_code",
+            "tenant_id"
           ],
           "update": [
             "airline_ref_id",
-            "departure_airport_ref_id",
             "arrival_airport_ref_id",
-            "cabin_class_ref_id",
-            "listed_price",
-            "settlement_price",
-            "currency",
-            "seats_available",
             "baggage_policy",
+            "cabin_class_ref_id",
+            "currency",
+            "departure_airport_ref_id",
+            "fare_family",
+            "listed_price",
             "refund_change_policy",
-            "fare_family"
+            "seats_available",
+            "settlement_price"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "airline_ref_id": "string",
+            "arrival_airport_code": "string",
+            "arrival_airport_ref_id": "string",
+            "arrival_at": "datetime",
+            "baggage_policy": "text",
+            "cabin_class": "string",
+            "cabin_class_ref_id": "string",
+            "currency": "string",
+            "departure_airport_code": "string",
+            "departure_airport_ref_id": "string",
+            "departure_at": "datetime",
+            "fare_family": "string",
+            "flight_no": "string",
+            "host_shop_id": "uuid",
+            "itinerary_code": "string",
+            "listed_price": "decimal",
+            "refund_change_policy": "text",
+            "sale_status": "enum",
+            "seats_available": "integer",
+            "settlement_price": "decimal",
+            "supplier_code": "string",
+            "tenant_id": "uuid"
+          },
+          "update": {
+            "airline_ref_id": "string",
+            "arrival_airport_ref_id": "string",
+            "baggage_policy": "text",
+            "cabin_class_ref_id": "string",
+            "currency": "string",
+            "departure_airport_ref_id": "string",
+            "fare_family": "string",
+            "listed_price": "decimal",
+            "refund_change_policy": "text",
+            "seats_available": "integer",
+            "settlement_price": "decimal"
+          }
         },
         "input_type_name_map": {
           "activate": "ActivateTravelFlightOfferInput",
@@ -10330,25 +10871,25 @@
         "params": {
           "accept": [
             "id",
-            "arrival_at",
-            "arrival_airport_ref_id",
-            "fare_family",
-            "refund_change_policy",
-            "departure_airport_code",
-            "listed_price",
-            "settlement_price",
-            "seats_available",
-            "currency",
-            "departure_airport_ref_id",
             "arrival_airport_code",
-            "itinerary_code",
-            "cabin_class",
             "supplier_code",
-            "host_shop_id",
-            "baggage_policy",
-            "departure_at",
+            "fare_family",
+            "listed_price",
+            "currency",
             "flight_no",
-            "sale_status"
+            "host_shop_id",
+            "departure_at",
+            "departure_airport_code",
+            "cabin_class",
+            "sale_status",
+            "settlement_price",
+            "departure_airport_ref_id",
+            "arrival_at",
+            "seats_available",
+            "baggage_policy",
+            "itinerary_code",
+            "arrival_airport_ref_id",
+            "refund_change_policy"
           ]
         }
       },
@@ -10369,42 +10910,81 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "supplier_code",
-          "itinerary_code",
-          "flight_no",
           "airline_ref_id",
-          "departure_airport_code",
-          "departure_airport_ref_id",
           "arrival_airport_code",
           "arrival_airport_ref_id",
-          "departure_at",
           "arrival_at",
+          "baggage_policy",
           "cabin_class",
           "cabin_class_ref_id",
-          "fare_family",
-          "listed_price",
-          "settlement_price",
           "currency",
-          "seats_available",
-          "baggage_policy",
+          "departure_airport_code",
+          "departure_airport_ref_id",
+          "departure_at",
+          "fare_family",
+          "flight_no",
+          "host_shop_id",
+          "itinerary_code",
+          "listed_price",
           "refund_change_policy",
-          "sale_status"
+          "sale_status",
+          "seats_available",
+          "settlement_price",
+          "supplier_code",
+          "tenant_id"
         ],
         "update": [
           "airline_ref_id",
-          "departure_airport_ref_id",
           "arrival_airport_ref_id",
-          "cabin_class_ref_id",
-          "listed_price",
-          "settlement_price",
-          "currency",
-          "seats_available",
           "baggage_policy",
+          "cabin_class_ref_id",
+          "currency",
+          "departure_airport_ref_id",
+          "fare_family",
+          "listed_price",
           "refund_change_policy",
-          "fare_family"
+          "seats_available",
+          "settlement_price"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "airline_ref_id": "string",
+          "arrival_airport_code": "string",
+          "arrival_airport_ref_id": "string",
+          "arrival_at": "datetime",
+          "baggage_policy": "text",
+          "cabin_class": "string",
+          "cabin_class_ref_id": "string",
+          "currency": "string",
+          "departure_airport_code": "string",
+          "departure_airport_ref_id": "string",
+          "departure_at": "datetime",
+          "fare_family": "string",
+          "flight_no": "string",
+          "host_shop_id": "uuid",
+          "itinerary_code": "string",
+          "listed_price": "decimal",
+          "refund_change_policy": "text",
+          "sale_status": "enum",
+          "seats_available": "integer",
+          "settlement_price": "decimal",
+          "supplier_code": "string",
+          "tenant_id": "uuid"
+        },
+        "update": {
+          "airline_ref_id": "string",
+          "arrival_airport_ref_id": "string",
+          "baggage_policy": "text",
+          "cabin_class_ref_id": "string",
+          "currency": "string",
+          "departure_airport_ref_id": "string",
+          "fare_family": "string",
+          "listed_price": "decimal",
+          "refund_change_policy": "text",
+          "seats_available": "integer",
+          "settlement_price": "decimal"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelFlightOfferInput",
@@ -10608,40 +11188,77 @@
         },
         "input_allowlist": {
           "create": [
-            "tenant_id",
-            "host_shop_id",
-            "supplier_code",
-            "hotel_code",
-            "hotel_ref_id",
-            "hotel_name",
-            "city_code",
-            "city_ref_id",
-            "room_type_code",
-            "room_type_ref_id",
-            "rate_plan_code",
+            "cancellation_policy",
             "checkin_date",
             "checkout_date",
-            "listed_price",
-            "settlement_price",
-            "currency",
-            "inventory_count",
-            "cancellation_policy",
-            "guarantee_policy",
-            "sale_status"
-          ],
-          "update": [
-            "hotel_name",
             "city_code",
             "city_ref_id",
-            "hotel_ref_id",
-            "room_type_ref_id",
-            "listed_price",
-            "settlement_price",
             "currency",
+            "guarantee_policy",
+            "host_shop_id",
+            "hotel_code",
+            "hotel_name",
+            "hotel_ref_id",
             "inventory_count",
+            "listed_price",
+            "rate_plan_code",
+            "room_type_code",
+            "room_type_ref_id",
+            "sale_status",
+            "settlement_price",
+            "supplier_code",
+            "tenant_id"
+          ],
+          "update": [
             "cancellation_policy",
-            "guarantee_policy"
+            "city_code",
+            "city_ref_id",
+            "currency",
+            "guarantee_policy",
+            "hotel_name",
+            "hotel_ref_id",
+            "inventory_count",
+            "listed_price",
+            "room_type_ref_id",
+            "settlement_price"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "cancellation_policy": "text",
+            "checkin_date": "date",
+            "checkout_date": "date",
+            "city_code": "string",
+            "city_ref_id": "string",
+            "currency": "string",
+            "guarantee_policy": "text",
+            "host_shop_id": "uuid",
+            "hotel_code": "string",
+            "hotel_name": "string",
+            "hotel_ref_id": "string",
+            "inventory_count": "integer",
+            "listed_price": "decimal",
+            "rate_plan_code": "string",
+            "room_type_code": "string",
+            "room_type_ref_id": "string",
+            "sale_status": "enum",
+            "settlement_price": "decimal",
+            "supplier_code": "string",
+            "tenant_id": "uuid"
+          },
+          "update": {
+            "cancellation_policy": "text",
+            "city_code": "string",
+            "city_ref_id": "string",
+            "currency": "string",
+            "guarantee_policy": "text",
+            "hotel_name": "string",
+            "hotel_ref_id": "string",
+            "inventory_count": "integer",
+            "listed_price": "decimal",
+            "room_type_ref_id": "string",
+            "settlement_price": "decimal"
+          }
         },
         "input_type_name_map": {
           "activate": "ActivateTravelHotelOfferInput",
@@ -10657,23 +11274,23 @@
         "params": {
           "accept": [
             "id",
-            "currency",
-            "settlement_price",
-            "sale_status",
-            "city_ref_id",
-            "room_type_code",
-            "listed_price",
-            "hotel_name",
-            "hotel_code",
-            "checkout_date",
             "guarantee_policy",
-            "city_code",
             "cancellation_policy",
             "rate_plan_code",
+            "listed_price",
+            "supplier_code",
             "inventory_count",
-            "checkin_date",
+            "city_ref_id",
+            "currency",
             "host_shop_id",
-            "supplier_code"
+            "settlement_price",
+            "sale_status",
+            "checkin_date",
+            "room_type_code",
+            "hotel_code",
+            "city_code",
+            "hotel_name",
+            "checkout_date"
           ]
         }
       },
@@ -10694,40 +11311,77 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "supplier_code",
-          "hotel_code",
-          "hotel_ref_id",
-          "hotel_name",
-          "city_code",
-          "city_ref_id",
-          "room_type_code",
-          "room_type_ref_id",
-          "rate_plan_code",
+          "cancellation_policy",
           "checkin_date",
           "checkout_date",
-          "listed_price",
-          "settlement_price",
-          "currency",
-          "inventory_count",
-          "cancellation_policy",
-          "guarantee_policy",
-          "sale_status"
-        ],
-        "update": [
-          "hotel_name",
           "city_code",
           "city_ref_id",
-          "hotel_ref_id",
-          "room_type_ref_id",
-          "listed_price",
-          "settlement_price",
           "currency",
+          "guarantee_policy",
+          "host_shop_id",
+          "hotel_code",
+          "hotel_name",
+          "hotel_ref_id",
           "inventory_count",
+          "listed_price",
+          "rate_plan_code",
+          "room_type_code",
+          "room_type_ref_id",
+          "sale_status",
+          "settlement_price",
+          "supplier_code",
+          "tenant_id"
+        ],
+        "update": [
           "cancellation_policy",
-          "guarantee_policy"
+          "city_code",
+          "city_ref_id",
+          "currency",
+          "guarantee_policy",
+          "hotel_name",
+          "hotel_ref_id",
+          "inventory_count",
+          "listed_price",
+          "room_type_ref_id",
+          "settlement_price"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "cancellation_policy": "text",
+          "checkin_date": "date",
+          "checkout_date": "date",
+          "city_code": "string",
+          "city_ref_id": "string",
+          "currency": "string",
+          "guarantee_policy": "text",
+          "host_shop_id": "uuid",
+          "hotel_code": "string",
+          "hotel_name": "string",
+          "hotel_ref_id": "string",
+          "inventory_count": "integer",
+          "listed_price": "decimal",
+          "rate_plan_code": "string",
+          "room_type_code": "string",
+          "room_type_ref_id": "string",
+          "sale_status": "enum",
+          "settlement_price": "decimal",
+          "supplier_code": "string",
+          "tenant_id": "uuid"
+        },
+        "update": {
+          "cancellation_policy": "text",
+          "city_code": "string",
+          "city_ref_id": "string",
+          "currency": "string",
+          "guarantee_policy": "text",
+          "hotel_name": "string",
+          "hotel_ref_id": "string",
+          "inventory_count": "integer",
+          "listed_price": "decimal",
+          "room_type_ref_id": "string",
+          "settlement_price": "decimal"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelHotelOfferInput",
@@ -10928,50 +11582,97 @@
         },
         "input_allowlist": {
           "create": [
-            "tenant_id",
-            "host_shop_id",
-            "supplier_code",
-            "train_no",
-            "departure_station_code",
-            "departure_station_ref_id",
-            "departure_station_name",
-            "arrival_station_code",
-            "arrival_station_ref_id",
-            "arrival_station_name",
-            "travel_date",
-            "departure_at",
             "arrival_at",
+            "arrival_station_code",
+            "arrival_station_name",
+            "arrival_station_ref_id",
+            "booking_rules_snapshot",
+            "change_rules_snapshot",
+            "currency",
+            "departure_at",
+            "departure_station_code",
+            "departure_station_name",
+            "departure_station_ref_id",
+            "host_shop_id",
+            "inventory_status",
+            "is_no_seat",
+            "listed_price",
+            "refund_rules_snapshot",
+            "sale_status",
             "seat_class",
             "seat_code",
-            "is_no_seat",
-            "inventory_status",
-            "waitlist_supported",
-            "listed_price",
             "settlement_price",
-            "currency",
-            "booking_rules_snapshot",
-            "change_rules_snapshot",
-            "refund_rules_snapshot",
-            "sale_status"
+            "supplier_code",
+            "tenant_id",
+            "train_no",
+            "travel_date",
+            "waitlist_supported"
           ],
           "update": [
-            "departure_station_ref_id",
-            "arrival_station_ref_id",
-            "departure_station_name",
-            "arrival_station_name",
-            "departure_at",
             "arrival_at",
-            "seat_class",
-            "is_no_seat",
-            "inventory_status",
-            "waitlist_supported",
-            "listed_price",
-            "settlement_price",
-            "currency",
+            "arrival_station_name",
+            "arrival_station_ref_id",
             "booking_rules_snapshot",
             "change_rules_snapshot",
-            "refund_rules_snapshot"
+            "currency",
+            "departure_at",
+            "departure_station_name",
+            "departure_station_ref_id",
+            "inventory_status",
+            "is_no_seat",
+            "listed_price",
+            "refund_rules_snapshot",
+            "seat_class",
+            "settlement_price",
+            "waitlist_supported"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "arrival_at": "datetime",
+            "arrival_station_code": "string",
+            "arrival_station_name": "string",
+            "arrival_station_ref_id": "string",
+            "booking_rules_snapshot": "text",
+            "change_rules_snapshot": "text",
+            "currency": "string",
+            "departure_at": "datetime",
+            "departure_station_code": "string",
+            "departure_station_name": "string",
+            "departure_station_ref_id": "string",
+            "host_shop_id": "uuid",
+            "inventory_status": "enum",
+            "is_no_seat": "boolean",
+            "listed_price": "decimal",
+            "refund_rules_snapshot": "text",
+            "sale_status": "enum",
+            "seat_class": "string",
+            "seat_code": "string",
+            "settlement_price": "decimal",
+            "supplier_code": "string",
+            "tenant_id": "uuid",
+            "train_no": "string",
+            "travel_date": "date",
+            "waitlist_supported": "boolean"
+          },
+          "update": {
+            "arrival_at": "datetime",
+            "arrival_station_name": "string",
+            "arrival_station_ref_id": "string",
+            "booking_rules_snapshot": "text",
+            "change_rules_snapshot": "text",
+            "currency": "string",
+            "departure_at": "datetime",
+            "departure_station_name": "string",
+            "departure_station_ref_id": "string",
+            "inventory_status": "enum",
+            "is_no_seat": "boolean",
+            "listed_price": "decimal",
+            "refund_rules_snapshot": "text",
+            "seat_class": "string",
+            "settlement_price": "decimal",
+            "waitlist_supported": "boolean"
+          }
         },
         "input_type_name_map": {
           "activate": "ActivateTravelTrainOfferInput",
@@ -10987,30 +11688,30 @@
         "params": {
           "accept": [
             "id",
-            "seat_class",
             "settlement_price",
-            "seat_code",
-            "booking_rules_snapshot",
-            "inventory_status",
-            "host_shop_id",
-            "arrival_station_code",
-            "arrival_at",
-            "travel_date",
-            "train_no",
-            "arrival_station_name",
-            "departure_at",
-            "is_no_seat",
-            "departure_station_ref_id",
-            "departure_station_name",
-            "waitlist_supported",
-            "listed_price",
-            "arrival_station_ref_id",
-            "departure_station_code",
-            "currency",
-            "refund_rules_snapshot",
-            "supplier_code",
             "change_rules_snapshot",
-            "sale_status"
+            "refund_rules_snapshot",
+            "booking_rules_snapshot",
+            "departure_station_name",
+            "seat_class",
+            "sale_status",
+            "currency",
+            "waitlist_supported",
+            "departure_station_code",
+            "host_shop_id",
+            "travel_date",
+            "seat_code",
+            "listed_price",
+            "arrival_at",
+            "arrival_station_code",
+            "is_no_seat",
+            "supplier_code",
+            "inventory_status",
+            "train_no",
+            "departure_station_ref_id",
+            "arrival_station_name",
+            "arrival_station_ref_id",
+            "departure_at"
           ]
         }
       },
@@ -11031,50 +11732,97 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "supplier_code",
-          "train_no",
-          "departure_station_code",
-          "departure_station_ref_id",
-          "departure_station_name",
-          "arrival_station_code",
-          "arrival_station_ref_id",
-          "arrival_station_name",
-          "travel_date",
-          "departure_at",
           "arrival_at",
+          "arrival_station_code",
+          "arrival_station_name",
+          "arrival_station_ref_id",
+          "booking_rules_snapshot",
+          "change_rules_snapshot",
+          "currency",
+          "departure_at",
+          "departure_station_code",
+          "departure_station_name",
+          "departure_station_ref_id",
+          "host_shop_id",
+          "inventory_status",
+          "is_no_seat",
+          "listed_price",
+          "refund_rules_snapshot",
+          "sale_status",
           "seat_class",
           "seat_code",
-          "is_no_seat",
-          "inventory_status",
-          "waitlist_supported",
-          "listed_price",
           "settlement_price",
-          "currency",
-          "booking_rules_snapshot",
-          "change_rules_snapshot",
-          "refund_rules_snapshot",
-          "sale_status"
+          "supplier_code",
+          "tenant_id",
+          "train_no",
+          "travel_date",
+          "waitlist_supported"
         ],
         "update": [
-          "departure_station_ref_id",
-          "arrival_station_ref_id",
-          "departure_station_name",
-          "arrival_station_name",
-          "departure_at",
           "arrival_at",
-          "seat_class",
-          "is_no_seat",
-          "inventory_status",
-          "waitlist_supported",
-          "listed_price",
-          "settlement_price",
-          "currency",
+          "arrival_station_name",
+          "arrival_station_ref_id",
           "booking_rules_snapshot",
           "change_rules_snapshot",
-          "refund_rules_snapshot"
+          "currency",
+          "departure_at",
+          "departure_station_name",
+          "departure_station_ref_id",
+          "inventory_status",
+          "is_no_seat",
+          "listed_price",
+          "refund_rules_snapshot",
+          "seat_class",
+          "settlement_price",
+          "waitlist_supported"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "arrival_at": "datetime",
+          "arrival_station_code": "string",
+          "arrival_station_name": "string",
+          "arrival_station_ref_id": "string",
+          "booking_rules_snapshot": "text",
+          "change_rules_snapshot": "text",
+          "currency": "string",
+          "departure_at": "datetime",
+          "departure_station_code": "string",
+          "departure_station_name": "string",
+          "departure_station_ref_id": "string",
+          "host_shop_id": "uuid",
+          "inventory_status": "enum",
+          "is_no_seat": "boolean",
+          "listed_price": "decimal",
+          "refund_rules_snapshot": "text",
+          "sale_status": "enum",
+          "seat_class": "string",
+          "seat_code": "string",
+          "settlement_price": "decimal",
+          "supplier_code": "string",
+          "tenant_id": "uuid",
+          "train_no": "string",
+          "travel_date": "date",
+          "waitlist_supported": "boolean"
+        },
+        "update": {
+          "arrival_at": "datetime",
+          "arrival_station_name": "string",
+          "arrival_station_ref_id": "string",
+          "booking_rules_snapshot": "text",
+          "change_rules_snapshot": "text",
+          "currency": "string",
+          "departure_at": "datetime",
+          "departure_station_name": "string",
+          "departure_station_ref_id": "string",
+          "inventory_status": "enum",
+          "is_no_seat": "boolean",
+          "listed_price": "decimal",
+          "refund_rules_snapshot": "text",
+          "seat_class": "string",
+          "settlement_price": "decimal",
+          "waitlist_supported": "boolean"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelTrainOfferInput",
@@ -11293,38 +12041,73 @@
         },
         "input_allowlist": {
           "create": [
-            "tenant_id",
-            "host_shop_id",
-            "supplier_code",
-            "package_code",
-            "package_name",
-            "package_type",
+            "booking_rules",
+            "cancellation_policy",
+            "currency",
             "departure_city_code",
             "departure_city_ref_id",
             "destination_code",
             "destination_ref_id",
-            "start_date",
             "end_date",
-            "listed_price",
-            "settlement_price",
-            "currency",
+            "host_shop_id",
             "inventory_count",
-            "booking_rules",
-            "cancellation_policy",
-            "sale_status"
-          ],
-          "update": [
+            "listed_price",
+            "package_code",
             "package_name",
             "package_type",
+            "sale_status",
+            "settlement_price",
+            "start_date",
+            "supplier_code",
+            "tenant_id"
+          ],
+          "update": [
+            "booking_rules",
+            "cancellation_policy",
+            "currency",
             "departure_city_ref_id",
             "destination_ref_id",
-            "listed_price",
-            "settlement_price",
-            "currency",
             "inventory_count",
-            "booking_rules",
-            "cancellation_policy"
+            "listed_price",
+            "package_name",
+            "package_type",
+            "settlement_price"
           ]
+        },
+        "input_type_map": {
+          "create": {
+            "booking_rules": "text",
+            "cancellation_policy": "text",
+            "currency": "string",
+            "departure_city_code": "string",
+            "departure_city_ref_id": "string",
+            "destination_code": "string",
+            "destination_ref_id": "string",
+            "end_date": "date",
+            "host_shop_id": "uuid",
+            "inventory_count": "integer",
+            "listed_price": "decimal",
+            "package_code": "string",
+            "package_name": "string",
+            "package_type": "enum",
+            "sale_status": "enum",
+            "settlement_price": "decimal",
+            "start_date": "date",
+            "supplier_code": "string",
+            "tenant_id": "uuid"
+          },
+          "update": {
+            "booking_rules": "text",
+            "cancellation_policy": "text",
+            "currency": "string",
+            "departure_city_ref_id": "string",
+            "destination_ref_id": "string",
+            "inventory_count": "integer",
+            "listed_price": "decimal",
+            "package_name": "string",
+            "package_type": "enum",
+            "settlement_price": "decimal"
+          }
         },
         "input_type_name_map": {
           "activate": "ActivateTravelVacationOfferInput",
@@ -11340,24 +12123,24 @@
         "params": {
           "accept": [
             "id",
-            "listed_price",
-            "sale_status",
-            "cancellation_policy",
-            "booking_rules",
-            "departure_city_ref_id",
-            "host_shop_id",
             "destination_ref_id",
-            "start_date",
             "end_date",
-            "currency",
-            "supplier_code",
-            "package_type",
-            "inventory_count",
-            "destination_code",
             "settlement_price",
-            "departure_city_code",
+            "booking_rules",
             "package_code",
-            "package_name"
+            "cancellation_policy",
+            "supplier_code",
+            "inventory_count",
+            "departure_city_code",
+            "departure_city_ref_id",
+            "listed_price",
+            "destination_code",
+            "sale_status",
+            "currency",
+            "start_date",
+            "host_shop_id",
+            "package_name",
+            "package_type"
           ]
         }
       },
@@ -11378,38 +12161,73 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "supplier_code",
-          "package_code",
-          "package_name",
-          "package_type",
+          "booking_rules",
+          "cancellation_policy",
+          "currency",
           "departure_city_code",
           "departure_city_ref_id",
           "destination_code",
           "destination_ref_id",
-          "start_date",
           "end_date",
-          "listed_price",
-          "settlement_price",
-          "currency",
+          "host_shop_id",
           "inventory_count",
-          "booking_rules",
-          "cancellation_policy",
-          "sale_status"
-        ],
-        "update": [
+          "listed_price",
+          "package_code",
           "package_name",
           "package_type",
+          "sale_status",
+          "settlement_price",
+          "start_date",
+          "supplier_code",
+          "tenant_id"
+        ],
+        "update": [
+          "booking_rules",
+          "cancellation_policy",
+          "currency",
           "departure_city_ref_id",
           "destination_ref_id",
-          "listed_price",
-          "settlement_price",
-          "currency",
           "inventory_count",
-          "booking_rules",
-          "cancellation_policy"
+          "listed_price",
+          "package_name",
+          "package_type",
+          "settlement_price"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "booking_rules": "text",
+          "cancellation_policy": "text",
+          "currency": "string",
+          "departure_city_code": "string",
+          "departure_city_ref_id": "string",
+          "destination_code": "string",
+          "destination_ref_id": "string",
+          "end_date": "date",
+          "host_shop_id": "uuid",
+          "inventory_count": "integer",
+          "listed_price": "decimal",
+          "package_code": "string",
+          "package_name": "string",
+          "package_type": "enum",
+          "sale_status": "enum",
+          "settlement_price": "decimal",
+          "start_date": "date",
+          "supplier_code": "string",
+          "tenant_id": "uuid"
+        },
+        "update": {
+          "booking_rules": "text",
+          "cancellation_policy": "text",
+          "currency": "string",
+          "departure_city_ref_id": "string",
+          "destination_ref_id": "string",
+          "inventory_count": "integer",
+          "listed_price": "decimal",
+          "package_name": "string",
+          "package_type": "enum",
+          "settlement_price": "decimal"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelVacationOfferInput",

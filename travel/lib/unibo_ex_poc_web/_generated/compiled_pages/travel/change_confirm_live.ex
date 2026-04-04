@@ -54,8 +54,9 @@ defmodule UniboExPocWeb.Pages.Travel.ChangeConfirmLive do
     "list" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.list"}
   }
   @graphql_field_map %{"create" => "create_travel_travel_change_order", "list" => "list_travel_travel_change_orders"}
-  @input_allowlist %{"create" => ~w(original_order_id change_reason price_difference change_fee new_offer_id approval_mode)}
+  @input_allowlist %{"create" => ~w(approval_mode change_fee change_reason new_offer_id original_order_id price_difference)}
   @input_type_name_map %{"create" => "CreateTravelTravelChangeOrderInput"}
+  @input_type_map %{"create" => %{"approval_mode" => "enum", "change_fee" => "string", "change_reason" => "string", "new_offer_id" => "string", "original_order_id" => "string", "price_difference" => "string"}}
   @entity_assign_fields []
   @status_key_roots []
   @auth_mode "optional"
@@ -319,10 +320,12 @@ defmodule UniboExPocWeb.Pages.Travel.ChangeConfirmLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -347,6 +350,27 @@ defmodule UniboExPocWeb.Pages.Travel.ChangeConfirmLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_change_order] && socket.assigns[:travel_change_order]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

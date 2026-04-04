@@ -69,7 +69,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
   @backend_load_assigns %{travel_order: %{}}
-  @backend_params_accept ["id", "hotel_offer_id", "order_no", "product_type", "customer_id", "contact_name", "traveler_count", "total_amount", "points_deduction_amount", "currency", "ticket_passenger_infos", "host_shop_id", "points_to_use", "contact_phone", "seat_selection_snapshot"]
+  @backend_params_accept ["id", "hotel_offer_id", "total_amount", "contact_phone", "customer_id", "order_no", "contact_name", "traveler_count", "ticket_passenger_infos", "seat_selection_snapshot", "host_shop_id", "product_type", "points_to_use", "points_deduction_amount", "currency"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "cancel_cancel_request" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.cancel_cancel_request"},
@@ -92,8 +92,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.update"}
   }
   @graphql_field_map %{"cancel_cancel_request" => "cancel_cancel_request_travel_travel_order", "cancel_waitlist" => "cancel_waitlist_travel_travel_order", "confirm_change" => "confirm_change_travel_travel_order", "confirm_quote" => "confirm_quote_travel_travel_order", "create" => "create_travel_travel_order", "destroy" => "delete_travel_travel_order", "execute_cancel" => "execute_cancel_travel_travel_order", "fulfill_waitlist" => "fulfill_waitlist_travel_travel_order", "get" => "get_travel_travel_order", "mark_booked" => "mark_booked_travel_travel_order", "mark_completed" => "mark_completed_travel_travel_order", "mark_order_failed" => "mark_order_failed_travel_travel_order", "mark_payment_succeeded" => "mark_payment_succeeded_travel_travel_order", "request_cancel" => "request_cancel_travel_travel_order", "request_change" => "request_change_travel_travel_order", "submit_order" => "submit_order_travel_travel_order", "submit_waitlist" => "submit_waitlist_travel_travel_order", "update" => "update_travel_travel_order"}
-  @input_allowlist %{"create" => ~w(tenant_id host_shop_id hotel_offer_id flight_offer_id vacation_offer_id train_offer_id order_no product_type customer_id contact_name contact_phone traveler_count total_amount points_to_use points_deduction_amount currency ticket_passenger_infos seat_selection_snapshot), "request_change" => ~w(original_order_ref), "update" => ~w(contact_name contact_phone traveler_count ticket_passenger_infos seat_selection_snapshot)}
+  @input_allowlist %{"create" => ~w(contact_name contact_phone currency customer_id flight_offer_id host_shop_id hotel_offer_id order_no points_deduction_amount points_to_use product_type seat_selection_snapshot tenant_id ticket_passenger_infos total_amount train_offer_id traveler_count vacation_offer_id), "request_change" => ~w(original_order_ref), "update" => ~w(contact_name contact_phone seat_selection_snapshot ticket_passenger_infos traveler_count)}
   @input_type_name_map %{"cancel_cancel_request" => "CancelCancelRequestTravelTravelOrderInput", "cancel_waitlist" => "CancelWaitlistTravelTravelOrderInput", "confirm_change" => "ConfirmChangeTravelTravelOrderInput", "confirm_quote" => "ConfirmQuoteTravelTravelOrderInput", "create" => "CreateTravelTravelOrderInput", "execute_cancel" => "ExecuteCancelTravelTravelOrderInput", "fulfill_waitlist" => "FulfillWaitlistTravelTravelOrderInput", "mark_booked" => "MarkBookedTravelTravelOrderInput", "mark_completed" => "MarkCompletedTravelTravelOrderInput", "mark_order_failed" => "MarkOrderFailedTravelTravelOrderInput", "mark_payment_succeeded" => "MarkPaymentSucceededTravelTravelOrderInput", "request_cancel" => "RequestCancelTravelTravelOrderInput", "request_change" => "RequestChangeTravelTravelOrderInput", "submit_order" => "SubmitOrderTravelTravelOrderInput", "submit_waitlist" => "SubmitWaitlistTravelTravelOrderInput", "update" => "UpdateTravelTravelOrderInput"}
+  @input_type_map %{"create" => %{"contact_name" => "string", "contact_phone" => "string", "currency" => "string", "customer_id" => "string", "flight_offer_id" => "string", "host_shop_id" => "uuid", "hotel_offer_id" => "string", "order_no" => "string", "points_deduction_amount" => "decimal", "points_to_use" => "integer", "product_type" => "enum", "seat_selection_snapshot" => "map", "tenant_id" => "uuid", "ticket_passenger_infos" => "map", "total_amount" => "decimal", "train_offer_id" => "string", "traveler_count" => "integer", "vacation_offer_id" => "string"}, "request_change" => %{"original_order_ref" => "string"}, "update" => %{"contact_name" => "string", "contact_phone" => "string", "seat_selection_snapshot" => "map", "ticket_passenger_infos" => "map", "traveler_count" => "integer"}}
   @entity_assign_fields ["order_no", "product_type", "booking_mode", "contact_name", "contact_phone", "traveler_count", "total_amount", "points_to_use", "points_deduction_amount", "recommended_payment_method", "currency", "status", "change_status", "waitlist_status", "original_order_ref", "ticket_passenger_infos", "seat_selection_snapshot", "supplier_order_ref", "payment_external_ref"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -462,10 +463,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -490,6 +493,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_order] && socket.assigns[:travel_order]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

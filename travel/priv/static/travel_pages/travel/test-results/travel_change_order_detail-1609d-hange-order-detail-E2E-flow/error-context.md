@@ -119,18 +119,18 @@ Call log:
   1420 |         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
   1421 |       }
   1422 |       {
-  1423 |         const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
+  1423 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
   1424 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1425 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
+  1425 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
   1426 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1427 |         __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
+  1427 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
   1428 |       }
   1429 |       {
-  1430 |         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
+  1430 |         const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
   1431 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1432 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
+  1432 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
   1433 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1434 |         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
+  1434 |         __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
   1435 |       }
   1436 |       {
   1437 |         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();

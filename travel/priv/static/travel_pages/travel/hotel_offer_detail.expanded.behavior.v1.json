@@ -25,40 +25,77 @@
     },
     "input_allowlist": {
       "create": [
-        "tenant_id",
-        "host_shop_id",
-        "supplier_code",
-        "hotel_code",
-        "hotel_ref_id",
-        "hotel_name",
-        "city_code",
-        "city_ref_id",
-        "room_type_code",
-        "room_type_ref_id",
-        "rate_plan_code",
+        "cancellation_policy",
         "checkin_date",
         "checkout_date",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "inventory_count",
-        "cancellation_policy",
-        "guarantee_policy",
-        "sale_status"
-      ],
-      "update": [
-        "hotel_name",
         "city_code",
         "city_ref_id",
-        "hotel_ref_id",
-        "room_type_ref_id",
-        "listed_price",
-        "settlement_price",
         "currency",
+        "guarantee_policy",
+        "host_shop_id",
+        "hotel_code",
+        "hotel_name",
+        "hotel_ref_id",
         "inventory_count",
+        "listed_price",
+        "rate_plan_code",
+        "room_type_code",
+        "room_type_ref_id",
+        "sale_status",
+        "settlement_price",
+        "supplier_code",
+        "tenant_id"
+      ],
+      "update": [
         "cancellation_policy",
-        "guarantee_policy"
+        "city_code",
+        "city_ref_id",
+        "currency",
+        "guarantee_policy",
+        "hotel_name",
+        "hotel_ref_id",
+        "inventory_count",
+        "listed_price",
+        "room_type_ref_id",
+        "settlement_price"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "cancellation_policy": "text",
+        "checkin_date": "date",
+        "checkout_date": "date",
+        "city_code": "string",
+        "city_ref_id": "string",
+        "currency": "string",
+        "guarantee_policy": "text",
+        "host_shop_id": "uuid",
+        "hotel_code": "string",
+        "hotel_name": "string",
+        "hotel_ref_id": "string",
+        "inventory_count": "integer",
+        "listed_price": "decimal",
+        "rate_plan_code": "string",
+        "room_type_code": "string",
+        "room_type_ref_id": "string",
+        "sale_status": "enum",
+        "settlement_price": "decimal",
+        "supplier_code": "string",
+        "tenant_id": "uuid"
+      },
+      "update": {
+        "cancellation_policy": "text",
+        "city_code": "string",
+        "city_ref_id": "string",
+        "currency": "string",
+        "guarantee_policy": "text",
+        "hotel_name": "string",
+        "hotel_ref_id": "string",
+        "inventory_count": "integer",
+        "listed_price": "decimal",
+        "room_type_ref_id": "string",
+        "settlement_price": "decimal"
+      }
     },
     "input_type_name_map": {
       "activate": "ActivateTravelHotelOfferInput",
@@ -74,23 +111,23 @@
     "params": {
       "accept": [
         "id",
-        "currency",
-        "settlement_price",
-        "sale_status",
-        "city_ref_id",
-        "room_type_code",
-        "listed_price",
-        "hotel_name",
-        "hotel_code",
-        "checkout_date",
         "guarantee_policy",
-        "city_code",
         "cancellation_policy",
         "rate_plan_code",
+        "listed_price",
+        "supplier_code",
         "inventory_count",
-        "checkin_date",
+        "city_ref_id",
+        "currency",
         "host_shop_id",
-        "supplier_code"
+        "settlement_price",
+        "sale_status",
+        "checkin_date",
+        "room_type_code",
+        "hotel_code",
+        "city_code",
+        "hotel_name",
+        "checkout_date"
       ]
     }
   },
@@ -175,38 +212,8 @@
             },
             {
               "action": "type",
-              "field": "listed_price",
-              "value": "200.00"
-            },
-            {
-              "action": "type",
-              "field": "guarantee_policy",
-              "value": "UPDATED_{{__run_id}}_guarantee_policy"
-            },
-            {
-              "action": "type",
               "field": "city_ref_id",
               "value": "UPDATED_{{__run_id}}_city_ref_id"
-            },
-            {
-              "action": "type",
-              "field": "cancellation_policy",
-              "value": "UPDATED_{{__run_id}}_cancellation_policy"
-            },
-            {
-              "action": "type",
-              "field": "settlement_price",
-              "value": "200.00"
-            },
-            {
-              "action": "type",
-              "field": "currency",
-              "value": "UPDATED_{{__run_id}}_currency"
-            },
-            {
-              "action": "type",
-              "field": "inventory_count",
-              "value": "2"
             },
             {
               "action": "type",
@@ -215,8 +222,38 @@
             },
             {
               "action": "type",
+              "field": "currency",
+              "value": "UPDATED_{{__run_id}}_currency"
+            },
+            {
+              "action": "type",
+              "field": "guarantee_policy",
+              "value": "UPDATED_{{__run_id}}_guarantee_policy"
+            },
+            {
+              "action": "type",
+              "field": "listed_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
               "field": "city_code",
               "value": "UPDATED_{{__run_id}}_city_code"
+            },
+            {
+              "action": "type",
+              "field": "settlement_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
+              "field": "inventory_count",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "cancellation_policy",
+              "value": "UPDATED_{{__run_id}}_cancellation_policy"
             },
             {
               "action": "click",

@@ -65,6 +65,7 @@ defmodule UniboExPocWeb.Pages.Travel.ApprovalDetailLive do
   @graphql_field_map %{"get" => "get_travel_travel_policy_check", "list" => "list_travel_travel_policy_checks"}
   @input_allowlist %{}
   @input_type_name_map %{}
+  @input_type_map %{}
   @entity_assign_fields ["check_result", "policy_amount", "actual_amount", "exceed_amount", "exceed_ratio", "exceed_strategy", "exceed_reason", "personal_pay_amount", "approval_mode"]
   @status_key_roots []
   @auth_mode "optional"
@@ -335,10 +336,12 @@ defmodule UniboExPocWeb.Pages.Travel.ApprovalDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -363,6 +366,27 @@ defmodule UniboExPocWeb.Pages.Travel.ApprovalDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_policy_check] && socket.assigns[:travel_policy_check]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

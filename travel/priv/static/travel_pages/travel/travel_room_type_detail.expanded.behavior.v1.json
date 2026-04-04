@@ -17,20 +17,37 @@
     },
     "input_allowlist": {
       "create": [
+        "bed_type",
+        "hotel_code",
+        "hotel_id",
         "room_type_code",
         "room_type_name",
-        "hotel_id",
-        "hotel_code",
-        "bed_type",
         "status"
       ],
       "update": [
-        "room_type_name",
-        "hotel_id",
-        "hotel_code",
         "bed_type",
+        "hotel_code",
+        "hotel_id",
+        "room_type_name",
         "status"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "bed_type": "string",
+        "hotel_code": "string",
+        "hotel_id": "string",
+        "room_type_code": "string",
+        "room_type_name": "string",
+        "status": "enum"
+      },
+      "update": {
+        "bed_type": "string",
+        "hotel_code": "string",
+        "hotel_id": "string",
+        "room_type_name": "string",
+        "status": "enum"
+      }
     },
     "input_type_name_map": {
       "create": "CreateTravelTravelRoomTypeInput",
@@ -44,10 +61,10 @@
       "accept": [
         "id",
         "room_type_name",
+        "status",
         "room_type_code",
         "hotel_code",
-        "bed_type",
-        "status"
+        "bed_type"
       ]
     }
   },
@@ -133,11 +150,6 @@
             },
             {
               "action": "type",
-              "field": "room_type_name",
-              "value": "UPDATED_{{__run_id}}_room_type_name"
-            },
-            {
-              "action": "type",
               "field": "hotel_code",
               "value": "UPDATED_{{__run_id}}_hotel_code"
             },
@@ -150,6 +162,11 @@
               "action": "select_option",
               "field": "status",
               "value": "inactive"
+            },
+            {
+              "action": "type",
+              "field": "room_type_name",
+              "value": "UPDATED_{{__run_id}}_room_type_name"
             },
             {
               "action": "click",
@@ -350,11 +367,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.hotel_code",
+            "equals": "$form.bed_type",
             "excludes_source": null,
             "graphql_field": "getTravelTravelRoomType",
             "op": "equals",
-            "path": "hotel_code",
+            "path": "bed_type",
             "source": "active_record_id"
           },
           "ui": [

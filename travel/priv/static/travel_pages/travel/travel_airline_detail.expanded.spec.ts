@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.iata_code",
+      "equals": "$form.airline_name",
       "excludes_source": null,
       "graphql_field": "getTravelTravelAirline",
       "op": "equals",
-      "path": "iata_code",
+      "path": "airline_name",
       "source": "active_record_id"
     },
     "ui": [
@@ -968,18 +968,18 @@ test.describe("travel_airline_detail", () => {
         __ctx.form["icao_code"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_airline_form_iata_code, [name='iata_code']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_iata_code");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["iata_code"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_airline_form_airline_name, [name='airline_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_airline_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["airline_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_airline_form_iata_code, [name='iata_code']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_iata_code");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["iata_code"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_airline_form_status`).first();

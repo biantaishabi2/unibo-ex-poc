@@ -58,7 +58,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelFulfillmentDetailLive do
   @backend_load_event "get"
   @backend_load_selection "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
   @backend_load_assigns %{travel_fulfillment: %{}}
-  @backend_params_accept ["id", "travel_order_id", "fulfillment_type", "supplier_booking_ref", "ticket_refs", "failure_reason", "confirmation_payload", "voucher_or_ticket_ref"]
+  @backend_params_accept ["id", "travel_order_id", "supplier_booking_ref", "fulfillment_type", "confirmation_payload", "ticket_refs", "voucher_or_ticket_ref", "failure_reason"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "cancel_fulfillment" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelFulfillment.cancel_fulfillment"},
@@ -73,8 +73,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelFulfillmentDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelFulfillment.update"}
   }
   @graphql_field_map %{"cancel_fulfillment" => "cancel_fulfillment_travel_travel_fulfillment", "complete_fulfillment" => "complete_fulfillment_travel_travel_fulfillment", "confirm_booking" => "confirm_booking_travel_travel_fulfillment", "destroy" => "delete_travel_travel_fulfillment", "fail_fulfillment" => "fail_fulfillment_travel_travel_fulfillment", "get" => "get_travel_travel_fulfillment", "issue_voucher_or_ticket" => "issue_voucher_or_ticket_travel_travel_fulfillment", "mark_in_use" => "mark_in_use_travel_travel_fulfillment", "update" => "update_travel_travel_fulfillment"}
-  @input_allowlist %{"fail_fulfillment" => ~w(failure_reason), "mark_in_use" => ~w(used_at), "update" => ~w(supplier_booking_ref voucher_or_ticket_ref ticket_refs confirmation_payload failure_reason)}
+  @input_allowlist %{"fail_fulfillment" => ~w(failure_reason), "mark_in_use" => ~w(used_at), "update" => ~w(confirmation_payload failure_reason supplier_booking_ref ticket_refs voucher_or_ticket_ref)}
   @input_type_name_map %{"cancel_fulfillment" => "CancelFulfillmentTravelTravelFulfillmentInput", "complete_fulfillment" => "CompleteFulfillmentTravelTravelFulfillmentInput", "confirm_booking" => "ConfirmBookingTravelTravelFulfillmentInput", "fail_fulfillment" => "FailFulfillmentTravelTravelFulfillmentInput", "issue_voucher_or_ticket" => "IssueVoucherOrTicketTravelTravelFulfillmentInput", "mark_in_use" => "MarkInUseTravelTravelFulfillmentInput", "update" => "UpdateTravelTravelFulfillmentInput"}
+  @input_type_map %{"fail_fulfillment" => %{"failure_reason" => "text"}, "mark_in_use" => %{"used_at" => "datetime"}, "update" => %{"confirmation_payload" => "text", "failure_reason" => "text", "supplier_booking_ref" => "string", "ticket_refs" => "map", "voucher_or_ticket_ref" => "string"}}
   @entity_assign_fields ["fulfillment_type", "status", "supplier_booking_ref", "voucher_or_ticket_ref", "ticket_refs", "waitlist_result", "change_result", "boarding_status", "confirmation_payload", "failure_reason", "used_at"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -387,10 +388,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelFulfillmentDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -415,6 +418,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelFulfillmentDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_fulfillment] && socket.assigns[:travel_fulfillment]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

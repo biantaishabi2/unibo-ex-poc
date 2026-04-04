@@ -108,24 +108,24 @@
       },
       "input_allowlist": {
         "create": [
-          "tenant_id",
-          "host_shop_id",
-          "hotel_offer_id",
-          "flight_offer_id",
-          "vacation_offer_id",
-          "train_offer_id",
-          "order_no",
-          "product_type",
-          "customer_id",
           "contact_name",
           "contact_phone",
-          "traveler_count",
-          "total_amount",
-          "points_to_use",
-          "points_deduction_amount",
           "currency",
+          "customer_id",
+          "flight_offer_id",
+          "host_shop_id",
+          "hotel_offer_id",
+          "order_no",
+          "points_deduction_amount",
+          "points_to_use",
+          "product_type",
+          "seat_selection_snapshot",
+          "tenant_id",
           "ticket_passenger_infos",
-          "seat_selection_snapshot"
+          "total_amount",
+          "train_offer_id",
+          "traveler_count",
+          "vacation_offer_id"
         ],
         "request_change": [
           "original_order_ref"
@@ -133,10 +133,42 @@
         "update": [
           "contact_name",
           "contact_phone",
-          "traveler_count",
+          "seat_selection_snapshot",
           "ticket_passenger_infos",
-          "seat_selection_snapshot"
+          "traveler_count"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "contact_name": "string",
+          "contact_phone": "string",
+          "currency": "string",
+          "customer_id": "string",
+          "flight_offer_id": "string",
+          "host_shop_id": "uuid",
+          "hotel_offer_id": "string",
+          "order_no": "string",
+          "points_deduction_amount": "decimal",
+          "points_to_use": "integer",
+          "product_type": "enum",
+          "seat_selection_snapshot": "map",
+          "tenant_id": "uuid",
+          "ticket_passenger_infos": "map",
+          "total_amount": "decimal",
+          "train_offer_id": "string",
+          "traveler_count": "integer",
+          "vacation_offer_id": "string"
+        },
+        "request_change": {
+          "original_order_ref": "string"
+        },
+        "update": {
+          "contact_name": "string",
+          "contact_phone": "string",
+          "seat_selection_snapshot": "map",
+          "ticket_passenger_infos": "map",
+          "traveler_count": "integer"
+        }
       },
       "input_type_name_map": {
         "cancel_cancel_request": "CancelCancelRequestTravelTravelOrderInput",
@@ -164,19 +196,19 @@
         "accept": [
           "id",
           "hotel_offer_id",
-          "order_no",
-          "product_type",
+          "total_amount",
+          "contact_phone",
           "customer_id",
+          "order_no",
           "contact_name",
           "traveler_count",
-          "total_amount",
-          "points_deduction_amount",
-          "currency",
           "ticket_passenger_infos",
+          "seat_selection_snapshot",
           "host_shop_id",
+          "product_type",
           "points_to_use",
-          "contact_phone",
-          "seat_selection_snapshot"
+          "points_deduction_amount",
+          "currency"
         ]
       }
     },
@@ -262,7 +294,7 @@
               },
               {
                 "action": "type",
-                "field": "ticket_passenger_infos",
+                "field": "seat_selection_snapshot",
                 "value": "{\"updated\":true}"
               },
               {
@@ -272,17 +304,17 @@
               },
               {
                 "action": "type",
-                "field": "contact_phone",
-                "value": "UPDATED_{{__run_id}}_contact_phone"
-              },
-              {
-                "action": "type",
                 "field": "traveler_count",
                 "value": "2"
               },
               {
                 "action": "type",
-                "field": "seat_selection_snapshot",
+                "field": "contact_phone",
+                "value": "UPDATED_{{__run_id}}_contact_phone"
+              },
+              {
+                "action": "type",
+                "field": "ticket_passenger_infos",
                 "value": "{\"updated\":true}"
               },
               {
@@ -1716,11 +1748,11 @@
                   "source": "backend_result"
                 }
               ],
-              "equals": "$form.total_amount",
+              "equals": "$form.product_type",
               "excludes_source": null,
               "graphql_field": "getTravelTravelOrder",
               "op": "field_equals",
-              "path": "total_amount",
+              "path": "product_type",
               "source": "created_record_id"
             },
             "ui": [
@@ -1939,11 +1971,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.contact_phone",
+              "equals": "$form.traveler_count",
               "excludes_source": null,
               "graphql_field": "getTravelTravelOrder",
               "op": "equals",
-              "path": "contact_phone",
+              "path": "traveler_count",
               "source": "active_record_id"
             },
             "ui": [

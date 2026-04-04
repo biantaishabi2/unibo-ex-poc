@@ -27,17 +27,31 @@
     },
     "input_allowlist": {
       "create": [
+        "approval_mode",
         "original_order_id",
-        "refund_reason",
-        "refund_fee",
         "refund_amount",
-        "approval_mode"
+        "refund_fee",
+        "refund_reason"
       ],
       "update": [
-        "refund_reason",
+        "refund_amount",
         "refund_fee",
-        "refund_amount"
+        "refund_reason"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "approval_mode": "enum",
+        "original_order_id": "string",
+        "refund_amount": "string",
+        "refund_fee": "string",
+        "refund_reason": "string"
+      },
+      "update": {
+        "refund_amount": "string",
+        "refund_fee": "string",
+        "refund_reason": "string"
+      }
     },
     "input_type_name_map": {
       "confirm_refund": "ConfirmRefundTravelTravelRefundOrderInput",
@@ -56,9 +70,9 @@
       "accept": [
         "id",
         "original_order_id",
-        "refund_reason",
         "refund_fee",
         "approval_mode",
+        "refund_reason",
         "refund_amount"
       ]
     }
@@ -150,13 +164,13 @@
             },
             {
               "action": "type",
-              "field": "refund_fee",
-              "value": "UPDATED_{{__run_id}}_refund_fee"
+              "field": "refund_amount",
+              "value": "UPDATED_{{__run_id}}_refund_amount"
             },
             {
               "action": "type",
-              "field": "refund_amount",
-              "value": "UPDATED_{{__run_id}}_refund_amount"
+              "field": "refund_fee",
+              "value": "UPDATED_{{__run_id}}_refund_fee"
             },
             {
               "action": "click",

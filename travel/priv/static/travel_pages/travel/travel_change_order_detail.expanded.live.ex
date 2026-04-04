@@ -55,7 +55,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status tenant_id: tenantId"
   @backend_load_assigns %{travel_change_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "new_offer_id", "change_reason", "price_difference", "change_fee", "approval_mode"]
+  @backend_params_accept ["id", "original_order_id", "change_reason", "change_fee", "price_difference", "approval_mode", "new_offer_id"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "complete" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.complete"},
@@ -68,8 +68,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.update"}
   }
   @graphql_field_map %{"complete" => "complete_travel_travel_change_order", "complete_direct" => "complete_direct_travel_travel_change_order", "confirm_change" => "confirm_change_travel_travel_change_order", "create" => "create_travel_travel_change_order", "get" => "get_travel_travel_change_order", "reject_change" => "reject_change_travel_travel_change_order", "submit" => "submit_travel_travel_change_order", "update" => "update_travel_travel_change_order"}
-  @input_allowlist %{"create" => ~w(original_order_id change_reason price_difference change_fee new_offer_id approval_mode), "update" => ~w(change_reason price_difference change_fee new_offer_id)}
+  @input_allowlist %{"create" => ~w(approval_mode change_fee change_reason new_offer_id original_order_id price_difference), "update" => ~w(change_fee change_reason new_offer_id price_difference)}
   @input_type_name_map %{"complete" => "CompleteTravelTravelChangeOrderInput", "complete_direct" => "CompleteDirectTravelTravelChangeOrderInput", "confirm_change" => "ConfirmChangeTravelTravelChangeOrderInput", "create" => "CreateTravelTravelChangeOrderInput", "reject_change" => "RejectChangeTravelTravelChangeOrderInput", "submit" => "SubmitTravelTravelChangeOrderInput", "update" => "UpdateTravelTravelChangeOrderInput"}
+  @input_type_map %{"create" => %{"approval_mode" => "enum", "change_fee" => "string", "change_reason" => "string", "new_offer_id" => "string", "original_order_id" => "string", "price_difference" => "string"}, "update" => %{"change_fee" => "string", "change_reason" => "string", "new_offer_id" => "string", "price_difference" => "string"}}
   @entity_assign_fields ["change_reason", "price_difference", "change_fee", "status", "approval_mode"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -375,10 +376,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -403,6 +406,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_change_order] && socket.assigns[:travel_change_order]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

@@ -15,25 +15,47 @@
     },
     "input_allowlist": {
       "create": [
-        "tenant_id",
-        "host_shop_id",
-        "hotel_offer_id",
-        "flight_offer_id",
-        "vacation_offer_id",
-        "train_offer_id",
-        "order_no",
-        "product_type",
-        "customer_id",
         "contact_name",
         "contact_phone",
-        "traveler_count",
-        "total_amount",
-        "points_to_use",
-        "points_deduction_amount",
         "currency",
+        "customer_id",
+        "flight_offer_id",
+        "host_shop_id",
+        "hotel_offer_id",
+        "order_no",
+        "points_deduction_amount",
+        "points_to_use",
+        "product_type",
+        "seat_selection_snapshot",
+        "tenant_id",
         "ticket_passenger_infos",
-        "seat_selection_snapshot"
+        "total_amount",
+        "train_offer_id",
+        "traveler_count",
+        "vacation_offer_id"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "contact_name": "string",
+        "contact_phone": "string",
+        "currency": "string",
+        "customer_id": "string",
+        "flight_offer_id": "string",
+        "host_shop_id": "uuid",
+        "hotel_offer_id": "string",
+        "order_no": "string",
+        "points_deduction_amount": "decimal",
+        "points_to_use": "integer",
+        "product_type": "enum",
+        "seat_selection_snapshot": "map",
+        "tenant_id": "uuid",
+        "ticket_passenger_infos": "map",
+        "total_amount": "decimal",
+        "train_offer_id": "string",
+        "traveler_count": "integer",
+        "vacation_offer_id": "string"
+      }
     },
     "input_type_name_map": {
       "create": "CreateTravelTravelOrderInput"

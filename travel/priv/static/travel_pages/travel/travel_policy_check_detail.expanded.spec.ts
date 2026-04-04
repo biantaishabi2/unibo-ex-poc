@@ -1029,11 +1029,11 @@ test.describe("travel_policy_check_detail", () => {
       }
       await expect(page.locator(`#travel_policy_check_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_policy_check_form_personal_pay_amount, [name='personal_pay_amount']`).first();
+        const loc = page.locator(`#travel_policy_check_form_exceed_reason, [name='exceed_reason']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_reason");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["personal_pay_amount"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["exceed_reason"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_policy_check_form_check_result`).first();
@@ -1052,18 +1052,18 @@ test.describe("travel_policy_check_detail", () => {
         await syncRouteContext(page, __ctx);
       }
       {
-        const loc = page.locator(`#travel_policy_check_form_exceed_reason, [name='exceed_reason']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_reason");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["exceed_reason"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_policy_check_form_exceed_strategy, [name='exceed_strategy']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_strategy");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["exceed_strategy"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_policy_check_form_personal_pay_amount, [name='personal_pay_amount']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["personal_pay_amount"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_policy_check_edit_form button[type="submit"], #travel_policy_check_edit_form [phx-click="form_submit"]`).first();

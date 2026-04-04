@@ -5,21 +5,464 @@
   "auto_register": "all",
   "fields": [
     {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_hotel",
+      "entity": "TravelHotel",
+      "resource": "UniboExPoc.Travel.TravelHotel",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Hotel via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_hotel",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_hotels",
+      "entity": "TravelHotel",
+      "resource": "UniboExPoc.Travel.TravelHotel",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Hotel via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_hotels",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_hotel",
+      "entity": "TravelHotel",
+      "resource": "UniboExPoc.Travel.TravelHotel",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Hotel via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_hotel",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelHotelInput",
+      "input_fields": {
+        "city_code": "string",
+        "city_id": "string",
+        "hotel_code": "string",
+        "hotel_name": "string",
+        "hotel_star": "string",
+        "status": "enum"
+      }
+    },
+    {
       "kind": "mutation",
       "mode": "update",
-      "field": "activate_travel_flight_offer",
-      "entity": "FlightOffer",
-      "resource": "UniboExPoc.Travel.FlightOffer",
-      "action": "activate",
+      "field": "update_travel_travel_hotel",
+      "entity": "TravelHotel",
+      "resource": "UniboExPoc.Travel.TravelHotel",
+      "action": "update",
       "action_type": "update",
-      "summary": "Update Flight Offer via Activate. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/activate_travel_flight_offer",
+      "summary": "Update Travel Hotel via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_hotel",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelHotelInput",
+      "input_fields": {
+        "city_code": "string",
+        "city_id": "string",
+        "hotel_name": "string",
+        "hotel_star": "string",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_room_type",
+      "entity": "TravelRoomType",
+      "resource": "UniboExPoc.Travel.TravelRoomType",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Room Type via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_room_type",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_room_types",
+      "entity": "TravelRoomType",
+      "resource": "UniboExPoc.Travel.TravelRoomType",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Room Type via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_room_types",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_room_type",
+      "entity": "TravelRoomType",
+      "resource": "UniboExPoc.Travel.TravelRoomType",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Room Type via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_room_type",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelRoomTypeInput",
+      "input_fields": {
+        "bed_type": "string",
+        "hotel_code": "string",
+        "hotel_id": "string",
+        "room_type_code": "string",
+        "room_type_name": "string",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_room_type",
+      "entity": "TravelRoomType",
+      "resource": "UniboExPoc.Travel.TravelRoomType",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Room Type via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_room_type",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelRoomTypeInput",
+      "input_fields": {
+        "bed_type": "string",
+        "hotel_code": "string",
+        "hotel_id": "string",
+        "room_type_name": "string",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_airline",
+      "entity": "TravelAirline",
+      "resource": "UniboExPoc.Travel.TravelAirline",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Airline via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_airline",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_airlines",
+      "entity": "TravelAirline",
+      "resource": "UniboExPoc.Travel.TravelAirline",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Airline via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_airlines",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_airline",
+      "entity": "TravelAirline",
+      "resource": "UniboExPoc.Travel.TravelAirline",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Airline via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_airline",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelAirlineInput",
+      "input_fields": {
+        "airline_code": "string",
+        "airline_name": "string",
+        "iata_code": "string",
+        "icao_code": "string",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_airline",
+      "entity": "TravelAirline",
+      "resource": "UniboExPoc.Travel.TravelAirline",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Airline via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_airline",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelAirlineInput",
+      "input_fields": {
+        "airline_name": "string",
+        "iata_code": "string",
+        "icao_code": "string",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_cabin_class",
+      "entity": "TravelCabinClass",
+      "resource": "UniboExPoc.Travel.TravelCabinClass",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Cabin Class via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_cabin_class",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_cabin_classs",
+      "entity": "TravelCabinClass",
+      "resource": "UniboExPoc.Travel.TravelCabinClass",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Cabin Class via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_cabin_classs",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_cabin_class",
+      "entity": "TravelCabinClass",
+      "resource": "UniboExPoc.Travel.TravelCabinClass",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Cabin Class via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_cabin_class",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelCabinClassInput",
+      "input_fields": {
+        "cabin_class_code": "string",
+        "cabin_class_name": "string",
+        "cabin_rank": "integer",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_cabin_class",
+      "entity": "TravelCabinClass",
+      "resource": "UniboExPoc.Travel.TravelCabinClass",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Cabin Class via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_cabin_class",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelCabinClassInput",
+      "input_fields": {
+        "cabin_class_name": "string",
+        "cabin_rank": "integer",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_static_code_mapping",
+      "entity": "TravelStaticCodeMapping",
+      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Static Code Mapping via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_static_code_mapping",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_static_code_mappings",
+      "entity": "TravelStaticCodeMapping",
+      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Static Code Mapping via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_static_code_mappings",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_static_code_mapping",
+      "entity": "TravelStaticCodeMapping",
+      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Static Code Mapping via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_static_code_mapping",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelStaticCodeMappingInput",
+      "input_fields": {
+        "canonical_entity": "string",
+        "canonical_id": "uuid",
+        "external_code": "string",
+        "external_name": "string",
+        "object_type": "enum",
+        "status": "enum",
+        "supplier_code": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_static_code_mapping",
+      "entity": "TravelStaticCodeMapping",
+      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Static Code Mapping via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_static_code_mapping",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelStaticCodeMappingInput",
+      "input_fields": {
+        "canonical_entity": "string",
+        "canonical_id": "uuid",
+        "external_name": "string",
+        "status": "enum"
+      }
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_hotel_offer",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Hotel Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/get_travel_hotel_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_hotel_offers",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Hotel Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_hotel_offers",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_hotel_offer",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Hotel Offer via Create. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/create_travel_hotel_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "ActivateTravelFlightOfferInput"
+      "input_type_name": "CreateTravelHotelOfferInput",
+      "input_fields": {
+        "cancellation_policy": "text",
+        "checkin_date": "date",
+        "checkout_date": "date",
+        "city_code": "string",
+        "city_ref_id": "string",
+        "currency": "string",
+        "guarantee_policy": "text",
+        "host_shop_id": "uuid",
+        "hotel_code": "string",
+        "hotel_name": "string",
+        "hotel_ref_id": "string",
+        "inventory_count": "integer",
+        "listed_price": "decimal",
+        "rate_plan_code": "string",
+        "room_type_code": "string",
+        "room_type_ref_id": "string",
+        "sale_status": "enum",
+        "settlement_price": "decimal",
+        "supplier_code": "string",
+        "tenant_id": "uuid"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_hotel_offer",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Hotel Offer via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_hotel_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelHotelOfferInput",
+      "input_fields": {
+        "cancellation_policy": "text",
+        "city_code": "string",
+        "city_ref_id": "string",
+        "currency": "string",
+        "guarantee_policy": "text",
+        "hotel_name": "string",
+        "hotel_ref_id": "string",
+        "inventory_count": "integer",
+        "listed_price": "decimal",
+        "room_type_ref_id": "string",
+        "settlement_price": "decimal"
+      }
     },
     {
       "kind": "mutation",
@@ -41,262 +484,84 @@
     {
       "kind": "mutation",
       "mode": "update",
-      "field": "activate_travel_train_offer",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "activate",
+      "field": "deactivate_travel_hotel_offer",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "deactivate",
       "action_type": "update",
-      "summary": "Update Train Offer via Activate. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/activate_travel_train_offer",
+      "summary": "Update Hotel Offer via Deactivate. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/deactivate_travel_hotel_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "ActivateTravelTrainOfferInput"
+      "input_type_name": "DeactivateTravelHotelOfferInput"
     },
     {
       "kind": "mutation",
       "mode": "update",
-      "field": "activate_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "activate",
+      "field": "expire_travel_hotel_offer",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "expire",
       "action_type": "update",
-      "summary": "Update Travel Policy via Activate",
-      "doc_url": "graphql://contract/travel/activate_travel_travel_policy",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ActivateTravelTravelPolicyInput",
-      "input_fields": [
-        "is_active"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "activate_travel_vacation_offer",
-      "entity": "VacationOffer",
-      "resource": "UniboExPoc.Travel.VacationOffer",
-      "action": "activate",
-      "action_type": "update",
-      "summary": "Update Vacation Offer via Activate. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/activate_travel_vacation_offer",
+      "summary": "Update Hotel Offer via Expire. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/expire_travel_hotel_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "ActivateTravelVacationOfferInput"
+      "input_type_name": "ExpireTravelHotelOfferInput"
     },
     {
       "kind": "mutation",
-      "mode": "update",
-      "field": "cancel_cancel_request_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "cancel_cancel_request",
-      "action_type": "update",
-      "summary": "Update Travel Order via Cancel Cancel Request. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/cancel_cancel_request_travel_travel_order",
+      "mode": "destroy",
+      "field": "delete_travel_hotel_offer",
+      "entity": "HotelOffer",
+      "resource": "UniboExPoc.Travel.HotelOffer",
+      "action": "destroy",
+      "action_type": "destroy",
+      "summary": "Delete Hotel Offer via Destroy. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/delete_travel_hotel_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CancelCancelRequestTravelTravelOrderInput"
+      "arguments": []
     },
     {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "cancel_fulfillment_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "cancel_fulfillment",
-      "action_type": "update",
-      "summary": "Update Travel Fulfillment via Cancel Fulfillment. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/cancel_fulfillment_travel_travel_fulfillment",
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_flight_offer",
+      "entity": "FlightOffer",
+      "resource": "UniboExPoc.Travel.FlightOffer",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Flight Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/get_travel_flight_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CancelFulfillmentTravelTravelFulfillmentInput"
+      "arguments": []
     },
     {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "cancel_waitlist_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "cancel_waitlist",
-      "action_type": "update",
-      "summary": "Update Travel Order via Cancel Waitlist. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/cancel_waitlist_travel_travel_order",
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_flight_offers",
+      "entity": "FlightOffer",
+      "resource": "UniboExPoc.Travel.FlightOffer",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Flight Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_flight_offers",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CancelWaitlistTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "complete_direct_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "complete_direct",
-      "action_type": "update",
-      "summary": "Update Travel Change Order via Complete Direct. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/complete_direct_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CompleteDirectTravelTravelChangeOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "complete_fulfillment_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "complete_fulfillment",
-      "action_type": "update",
-      "summary": "Update Travel Fulfillment via Complete Fulfillment. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/complete_fulfillment_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CompleteFulfillmentTravelTravelFulfillmentInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "complete_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "complete",
-      "action_type": "update",
-      "summary": "Update Travel Change Order via Complete. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/complete_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CompleteTravelTravelChangeOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "confirm_booking_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "confirm_booking",
-      "action_type": "update",
-      "summary": "Update Travel Fulfillment via Confirm Booking. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/confirm_booking_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ConfirmBookingTravelTravelFulfillmentInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "confirm_change_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "confirm_change",
-      "action_type": "update",
-      "summary": "Update Travel Change Order via Confirm Change. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/confirm_change_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ConfirmChangeTravelTravelChangeOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "confirm_change_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "confirm_change",
-      "action_type": "update",
-      "summary": "Update Travel Order via Confirm Change. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/confirm_change_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ConfirmChangeTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "confirm_quote_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "confirm_quote",
-      "action_type": "update",
-      "summary": "Update Travel Order via Confirm Quote. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/confirm_quote_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ConfirmQuoteTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "confirm_refund_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "confirm_refund",
-      "action_type": "update",
-      "summary": "Update Travel Refund Order via Confirm Refund",
-      "doc_url": "graphql://contract/travel/confirm_refund_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ConfirmRefundTravelTravelRefundOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_create_fulfillment_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "create_fulfillment",
-      "action_type": "create",
-      "summary": "Create Travel Fulfillment via Create Fulfillment. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/create_create_fulfillment_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateCreateFulfillmentTravelTravelFulfillmentInput",
-      "input_fields": [
-        "tenant_id",
-        "travel_order_id",
-        "fulfillment_type",
-        "supplier_booking_ref"
-      ]
+      "arguments": []
     },
     {
       "kind": "mutation",
@@ -314,411 +579,77 @@
       "conditional_requirements": [],
       "arguments": [],
       "input_type_name": "CreateTravelFlightOfferInput",
-      "input_fields": [
-        "tenant_id",
-        "host_shop_id",
-        "supplier_code",
-        "itinerary_code",
-        "flight_no",
-        "airline_ref_id",
-        "departure_airport_code",
-        "departure_airport_ref_id",
-        "arrival_airport_code",
-        "arrival_airport_ref_id",
-        "departure_at",
-        "arrival_at",
-        "cabin_class",
-        "cabin_class_ref_id",
-        "fare_family",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "seats_available",
-        "baggage_policy",
-        "refund_change_policy",
-        "sale_status"
-      ]
+      "input_fields": {
+        "airline_ref_id": "string",
+        "arrival_airport_code": "string",
+        "arrival_airport_ref_id": "string",
+        "arrival_at": "datetime",
+        "baggage_policy": "text",
+        "cabin_class": "string",
+        "cabin_class_ref_id": "string",
+        "currency": "string",
+        "departure_airport_code": "string",
+        "departure_airport_ref_id": "string",
+        "departure_at": "datetime",
+        "fare_family": "string",
+        "flight_no": "string",
+        "host_shop_id": "uuid",
+        "itinerary_code": "string",
+        "listed_price": "decimal",
+        "refund_change_policy": "text",
+        "sale_status": "enum",
+        "seats_available": "integer",
+        "settlement_price": "decimal",
+        "supplier_code": "string",
+        "tenant_id": "uuid"
+      }
     },
     {
       "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_hotel_offer",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Hotel Offer via Create. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/create_travel_hotel_offer",
+      "mode": "update",
+      "field": "update_travel_flight_offer",
+      "entity": "FlightOffer",
+      "resource": "UniboExPoc.Travel.FlightOffer",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Flight Offer via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_flight_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "CreateTravelHotelOfferInput",
-      "input_fields": [
-        "tenant_id",
-        "host_shop_id",
-        "supplier_code",
-        "hotel_code",
-        "hotel_ref_id",
-        "hotel_name",
-        "city_code",
-        "city_ref_id",
-        "room_type_code",
-        "room_type_ref_id",
-        "rate_plan_code",
-        "checkin_date",
-        "checkout_date",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "inventory_count",
-        "cancellation_policy",
-        "guarantee_policy",
-        "sale_status"
-      ]
+      "input_type_name": "UpdateTravelFlightOfferInput",
+      "input_fields": {
+        "airline_ref_id": "string",
+        "arrival_airport_ref_id": "string",
+        "baggage_policy": "text",
+        "cabin_class_ref_id": "string",
+        "currency": "string",
+        "departure_airport_ref_id": "string",
+        "fare_family": "string",
+        "listed_price": "decimal",
+        "refund_change_policy": "text",
+        "seats_available": "integer",
+        "settlement_price": "decimal"
+      }
     },
     {
       "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_train_offer",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Train Offer via Create. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/create_travel_train_offer",
+      "mode": "update",
+      "field": "activate_travel_flight_offer",
+      "entity": "FlightOffer",
+      "resource": "UniboExPoc.Travel.FlightOffer",
+      "action": "activate",
+      "action_type": "update",
+      "summary": "Update Flight Offer via Activate. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/activate_travel_flight_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "CreateTravelTrainOfferInput",
-      "input_fields": [
-        "tenant_id",
-        "host_shop_id",
-        "supplier_code",
-        "train_no",
-        "departure_station_code",
-        "departure_station_ref_id",
-        "departure_station_name",
-        "arrival_station_code",
-        "arrival_station_ref_id",
-        "arrival_station_name",
-        "travel_date",
-        "departure_at",
-        "arrival_at",
-        "seat_class",
-        "seat_code",
-        "is_no_seat",
-        "inventory_status",
-        "waitlist_supported",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "booking_rules_snapshot",
-        "change_rules_snapshot",
-        "refund_rules_snapshot",
-        "sale_status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_airline",
-      "entity": "TravelAirline",
-      "resource": "UniboExPoc.Travel.TravelAirline",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Airline via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_airline",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelAirlineInput",
-      "input_fields": [
-        "airline_code",
-        "airline_name",
-        "iata_code",
-        "icao_code",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_cabin_class",
-      "entity": "TravelCabinClass",
-      "resource": "UniboExPoc.Travel.TravelCabinClass",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Cabin Class via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_cabin_class",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelCabinClassInput",
-      "input_fields": [
-        "cabin_class_code",
-        "cabin_class_name",
-        "cabin_rank",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Change Order via Create. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/create_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelChangeOrderInput",
-      "input_fields": [
-        "original_order_id",
-        "change_reason",
-        "price_difference",
-        "change_fee",
-        "new_offer_id",
-        "approval_mode"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_hotel",
-      "entity": "TravelHotel",
-      "resource": "UniboExPoc.Travel.TravelHotel",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Hotel via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_hotel",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelHotelInput",
-      "input_fields": [
-        "hotel_code",
-        "hotel_name",
-        "city_id",
-        "city_code",
-        "hotel_star",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "create",
-      "action_type": "create",
-      "summary": "创建订单（别名 create_order）. Conditional requirements: product_type=hotel -> hotel_offer_id required; product_type=flight -> flight_offer_id required; product_type=vacation -> vacation_offer_id required; product_type=train -> train_offer_id required. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/create_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [
-        "product_type=hotel -> hotel_offer_id required",
-        "product_type=flight -> flight_offer_id required",
-        "product_type=vacation -> vacation_offer_id required",
-        "product_type=train -> train_offer_id required"
-      ],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelOrderInput",
-      "input_fields": [
-        "tenant_id",
-        "host_shop_id",
-        "hotel_offer_id",
-        "flight_offer_id",
-        "vacation_offer_id",
-        "train_offer_id",
-        "order_no",
-        "product_type",
-        "customer_id",
-        "contact_name",
-        "contact_phone",
-        "traveler_count",
-        "total_amount",
-        "points_to_use",
-        "points_deduction_amount",
-        "currency",
-        "ticket_passenger_infos",
-        "seat_selection_snapshot"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Policy via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_policy",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelPolicyInput",
-      "input_fields": [
-        "policy_name",
-        "product_type",
-        "employee_level",
-        "city_tier",
-        "season",
-        "max_amount",
-        "cabin_class_limit",
-        "hotel_star_limit",
-        "exceed_strategy",
-        "approval_mode",
-        "personal_pay_ratio",
-        "enterprise_id"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_policy_check",
-      "entity": "TravelPolicyCheck",
-      "resource": "UniboExPoc.Travel.TravelPolicyCheck",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Policy Check via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_policy_check",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelPolicyCheckInput",
-      "input_fields": [
-        "order_id",
-        "policy_id",
-        "check_result",
-        "policy_amount",
-        "actual_amount",
-        "exceed_amount",
-        "exceed_ratio",
-        "exceed_strategy",
-        "exceed_reason",
-        "personal_pay_amount",
-        "approval_request_id",
-        "approval_mode"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Refund Order via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelRefundOrderInput",
-      "input_fields": [
-        "original_order_id",
-        "refund_reason",
-        "refund_fee",
-        "refund_amount",
-        "approval_mode"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_room_type",
-      "entity": "TravelRoomType",
-      "resource": "UniboExPoc.Travel.TravelRoomType",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Room Type via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_room_type",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelRoomTypeInput",
-      "input_fields": [
-        "room_type_code",
-        "room_type_name",
-        "hotel_id",
-        "hotel_code",
-        "bed_type",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_travel_static_code_mapping",
-      "entity": "TravelStaticCodeMapping",
-      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Travel Static Code Mapping via Create",
-      "doc_url": "graphql://contract/travel/create_travel_travel_static_code_mapping",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelTravelStaticCodeMappingInput",
-      "input_fields": [
-        "supplier_code",
-        "object_type",
-        "canonical_entity",
-        "canonical_id",
-        "external_code",
-        "external_name",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "create",
-      "field": "create_travel_vacation_offer",
-      "entity": "VacationOffer",
-      "resource": "UniboExPoc.Travel.VacationOffer",
-      "action": "create",
-      "action_type": "create",
-      "summary": "Create Vacation Offer via Create. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/create_travel_vacation_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "CreateTravelVacationOfferInput",
-      "input_fields": [
-        "tenant_id",
-        "host_shop_id",
-        "supplier_code",
-        "package_code",
-        "package_name",
-        "package_type",
-        "departure_city_code",
-        "departure_city_ref_id",
-        "destination_code",
-        "destination_ref_id",
-        "start_date",
-        "end_date",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "inventory_count",
-        "booking_rules",
-        "cancellation_policy",
-        "sale_status"
-      ]
+      "input_type_name": "ActivateTravelFlightOfferInput"
     },
     {
       "kind": "mutation",
@@ -740,54 +671,151 @@
     {
       "kind": "mutation",
       "mode": "update",
-      "field": "deactivate_travel_hotel_offer",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "deactivate",
+      "field": "expire_travel_flight_offer",
+      "entity": "FlightOffer",
+      "resource": "UniboExPoc.Travel.FlightOffer",
+      "action": "expire",
       "action_type": "update",
-      "summary": "Update Hotel Offer via Deactivate. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/deactivate_travel_hotel_offer",
+      "summary": "Update Flight Offer via Expire. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/expire_travel_flight_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "DeactivateTravelHotelOfferInput"
+      "input_type_name": "ExpireTravelFlightOfferInput"
     },
     {
       "kind": "mutation",
-      "mode": "update",
-      "field": "deactivate_travel_train_offer",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "deactivate",
-      "action_type": "update",
-      "summary": "Update Train Offer via Deactivate. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/deactivate_travel_train_offer",
+      "mode": "destroy",
+      "field": "delete_travel_flight_offer",
+      "entity": "FlightOffer",
+      "resource": "UniboExPoc.Travel.FlightOffer",
+      "action": "destroy",
+      "action_type": "destroy",
+      "summary": "Delete Flight Offer via Destroy. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/delete_travel_flight_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_vacation_offer",
+      "entity": "VacationOffer",
+      "resource": "UniboExPoc.Travel.VacationOffer",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Vacation Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/get_travel_vacation_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_vacation_offers",
+      "entity": "VacationOffer",
+      "resource": "UniboExPoc.Travel.VacationOffer",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Vacation Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_vacation_offers",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_vacation_offer",
+      "entity": "VacationOffer",
+      "resource": "UniboExPoc.Travel.VacationOffer",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Vacation Offer via Create. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/create_travel_vacation_offer",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "DeactivateTravelTrainOfferInput"
+      "input_type_name": "CreateTravelVacationOfferInput",
+      "input_fields": {
+        "booking_rules": "text",
+        "cancellation_policy": "text",
+        "currency": "string",
+        "departure_city_code": "string",
+        "departure_city_ref_id": "string",
+        "destination_code": "string",
+        "destination_ref_id": "string",
+        "end_date": "date",
+        "host_shop_id": "uuid",
+        "inventory_count": "integer",
+        "listed_price": "decimal",
+        "package_code": "string",
+        "package_name": "string",
+        "package_type": "enum",
+        "sale_status": "enum",
+        "settlement_price": "decimal",
+        "start_date": "date",
+        "supplier_code": "string",
+        "tenant_id": "uuid"
+      }
     },
     {
       "kind": "mutation",
       "mode": "update",
-      "field": "deactivate_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "deactivate",
+      "field": "update_travel_vacation_offer",
+      "entity": "VacationOffer",
+      "resource": "UniboExPoc.Travel.VacationOffer",
+      "action": "update",
       "action_type": "update",
-      "summary": "Update Travel Policy via Deactivate",
-      "doc_url": "graphql://contract/travel/deactivate_travel_travel_policy",
-      "required_headers": [],
+      "summary": "Update Vacation Offer via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_vacation_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "DeactivateTravelTravelPolicyInput",
-      "input_fields": [
-        "is_active"
-      ]
+      "input_type_name": "UpdateTravelVacationOfferInput",
+      "input_fields": {
+        "booking_rules": "text",
+        "cancellation_policy": "text",
+        "currency": "string",
+        "departure_city_ref_id": "string",
+        "destination_ref_id": "string",
+        "inventory_count": "integer",
+        "listed_price": "decimal",
+        "package_name": "string",
+        "package_type": "enum",
+        "settlement_price": "decimal"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "activate_travel_vacation_offer",
+      "entity": "VacationOffer",
+      "resource": "UniboExPoc.Travel.VacationOffer",
+      "action": "activate",
+      "action_type": "update",
+      "summary": "Update Vacation Offer via Activate. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/activate_travel_vacation_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ActivateTravelVacationOfferInput"
     },
     {
       "kind": "mutation",
@@ -808,170 +836,6 @@
     },
     {
       "kind": "mutation",
-      "mode": "destroy",
-      "field": "delete_travel_flight_offer",
-      "entity": "FlightOffer",
-      "resource": "UniboExPoc.Travel.FlightOffer",
-      "action": "destroy",
-      "action_type": "destroy",
-      "summary": "Delete Flight Offer via Destroy. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/delete_travel_flight_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "mutation",
-      "mode": "destroy",
-      "field": "delete_travel_hotel_offer",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "destroy",
-      "action_type": "destroy",
-      "summary": "Delete Hotel Offer via Destroy. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/delete_travel_hotel_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "mutation",
-      "mode": "destroy",
-      "field": "delete_travel_train_offer",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "destroy",
-      "action_type": "destroy",
-      "summary": "Delete Train Offer via Destroy. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/delete_travel_train_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "mutation",
-      "mode": "destroy",
-      "field": "delete_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "destroy",
-      "action_type": "destroy",
-      "summary": "Delete Travel Fulfillment via Destroy. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/delete_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "mutation",
-      "mode": "destroy",
-      "field": "delete_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "destroy",
-      "action_type": "destroy",
-      "summary": "Delete Travel Order via Destroy. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/delete_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "mutation",
-      "mode": "destroy",
-      "field": "delete_travel_vacation_offer",
-      "entity": "VacationOffer",
-      "resource": "UniboExPoc.Travel.VacationOffer",
-      "action": "destroy",
-      "action_type": "destroy",
-      "summary": "Delete Vacation Offer via Destroy. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/delete_travel_vacation_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "execute_cancel_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "execute_cancel",
-      "action_type": "update",
-      "summary": "Update Travel Order via Execute Cancel. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/execute_cancel_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ExecuteCancelTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "expire_travel_flight_offer",
-      "entity": "FlightOffer",
-      "resource": "UniboExPoc.Travel.FlightOffer",
-      "action": "expire",
-      "action_type": "update",
-      "summary": "Update Flight Offer via Expire. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/expire_travel_flight_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ExpireTravelFlightOfferInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "expire_travel_hotel_offer",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "expire",
-      "action_type": "update",
-      "summary": "Update Hotel Offer via Expire. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/expire_travel_hotel_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ExpireTravelHotelOfferInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "expire_travel_train_offer",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "expire",
-      "action_type": "update",
-      "summary": "Update Train Offer via Expire. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/expire_travel_train_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "ExpireTravelTrainOfferInput"
-    },
-    {
-      "kind": "mutation",
       "mode": "update",
       "field": "expire_travel_vacation_offer",
       "entity": "VacationOffer",
@@ -989,67 +853,14 @@
     },
     {
       "kind": "mutation",
-      "mode": "update",
-      "field": "fail_fulfillment_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "fail_fulfillment",
-      "action_type": "update",
-      "summary": "Update Travel Fulfillment via Fail Fulfillment. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/fail_fulfillment_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "FailFulfillmentTravelTravelFulfillmentInput",
-      "input_fields": [
-        "failure_reason"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "fulfill_waitlist_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "fulfill_waitlist",
-      "action_type": "update",
-      "summary": "Update Travel Order via Fulfill Waitlist. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/fulfill_waitlist_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "FulfillWaitlistTravelTravelOrderInput"
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_flight_offer",
-      "entity": "FlightOffer",
-      "resource": "UniboExPoc.Travel.FlightOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Flight Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/get_travel_flight_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_hotel_offer",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Hotel Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/get_travel_hotel_offer",
+      "mode": "destroy",
+      "field": "delete_travel_vacation_offer",
+      "entity": "VacationOffer",
+      "resource": "UniboExPoc.Travel.VacationOffer",
+      "action": "destroy",
+      "action_type": "destroy",
+      "summary": "Delete Vacation Offer via Destroy. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/delete_travel_vacation_offer",
       "required_headers": [
         "x-tenant-id"
       ],
@@ -1074,42 +885,515 @@
     },
     {
       "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_airline",
-      "entity": "TravelAirline",
-      "resource": "UniboExPoc.Travel.TravelAirline",
+      "mode": "list",
+      "field": "list_travel_train_offers",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Airline via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_airline",
-      "required_headers": [],
+      "summary": "Read Train Offer via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_train_offers",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_train_offer",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Train Offer via Create. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/create_travel_train_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTrainOfferInput",
+      "input_fields": {
+        "arrival_at": "datetime",
+        "arrival_station_code": "string",
+        "arrival_station_name": "string",
+        "arrival_station_ref_id": "string",
+        "booking_rules_snapshot": "text",
+        "change_rules_snapshot": "text",
+        "currency": "string",
+        "departure_at": "datetime",
+        "departure_station_code": "string",
+        "departure_station_name": "string",
+        "departure_station_ref_id": "string",
+        "host_shop_id": "uuid",
+        "inventory_status": "enum",
+        "is_no_seat": "boolean",
+        "listed_price": "decimal",
+        "refund_rules_snapshot": "text",
+        "sale_status": "enum",
+        "seat_class": "string",
+        "seat_code": "string",
+        "settlement_price": "decimal",
+        "supplier_code": "string",
+        "tenant_id": "uuid",
+        "train_no": "string",
+        "travel_date": "date",
+        "waitlist_supported": "boolean"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_train_offer",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Train Offer via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_train_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTrainOfferInput",
+      "input_fields": {
+        "arrival_at": "datetime",
+        "arrival_station_name": "string",
+        "arrival_station_ref_id": "string",
+        "booking_rules_snapshot": "text",
+        "change_rules_snapshot": "text",
+        "currency": "string",
+        "departure_at": "datetime",
+        "departure_station_name": "string",
+        "departure_station_ref_id": "string",
+        "inventory_status": "enum",
+        "is_no_seat": "boolean",
+        "listed_price": "decimal",
+        "refund_rules_snapshot": "text",
+        "seat_class": "string",
+        "settlement_price": "decimal",
+        "waitlist_supported": "boolean"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "activate_travel_train_offer",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
+      "action": "activate",
+      "action_type": "update",
+      "summary": "Update Train Offer via Activate. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/activate_travel_train_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ActivateTravelTrainOfferInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "deactivate_travel_train_offer",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
+      "action": "deactivate",
+      "action_type": "update",
+      "summary": "Update Train Offer via Deactivate. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/deactivate_travel_train_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "DeactivateTravelTrainOfferInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "expire_travel_train_offer",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
+      "action": "expire",
+      "action_type": "update",
+      "summary": "Update Train Offer via Expire. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/expire_travel_train_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ExpireTravelTrainOfferInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "destroy",
+      "field": "delete_travel_train_offer",
+      "entity": "TrainOffer",
+      "resource": "UniboExPoc.Travel.TrainOffer",
+      "action": "destroy",
+      "action_type": "destroy",
+      "summary": "Delete Train Offer via Destroy. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/delete_travel_train_offer",
+      "required_headers": [
+        "x-tenant-id"
+      ],
       "conditional_requirements": [],
       "arguments": []
     },
     {
       "kind": "query",
       "mode": "get",
-      "field": "get_travel_travel_cabin_class",
-      "entity": "TravelCabinClass",
-      "resource": "UniboExPoc.Travel.TravelCabinClass",
+      "field": "get_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Cabin Class via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_cabin_class",
-      "required_headers": [],
+      "summary": "Read Travel Order via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/get_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
       "conditional_requirements": [],
       "arguments": []
     },
     {
       "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "mode": "list",
+      "field": "list_travel_travel_orders",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Change Order via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/get_travel_travel_change_order",
+      "summary": "Read Travel Order via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_travel_orders",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "create",
+      "action_type": "create",
+      "summary": "创建订单（别名 create_order）. Conditional requirements: product_type=hotel -> hotel_offer_id required; product_type=flight -> flight_offer_id required; product_type=vacation -> vacation_offer_id required; product_type=train -> train_offer_id required. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/create_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [
+        "product_type=hotel -> hotel_offer_id required",
+        "product_type=flight -> flight_offer_id required",
+        "product_type=vacation -> vacation_offer_id required",
+        "product_type=train -> train_offer_id required"
+      ],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelOrderInput",
+      "input_fields": {
+        "contact_name": "string",
+        "contact_phone": "string",
+        "currency": "string",
+        "customer_id": "string",
+        "flight_offer_id": "string",
+        "host_shop_id": "uuid",
+        "hotel_offer_id": "string",
+        "order_no": "string",
+        "points_deduction_amount": "decimal",
+        "points_to_use": "integer",
+        "product_type": "enum",
+        "seat_selection_snapshot": "map",
+        "tenant_id": "uuid",
+        "ticket_passenger_infos": "map",
+        "total_amount": "decimal",
+        "train_offer_id": "string",
+        "traveler_count": "integer",
+        "vacation_offer_id": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Order via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelOrderInput",
+      "input_fields": {
+        "contact_name": "string",
+        "contact_phone": "string",
+        "seat_selection_snapshot": "map",
+        "ticket_passenger_infos": "map",
+        "traveler_count": "integer"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "confirm_quote_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "confirm_quote",
+      "action_type": "update",
+      "summary": "Update Travel Order via Confirm Quote. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/confirm_quote_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ConfirmQuoteTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "submit_order_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "submit_order",
+      "action_type": "update",
+      "summary": "Update Travel Order via Submit Order. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/submit_order_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "SubmitOrderTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "submit_waitlist_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "submit_waitlist",
+      "action_type": "update",
+      "summary": "Update Travel Order via Submit Waitlist. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/submit_waitlist_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "SubmitWaitlistTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "mark_payment_succeeded_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "mark_payment_succeeded",
+      "action_type": "update",
+      "summary": "Update Travel Order via Mark Payment Succeeded. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/mark_payment_succeeded_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "MarkPaymentSucceededTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "mark_booked_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "mark_booked",
+      "action_type": "update",
+      "summary": "Update Travel Order via Mark Booked. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/mark_booked_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "MarkBookedTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "fulfill_waitlist_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "fulfill_waitlist",
+      "action_type": "update",
+      "summary": "Update Travel Order via Fulfill Waitlist. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/fulfill_waitlist_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "FulfillWaitlistTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "mark_completed_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "mark_completed",
+      "action_type": "update",
+      "summary": "Update Travel Order via Mark Completed. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/mark_completed_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "MarkCompletedTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "request_cancel_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "request_cancel",
+      "action_type": "update",
+      "summary": "Update Travel Order via Request Cancel. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/request_cancel_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "RequestCancelTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "cancel_waitlist_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "cancel_waitlist",
+      "action_type": "update",
+      "summary": "Update Travel Order via Cancel Waitlist. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/cancel_waitlist_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CancelWaitlistTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "execute_cancel_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "execute_cancel",
+      "action_type": "update",
+      "summary": "Update Travel Order via Execute Cancel. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/execute_cancel_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ExecuteCancelTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "cancel_cancel_request_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "cancel_cancel_request",
+      "action_type": "update",
+      "summary": "Update Travel Order via Cancel Cancel Request. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/cancel_cancel_request_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CancelCancelRequestTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "request_change_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "request_change",
+      "action_type": "update",
+      "summary": "Update Travel Order via Request Change. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/request_change_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "RequestChangeTravelTravelOrderInput",
+      "input_fields": {
+        "original_order_ref": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "confirm_change_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "confirm_change",
+      "action_type": "update",
+      "summary": "Update Travel Order via Confirm Change. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/confirm_change_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ConfirmChangeTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "mark_order_failed_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "mark_order_failed",
+      "action_type": "update",
+      "summary": "Update Travel Order via Mark Order Failed. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/mark_order_failed_travel_travel_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "MarkOrderFailedTravelTravelOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "destroy",
+      "field": "delete_travel_travel_order",
+      "entity": "TravelOrder",
+      "resource": "UniboExPoc.Travel.TravelOrder",
+      "action": "destroy",
+      "action_type": "destroy",
+      "summary": "Delete Travel Order via Destroy. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/delete_travel_travel_order",
       "required_headers": [
         "x-tenant-id"
       ],
@@ -1134,28 +1418,14 @@
     },
     {
       "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_hotel",
-      "entity": "TravelHotel",
-      "resource": "UniboExPoc.Travel.TravelHotel",
+      "mode": "list",
+      "field": "list_travel_travel_fulfillments",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Hotel via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_hotel",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Order via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/get_travel_travel_order",
+      "summary": "Read Travel Fulfillment via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_travel_fulfillments",
       "required_headers": [
         "x-tenant-id"
       ],
@@ -1163,90 +1433,68 @@
       "arguments": []
     },
     {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Policy via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_policy",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_policy_check",
-      "entity": "TravelPolicyCheck",
-      "resource": "UniboExPoc.Travel.TravelPolicyCheck",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Policy Check via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_policy_check",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Refund Order via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_room_type",
-      "entity": "TravelRoomType",
-      "resource": "UniboExPoc.Travel.TravelRoomType",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Room Type via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_room_type",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_travel_static_code_mapping",
-      "entity": "TravelStaticCodeMapping",
-      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Static Code Mapping via Read",
-      "doc_url": "graphql://contract/travel/get_travel_travel_static_code_mapping",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_travel_vacation_offer",
-      "entity": "VacationOffer",
-      "resource": "UniboExPoc.Travel.VacationOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Vacation Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/get_travel_vacation_offer",
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_create_fulfillment_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "create_fulfillment",
+      "action_type": "create",
+      "summary": "Create Travel Fulfillment via Create Fulfillment. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/create_create_fulfillment_travel_travel_fulfillment",
       "required_headers": [
         "x-tenant-id"
       ],
       "conditional_requirements": [],
-      "arguments": []
+      "arguments": [],
+      "input_type_name": "CreateCreateFulfillmentTravelTravelFulfillmentInput",
+      "input_fields": {
+        "fulfillment_type": "enum",
+        "supplier_booking_ref": "string",
+        "tenant_id": "uuid",
+        "travel_order_id": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Fulfillment via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelFulfillmentInput",
+      "input_fields": {
+        "confirmation_payload": "text",
+        "failure_reason": "text",
+        "supplier_booking_ref": "string",
+        "ticket_refs": "map",
+        "voucher_or_ticket_ref": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "confirm_booking_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "confirm_booking",
+      "action_type": "update",
+      "summary": "Update Travel Fulfillment via Confirm Booking. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/confirm_booking_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ConfirmBookingTravelTravelFulfillmentInput"
     },
     {
       "kind": "mutation",
@@ -1264,6 +1512,434 @@
       "conditional_requirements": [],
       "arguments": [],
       "input_type_name": "IssueVoucherOrTicketTravelTravelFulfillmentInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "mark_in_use_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "mark_in_use",
+      "action_type": "update",
+      "summary": "Update Travel Fulfillment via Mark In Use. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/mark_in_use_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "MarkInUseTravelTravelFulfillmentInput",
+      "input_fields": {
+        "used_at": "datetime"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "complete_fulfillment_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "complete_fulfillment",
+      "action_type": "update",
+      "summary": "Update Travel Fulfillment via Complete Fulfillment. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/complete_fulfillment_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CompleteFulfillmentTravelTravelFulfillmentInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "cancel_fulfillment_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "cancel_fulfillment",
+      "action_type": "update",
+      "summary": "Update Travel Fulfillment via Cancel Fulfillment. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/cancel_fulfillment_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CancelFulfillmentTravelTravelFulfillmentInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "fail_fulfillment_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "fail_fulfillment",
+      "action_type": "update",
+      "summary": "Update Travel Fulfillment via Fail Fulfillment. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/fail_fulfillment_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "FailFulfillmentTravelTravelFulfillmentInput",
+      "input_fields": {
+        "failure_reason": "text"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "destroy",
+      "field": "delete_travel_travel_fulfillment",
+      "entity": "TravelFulfillment",
+      "resource": "UniboExPoc.Travel.TravelFulfillment",
+      "action": "destroy",
+      "action_type": "destroy",
+      "summary": "Delete Travel Fulfillment via Destroy. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/delete_travel_travel_fulfillment",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Change Order via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/get_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_change_orders",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Change Order via Read. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/list_travel_travel_change_orders",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Change Order via Create. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/create_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelChangeOrderInput",
+      "input_fields": {
+        "approval_mode": "enum",
+        "change_fee": "string",
+        "change_reason": "string",
+        "new_offer_id": "string",
+        "original_order_id": "string",
+        "price_difference": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Change Order via Update. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/update_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelChangeOrderInput",
+      "input_fields": {
+        "change_fee": "string",
+        "change_reason": "string",
+        "new_offer_id": "string",
+        "price_difference": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "submit_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "submit",
+      "action_type": "update",
+      "summary": "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/submit_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "SubmitTravelTravelChangeOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "confirm_change_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "confirm_change",
+      "action_type": "update",
+      "summary": "Update Travel Change Order via Confirm Change. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/confirm_change_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ConfirmChangeTravelTravelChangeOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "reject_change_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "reject_change",
+      "action_type": "update",
+      "summary": "Update Travel Change Order via Reject Change. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/reject_change_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "RejectChangeTravelTravelChangeOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "complete_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "complete",
+      "action_type": "update",
+      "summary": "Update Travel Change Order via Complete. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/complete_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CompleteTravelTravelChangeOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "complete_direct_travel_travel_change_order",
+      "entity": "TravelChangeOrder",
+      "resource": "UniboExPoc.Travel.TravelChangeOrder",
+      "action": "complete_direct",
+      "action_type": "update",
+      "summary": "Update Travel Change Order via Complete Direct. Headers: x-tenant-id",
+      "doc_url": "graphql://contract/travel/complete_direct_travel_travel_change_order",
+      "required_headers": [
+        "x-tenant-id"
+      ],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CompleteDirectTravelTravelChangeOrderInput"
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Refund Order via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_refund_orders",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Refund Order via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_refund_orders",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Refund Order via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelRefundOrderInput",
+      "input_fields": {
+        "approval_mode": "enum",
+        "original_order_id": "string",
+        "refund_amount": "string",
+        "refund_fee": "string",
+        "refund_reason": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Refund Order via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelRefundOrderInput",
+      "input_fields": {
+        "refund_amount": "string",
+        "refund_fee": "string",
+        "refund_reason": "string"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "submit_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "submit",
+      "action_type": "update",
+      "summary": "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance",
+      "doc_url": "graphql://contract/travel/submit_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "SubmitTravelTravelRefundOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "confirm_refund_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "confirm_refund",
+      "action_type": "update",
+      "summary": "Update Travel Refund Order via Confirm Refund",
+      "doc_url": "graphql://contract/travel/confirm_refund_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "ConfirmRefundTravelTravelRefundOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "reject_refund_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "reject_refund",
+      "action_type": "update",
+      "summary": "Update Travel Refund Order via Reject Refund",
+      "doc_url": "graphql://contract/travel/reject_refund_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "RejectRefundTravelTravelRefundOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "refund_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "refund",
+      "action_type": "update",
+      "summary": "Update Travel Refund Order via Refund",
+      "doc_url": "graphql://contract/travel/refund_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "RefundTravelTravelRefundOrderInput"
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "refund_direct_travel_travel_refund_order",
+      "entity": "TravelRefundOrder",
+      "resource": "UniboExPoc.Travel.TravelRefundOrder",
+      "action": "refund_direct",
+      "action_type": "update",
+      "summary": "Update Travel Refund Order via Refund Direct",
+      "doc_url": "graphql://contract/travel/refund_direct_travel_travel_refund_order",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "RefundDirectTravelTravelRefundOrderInput"
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_travel_travel_policy",
+      "entity": "TravelPolicy",
+      "resource": "UniboExPoc.Travel.TravelPolicy",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Policy via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_policy",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_travel_travel_policys",
+      "entity": "TravelPolicy",
+      "resource": "UniboExPoc.Travel.TravelPolicy",
+      "action": "read",
+      "action_type": "read",
+      "summary": "Read Travel Policy via Read",
+      "doc_url": "graphql://contract/travel/list_travel_travel_policys",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": []
     },
     {
       "kind": "query",
@@ -1296,140 +1972,106 @@
       ]
     },
     {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_flight_offers",
-      "entity": "FlightOffer",
-      "resource": "UniboExPoc.Travel.FlightOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Flight Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_flight_offers",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_hotel_offers",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Hotel Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_hotel_offers",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_train_offers",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Train Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_train_offers",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_airlines",
-      "entity": "TravelAirline",
-      "resource": "UniboExPoc.Travel.TravelAirline",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Airline via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_airlines",
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_travel_travel_policy",
+      "entity": "TravelPolicy",
+      "resource": "UniboExPoc.Travel.TravelPolicy",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Policy via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_policy",
       "required_headers": [],
       "conditional_requirements": [],
-      "arguments": []
+      "arguments": [],
+      "input_type_name": "CreateTravelTravelPolicyInput",
+      "input_fields": {
+        "approval_mode": "enum",
+        "cabin_class_limit": "string",
+        "city_tier": "string",
+        "employee_level": "string",
+        "enterprise_id": "string",
+        "exceed_strategy": "enum",
+        "hotel_star_limit": "string",
+        "max_amount": "integer",
+        "personal_pay_ratio": "integer",
+        "policy_name": "string",
+        "product_type": "enum",
+        "season": "string"
+      }
     },
     {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_cabin_classs",
-      "entity": "TravelCabinClass",
-      "resource": "UniboExPoc.Travel.TravelCabinClass",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Cabin Class via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_cabin_classs",
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_travel_travel_policy",
+      "entity": "TravelPolicy",
+      "resource": "UniboExPoc.Travel.TravelPolicy",
+      "action": "update",
+      "action_type": "update",
+      "summary": "Update Travel Policy via Update",
+      "doc_url": "graphql://contract/travel/update_travel_travel_policy",
       "required_headers": [],
       "conditional_requirements": [],
-      "arguments": []
+      "arguments": [],
+      "input_type_name": "UpdateTravelTravelPolicyInput",
+      "input_fields": {
+        "approval_mode": "enum",
+        "cabin_class_limit": "string",
+        "exceed_strategy": "enum",
+        "hotel_star_limit": "string",
+        "max_amount": "integer",
+        "personal_pay_ratio": "integer",
+        "policy_name": "string",
+        "season": "string"
+      }
     },
     {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_change_orders",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Change Order via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_travel_change_orders",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_fulfillments",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Fulfillment via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_travel_fulfillments",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_hotels",
-      "entity": "TravelHotel",
-      "resource": "UniboExPoc.Travel.TravelHotel",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Hotel via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_hotels",
+      "kind": "mutation",
+      "mode": "update",
+      "field": "activate_travel_travel_policy",
+      "entity": "TravelPolicy",
+      "resource": "UniboExPoc.Travel.TravelPolicy",
+      "action": "activate",
+      "action_type": "update",
+      "summary": "Update Travel Policy via Activate",
+      "doc_url": "graphql://contract/travel/activate_travel_travel_policy",
       "required_headers": [],
       "conditional_requirements": [],
-      "arguments": []
+      "arguments": [],
+      "input_type_name": "ActivateTravelTravelPolicyInput",
+      "input_fields": {
+        "is_active": "boolean"
+      }
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "deactivate_travel_travel_policy",
+      "entity": "TravelPolicy",
+      "resource": "UniboExPoc.Travel.TravelPolicy",
+      "action": "deactivate",
+      "action_type": "update",
+      "summary": "Update Travel Policy via Deactivate",
+      "doc_url": "graphql://contract/travel/deactivate_travel_travel_policy",
+      "required_headers": [],
+      "conditional_requirements": [],
+      "arguments": [],
+      "input_type_name": "DeactivateTravelTravelPolicyInput",
+      "input_fields": {
+        "is_active": "boolean"
+      }
     },
     {
       "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_orders",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
+      "mode": "get",
+      "field": "get_travel_travel_policy_check",
+      "entity": "TravelPolicyCheck",
+      "resource": "UniboExPoc.Travel.TravelPolicyCheck",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Order via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_travel_orders",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "summary": "Read Travel Policy Check via Read",
+      "doc_url": "graphql://contract/travel/get_travel_travel_policy_check",
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1448,583 +2090,33 @@
       "arguments": []
     },
     {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_policys",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Policy via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_policys",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_refund_orders",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Refund Order via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_refund_orders",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_room_types",
-      "entity": "TravelRoomType",
-      "resource": "UniboExPoc.Travel.TravelRoomType",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Room Type via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_room_types",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_travel_static_code_mappings",
-      "entity": "TravelStaticCodeMapping",
-      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Travel Static Code Mapping via Read",
-      "doc_url": "graphql://contract/travel/list_travel_travel_static_code_mappings",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "list",
-      "field": "list_travel_vacation_offers",
-      "entity": "VacationOffer",
-      "resource": "UniboExPoc.Travel.VacationOffer",
-      "action": "read",
-      "action_type": "read",
-      "summary": "Read Vacation Offer via Read. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/list_travel_vacation_offers",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": []
-    },
-    {
       "kind": "mutation",
-      "mode": "update",
-      "field": "mark_booked_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "mark_booked",
-      "action_type": "update",
-      "summary": "Update Travel Order via Mark Booked. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/mark_booked_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "MarkBookedTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "mark_completed_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "mark_completed",
-      "action_type": "update",
-      "summary": "Update Travel Order via Mark Completed. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/mark_completed_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "MarkCompletedTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "mark_in_use_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "mark_in_use",
-      "action_type": "update",
-      "summary": "Update Travel Fulfillment via Mark In Use. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/mark_in_use_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "MarkInUseTravelTravelFulfillmentInput",
-      "input_fields": [
-        "used_at"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "mark_order_failed_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "mark_order_failed",
-      "action_type": "update",
-      "summary": "Update Travel Order via Mark Order Failed. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/mark_order_failed_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "MarkOrderFailedTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "mark_payment_succeeded_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "mark_payment_succeeded",
-      "action_type": "update",
-      "summary": "Update Travel Order via Mark Payment Succeeded. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/mark_payment_succeeded_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "MarkPaymentSucceededTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "refund_direct_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "refund_direct",
-      "action_type": "update",
-      "summary": "Update Travel Refund Order via Refund Direct",
-      "doc_url": "graphql://contract/travel/refund_direct_travel_travel_refund_order",
+      "mode": "create",
+      "field": "create_travel_travel_policy_check",
+      "entity": "TravelPolicyCheck",
+      "resource": "UniboExPoc.Travel.TravelPolicyCheck",
+      "action": "create",
+      "action_type": "create",
+      "summary": "Create Travel Policy Check via Create",
+      "doc_url": "graphql://contract/travel/create_travel_travel_policy_check",
       "required_headers": [],
       "conditional_requirements": [],
       "arguments": [],
-      "input_type_name": "RefundDirectTravelTravelRefundOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "refund_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "refund",
-      "action_type": "update",
-      "summary": "Update Travel Refund Order via Refund",
-      "doc_url": "graphql://contract/travel/refund_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "RefundTravelTravelRefundOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "reject_change_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "reject_change",
-      "action_type": "update",
-      "summary": "Update Travel Change Order via Reject Change. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/reject_change_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "RejectChangeTravelTravelChangeOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "reject_refund_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "reject_refund",
-      "action_type": "update",
-      "summary": "Update Travel Refund Order via Reject Refund",
-      "doc_url": "graphql://contract/travel/reject_refund_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "RejectRefundTravelTravelRefundOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "request_cancel_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "request_cancel",
-      "action_type": "update",
-      "summary": "Update Travel Order via Request Cancel. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/request_cancel_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "RequestCancelTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "request_change_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "request_change",
-      "action_type": "update",
-      "summary": "Update Travel Order via Request Change. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/request_change_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "RequestChangeTravelTravelOrderInput",
-      "input_fields": [
-        "original_order_ref"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "submit_order_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "submit_order",
-      "action_type": "update",
-      "summary": "Update Travel Order via Submit Order. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/submit_order_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "SubmitOrderTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "submit_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "submit",
-      "action_type": "update",
-      "summary": "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/submit_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "SubmitTravelTravelChangeOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "submit_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "submit",
-      "action_type": "update",
-      "summary": "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance",
-      "doc_url": "graphql://contract/travel/submit_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "SubmitTravelTravelRefundOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "submit_waitlist_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "submit_waitlist",
-      "action_type": "update",
-      "summary": "Update Travel Order via Submit Waitlist. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/submit_waitlist_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "SubmitWaitlistTravelTravelOrderInput"
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_flight_offer",
-      "entity": "FlightOffer",
-      "resource": "UniboExPoc.Travel.FlightOffer",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Flight Offer via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_flight_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelFlightOfferInput",
-      "input_fields": [
-        "airline_ref_id",
-        "departure_airport_ref_id",
-        "arrival_airport_ref_id",
-        "cabin_class_ref_id",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "seats_available",
-        "baggage_policy",
-        "refund_change_policy",
-        "fare_family"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_hotel_offer",
-      "entity": "HotelOffer",
-      "resource": "UniboExPoc.Travel.HotelOffer",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Hotel Offer via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_hotel_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelHotelOfferInput",
-      "input_fields": [
-        "hotel_name",
-        "city_code",
-        "city_ref_id",
-        "hotel_ref_id",
-        "room_type_ref_id",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "inventory_count",
-        "cancellation_policy",
-        "guarantee_policy"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_train_offer",
-      "entity": "TrainOffer",
-      "resource": "UniboExPoc.Travel.TrainOffer",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Train Offer via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_train_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTrainOfferInput",
-      "input_fields": [
-        "departure_station_ref_id",
-        "arrival_station_ref_id",
-        "departure_station_name",
-        "arrival_station_name",
-        "departure_at",
-        "arrival_at",
-        "seat_class",
-        "is_no_seat",
-        "inventory_status",
-        "waitlist_supported",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "booking_rules_snapshot",
-        "change_rules_snapshot",
-        "refund_rules_snapshot"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_airline",
-      "entity": "TravelAirline",
-      "resource": "UniboExPoc.Travel.TravelAirline",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Airline via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_airline",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelAirlineInput",
-      "input_fields": [
-        "airline_name",
-        "iata_code",
-        "icao_code",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_cabin_class",
-      "entity": "TravelCabinClass",
-      "resource": "UniboExPoc.Travel.TravelCabinClass",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Cabin Class via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_cabin_class",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelCabinClassInput",
-      "input_fields": [
-        "cabin_class_name",
-        "cabin_rank",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_change_order",
-      "entity": "TravelChangeOrder",
-      "resource": "UniboExPoc.Travel.TravelChangeOrder",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Change Order via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelChangeOrderInput",
-      "input_fields": [
-        "change_reason",
-        "price_difference",
-        "change_fee",
-        "new_offer_id"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_fulfillment",
-      "entity": "TravelFulfillment",
-      "resource": "UniboExPoc.Travel.TravelFulfillment",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Fulfillment via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_travel_fulfillment",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelFulfillmentInput",
-      "input_fields": [
-        "supplier_booking_ref",
-        "voucher_or_ticket_ref",
-        "ticket_refs",
-        "confirmation_payload",
-        "failure_reason"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_hotel",
-      "entity": "TravelHotel",
-      "resource": "UniboExPoc.Travel.TravelHotel",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Hotel via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_hotel",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelHotelInput",
-      "input_fields": [
-        "hotel_name",
-        "city_id",
-        "city_code",
-        "hotel_star",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_order",
-      "entity": "TravelOrder",
-      "resource": "UniboExPoc.Travel.TravelOrder",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Order via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_travel_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelOrderInput",
-      "input_fields": [
-        "contact_name",
-        "contact_phone",
-        "traveler_count",
-        "ticket_passenger_infos",
-        "seat_selection_snapshot"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Policy via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_policy",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelPolicyInput",
-      "input_fields": [
-        "policy_name",
-        "season",
-        "max_amount",
-        "cabin_class_limit",
-        "hotel_star_limit",
-        "exceed_strategy",
-        "approval_mode",
-        "personal_pay_ratio"
-      ]
+      "input_type_name": "CreateTravelTravelPolicyCheckInput",
+      "input_fields": {
+        "actual_amount": "integer",
+        "approval_mode": "enum",
+        "approval_request_id": "string",
+        "check_result": "enum",
+        "exceed_amount": "integer",
+        "exceed_ratio": "string",
+        "exceed_reason": "string",
+        "exceed_strategy": "string",
+        "order_id": "string",
+        "personal_pay_amount": "integer",
+        "policy_amount": "integer",
+        "policy_id": "string"
+      }
     },
     {
       "kind": "mutation",
@@ -2040,104 +2132,12 @@
       "conditional_requirements": [],
       "arguments": [],
       "input_type_name": "UpdateTravelTravelPolicyCheckInput",
-      "input_fields": [
-        "check_result",
-        "exceed_reason",
-        "exceed_strategy",
-        "personal_pay_amount"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_refund_order",
-      "entity": "TravelRefundOrder",
-      "resource": "UniboExPoc.Travel.TravelRefundOrder",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Refund Order via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_refund_order",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelRefundOrderInput",
-      "input_fields": [
-        "refund_reason",
-        "refund_fee",
-        "refund_amount"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_room_type",
-      "entity": "TravelRoomType",
-      "resource": "UniboExPoc.Travel.TravelRoomType",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Room Type via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_room_type",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelRoomTypeInput",
-      "input_fields": [
-        "room_type_name",
-        "hotel_id",
-        "hotel_code",
-        "bed_type",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_travel_static_code_mapping",
-      "entity": "TravelStaticCodeMapping",
-      "resource": "UniboExPoc.Travel.TravelStaticCodeMapping",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Travel Static Code Mapping via Update",
-      "doc_url": "graphql://contract/travel/update_travel_travel_static_code_mapping",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelTravelStaticCodeMappingInput",
-      "input_fields": [
-        "canonical_entity",
-        "canonical_id",
-        "external_name",
-        "status"
-      ]
-    },
-    {
-      "kind": "mutation",
-      "mode": "update",
-      "field": "update_travel_vacation_offer",
-      "entity": "VacationOffer",
-      "resource": "UniboExPoc.Travel.VacationOffer",
-      "action": "update",
-      "action_type": "update",
-      "summary": "Update Vacation Offer via Update. Headers: x-tenant-id",
-      "doc_url": "graphql://contract/travel/update_travel_vacation_offer",
-      "required_headers": [
-        "x-tenant-id"
-      ],
-      "conditional_requirements": [],
-      "arguments": [],
-      "input_type_name": "UpdateTravelVacationOfferInput",
-      "input_fields": [
-        "package_name",
-        "package_type",
-        "departure_city_ref_id",
-        "destination_ref_id",
-        "listed_price",
-        "settlement_price",
-        "currency",
-        "inventory_count",
-        "booking_rules",
-        "cancellation_policy"
-      ]
+      "input_fields": {
+        "check_result": "enum",
+        "exceed_reason": "string",
+        "exceed_strategy": "string",
+        "personal_pay_amount": "integer"
+      }
     }
   ]
 }

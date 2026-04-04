@@ -53,7 +53,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
   @backend_load_event "get"
   @backend_load_selection "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"
   @backend_load_assigns %{travel_static_code_mapping: %{}}
-  @backend_params_accept ["id", "supplier_code", "external_code", "external_name", "canonical_entity", "object_type", "canonical_id", "status"]
+  @backend_params_accept ["id", "object_type", "supplier_code", "canonical_id", "external_code", "canonical_entity", "external_name", "status"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelStaticCodeMapping.create"},
@@ -61,8 +61,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelStaticCodeMapping.update"}
   }
   @graphql_field_map %{"create" => "create_travel_travel_static_code_mapping", "get" => "get_travel_travel_static_code_mapping", "update" => "update_travel_travel_static_code_mapping"}
-  @input_allowlist %{"create" => ~w(supplier_code object_type canonical_entity canonical_id external_code external_name status), "update" => ~w(canonical_entity canonical_id external_name status)}
+  @input_allowlist %{"create" => ~w(canonical_entity canonical_id external_code external_name object_type status supplier_code), "update" => ~w(canonical_entity canonical_id external_name status)}
   @input_type_name_map %{"create" => "CreateTravelTravelStaticCodeMappingInput", "update" => "UpdateTravelTravelStaticCodeMappingInput"}
+  @input_type_map %{"create" => %{"canonical_entity" => "string", "canonical_id" => "uuid", "external_code" => "string", "external_name" => "string", "object_type" => "enum", "status" => "enum", "supplier_code" => "string"}, "update" => %{"canonical_entity" => "string", "canonical_id" => "uuid", "external_name" => "string", "status" => "enum"}}
   @entity_assign_fields ["supplier_code", "object_type", "canonical_entity", "external_code", "external_name", "status"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -333,10 +334,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -361,6 +364,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_static_code_mapping] && socket.assigns[:travel_static_code_mapping]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

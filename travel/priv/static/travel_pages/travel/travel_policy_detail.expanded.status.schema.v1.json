@@ -65,32 +65,64 @@
           "is_active"
         ],
         "create": [
+          "approval_mode",
+          "cabin_class_limit",
+          "city_tier",
+          "employee_level",
+          "enterprise_id",
+          "exceed_strategy",
+          "hotel_star_limit",
+          "max_amount",
+          "personal_pay_ratio",
           "policy_name",
           "product_type",
-          "employee_level",
-          "city_tier",
-          "season",
-          "max_amount",
-          "cabin_class_limit",
-          "hotel_star_limit",
-          "exceed_strategy",
-          "approval_mode",
-          "personal_pay_ratio",
-          "enterprise_id"
+          "season"
         ],
         "deactivate": [
           "is_active"
         ],
         "update": [
-          "policy_name",
-          "season",
-          "max_amount",
-          "cabin_class_limit",
-          "hotel_star_limit",
-          "exceed_strategy",
           "approval_mode",
-          "personal_pay_ratio"
+          "cabin_class_limit",
+          "exceed_strategy",
+          "hotel_star_limit",
+          "max_amount",
+          "personal_pay_ratio",
+          "policy_name",
+          "season"
         ]
+      },
+      "input_type_map": {
+        "activate": {
+          "is_active": "boolean"
+        },
+        "create": {
+          "approval_mode": "enum",
+          "cabin_class_limit": "string",
+          "city_tier": "string",
+          "employee_level": "string",
+          "enterprise_id": "string",
+          "exceed_strategy": "enum",
+          "hotel_star_limit": "string",
+          "max_amount": "integer",
+          "personal_pay_ratio": "integer",
+          "policy_name": "string",
+          "product_type": "enum",
+          "season": "string"
+        },
+        "deactivate": {
+          "is_active": "boolean"
+        },
+        "update": {
+          "approval_mode": "enum",
+          "cabin_class_limit": "string",
+          "exceed_strategy": "enum",
+          "hotel_star_limit": "string",
+          "max_amount": "integer",
+          "personal_pay_ratio": "integer",
+          "policy_name": "string",
+          "season": "string"
+        }
       },
       "input_type_name_map": {
         "activate": "ActivateTravelTravelPolicyInput",
@@ -105,18 +137,18 @@
       "params": {
         "accept": [
           "id",
-          "max_amount",
-          "employee_level",
+          "product_type",
           "policy_name",
           "city_tier",
           "season",
-          "hotel_star_limit",
           "exceed_strategy",
           "personal_pay_ratio",
-          "product_type",
-          "approval_mode",
           "enterprise_id",
-          "cabin_class_limit"
+          "employee_level",
+          "approval_mode",
+          "hotel_star_limit",
+          "cabin_class_limit",
+          "max_amount"
         ]
       }
     },
@@ -206,29 +238,19 @@
                 "value": "UPDATED_{{__run_id}}_season"
               },
               {
-                "action": "select_option",
-                "field": "approval_mode",
-                "value": "self"
-              },
-              {
                 "action": "type",
                 "field": "max_amount",
                 "value": "2"
               },
               {
                 "action": "type",
-                "field": "personal_pay_ratio",
-                "value": "2"
+                "field": "cabin_class_limit",
+                "value": "UPDATED_{{__run_id}}_cabin_class_limit"
               },
               {
                 "action": "type",
                 "field": "hotel_star_limit",
                 "value": "UPDATED_{{__run_id}}_hotel_star_limit"
-              },
-              {
-                "action": "type",
-                "field": "cabin_class_limit",
-                "value": "UPDATED_{{__run_id}}_cabin_class_limit"
               },
               {
                 "action": "select_option",
@@ -239,6 +261,16 @@
                 "action": "type",
                 "field": "policy_name",
                 "value": "UPDATED_{{__run_id}}_policy_name"
+              },
+              {
+                "action": "select_option",
+                "field": "approval_mode",
+                "value": "self"
+              },
+              {
+                "action": "type",
+                "field": "personal_pay_ratio",
+                "value": "2"
               },
               {
                 "action": "click",

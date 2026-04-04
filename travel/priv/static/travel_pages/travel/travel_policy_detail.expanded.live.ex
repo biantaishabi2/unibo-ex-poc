@@ -59,7 +59,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode cabin_class_limit: cabinClassLimit city_tier: cityTier employee_level: employeeLevel enterprise_id: enterpriseId exceed_strategy: exceedStrategy hotel_star_limit: hotelStarLimit id is_active: isActive max_amount: maxAmount personal_pay_ratio: personalPayRatio policy_name: policyName product_type: productType season"
   @backend_load_assigns %{travel_policy: %{}}
-  @backend_params_accept ["id", "max_amount", "employee_level", "policy_name", "city_tier", "season", "hotel_star_limit", "exceed_strategy", "personal_pay_ratio", "product_type", "approval_mode", "enterprise_id", "cabin_class_limit"]
+  @backend_params_accept ["id", "product_type", "policy_name", "city_tier", "season", "exceed_strategy", "personal_pay_ratio", "enterprise_id", "employee_level", "approval_mode", "hotel_star_limit", "cabin_class_limit", "max_amount"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "activate" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicy.activate"},
@@ -69,8 +69,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicy.update"}
   }
   @graphql_field_map %{"activate" => "activate_travel_travel_policy", "create" => "create_travel_travel_policy", "deactivate" => "deactivate_travel_travel_policy", "get" => "get_travel_travel_policy", "update" => "update_travel_travel_policy"}
-  @input_allowlist %{"activate" => ~w(is_active), "create" => ~w(policy_name product_type employee_level city_tier season max_amount cabin_class_limit hotel_star_limit exceed_strategy approval_mode personal_pay_ratio enterprise_id), "deactivate" => ~w(is_active), "update" => ~w(policy_name season max_amount cabin_class_limit hotel_star_limit exceed_strategy approval_mode personal_pay_ratio)}
+  @input_allowlist %{"activate" => ~w(is_active), "create" => ~w(approval_mode cabin_class_limit city_tier employee_level enterprise_id exceed_strategy hotel_star_limit max_amount personal_pay_ratio policy_name product_type season), "deactivate" => ~w(is_active), "update" => ~w(approval_mode cabin_class_limit exceed_strategy hotel_star_limit max_amount personal_pay_ratio policy_name season)}
   @input_type_name_map %{"activate" => "ActivateTravelTravelPolicyInput", "create" => "CreateTravelTravelPolicyInput", "deactivate" => "DeactivateTravelTravelPolicyInput", "update" => "UpdateTravelTravelPolicyInput"}
+  @input_type_map %{"activate" => %{"is_active" => "boolean"}, "create" => %{"approval_mode" => "enum", "cabin_class_limit" => "string", "city_tier" => "string", "employee_level" => "string", "enterprise_id" => "string", "exceed_strategy" => "enum", "hotel_star_limit" => "string", "max_amount" => "integer", "personal_pay_ratio" => "integer", "policy_name" => "string", "product_type" => "enum", "season" => "string"}, "deactivate" => %{"is_active" => "boolean"}, "update" => %{"approval_mode" => "enum", "cabin_class_limit" => "string", "exceed_strategy" => "enum", "hotel_star_limit" => "string", "max_amount" => "integer", "personal_pay_ratio" => "integer", "policy_name" => "string", "season" => "string"}}
   @entity_assign_fields ["policy_name", "product_type", "employee_level", "city_tier", "season", "max_amount", "cabin_class_limit", "hotel_star_limit", "exceed_strategy", "approval_mode", "personal_pay_ratio", "is_active"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -355,10 +356,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -383,6 +386,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_policy] && socket.assigns[:travel_policy]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

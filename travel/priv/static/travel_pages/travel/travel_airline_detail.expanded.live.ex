@@ -52,7 +52,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelAirlineDetailLive do
   @backend_load_event "get"
   @backend_load_selection "airline_code: airlineCode airline_name: airlineName iata_code: iataCode icao_code: icaoCode id status"
   @backend_load_assigns %{travel_airline: %{}}
-  @backend_params_accept ["id", "status", "icao_code", "airline_code", "iata_code", "airline_name"]
+  @backend_params_accept ["id", "status", "icao_code", "iata_code", "airline_code", "airline_name"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelAirline.create"},
@@ -62,6 +62,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelAirlineDetailLive do
   @graphql_field_map %{"create" => "create_travel_travel_airline", "get" => "get_travel_travel_airline", "update" => "update_travel_travel_airline"}
   @input_allowlist %{"create" => ~w(airline_code airline_name iata_code icao_code status), "update" => ~w(airline_name iata_code icao_code status)}
   @input_type_name_map %{"create" => "CreateTravelTravelAirlineInput", "update" => "UpdateTravelTravelAirlineInput"}
+  @input_type_map %{"create" => %{"airline_code" => "string", "airline_name" => "string", "iata_code" => "string", "icao_code" => "string", "status" => "enum"}, "update" => %{"airline_name" => "string", "iata_code" => "string", "icao_code" => "string", "status" => "enum"}}
   @entity_assign_fields ["airline_code", "airline_name", "iata_code", "icao_code", "status"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -332,10 +333,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelAirlineDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -360,6 +363,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelAirlineDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_airline] && socket.assigns[:travel_airline]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

@@ -17,13 +17,13 @@
     },
     "input_allowlist": {
       "create": [
-        "supplier_code",
-        "object_type",
         "canonical_entity",
         "canonical_id",
         "external_code",
         "external_name",
-        "status"
+        "object_type",
+        "status",
+        "supplier_code"
       ],
       "update": [
         "canonical_entity",
@@ -31,6 +31,23 @@
         "external_name",
         "status"
       ]
+    },
+    "input_type_map": {
+      "create": {
+        "canonical_entity": "string",
+        "canonical_id": "uuid",
+        "external_code": "string",
+        "external_name": "string",
+        "object_type": "enum",
+        "status": "enum",
+        "supplier_code": "string"
+      },
+      "update": {
+        "canonical_entity": "string",
+        "canonical_id": "uuid",
+        "external_name": "string",
+        "status": "enum"
+      }
     },
     "input_type_name_map": {
       "create": "CreateTravelTravelStaticCodeMappingInput",
@@ -43,12 +60,12 @@
     "params": {
       "accept": [
         "id",
-        "supplier_code",
-        "external_code",
-        "external_name",
-        "canonical_entity",
         "object_type",
+        "supplier_code",
         "canonical_id",
+        "external_code",
+        "canonical_entity",
+        "external_name",
         "status"
       ]
     }
@@ -140,13 +157,13 @@
             },
             {
               "action": "type",
-              "field": "external_name",
-              "value": "UPDATED_{{__run_id}}_external_name"
+              "field": "canonical_id",
+              "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
             },
             {
               "action": "type",
-              "field": "canonical_id",
-              "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
+              "field": "external_name",
+              "value": "UPDATED_{{__run_id}}_external_name"
             },
             {
               "action": "select_option",
@@ -352,11 +369,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.status",
+            "equals": "$form.canonical_id",
             "excludes_source": null,
             "graphql_field": "getTravelTravelStaticCodeMapping",
             "op": "equals",
-            "path": "status",
+            "path": "canonical_id",
             "source": "active_record_id"
           },
           "ui": [

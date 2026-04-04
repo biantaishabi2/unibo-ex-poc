@@ -52,18 +52,18 @@
       },
       "input_allowlist": {
         "create": [
-          "order_id",
-          "policy_id",
-          "check_result",
-          "policy_amount",
           "actual_amount",
+          "approval_mode",
+          "approval_request_id",
+          "check_result",
           "exceed_amount",
           "exceed_ratio",
-          "exceed_strategy",
           "exceed_reason",
+          "exceed_strategy",
+          "order_id",
           "personal_pay_amount",
-          "approval_request_id",
-          "approval_mode"
+          "policy_amount",
+          "policy_id"
         ],
         "update": [
           "check_result",
@@ -71,6 +71,28 @@
           "exceed_strategy",
           "personal_pay_amount"
         ]
+      },
+      "input_type_map": {
+        "create": {
+          "actual_amount": "integer",
+          "approval_mode": "enum",
+          "approval_request_id": "string",
+          "check_result": "enum",
+          "exceed_amount": "integer",
+          "exceed_ratio": "string",
+          "exceed_reason": "string",
+          "exceed_strategy": "string",
+          "order_id": "string",
+          "personal_pay_amount": "integer",
+          "policy_amount": "integer",
+          "policy_id": "string"
+        },
+        "update": {
+          "check_result": "enum",
+          "exceed_reason": "string",
+          "exceed_strategy": "string",
+          "personal_pay_amount": "integer"
+        }
       },
       "input_type_name_map": {
         "create": "CreateTravelTravelPolicyCheckInput",
@@ -85,16 +107,16 @@
           "id",
           "order_id",
           "policy_id",
+          "exceed_strategy",
+          "personal_pay_amount",
+          "approval_request_id",
+          "check_result",
+          "approval_mode",
+          "actual_amount",
+          "exceed_reason",
           "policy_amount",
           "exceed_amount",
-          "exceed_ratio",
-          "exceed_strategy",
-          "exceed_reason",
-          "approval_request_id",
-          "personal_pay_amount",
-          "actual_amount",
-          "approval_mode",
-          "check_result"
+          "exceed_ratio"
         ]
       }
     },
@@ -180,8 +202,8 @@
               },
               {
                 "action": "type",
-                "field": "personal_pay_amount",
-                "value": "2"
+                "field": "exceed_reason",
+                "value": "UPDATED_{{__run_id}}_exceed_reason"
               },
               {
                 "action": "select_option",
@@ -190,13 +212,13 @@
               },
               {
                 "action": "type",
-                "field": "exceed_reason",
-                "value": "UPDATED_{{__run_id}}_exceed_reason"
+                "field": "exceed_strategy",
+                "value": "UPDATED_{{__run_id}}_exceed_strategy"
               },
               {
                 "action": "type",
-                "field": "exceed_strategy",
-                "value": "UPDATED_{{__run_id}}_exceed_strategy"
+                "field": "personal_pay_amount",
+                "value": "2"
               },
               {
                 "action": "click",

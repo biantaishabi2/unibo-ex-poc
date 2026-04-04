@@ -1420,18 +1420,18 @@ test.describe("travel_change_order_detail", () => {
         __ctx.form["price_difference"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_change_order_form_new_offer_id, [name='new_offer_id']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_new_offer_id");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["new_offer_id"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_change_order_form_change_reason, [name='change_reason']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_change_reason");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["change_reason"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_change_order_form_change_fee, [name='change_fee']`).first();

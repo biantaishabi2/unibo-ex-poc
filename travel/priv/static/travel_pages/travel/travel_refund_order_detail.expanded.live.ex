@@ -55,7 +55,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode id refund_amount: refundAmount refund_fee: refundFee refund_reason: refundReason status"
   @backend_load_assigns %{travel_refund_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "refund_reason", "refund_fee", "approval_mode", "refund_amount"]
+  @backend_params_accept ["id", "original_order_id", "refund_fee", "approval_mode", "refund_reason", "refund_amount"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "confirm_refund" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.confirm_refund"},
@@ -68,8 +68,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.update"}
   }
   @graphql_field_map %{"confirm_refund" => "confirm_refund_travel_travel_refund_order", "create" => "create_travel_travel_refund_order", "get" => "get_travel_travel_refund_order", "refund" => "refund_travel_travel_refund_order", "refund_direct" => "refund_direct_travel_travel_refund_order", "reject_refund" => "reject_refund_travel_travel_refund_order", "submit" => "submit_travel_travel_refund_order", "update" => "update_travel_travel_refund_order"}
-  @input_allowlist %{"create" => ~w(original_order_id refund_reason refund_fee refund_amount approval_mode), "update" => ~w(refund_reason refund_fee refund_amount)}
+  @input_allowlist %{"create" => ~w(approval_mode original_order_id refund_amount refund_fee refund_reason), "update" => ~w(refund_amount refund_fee refund_reason)}
   @input_type_name_map %{"confirm_refund" => "ConfirmRefundTravelTravelRefundOrderInput", "create" => "CreateTravelTravelRefundOrderInput", "refund" => "RefundTravelTravelRefundOrderInput", "refund_direct" => "RefundDirectTravelTravelRefundOrderInput", "reject_refund" => "RejectRefundTravelTravelRefundOrderInput", "submit" => "SubmitTravelTravelRefundOrderInput", "update" => "UpdateTravelTravelRefundOrderInput"}
+  @input_type_map %{"create" => %{"approval_mode" => "enum", "original_order_id" => "string", "refund_amount" => "string", "refund_fee" => "string", "refund_reason" => "string"}, "update" => %{"refund_amount" => "string", "refund_fee" => "string", "refund_reason" => "string"}}
   @entity_assign_fields ["refund_reason", "refund_fee", "refund_amount", "status", "approval_mode"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -375,10 +376,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -403,6 +406,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_refund_order] && socket.assigns[:travel_refund_order]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)

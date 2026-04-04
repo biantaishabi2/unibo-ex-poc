@@ -56,7 +56,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
   @backend_load_event "get"
   @backend_load_selection "actual_amount: actualAmount approval_mode: approvalMode approval_request_id: approvalRequestId check_result: checkResult exceed_amount: exceedAmount exceed_ratio: exceedRatio exceed_reason: exceedReason exceed_strategy: exceedStrategy id personal_pay_amount: personalPayAmount policy_amount: policyAmount"
   @backend_load_assigns %{travel_policy_check: %{}}
-  @backend_params_accept ["id", "order_id", "policy_id", "policy_amount", "exceed_amount", "exceed_ratio", "exceed_strategy", "exceed_reason", "approval_request_id", "personal_pay_amount", "actual_amount", "approval_mode", "check_result"]
+  @backend_params_accept ["id", "order_id", "policy_id", "exceed_strategy", "personal_pay_amount", "approval_request_id", "check_result", "approval_mode", "actual_amount", "exceed_reason", "policy_amount", "exceed_amount", "exceed_ratio"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicyCheck.create"},
@@ -64,8 +64,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicyCheck.update"}
   }
   @graphql_field_map %{"create" => "create_travel_travel_policy_check", "get" => "get_travel_travel_policy_check", "update" => "update_travel_travel_policy_check"}
-  @input_allowlist %{"create" => ~w(order_id policy_id check_result policy_amount actual_amount exceed_amount exceed_ratio exceed_strategy exceed_reason personal_pay_amount approval_request_id approval_mode), "update" => ~w(check_result exceed_reason exceed_strategy personal_pay_amount)}
+  @input_allowlist %{"create" => ~w(actual_amount approval_mode approval_request_id check_result exceed_amount exceed_ratio exceed_reason exceed_strategy order_id personal_pay_amount policy_amount policy_id), "update" => ~w(check_result exceed_reason exceed_strategy personal_pay_amount)}
   @input_type_name_map %{"create" => "CreateTravelTravelPolicyCheckInput", "update" => "UpdateTravelTravelPolicyCheckInput"}
+  @input_type_map %{"create" => %{"actual_amount" => "integer", "approval_mode" => "enum", "approval_request_id" => "string", "check_result" => "enum", "exceed_amount" => "integer", "exceed_ratio" => "string", "exceed_reason" => "string", "exceed_strategy" => "string", "order_id" => "string", "personal_pay_amount" => "integer", "policy_amount" => "integer", "policy_id" => "string"}, "update" => %{"check_result" => "enum", "exceed_reason" => "string", "exceed_strategy" => "string", "personal_pay_amount" => "integer"}}
   @entity_assign_fields ["check_result", "policy_amount", "actual_amount", "exceed_amount", "exceed_ratio", "exceed_strategy", "exceed_reason", "personal_pay_amount", "approval_mode"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -336,10 +337,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
 
   defp __process_compiled_input(action, params) do
     allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
     params
     |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
     |> __extract_compiled_entity_input()
     |> Map.take(allowlist)
+    |> __coerce_types(type_map)
     |> __to_camel_keys()
   end
 
@@ -364,6 +367,27 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
       (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
       (socket.assigns[:travel_policy_check] && socket.assigns[:travel_policy_check]["id"]) || ""
   end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
 
   defp __to_camel_keys(map) when is_map(map) do
     Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)
