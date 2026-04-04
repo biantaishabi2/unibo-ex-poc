@@ -241,6 +241,12 @@ entities:
       type: update
       primary: true
       accept: [cabin_class_name, cabin_rank, status]
+    - name: activate
+      type: update
+      accept: []
+    - name: deactivate
+      type: update
+      accept: []
     changes:
     - effect: set_attribute
       field: id
