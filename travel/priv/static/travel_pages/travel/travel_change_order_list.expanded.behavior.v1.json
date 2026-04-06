@@ -3,6 +3,9 @@
     "api_map": {
       "list": "Travel.TravelChangeOrder.list"
     },
+    "graphql_field_map": {
+      "list": "list_travel_travel_change_orders"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
@@ -10,7 +13,7 @@
     },
     "load": {
       "assigns": {},
-      "selection": "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status"
+      "selection": "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status tenant_id: tenantId"
     },
     "params": {
       "accept": [

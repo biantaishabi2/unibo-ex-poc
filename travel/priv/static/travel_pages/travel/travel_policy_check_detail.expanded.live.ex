@@ -51,20 +51,22 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
   @backend_mode "api"
-  @backend_mod UniboExPocWeb.Graphql.StitchBackend
+  # compiled 模式：直连 GraphQL，不再经过 StitchBackend
   @runtime_config_mod UniboExPocWeb.Graphql.RuntimeConfig
-  @backend_fun :dispatch
   @backend_load_event "get"
   @backend_load_selection "actual_amount: actualAmount approval_mode: approvalMode approval_request_id: approvalRequestId check_result: checkResult exceed_amount: exceedAmount exceed_ratio: exceedRatio exceed_reason: exceedReason exceed_strategy: exceedStrategy id personal_pay_amount: personalPayAmount policy_amount: policyAmount"
   @backend_load_assigns %{travel_policy_check: %{}}
-  @backend_params_accept ["id", "order_id", "policy_id", "approval_mode", "exceed_amount", "personal_pay_amount", "approval_request_id", "actual_amount", "check_result", "policy_amount", "exceed_strategy", "exceed_reason", "exceed_ratio"]
+  @backend_params_accept ["id", "order_id", "policy_id", "exceed_strategy", "personal_pay_amount", "approval_request_id", "check_result", "approval_mode", "actual_amount", "exceed_reason", "policy_amount", "exceed_amount", "exceed_ratio"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicyCheck.create"},
     "get" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicyCheck.get"},
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicyCheck.update"}
   }
-  @backend_embedded_page %{page_id: "travel_policy_check_detail", page_kind: "detail", api_map: %{create: "Travel.TravelPolicyCheck.create", get: "Travel.TravelPolicyCheck.get", update: "Travel.TravelPolicyCheck.update"}, backend: %{load: %{selection: "actual_amount: actualAmount approval_mode: approvalMode approval_request_id: approvalRequestId check_result: checkResult exceed_amount: exceedAmount exceed_ratio: exceedRatio exceed_reason: exceedReason exceed_strategy: exceedStrategy id personal_pay_amount: personalPayAmount policy_amount: policyAmount"}}, route: %{path: "/pages/travel/travel_policy_check/:id", query: "order_id={{order_id}}&policy_id={{policy_id}}", kind: "detail"}, state_schema: %{defaults: %{travel_policy_check: %{check_result: "", policy_amount: "", actual_amount: "", exceed_amount: "", exceed_ratio: "", exceed_strategy: "", exceed_reason: "", personal_pay_amount: "", approval_mode: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
+  @graphql_field_map %{"create" => "create_travel_travel_policy_check", "get" => "get_travel_travel_policy_check", "update" => "update_travel_travel_policy_check"}
+  @input_allowlist %{"create" => ~w(actual_amount approval_mode approval_request_id check_result exceed_amount exceed_ratio exceed_reason exceed_strategy order_id personal_pay_amount policy_amount policy_id), "update" => ~w(check_result exceed_reason exceed_strategy personal_pay_amount)}
+  @input_type_name_map %{"create" => "CreateTravelTravelPolicyCheckInput", "update" => "UpdateTravelTravelPolicyCheckInput"}
+  @input_type_map %{"create" => %{"actual_amount" => "integer", "approval_mode" => "enum", "approval_request_id" => "string", "check_result" => "enum", "exceed_amount" => "integer", "exceed_ratio" => "string", "exceed_reason" => "string", "exceed_strategy" => "string", "order_id" => "string", "personal_pay_amount" => "integer", "policy_amount" => "integer", "policy_id" => "string"}, "update" => %{"check_result" => "enum", "exceed_reason" => "string", "exceed_strategy" => "string", "personal_pay_amount" => "integer"}}
   @entity_assign_fields ["check_result", "policy_amount", "actual_amount", "exceed_amount", "exceed_ratio", "exceed_strategy", "exceed_reason", "personal_pay_amount", "approval_mode"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -102,14 +104,8 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
-    socket =
-      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
-        state0 = __take_status(socket.assigns)
-        apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
-      else
-        socket
-      end
+    # compiled + graphql 模式：handle_info 不转发给 StitchBackend
+    _ = msg
     {:noreply, socket}
   end
 
@@ -256,36 +252,207 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
   defp __take_status(_), do: %{}
 
   defp dispatch_backend(event, params, socket) do
-    # Unified backend result format (v1):
-    #   {:ok, %{dto: map, status: map, effects: list, errors: list, meta: map}}
-    #
-    # Template compatibility note: this skeleton still assigns flat keys.
     params = params |> __merge_backend_params(socket) |> __inject_backend_id(socket) |> Map.put("__page_id", @page_id)
+    state0 = __take_status(socket.assigns)
+    state0 = __inject_backend_tenant(state0, socket)
     result =
       case @backend_mode do
         "transitions" ->
-          state0 = __take_status(socket.assigns)
-          state0 = __inject_backend_tenant(state0, socket)
           %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
           {dto, st} = __split_dto_status(assigns2)
           {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "transitions"}}}
         "api" ->
-          state0 = __take_status(socket.assigns)
-          state0 = __inject_backend_tenant(state0, socket)
-          state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
+          %{effects: local_effects} = __apply_transitions(event, params, state0)
           backend_api = __resolve_backend_api(event, socket)
           case backend_api do
             nil ->
-              # 纯 UI 事件不应硬塞给后端；compiled 页面这里直接走本地 transition。
               %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
               {dto, st} = __split_dto_status(assigns2)
               {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
             _mapping ->
-              apply(@backend_mod, @backend_fun, [event, params, state0])
+              backend_result = __compiled_graphql_dispatch(event, params, socket)
+              # 合并本地 transition effects
+              case {backend_result, local_effects} do
+                {{:ok, %{} = data}, [_ | _]} ->
+                  existing = Map.get(data, :effects, [])
+                  {:ok, Map.put(data, :effects, existing ++ local_effects)}
+                _ ->
+                  backend_result
+              end
           end
       end
-
+    result = __maybe_inject_destroy_redirect(event, result, socket)
     apply_backend_result(socket, result)
+  end
+
+  defp __compiled_graphql_dispatch(event, params, socket) do
+    action = __extract_compiled_action(event, socket)
+    graphql_field = Map.get(@graphql_field_map, action)
+    unless graphql_field do
+      {:ok, %{dto: %{}, status: %{}, effects: [], errors: [%{message: "no graphql_field for #{action}"}], meta: %{}}}
+    else
+      {query, variables} = __build_compiled_query(action, graphql_field, params, socket)
+      __exec_compiled_graphql(query, variables, socket)
+    end
+  end
+
+  defp __extract_compiled_action(event, socket) do
+    normalized = to_string(event) |> String.replace_prefix("action_", "")
+    case normalized do
+      "form_submit" ->
+        record_id = get_in(socket.assigns, [:record, :id]) || get_in(socket.assigns, [:record, "id"]) ||
+          get_in(socket.assigns, [:travel_policy_check, :id]) || get_in(socket.assigns, [:travel_policy_check, "id"])
+        is_new = socket.assigns.live_action == :new or record_id in [nil, ""]
+        if is_new, do: "create", else: "update"
+      other -> other
+    end
+  end
+
+  defp __build_compiled_query(action, field, params, socket) do
+    selection = @backend_load_selection || "id"
+    case action do
+      "list" ->
+        {~s|query { #{field} { results { #{selection} } count } }|, %{}}
+      "get" ->
+        id = __resolve_compiled_id(params, socket)
+        {~s|query($id: ID!) { #{field}(id: $id) { #{selection} } }|, %{"id" => id}}
+      action when action in ["create", "update"] ->
+        id = __resolve_compiled_id(params, socket)
+        input = __process_compiled_input(action, params)
+        input_type = Map.get(@input_type_name_map, action, "JSON")
+        if id && action == "update" do
+          {~s|mutation($id: ID!, $input: #{input_type}!) { #{field}(id: $id, input: $input) { result { #{selection} } errors { message } } }|, %{"id" => id, "input" => input}}
+        else
+          {~s|mutation($input: #{input_type}!) { #{field}(input: $input) { result { #{selection} } errors { message } } }|, %{"input" => input}}
+        end
+      "destroy" ->
+        id = __resolve_compiled_id(params, socket)
+        {~s|mutation($id: ID!) { #{field}(id: $id) { result { id } errors { message } } }|, %{"id" => id}}
+      _ ->
+        # 自定义 action（activate, deactivate 等）
+        id = __resolve_compiled_id(params, socket)
+        {~s|mutation($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message } } }|, %{"id" => id}}
+    end
+  end
+
+  defp __process_compiled_input(action, params) do
+    allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
+    params
+    |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
+    |> __extract_compiled_entity_input()
+    |> Map.take(allowlist)
+    |> __coerce_types(type_map)
+    |> __to_camel_keys()
+  end
+
+  defp __extract_compiled_entity_input(params) when is_map(params) do
+    nested = Enum.filter(params, fn {k, v} -> is_binary(k) and is_map(v) end)
+    case nested do
+      [{_key, nested_value}] ->
+        scalar = Map.reject(params, fn {_k, v} -> is_map(v) end)
+        Map.merge(nested_value, scalar)
+      _ -> params
+    end
+  end
+  defp __extract_compiled_entity_input(params), do: params
+
+  defp __resolve_compiled_id(params, socket) do
+    Map.get(params, "id") ||
+      Map.get(params, :id) ||
+      get_in(socket.assigns, [:record, :id]) ||
+      get_in(socket.assigns, [:record, "id"]) ||
+      get_in(socket.assigns, [:travel_policy_check, :id]) ||
+      get_in(socket.assigns, [:travel_policy_check, "id"]) ||
+      (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
+      (socket.assigns[:travel_policy_check] && socket.assigns[:travel_policy_check]["id"]) || ""
+  end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
+
+  defp __to_camel_keys(map) when is_map(map) do
+    Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)
+  end
+  defp __to_camel_keys(other), do: other
+
+  defp __camelize_key(s) do
+    [first | rest] = String.split(s, "_")
+    first <> Enum.map_join(rest, "", &String.capitalize/1)
+  end
+
+  defp __exec_compiled_graphql(query, variables, socket) when is_binary(query) do
+    tenant_id = Map.get(socket.assigns, :tenant_id) ||
+      (if function_exported?(@runtime_config_mod, :default_tenant_id, 0), do: @runtime_config_mod.default_tenant_id(), else: nil)
+
+    base_context = %{
+      actor: Map.get(socket.assigns, :actor),
+      current_user: Map.get(socket.assigns, :current_user),
+      auth_claims: Map.get(socket.assigns, :auth_claims),
+      tenant_id: tenant_id,
+      tenant: Map.get(socket.assigns, :tenant) || tenant_id,
+      context_envelope: Map.get(socket.assigns, :context_envelope)
+    }
+
+    context = if function_exported?(@runtime_config_mod, :build_context, 1) do
+      @runtime_config_mod.build_context(base_context)
+    else
+      base_context
+    end
+
+    loader = if Code.ensure_loaded?(Dataloader) do
+      if function_exported?(@runtime_config_mod, :new_loader, 1),
+        do: @runtime_config_mod.new_loader(context),
+        else: Dataloader.new()
+    end
+    context = if loader, do: Map.put(context, :loader, loader), else: context
+
+    schema_mod = if function_exported?(@runtime_config_mod, :schema_module, 0),
+      do: @runtime_config_mod.schema_module(),
+      else: nil
+
+    if schema_mod do
+      case Absinthe.run(query, schema_mod, variables: variables, context: context) do
+        {:ok, %{data: data}} when is_map(data) ->
+          field_result = data |> Map.values() |> Enum.find(& &1) || %{}
+          case field_result do
+            %{"results" => results, "count" => count} ->
+              {:ok, %{dto: %{results: results, count: count}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            %{"result" => result, "errors" => errors} when is_list(errors) and length(errors) > 0 ->
+              {:error, %{errors: errors, meta: %{mode: "compiled_graphql"}}}
+            %{"result" => result} ->
+              {:ok, %{dto: result || %{}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            single when is_map(single) ->
+              {:ok, %{dto: single, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            _ ->
+              {:ok, %{dto: %{}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+          end
+        {:ok, %{errors: errors}} ->
+          {:error, %{errors: errors, meta: %{mode: "compiled_graphql"}}}
+        {:error, reason} ->
+          {:error, %{errors: [%{message: inspect(reason)}], meta: %{mode: "compiled_graphql"}}}
+      end
+    else
+      {:error, %{errors: [%{message: "schema module not available"}], meta: %{}}}
+    end
   end
 
   defp __resolve_backend_api(event, socket) do
@@ -323,6 +490,34 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
     end
   end
   defp __inject_backend_id(params, _socket), do: params
+
+  defp __maybe_inject_destroy_redirect(event, {:ok, %{} = data} = result, socket) do
+    normalized = to_string(event)
+    is_destroy = normalized == "action_destroy" or String.ends_with?(normalized, "_destroy")
+    existing_effects = Map.get(data, :effects, [])
+    has_navigate = Enum.any?(existing_effects, fn
+      %{type: "navigate"} -> true
+      %{"type" => "navigate"} -> true
+      _ -> false
+    end)
+    if is_destroy and not has_navigate do
+      list_path = case Map.get(socket.assigns, :self_path) do
+        p when is_binary(p) and p != "" ->
+          # 去掉最后一段 path segment（/:id 的实际值）得到 list 页路径
+          String.replace(p, ~r"/[^/]+$", "")
+        _ -> nil
+      end
+      if is_binary(list_path) and list_path != "" do
+        effects = existing_effects ++ [%{type: "navigate", to: list_path}]
+        {:ok, Map.put(data, :effects, effects)}
+      else
+        result
+      end
+    else
+      result
+    end
+  end
+  defp __maybe_inject_destroy_redirect(_event, result, _socket), do: result
 
   defp __split_dto_status(assigns) when is_map(assigns) do
     # Split is a hint only. Both dto/status are still assigned as flat keys.
@@ -411,7 +606,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
         end
       _ ->
         source =
-          Enum.reduce(@entity_assign_fields, %{}, fn key, acc ->
+          Enum.reduce(["id" | @entity_assign_fields], %{}, fn key, acc ->
             case Map.fetch(dto, key) do
               {:ok, value} -> Map.put(acc, key, value)
               :error ->
@@ -501,6 +696,14 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive do
   defp __interpolate_to(to, _params), do: to
 
   def __dispatch_transitions(event, params, assigns), do: __apply_transitions(event, params, assigns)
+
+  defp __apply_transitions("action_destroy", params, assigns) do
+  assigns = assigns
+  effects = []
+  effects = [%{type: "navigate", to: "/pages/travel/travel_policy_check"} | effects]
+  effects = __interpolate_effects(effects, params)
+  %{assigns: assigns, effects: Enum.reverse(effects)}
+end
 
   defp __apply_transitions("cancel_edit", params, assigns) do
   assigns = assigns

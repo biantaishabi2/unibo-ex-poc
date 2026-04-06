@@ -750,18 +750,6 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     |> map_value(key)
   end
 
-  defp principal_value(context) do
-    context
-    |> context_envelope()
-    |> map_value("principal")
-  end
-
-  defp authz_value(context) do
-    context
-    |> context_envelope()
-    |> map_value("authz")
-  end
-
   def load(batch, inputs) do
     hook = Keyword.get(config(), :loader)
     apply_optional_hook(hook, [batch, inputs], default_load(batch, inputs))
@@ -1322,17 +1310,17 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     end
   end
 
-  defp normalize_tenant_candidate(context, %{kind: :existing, value: value}) when is_map(value) do
+  defp normalize_tenant_candidate(_context, %{kind: :existing, value: value}) when is_map(value) do
     normalized = tenant_id_from_map(value)
     if normalized == "", do: {:ok, nil}, else: {:ok, normalized}
   end
 
-  defp normalize_tenant_candidate(context, %{kind: :existing, value: value}) do
+  defp normalize_tenant_candidate(_context, %{kind: :existing, value: value}) do
     normalized = normalize_string(value)
     if normalized == "", do: {:ok, nil}, else: {:ok, normalized}
   end
 
-  defp normalize_tenant_candidate(context, %{kind: :tenant_id, value: value, source: source}) do
+  defp normalize_tenant_candidate(_context, %{kind: :tenant_id, value: value, source: source}) do
     normalized = normalize_string(value)
 
     cond do
@@ -1393,6 +1381,7 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   end
 
   defp default_resolve_tenant_alias(kind, value) do
+    _ = {kind, value}
     nil
   end
 
@@ -1402,11 +1391,6 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
         map_value(tenant_map, "tenant_id")
 
     normalize_string(tenant_id)
-  end
-
-  defp maybe_put_tenant_id_from_map(context, tenant_map) do
-    normalized = tenant_id_from_map(tenant_map)
-    if normalized == "", do: context, else: Map.put_new(context, :tenant_id, normalized)
   end
 
   defp extract_tenant_candidate_from_conn(%Plug.Conn{} = conn) do

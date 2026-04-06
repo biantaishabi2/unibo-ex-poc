@@ -17,10 +17,35 @@
         "create": "Travel.TravelRefundOrder.create",
         "list": "Travel.TravelRefundOrder.list"
       },
+      "graphql_field_map": {
+        "create": "create_travel_travel_refund_order",
+        "list": "list_travel_travel_refund_orders"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "create": [
+          "approval_mode",
+          "original_order_id",
+          "refund_amount",
+          "refund_fee",
+          "refund_reason"
+        ]
+      },
+      "input_type_map": {
+        "create": {
+          "approval_mode": "enum",
+          "original_order_id": "string",
+          "refund_amount": "string",
+          "refund_fee": "string",
+          "refund_reason": "string"
+        }
+      },
+      "input_type_name_map": {
+        "create": "CreateTravelTravelRefundOrderInput"
       },
       "load": {
         "assigns": {},

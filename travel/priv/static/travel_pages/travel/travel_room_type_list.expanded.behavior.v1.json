@@ -3,6 +3,9 @@
     "api_map": {
       "list": "Travel.TravelRoomType.list"
     },
+    "graphql_field_map": {
+      "list": "list_travel_travel_room_types"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

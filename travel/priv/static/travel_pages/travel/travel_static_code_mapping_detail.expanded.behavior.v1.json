@@ -5,10 +5,53 @@
       "get": "Travel.TravelStaticCodeMapping.get",
       "update": "Travel.TravelStaticCodeMapping.update"
     },
+    "graphql_field_map": {
+      "create": "create_travel_travel_static_code_mapping",
+      "get": "get_travel_travel_static_code_mapping",
+      "update": "update_travel_travel_static_code_mapping"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "canonical_entity",
+        "canonical_id",
+        "external_code",
+        "external_name",
+        "object_type",
+        "status",
+        "supplier_code"
+      ],
+      "update": [
+        "canonical_entity",
+        "canonical_id",
+        "external_name",
+        "status"
+      ]
+    },
+    "input_type_map": {
+      "create": {
+        "canonical_entity": "string",
+        "canonical_id": "uuid",
+        "external_code": "string",
+        "external_name": "string",
+        "object_type": "enum",
+        "status": "enum",
+        "supplier_code": "string"
+      },
+      "update": {
+        "canonical_entity": "string",
+        "canonical_id": "uuid",
+        "external_name": "string",
+        "status": "enum"
+      }
+    },
+    "input_type_name_map": {
+      "create": "CreateTravelTravelStaticCodeMappingInput",
+      "update": "UpdateTravelTravelStaticCodeMappingInput"
     },
     "load": {
       "assigns": {},
@@ -19,10 +62,10 @@
         "id",
         "object_type",
         "supplier_code",
-        "canonical_entity",
         "canonical_id",
-        "external_name",
         "external_code",
+        "canonical_entity",
+        "external_name",
         "status"
       ]
     }
@@ -109,8 +152,8 @@
             },
             {
               "action": "type",
-              "field": "external_name",
-              "value": "UPDATED_{{__run_id}}_external_name"
+              "field": "canonical_entity",
+              "value": "UPDATED_{{__run_id}}_canonical_entity"
             },
             {
               "action": "type",
@@ -119,8 +162,8 @@
             },
             {
               "action": "type",
-              "field": "canonical_entity",
-              "value": "UPDATED_{{__run_id}}_canonical_entity"
+              "field": "external_name",
+              "value": "UPDATED_{{__run_id}}_external_name"
             },
             {
               "action": "select_option",
@@ -326,11 +369,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.external_name",
+            "equals": "$form.canonical_id",
             "excludes_source": null,
             "graphql_field": "getTravelTravelStaticCodeMapping",
             "op": "equals",
-            "path": "external_name",
+            "path": "canonical_id",
             "source": "active_record_id"
           },
           "ui": [

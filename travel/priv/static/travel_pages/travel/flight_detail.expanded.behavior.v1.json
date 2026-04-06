@@ -4,6 +4,10 @@
       "get": "Travel.FlightOffer.get",
       "list": "Travel.FlightOffer.list"
     },
+    "graphql_field_map": {
+      "get": "get_travel_flight_offer",
+      "list": "list_travel_flight_offers"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

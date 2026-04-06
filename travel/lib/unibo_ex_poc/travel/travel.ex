@@ -1,6 +1,7 @@
 defmodule UniboExPoc.Travel do
   use Ash.Domain,
-    extensions: [AshGraphql.Domain]
+    extensions: [AshGraphql.Domain],
+    validate_config_inclusion?: false
 
   graphql do
     authorize? false

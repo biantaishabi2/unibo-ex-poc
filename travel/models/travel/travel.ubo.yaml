@@ -2298,6 +2298,9 @@ entities:
   - name: TravelChangeOrder
     description: 改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域
     aggregate_root: true
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
     state_machine:
       initial_state: pending
       state_attribute: status
@@ -2320,6 +2323,10 @@ entities:
         type: uuid
         primary_key: true
         generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+        description: 租户 ID
       - name: change_reason
         type: string
         description: 改签原因
@@ -2358,7 +2365,7 @@ entities:
         description: 被改签的原始订单
     identities:
       - name: unique_order_status
-        keys: [original_order_id, status]
+        keys: [tenant_id, original_order_id, status]
     actions:
       - name: create
         type: create
@@ -2704,15 +2711,6 @@ entities:
     description: 差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略
     aggregate_root: true
     resource_type: config
-    state_machine:
-      field: is_active
-      transitions:
-        - from: "false"
-          to: "true"
-          event: activate
-        - from: "true"
-          to: "false"
-          event: deactivate
     attributes:
       - name: id
         type: uuid
@@ -2810,10 +2808,10 @@ entities:
         limit: 1
       - name: activate
         type: update
-        accept: []
+        accept: [is_active]
       - name: deactivate
         type: update
-        accept: []
+        accept: [is_active]
     validations:
       - rule: present
         field: policy_name

@@ -4,7 +4,7 @@
   "domains": {
     "Travel": {
       "input_hashes": {
-        "/home/wangbo/document/unibo_ex_poc-feat-2043-validate/travel/./models/travel/travel.ubo.yaml": "sha256:7f84bab1e0f845e9b27a3264299924ef5f0ccca65f1fa06726473622028459ee"
+        "./models/travel/travel.ubo.yaml": "sha256:27d86fcbb6545e9c2fb377b88de64fef3b63451ba445f9b7a990e3682f350df1"
       },
       "output_files": [
         "unibo_ex_poc/travel/flight_offer.ex",

@@ -64,13 +64,12 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
   @backend_mode "api"
-  @backend_mod UniboExPocWeb.Graphql.StitchBackend
+  # compiled 模式：直连 GraphQL，不再经过 StitchBackend
   @runtime_config_mod UniboExPocWeb.Graphql.RuntimeConfig
-  @backend_fun :dispatch
   @backend_load_event "get"
   @backend_load_selection "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
   @backend_load_assigns %{travel_order: %{}}
-  @backend_params_accept ["id", "hotel_offer_id", "seat_selection_snapshot", "host_shop_id", "ticket_passenger_infos", "total_amount", "order_no", "points_to_use", "points_deduction_amount", "contact_name", "currency", "product_type", "customer_id", "contact_phone", "traveler_count"]
+  @backend_params_accept ["id", "hotel_offer_id", "total_amount", "contact_phone", "customer_id", "order_no", "contact_name", "traveler_count", "ticket_passenger_infos", "seat_selection_snapshot", "host_shop_id", "product_type", "points_to_use", "points_deduction_amount", "currency"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "cancel_cancel_request" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.cancel_cancel_request"},
@@ -92,7 +91,10 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
     "submit_waitlist" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.submit_waitlist"},
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelOrder.update"}
   }
-  @backend_embedded_page %{page_id: "travel_order_detail", page_kind: "detail", api_map: %{cancel_cancel_request: "Travel.TravelOrder.cancel_cancel_request", cancel_waitlist: "Travel.TravelOrder.cancel_waitlist", confirm_change: "Travel.TravelOrder.confirm_change", confirm_quote: "Travel.TravelOrder.confirm_quote", create: "Travel.TravelOrder.create", destroy: "Travel.TravelOrder.destroy", execute_cancel: "Travel.TravelOrder.execute_cancel", fulfill_waitlist: "Travel.TravelOrder.fulfill_waitlist", get: "Travel.TravelOrder.get", mark_booked: "Travel.TravelOrder.mark_booked", mark_completed: "Travel.TravelOrder.mark_completed", mark_order_failed: "Travel.TravelOrder.mark_order_failed", mark_payment_succeeded: "Travel.TravelOrder.mark_payment_succeeded", request_cancel: "Travel.TravelOrder.request_cancel", request_change: "Travel.TravelOrder.request_change", submit_order: "Travel.TravelOrder.submit_order", submit_waitlist: "Travel.TravelOrder.submit_waitlist", update: "Travel.TravelOrder.update"}, backend: %{load: %{selection: "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"}}, route: %{path: "/pages/travel/travel_order/:id", query: "hotel_offer_id={{hotel_offer_id}}", kind: "detail"}, state_schema: %{defaults: %{record: %{status: true}, travel_order: %{order_no: "", product_type: "", booking_mode: "", contact_name: "", contact_phone: "", traveler_count: "", total_amount: "", points_to_use: "", points_deduction_amount: "", recommended_payment_method: "", currency: "", status: "", change_status: "", waitlist_status: "", original_order_ref: "", ticket_passenger_infos: "", seat_selection_snapshot: "", supplier_order_ref: "", payment_external_ref: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
+  @graphql_field_map %{"cancel_cancel_request" => "cancel_cancel_request_travel_travel_order", "cancel_waitlist" => "cancel_waitlist_travel_travel_order", "confirm_change" => "confirm_change_travel_travel_order", "confirm_quote" => "confirm_quote_travel_travel_order", "create" => "create_travel_travel_order", "destroy" => "delete_travel_travel_order", "execute_cancel" => "execute_cancel_travel_travel_order", "fulfill_waitlist" => "fulfill_waitlist_travel_travel_order", "get" => "get_travel_travel_order", "mark_booked" => "mark_booked_travel_travel_order", "mark_completed" => "mark_completed_travel_travel_order", "mark_order_failed" => "mark_order_failed_travel_travel_order", "mark_payment_succeeded" => "mark_payment_succeeded_travel_travel_order", "request_cancel" => "request_cancel_travel_travel_order", "request_change" => "request_change_travel_travel_order", "submit_order" => "submit_order_travel_travel_order", "submit_waitlist" => "submit_waitlist_travel_travel_order", "update" => "update_travel_travel_order"}
+  @input_allowlist %{"create" => ~w(contact_name contact_phone currency customer_id flight_offer_id host_shop_id hotel_offer_id order_no points_deduction_amount points_to_use product_type seat_selection_snapshot tenant_id ticket_passenger_infos total_amount train_offer_id traveler_count vacation_offer_id), "request_change" => ~w(original_order_ref), "update" => ~w(contact_name contact_phone seat_selection_snapshot ticket_passenger_infos traveler_count)}
+  @input_type_name_map %{"cancel_cancel_request" => "CancelCancelRequestTravelTravelOrderInput", "cancel_waitlist" => "CancelWaitlistTravelTravelOrderInput", "confirm_change" => "ConfirmChangeTravelTravelOrderInput", "confirm_quote" => "ConfirmQuoteTravelTravelOrderInput", "create" => "CreateTravelTravelOrderInput", "execute_cancel" => "ExecuteCancelTravelTravelOrderInput", "fulfill_waitlist" => "FulfillWaitlistTravelTravelOrderInput", "mark_booked" => "MarkBookedTravelTravelOrderInput", "mark_completed" => "MarkCompletedTravelTravelOrderInput", "mark_order_failed" => "MarkOrderFailedTravelTravelOrderInput", "mark_payment_succeeded" => "MarkPaymentSucceededTravelTravelOrderInput", "request_cancel" => "RequestCancelTravelTravelOrderInput", "request_change" => "RequestChangeTravelTravelOrderInput", "submit_order" => "SubmitOrderTravelTravelOrderInput", "submit_waitlist" => "SubmitWaitlistTravelTravelOrderInput", "update" => "UpdateTravelTravelOrderInput"}
+  @input_type_map %{"create" => %{"contact_name" => "string", "contact_phone" => "string", "currency" => "string", "customer_id" => "string", "flight_offer_id" => "string", "host_shop_id" => "uuid", "hotel_offer_id" => "string", "order_no" => "string", "points_deduction_amount" => "decimal", "points_to_use" => "integer", "product_type" => "enum", "seat_selection_snapshot" => "map", "tenant_id" => "uuid", "ticket_passenger_infos" => "map", "total_amount" => "decimal", "train_offer_id" => "string", "traveler_count" => "integer", "vacation_offer_id" => "string"}, "request_change" => %{"original_order_ref" => "string"}, "update" => %{"contact_name" => "string", "contact_phone" => "string", "seat_selection_snapshot" => "map", "ticket_passenger_infos" => "map", "traveler_count" => "integer"}}
   @entity_assign_fields ["order_no", "product_type", "booking_mode", "contact_name", "contact_phone", "traveler_count", "total_amount", "points_to_use", "points_deduction_amount", "recommended_payment_method", "currency", "status", "change_status", "waitlist_status", "original_order_ref", "ticket_passenger_infos", "seat_selection_snapshot", "supplier_order_ref", "payment_external_ref"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -130,14 +132,8 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
-    socket =
-      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
-        state0 = __take_status(socket.assigns)
-        apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
-      else
-        socket
-      end
+    # compiled + graphql 模式：handle_info 不转发给 StitchBackend
+    _ = msg
     {:noreply, socket}
   end
 
@@ -382,36 +378,207 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
   defp __take_status(_), do: %{}
 
   defp dispatch_backend(event, params, socket) do
-    # Unified backend result format (v1):
-    #   {:ok, %{dto: map, status: map, effects: list, errors: list, meta: map}}
-    #
-    # Template compatibility note: this skeleton still assigns flat keys.
     params = params |> __merge_backend_params(socket) |> __inject_backend_id(socket) |> Map.put("__page_id", @page_id)
+    state0 = __take_status(socket.assigns)
+    state0 = __inject_backend_tenant(state0, socket)
     result =
       case @backend_mode do
         "transitions" ->
-          state0 = __take_status(socket.assigns)
-          state0 = __inject_backend_tenant(state0, socket)
           %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
           {dto, st} = __split_dto_status(assigns2)
           {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "transitions"}}}
         "api" ->
-          state0 = __take_status(socket.assigns)
-          state0 = __inject_backend_tenant(state0, socket)
-          state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
+          %{effects: local_effects} = __apply_transitions(event, params, state0)
           backend_api = __resolve_backend_api(event, socket)
           case backend_api do
             nil ->
-              # 纯 UI 事件不应硬塞给后端；compiled 页面这里直接走本地 transition。
               %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
               {dto, st} = __split_dto_status(assigns2)
               {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
             _mapping ->
-              apply(@backend_mod, @backend_fun, [event, params, state0])
+              backend_result = __compiled_graphql_dispatch(event, params, socket)
+              # 合并本地 transition effects
+              case {backend_result, local_effects} do
+                {{:ok, %{} = data}, [_ | _]} ->
+                  existing = Map.get(data, :effects, [])
+                  {:ok, Map.put(data, :effects, existing ++ local_effects)}
+                _ ->
+                  backend_result
+              end
           end
       end
-
+    result = __maybe_inject_destroy_redirect(event, result, socket)
     apply_backend_result(socket, result)
+  end
+
+  defp __compiled_graphql_dispatch(event, params, socket) do
+    action = __extract_compiled_action(event, socket)
+    graphql_field = Map.get(@graphql_field_map, action)
+    unless graphql_field do
+      {:ok, %{dto: %{}, status: %{}, effects: [], errors: [%{message: "no graphql_field for #{action}"}], meta: %{}}}
+    else
+      {query, variables} = __build_compiled_query(action, graphql_field, params, socket)
+      __exec_compiled_graphql(query, variables, socket)
+    end
+  end
+
+  defp __extract_compiled_action(event, socket) do
+    normalized = to_string(event) |> String.replace_prefix("action_", "")
+    case normalized do
+      "form_submit" ->
+        record_id = get_in(socket.assigns, [:record, :id]) || get_in(socket.assigns, [:record, "id"]) ||
+          get_in(socket.assigns, [:travel_order, :id]) || get_in(socket.assigns, [:travel_order, "id"])
+        is_new = socket.assigns.live_action == :new or record_id in [nil, ""]
+        if is_new, do: "create", else: "update"
+      other -> other
+    end
+  end
+
+  defp __build_compiled_query(action, field, params, socket) do
+    selection = @backend_load_selection || "id"
+    case action do
+      "list" ->
+        {~s|query { #{field} { results { #{selection} } count } }|, %{}}
+      "get" ->
+        id = __resolve_compiled_id(params, socket)
+        {~s|query($id: ID!) { #{field}(id: $id) { #{selection} } }|, %{"id" => id}}
+      action when action in ["create", "update"] ->
+        id = __resolve_compiled_id(params, socket)
+        input = __process_compiled_input(action, params)
+        input_type = Map.get(@input_type_name_map, action, "JSON")
+        if id && action == "update" do
+          {~s|mutation($id: ID!, $input: #{input_type}!) { #{field}(id: $id, input: $input) { result { #{selection} } errors { message } } }|, %{"id" => id, "input" => input}}
+        else
+          {~s|mutation($input: #{input_type}!) { #{field}(input: $input) { result { #{selection} } errors { message } } }|, %{"input" => input}}
+        end
+      "destroy" ->
+        id = __resolve_compiled_id(params, socket)
+        {~s|mutation($id: ID!) { #{field}(id: $id) { result { id } errors { message } } }|, %{"id" => id}}
+      _ ->
+        # 自定义 action（activate, deactivate 等）
+        id = __resolve_compiled_id(params, socket)
+        {~s|mutation($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message } } }|, %{"id" => id}}
+    end
+  end
+
+  defp __process_compiled_input(action, params) do
+    allowlist = Map.get(@input_allowlist, action, [])
+    type_map = Map.get(@input_type_map, action, %{})
+    params
+    |> Map.drop(["id", :id, "_target", "__page_id", "_csrf_token"])
+    |> __extract_compiled_entity_input()
+    |> Map.take(allowlist)
+    |> __coerce_types(type_map)
+    |> __to_camel_keys()
+  end
+
+  defp __extract_compiled_entity_input(params) when is_map(params) do
+    nested = Enum.filter(params, fn {k, v} -> is_binary(k) and is_map(v) end)
+    case nested do
+      [{_key, nested_value}] ->
+        scalar = Map.reject(params, fn {_k, v} -> is_map(v) end)
+        Map.merge(nested_value, scalar)
+      _ -> params
+    end
+  end
+  defp __extract_compiled_entity_input(params), do: params
+
+  defp __resolve_compiled_id(params, socket) do
+    Map.get(params, "id") ||
+      Map.get(params, :id) ||
+      get_in(socket.assigns, [:record, :id]) ||
+      get_in(socket.assigns, [:record, "id"]) ||
+      get_in(socket.assigns, [:travel_order, :id]) ||
+      get_in(socket.assigns, [:travel_order, "id"]) ||
+      (socket.assigns[:record] && socket.assigns[:record]["id"]) ||
+      (socket.assigns[:travel_order] && socket.assigns[:travel_order]["id"]) || ""
+  end
+
+  defp __coerce_types(input, type_map) when is_map(input) and is_map(type_map) do
+    Map.new(input, fn {k, v} ->
+      case Map.get(type_map, k) do
+        "integer" when is_binary(v) ->
+          case Integer.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        "decimal" when is_binary(v) -> {k, v}
+        "boolean" when is_binary(v) -> {k, v == "true"}
+        "float" when is_binary(v) ->
+          case Float.parse(v) do
+            {n, ""} -> {k, n}
+            _ -> {k, v}
+          end
+        _ -> {k, v}
+      end
+    end)
+  end
+  defp __coerce_types(input, _), do: input
+
+  defp __to_camel_keys(map) when is_map(map) do
+    Map.new(map, fn {k, v} -> {__camelize_key(to_string(k)), v} end)
+  end
+  defp __to_camel_keys(other), do: other
+
+  defp __camelize_key(s) do
+    [first | rest] = String.split(s, "_")
+    first <> Enum.map_join(rest, "", &String.capitalize/1)
+  end
+
+  defp __exec_compiled_graphql(query, variables, socket) when is_binary(query) do
+    tenant_id = Map.get(socket.assigns, :tenant_id) ||
+      (if function_exported?(@runtime_config_mod, :default_tenant_id, 0), do: @runtime_config_mod.default_tenant_id(), else: nil)
+
+    base_context = %{
+      actor: Map.get(socket.assigns, :actor),
+      current_user: Map.get(socket.assigns, :current_user),
+      auth_claims: Map.get(socket.assigns, :auth_claims),
+      tenant_id: tenant_id,
+      tenant: Map.get(socket.assigns, :tenant) || tenant_id,
+      context_envelope: Map.get(socket.assigns, :context_envelope)
+    }
+
+    context = if function_exported?(@runtime_config_mod, :build_context, 1) do
+      @runtime_config_mod.build_context(base_context)
+    else
+      base_context
+    end
+
+    loader = if Code.ensure_loaded?(Dataloader) do
+      if function_exported?(@runtime_config_mod, :new_loader, 1),
+        do: @runtime_config_mod.new_loader(context),
+        else: Dataloader.new()
+    end
+    context = if loader, do: Map.put(context, :loader, loader), else: context
+
+    schema_mod = if function_exported?(@runtime_config_mod, :schema_module, 0),
+      do: @runtime_config_mod.schema_module(),
+      else: nil
+
+    if schema_mod do
+      case Absinthe.run(query, schema_mod, variables: variables, context: context) do
+        {:ok, %{data: data}} when is_map(data) ->
+          field_result = data |> Map.values() |> Enum.find(& &1) || %{}
+          case field_result do
+            %{"results" => results, "count" => count} ->
+              {:ok, %{dto: %{results: results, count: count}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            %{"result" => result, "errors" => errors} when is_list(errors) and length(errors) > 0 ->
+              {:error, %{errors: errors, meta: %{mode: "compiled_graphql"}}}
+            %{"result" => result} ->
+              {:ok, %{dto: result || %{}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            single when is_map(single) ->
+              {:ok, %{dto: single, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+            _ ->
+              {:ok, %{dto: %{}, status: %{}, effects: [], errors: [], meta: %{mode: "compiled_graphql"}}}
+          end
+        {:ok, %{errors: errors}} ->
+          {:error, %{errors: errors, meta: %{mode: "compiled_graphql"}}}
+        {:error, reason} ->
+          {:error, %{errors: [%{message: inspect(reason)}], meta: %{mode: "compiled_graphql"}}}
+      end
+    else
+      {:error, %{errors: [%{message: "schema module not available"}], meta: %{}}}
+    end
   end
 
   defp __resolve_backend_api(event, socket) do
@@ -449,6 +616,34 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
     end
   end
   defp __inject_backend_id(params, _socket), do: params
+
+  defp __maybe_inject_destroy_redirect(event, {:ok, %{} = data} = result, socket) do
+    normalized = to_string(event)
+    is_destroy = normalized == "action_destroy" or String.ends_with?(normalized, "_destroy")
+    existing_effects = Map.get(data, :effects, [])
+    has_navigate = Enum.any?(existing_effects, fn
+      %{type: "navigate"} -> true
+      %{"type" => "navigate"} -> true
+      _ -> false
+    end)
+    if is_destroy and not has_navigate do
+      list_path = case Map.get(socket.assigns, :self_path) do
+        p when is_binary(p) and p != "" ->
+          # 去掉最后一段 path segment（/:id 的实际值）得到 list 页路径
+          String.replace(p, ~r"/[^/]+$", "")
+        _ -> nil
+      end
+      if is_binary(list_path) and list_path != "" do
+        effects = existing_effects ++ [%{type: "navigate", to: list_path}]
+        {:ok, Map.put(data, :effects, effects)}
+      else
+        result
+      end
+    else
+      result
+    end
+  end
+  defp __maybe_inject_destroy_redirect(_event, result, _socket), do: result
 
   defp __split_dto_status(assigns) when is_map(assigns) do
     # Split is a hint only. Both dto/status are still assigned as flat keys.
@@ -537,7 +732,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelOrderDetailLive do
         end
       _ ->
         source =
-          Enum.reduce(@entity_assign_fields, %{}, fn key, acc ->
+          Enum.reduce(["id" | @entity_assign_fields], %{}, fn key, acc ->
             case Map.fetch(dto, key) do
               {:ok, value} -> Map.put(acc, key, value)
               :error ->

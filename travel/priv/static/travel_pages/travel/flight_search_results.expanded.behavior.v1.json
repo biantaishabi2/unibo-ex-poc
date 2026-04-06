@@ -3,6 +3,9 @@
     "api_map": {
       "search": "Travel.FlightOffer.list"
     },
+    "graphql_field_map": {
+      "search": "list_travel_flight_offers"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

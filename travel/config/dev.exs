@@ -40,7 +40,8 @@ config :phoenix_live_view,
 
 # 开发环境默认 tenant（multitenancy 实体页面验证用）
 config :travel, UniboExPocWeb.Graphql.RuntimeConfig,
-  default_tenant_id: "00000000-0000-0000-0000-000000000001"
+  default_tenant_id: "00000000-0000-0000-0000-000000000001",
+  require_actor_for_mutation: false
 
 # Travel 域外部 API stub — 开发环境无真实外部服务，返回成功空响应
 config :travel, :integration_providers, %{

@@ -66,7 +66,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_load_event "get"
   @backend_load_selection "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
   @backend_load_assigns %{hotel_offer: %{}}
-  @backend_params_accept ["id", "city_code", "cancellation_policy", "sale_status", "currency", "room_type_code", "checkin_date", "supplier_code", "hotel_name", "city_ref_id", "rate_plan_code", "guarantee_policy", "settlement_price", "host_shop_id", "hotel_code", "checkout_date", "listed_price", "inventory_count"]
+  @backend_params_accept ["id", "guarantee_policy", "cancellation_policy", "rate_plan_code", "listed_price", "supplier_code", "inventory_count", "city_ref_id", "currency", "host_shop_id", "settlement_price", "sale_status", "checkin_date", "room_type_code", "hotel_code", "city_code", "hotel_name", "checkout_date"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "activate" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.HotelOffer.activate"},
@@ -307,18 +307,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
           state0 = __take_status(socket.assigns)
           state0 = __inject_backend_tenant(state0, socket)
           state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
+          # 先获取本地 transition 定义的 effects（如 destroy 后的 navigate）
+          %{effects: local_effects} = __apply_transitions(event, params, state0)
           backend_api = __resolve_backend_api(event, socket)
           case backend_api do
             nil ->
-              # 纯 UI 事件不应硬塞给后端；compiled 页面这里直接走本地 transition。
+              # 纯 UI 事件，直接走本地 transition
               %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
               {dto, st} = __split_dto_status(assigns2)
               {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
             _mapping ->
-              apply(@backend_mod, @backend_fun, [event, params, state0])
+              backend_result = apply(@backend_mod, @backend_fun, [event, params, state0])
+              # 合并本地 transition effects（如 destroy 后 navigate）到后端返回结果
+              case {backend_result, local_effects} do
+                {{:ok, %{} = data}, [_ | _]} ->
+                  existing = Map.get(data, :effects, [])
+                  {:ok, Map.put(data, :effects, existing ++ local_effects)}
+                _ ->
+                  backend_result
+              end
           end
       end
 
+    # destroy 成功后自动跳转到 list 页（从 self_path 推导，去掉最后一段 /:id）
+    result = __maybe_inject_destroy_redirect(event, result, socket)
     apply_backend_result(socket, result)
   end
 
@@ -357,6 +369,34 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     end
   end
   defp __inject_backend_id(params, _socket), do: params
+
+  defp __maybe_inject_destroy_redirect(event, {:ok, %{} = data} = result, socket) do
+    normalized = to_string(event)
+    is_destroy = normalized == "action_destroy" or String.ends_with?(normalized, "_destroy")
+    existing_effects = Map.get(data, :effects, [])
+    has_navigate = Enum.any?(existing_effects, fn
+      %{type: "navigate"} -> true
+      %{"type" => "navigate"} -> true
+      _ -> false
+    end)
+    if is_destroy and not has_navigate do
+      list_path = case Map.get(socket.assigns, :self_path) do
+        p when is_binary(p) and p != "" ->
+          # 去掉最后一段 path segment（/:id 的实际值）得到 list 页路径
+          String.replace(p, ~r"/[^/]+$", "")
+        _ -> nil
+      end
+      if is_binary(list_path) and list_path != "" do
+        effects = existing_effects ++ [%{type: "navigate", to: list_path}]
+        {:ok, Map.put(data, :effects, effects)}
+      else
+        result
+      end
+    else
+      result
+    end
+  end
+  defp __maybe_inject_destroy_redirect(_event, result, _socket), do: result
 
   defp __split_dto_status(assigns) when is_map(assigns) do
     # Split is a hint only. Both dto/status are still assigned as flat keys.
@@ -445,7 +485,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
         end
       _ ->
         source =
-          Enum.reduce(@entity_assign_fields, %{}, fn key, acc ->
+          Enum.reduce(["id" | @entity_assign_fields], %{}, fn key, acc ->
             case Map.fetch(dto, key) do
               {:ok, value} -> Map.put(acc, key, value)
               :error ->

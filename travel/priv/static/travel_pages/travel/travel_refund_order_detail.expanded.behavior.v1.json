@@ -10,10 +10,57 @@
       "submit": "Travel.TravelRefundOrder.submit",
       "update": "Travel.TravelRefundOrder.update"
     },
+    "graphql_field_map": {
+      "confirm_refund": "confirm_refund_travel_travel_refund_order",
+      "create": "create_travel_travel_refund_order",
+      "get": "get_travel_travel_refund_order",
+      "refund": "refund_travel_travel_refund_order",
+      "refund_direct": "refund_direct_travel_travel_refund_order",
+      "reject_refund": "reject_refund_travel_travel_refund_order",
+      "submit": "submit_travel_travel_refund_order",
+      "update": "update_travel_travel_refund_order"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "approval_mode",
+        "original_order_id",
+        "refund_amount",
+        "refund_fee",
+        "refund_reason"
+      ],
+      "update": [
+        "refund_amount",
+        "refund_fee",
+        "refund_reason"
+      ]
+    },
+    "input_type_map": {
+      "create": {
+        "approval_mode": "enum",
+        "original_order_id": "string",
+        "refund_amount": "string",
+        "refund_fee": "string",
+        "refund_reason": "string"
+      },
+      "update": {
+        "refund_amount": "string",
+        "refund_fee": "string",
+        "refund_reason": "string"
+      }
+    },
+    "input_type_name_map": {
+      "confirm_refund": "ConfirmRefundTravelTravelRefundOrderInput",
+      "create": "CreateTravelTravelRefundOrderInput",
+      "refund": "RefundTravelTravelRefundOrderInput",
+      "refund_direct": "RefundDirectTravelTravelRefundOrderInput",
+      "reject_refund": "RejectRefundTravelTravelRefundOrderInput",
+      "submit": "SubmitTravelTravelRefundOrderInput",
+      "update": "UpdateTravelTravelRefundOrderInput"
     },
     "load": {
       "assigns": {},
@@ -24,9 +71,9 @@
         "id",
         "original_order_id",
         "refund_fee",
+        "approval_mode",
         "refund_reason",
-        "refund_amount",
-        "approval_mode"
+        "refund_amount"
       ]
     }
   },

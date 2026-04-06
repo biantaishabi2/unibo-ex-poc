@@ -4,6 +4,10 @@
       "get": "Travel.TravelRefundOrder.get",
       "list": "Travel.TravelRefundOrder.list"
     },
+    "graphql_field_map": {
+      "get": "get_travel_travel_refund_order",
+      "list": "list_travel_travel_refund_orders"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

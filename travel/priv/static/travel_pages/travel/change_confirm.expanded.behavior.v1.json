@@ -4,10 +4,37 @@
       "create": "Travel.TravelChangeOrder.create",
       "list": "Travel.TravelChangeOrder.list"
     },
+    "graphql_field_map": {
+      "create": "create_travel_travel_change_order",
+      "list": "list_travel_travel_change_orders"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"
       ]
+    },
+    "input_allowlist": {
+      "create": [
+        "approval_mode",
+        "change_fee",
+        "change_reason",
+        "new_offer_id",
+        "original_order_id",
+        "price_difference"
+      ]
+    },
+    "input_type_map": {
+      "create": {
+        "approval_mode": "enum",
+        "change_fee": "string",
+        "change_reason": "string",
+        "new_offer_id": "string",
+        "original_order_id": "string",
+        "price_difference": "string"
+      }
+    },
+    "input_type_name_map": {
+      "create": "CreateTravelTravelChangeOrderInput"
     },
     "load": {
       "assigns": {},

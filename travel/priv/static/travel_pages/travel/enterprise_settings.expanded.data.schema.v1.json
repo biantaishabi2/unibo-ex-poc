@@ -1,23 +1,7 @@
 {
   "version": 1,
-  "requiredPaths": [
-    "record"
-  ],
-  "requiredRoots": [
-    "record"
-  ],
-  "schema": {
-    "record": {
-      "type": "object",
-      "required": true,
-      "properties": {
-        "is_active": {
-          "type": "boolean",
-          "required": false,
-          "example": true
-        }
-      }
-    }
-  },
+  "requiredPaths": [],
+  "requiredRoots": [],
+  "schema": {},
   "notes": []
 }

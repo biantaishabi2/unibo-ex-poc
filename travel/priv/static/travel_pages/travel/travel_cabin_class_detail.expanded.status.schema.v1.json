@@ -30,10 +30,45 @@
         "get": "Travel.TravelCabinClass.get",
         "update": "Travel.TravelCabinClass.update"
       },
+      "graphql_field_map": {
+        "create": "create_travel_travel_cabin_class",
+        "get": "get_travel_travel_cabin_class",
+        "update": "update_travel_travel_cabin_class"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "create": [
+          "cabin_class_code",
+          "cabin_class_name",
+          "cabin_rank",
+          "status"
+        ],
+        "update": [
+          "cabin_class_name",
+          "cabin_rank",
+          "status"
+        ]
+      },
+      "input_type_map": {
+        "create": {
+          "cabin_class_code": "string",
+          "cabin_class_name": "string",
+          "cabin_rank": "integer",
+          "status": "enum"
+        },
+        "update": {
+          "cabin_class_name": "string",
+          "cabin_rank": "integer",
+          "status": "enum"
+        }
+      },
+      "input_type_name_map": {
+        "create": "CreateTravelTravelCabinClassInput",
+        "update": "UpdateTravelTravelCabinClassInput"
       },
       "load": {
         "assigns": {},
@@ -42,10 +77,10 @@
       "params": {
         "accept": [
           "id",
-          "cabin_rank",
+          "cabin_class_code",
           "cabin_class_name",
           "status",
-          "cabin_class_code"
+          "cabin_rank"
         ]
       }
     },
@@ -131,11 +166,6 @@
               },
               {
                 "action": "type",
-                "field": "cabin_class_name",
-                "value": "UPDATED_{{__run_id}}_cabin_class_name"
-              },
-              {
-                "action": "type",
                 "field": "cabin_rank",
                 "value": "2"
               },
@@ -143,6 +173,11 @@
                 "action": "select_option",
                 "field": "status",
                 "value": "inactive"
+              },
+              {
+                "action": "type",
+                "field": "cabin_class_name",
+                "value": "UPDATED_{{__run_id}}_cabin_class_name"
               },
               {
                 "action": "click",
@@ -343,11 +378,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.cabin_rank",
+              "equals": "$form.cabin_class_name",
               "excludes_source": null,
               "graphql_field": "getTravelTravelCabinClass",
               "op": "equals",
-              "path": "cabin_rank",
+              "path": "cabin_class_name",
               "source": "active_record_id"
             },
             "ui": [

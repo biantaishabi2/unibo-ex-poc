@@ -14,7 +14,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshStateMachine],
+    extensions: [AshGraphql.Resource],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -98,10 +98,8 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       public? true
       description "个人支付比例 0-100"
     end
-    attribute :is_active, :atom do
-      allow_nil? false
-      constraints one_of: [:false, :true]
-      default "false"
+    attribute :is_active, :boolean do
+      default true
       public? true
       description "是否启用"
     end
@@ -153,7 +151,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     end
     update :activate do
       description "Update Travel Policy via Activate. doc_url: graphql://contract/travel/activate_travel_travel_policy"
-      accept []
+      accept [:is_active]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :is_active)
         if current == false do
@@ -164,12 +162,11 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       end
       # message: "只有未启用的政策可以激活"
       change set_attribute(:is_active, true)
-      change AshStateMachine.BuiltinChanges.transition_state(:true)
       require_atomic? false
     end
     update :deactivate do
       description "Update Travel Policy via Deactivate. doc_url: graphql://contract/travel/deactivate_travel_travel_policy"
-      accept []
+      accept [:is_active]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :is_active)
         if current == true do
@@ -180,7 +177,6 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       end
       # message: "只有已启用的政策可以停用"
       change set_attribute(:is_active, false)
-      change AshStateMachine.BuiltinChanges.transition_state(:false)
       require_atomic? false
     end
   end
@@ -193,17 +189,6 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     identity :unique_policy_scope, [:policy_name, :product_type, :employee_level, :city_tier]
   end
 
-
-  state_machine do
-    initial_states [:false]
-    default_initial_state :false
-    extra_states [:false, :true]
-    state_attribute :is_active
-    transitions do
-      transition :activate, from: :false, to: :true
-      transition :deactivate, from: :true, to: :false
-    end
-  end
 
   pub_sub do
     module UniboExPoc.PubSub

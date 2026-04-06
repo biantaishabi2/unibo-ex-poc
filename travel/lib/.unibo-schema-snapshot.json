@@ -125,7 +125,9 @@
               "hotel_code"
             ]
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelRoomType",
@@ -244,7 +246,9 @@
               "room_type_code"
             ]
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelAirline",
@@ -353,7 +357,9 @@
               "airline_code"
             ]
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelCabinClass",
@@ -455,7 +461,9 @@
               "cabin_class_code"
             ]
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelStaticCodeMapping",
@@ -589,7 +597,9 @@
               "external_code"
             ]
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "HotelOffer",
@@ -1057,7 +1067,9 @@
             }
           ],
           "state_attribute": "sale_status"
-        }
+        },
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "FlightOffer",
@@ -1549,7 +1561,9 @@
             }
           ],
           "state_attribute": "sale_status"
-        }
+        },
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "VacationOffer",
@@ -2020,7 +2034,9 @@
             }
           ],
           "state_attribute": "sale_status"
-        }
+        },
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TrainOffer",
@@ -2541,7 +2557,9 @@
             }
           ],
           "state_attribute": "sale_status"
-        }
+        },
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelOrder",
@@ -3870,7 +3888,9 @@
             "action": "cancel_cancel_request",
             "source_entity": "ApprovalInstance"
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelFulfillment",
@@ -4391,18 +4411,27 @@
             ],
             "description": "取消履约异步契约，失败时通过补偿任务做二次撤销"
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelChangeOrder",
         "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
+        "tenancy": {},
         "attributes": [
           {
             "name": "id",
             "type": "uuid",
             "primary_key": true,
             "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true,
+            "description": "租户 ID"
           },
           {
             "name": "change_reason",
@@ -4647,6 +4676,7 @@
           {
             "name": "unique_order_status",
             "keys": [
+              "tenant_id",
               "original_order_id",
               "status"
             ]
@@ -4777,7 +4807,9 @@
             "action": "reject_change",
             "source_entity": "ApprovalInstance"
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelRefundOrder",
@@ -5156,7 +5188,9 @@
             "action": "reject_refund",
             "source_entity": "ApprovalInstance"
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelPolicy",
@@ -5355,12 +5389,16 @@
           {
             "name": "activate",
             "type": "update",
-            "accept": []
+            "accept": [
+              "is_active"
+            ]
           },
           {
             "name": "deactivate",
             "type": "update",
-            "accept": []
+            "accept": [
+              "is_active"
+            ]
           }
         ],
         "validations": [
@@ -5513,26 +5551,8 @@
             ]
           }
         ],
-        "state_machine": {
-          "initial_state": "false",
-          "states": [
-            "false",
-            "true"
-          ],
-          "transitions": [
-            {
-              "from": "false",
-              "to": "true",
-              "event": "activate"
-            },
-            {
-              "from": "true",
-              "to": "false",
-              "event": "deactivate"
-            }
-          ],
-          "state_attribute": "is_active"
-        }
+        "authorization": null,
+        "data_scope": null
       },
       {
         "name": "TravelPolicyCheck",
@@ -5721,7 +5741,9 @@
               "order_id"
             ]
           }
-        ]
+        ],
+        "authorization": null,
+        "data_scope": null
       }
     ]
   }

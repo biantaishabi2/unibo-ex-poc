@@ -3,6 +3,9 @@
     "api_map": {
       "search": "Travel.HotelOffer.list"
     },
+    "graphql_field_map": {
+      "search": "list_travel_hotel_offers"
+    },
     "info": {
       "reload_messages": [
         "page_host_reload"

@@ -29,7 +29,13 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   def load_page(_page_id, _params, _runtime_mode, _backend),
     do: {:error, :page_host_page_not_found}
 
-  def resolve_host_route(route_segments), do: resolve_host_route(route_segments, %{})
+  def resolve_host_route(route_segments) when is_list(route_segments),
+    do: resolve_host_route(route_segments, %{})
+
+  def resolve_host_route(route_path) when is_binary(route_path),
+    do: resolve_host_route(route_path, %{})
+
+  def resolve_host_route(_route), do: {:error, :page_host_page_not_found}
 
   def resolve_host_route(route_segments, query_params)
       when is_list(route_segments) and is_map(query_params) do
@@ -52,8 +58,6 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
         resolve_host_route_path(path, query_params)
     end
   end
-
-  def resolve_host_route(route_path), do: resolve_host_route(route_path, %{})
 
   def resolve_host_route(route_path, query_params)
       when is_binary(route_path) and is_map(query_params) do
@@ -684,6 +688,16 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     end
   end
 
+  defp load_page_data(path, page_id, _page, _params, _runtime_mode, _backend) do
+    status_defaults = load_status_defaults(path)
+
+    {:ok,
+     @default_assigns
+     |> Map.merge(status_defaults)
+     |> Map.merge(load_mock_data(path))
+     |> maybe_put_page_title(page_id, status_defaults)}
+  end
+
   defp load_page_data_graphql(path, page_id, page, params, backend) do
     status_defaults = load_status_defaults(path)
     page_contract = load_behavior_contract(path)
@@ -734,16 +748,6 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
           {:error, {:page_host_load_failed, other}}
       end
     end
-  end
-
-  defp load_page_data(path, page_id, _page, _params, _runtime_mode, _backend) do
-    status_defaults = load_status_defaults(path)
-
-    {:ok,
-     @default_assigns
-     |> Map.merge(status_defaults)
-     |> Map.merge(load_mock_data(path))
-     |> maybe_put_page_title(page_id, status_defaults)}
   end
 
   defp maybe_put_page_title(page_data, page_id, status_defaults) do

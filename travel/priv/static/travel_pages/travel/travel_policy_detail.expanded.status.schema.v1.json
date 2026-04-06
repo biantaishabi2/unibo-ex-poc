@@ -1,9 +1,6 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
-      "is_active": true
-    },
     "travel_policy": {
       "policy_name": "",
       "product_type": "",
@@ -22,8 +19,6 @@
   },
   "keys": [
     "editing",
-    "record",
-    "record.is_active",
     "travel_policy",
     "travel_policy.approval_mode",
     "travel_policy.cabin_class_limit",
@@ -40,7 +35,6 @@
   ],
   "required": [
     "editing",
-    "record",
     "travel_policy"
   ],
   "urlParams": {},
@@ -54,10 +48,87 @@
         "get": "Travel.TravelPolicy.get",
         "update": "Travel.TravelPolicy.update"
       },
+      "graphql_field_map": {
+        "activate": "activate_travel_travel_policy",
+        "create": "create_travel_travel_policy",
+        "deactivate": "deactivate_travel_travel_policy",
+        "get": "get_travel_travel_policy",
+        "update": "update_travel_travel_policy"
+      },
       "info": {
         "reload_messages": [
           "page_host_reload"
         ]
+      },
+      "input_allowlist": {
+        "activate": [
+          "is_active"
+        ],
+        "create": [
+          "approval_mode",
+          "cabin_class_limit",
+          "city_tier",
+          "employee_level",
+          "enterprise_id",
+          "exceed_strategy",
+          "hotel_star_limit",
+          "max_amount",
+          "personal_pay_ratio",
+          "policy_name",
+          "product_type",
+          "season"
+        ],
+        "deactivate": [
+          "is_active"
+        ],
+        "update": [
+          "approval_mode",
+          "cabin_class_limit",
+          "exceed_strategy",
+          "hotel_star_limit",
+          "max_amount",
+          "personal_pay_ratio",
+          "policy_name",
+          "season"
+        ]
+      },
+      "input_type_map": {
+        "activate": {
+          "is_active": "boolean"
+        },
+        "create": {
+          "approval_mode": "enum",
+          "cabin_class_limit": "string",
+          "city_tier": "string",
+          "employee_level": "string",
+          "enterprise_id": "string",
+          "exceed_strategy": "enum",
+          "hotel_star_limit": "string",
+          "max_amount": "integer",
+          "personal_pay_ratio": "integer",
+          "policy_name": "string",
+          "product_type": "enum",
+          "season": "string"
+        },
+        "deactivate": {
+          "is_active": "boolean"
+        },
+        "update": {
+          "approval_mode": "enum",
+          "cabin_class_limit": "string",
+          "exceed_strategy": "enum",
+          "hotel_star_limit": "string",
+          "max_amount": "integer",
+          "personal_pay_ratio": "integer",
+          "policy_name": "string",
+          "season": "string"
+        }
+      },
+      "input_type_name_map": {
+        "activate": "ActivateTravelTravelPolicyInput",
+        "create": "CreateTravelTravelPolicyInput",
+        "deactivate": "DeactivateTravelTravelPolicyInput",
+        "update": "UpdateTravelTravelPolicyInput"
       },
       "load": {
         "assigns": {},
@@ -66,18 +137,18 @@
       "params": {
         "accept": [
           "id",
-          "season",
           "product_type",
-          "employee_level",
           "policy_name",
           "city_tier",
+          "season",
           "exceed_strategy",
           "personal_pay_ratio",
-          "hotel_star_limit",
+          "enterprise_id",
+          "employee_level",
           "approval_mode",
-          "max_amount",
+          "hotel_star_limit",
           "cabin_class_limit",
-          "enterprise_id"
+          "max_amount"
         ]
       }
     },
@@ -98,7 +169,7 @@
           "supports_edit_form": true,
           "supports_embedded_form": false,
           "supports_fcl": false,
-          "supports_state_machine": true,
+          "supports_state_machine": false,
           "supports_wait_contract": true,
           "supports_wizard": false
         },
@@ -163,18 +234,23 @@
               },
               {
                 "action": "type",
-                "field": "hotel_star_limit",
-                "value": "UPDATED_{{__run_id}}_hotel_star_limit"
+                "field": "season",
+                "value": "UPDATED_{{__run_id}}_season"
               },
               {
                 "action": "type",
-                "field": "personal_pay_ratio",
+                "field": "max_amount",
                 "value": "2"
               },
               {
                 "action": "type",
-                "field": "season",
-                "value": "UPDATED_{{__run_id}}_season"
+                "field": "cabin_class_limit",
+                "value": "UPDATED_{{__run_id}}_cabin_class_limit"
+              },
+              {
+                "action": "type",
+                "field": "hotel_star_limit",
+                "value": "UPDATED_{{__run_id}}_hotel_star_limit"
               },
               {
                 "action": "select_option",
@@ -187,18 +263,13 @@
                 "value": "UPDATED_{{__run_id}}_policy_name"
               },
               {
-                "action": "type",
-                "field": "cabin_class_limit",
-                "value": "UPDATED_{{__run_id}}_cabin_class_limit"
-              },
-              {
                 "action": "select_option",
                 "field": "approval_mode",
                 "value": "self"
               },
               {
                 "action": "type",
-                "field": "max_amount",
+                "field": "personal_pay_ratio",
                 "value": "2"
               },
               {
@@ -213,50 +284,32 @@
             "covers": [
               "action_activate"
             ],
-            "kind": "state",
-            "name": "状态转换：false → true（activate）",
+            "kind": "custom",
+            "name": "动作：activate",
             "steps": [
-              {
-                "action": "goto",
-                "url": "/pages/travel/travel_policy/{{state_action_record_id_activate}}",
-                "value": "/pages/travel/travel_policy/{{state_action_record_id_activate}}"
-              },
-              {
-                "action": "expect_visible",
-                "selector": "#travel_policy_detail"
-              },
               {
                 "action": "click",
                 "event": "action_activate",
                 "selector": "#travel_policy_action_activate"
               }
             ],
-            "verification_key": "action_activate",
+            "verification_key": null,
             "wait_key": "action_activate"
           },
           {
             "covers": [
               "action_deactivate"
             ],
-            "kind": "state",
-            "name": "状态转换：true → false（deactivate）",
+            "kind": "custom",
+            "name": "动作：deactivate",
             "steps": [
-              {
-                "action": "goto",
-                "url": "/pages/travel/travel_policy/{{state_action_record_id_deactivate}}",
-                "value": "/pages/travel/travel_policy/{{state_action_record_id_deactivate}}"
-              },
-              {
-                "action": "expect_visible",
-                "selector": "#travel_policy_detail"
-              },
               {
                 "action": "click",
                 "event": "action_deactivate",
                 "selector": "#travel_policy_action_deactivate"
               }
             ],
-            "verification_key": "action_deactivate",
+            "verification_key": null,
             "wait_key": "action_deactivate"
           }
         ],
@@ -302,90 +355,9 @@
               "entity": "TravelPolicy",
               "freshness": "match_only",
               "graphql_field": "listTravelTravelPolicies",
-              "index": 0,
               "kind": "entity_list_first",
               "name": "resolve_current_record",
-              "owner": "root",
-              "where_equals": "true",
-              "where_path": "is_active"
-            },
-            {
-              "binds": [
-                {
-                  "name": "state_action_record_id_activate",
-                  "path": "id",
-                  "source": "result"
-                }
-              ],
-              "cleanup_policy": "always",
-              "create_blockers": [],
-              "create_graphql_field": "createTravelTravelPolicy",
-              "create_input": {
-                "approval_mode": "none",
-                "cabin_class_limit": "E2E_{{__run_id}}_cabin_class_limit_state_activate_0",
-                "city_tier": "E2E_{{__run_id}}_city_tier_state_activate_0",
-                "employee_level": "E2E_{{__run_id}}_employee_level_state_activate_0",
-                "enterprise_id": "E2E_{{__run_id}}_enterprise_id_state_activate_0",
-                "exceed_strategy": "block",
-                "hotel_star_limit": "E2E_{{__run_id}}_hotel_star_limit_state_activate_0",
-                "max_amount": 1,
-                "personal_pay_ratio": 1,
-                "policy_name": "E2E_{{__run_id}}_policy_name_state_activate_0",
-                "product_type": "flight",
-                "season": "E2E_{{__run_id}}_season_state_activate_0"
-              },
-              "depends_on": [],
-              "domain": "Travel",
-              "entity": "TravelPolicy",
-              "freshness": "prefer_create",
-              "graphql_field": "listTravelTravelPolicies",
-              "index": 0,
-              "kind": "entity_list_match_or_create",
-              "name": "resolve_state_action_record_activate",
-              "owner": "root",
-              "prepare_actions": [
-                "deactivate"
-              ],
-              "where_equals": "true",
-              "where_path": "is_active"
-            },
-            {
-              "binds": [
-                {
-                  "name": "state_action_record_id_deactivate",
-                  "path": "id",
-                  "source": "result"
-                }
-              ],
-              "cleanup_policy": "always",
-              "create_blockers": [],
-              "create_graphql_field": "createTravelTravelPolicy",
-              "create_input": {
-                "approval_mode": "none",
-                "cabin_class_limit": "E2E_{{__run_id}}_cabin_class_limit_state_deactivate_0",
-                "city_tier": "E2E_{{__run_id}}_city_tier_state_deactivate_0",
-                "employee_level": "E2E_{{__run_id}}_employee_level_state_deactivate_0",
-                "enterprise_id": "E2E_{{__run_id}}_enterprise_id_state_deactivate_0",
-                "exceed_strategy": "block",
-                "hotel_star_limit": "E2E_{{__run_id}}_hotel_star_limit_state_deactivate_0",
-                "max_amount": 1,
-                "personal_pay_ratio": 1,
-                "policy_name": "E2E_{{__run_id}}_policy_name_state_deactivate_0",
-                "product_type": "flight",
-                "season": "E2E_{{__run_id}}_season_state_deactivate_0"
-              },
-              "depends_on": [],
-              "domain": "Travel",
-              "entity": "TravelPolicy",
-              "freshness": "prefer_create",
-              "graphql_field": "listTravelTravelPolicies",
-              "index": 0,
-              "kind": "entity_list_match_or_create",
-              "name": "resolve_state_action_record_deactivate",
-              "owner": "root",
-              "prepare_actions": [],
-              "where_equals": "true",
-              "where_path": "is_active"
+              "owner": "root"
             }
           ]
         },
@@ -443,58 +415,6 @@
         "strategy": "object_detail_flow",
         "template_kind": "object_page",
         "verification_contract": {
-          "action_activate": {
-            "backend": {
-              "api": "get",
-              "args": [
-                {
-                  "name": "id",
-                  "source": "active_record_id"
-                }
-              ],
-              "binds": [],
-              "equals": "true",
-              "excludes_source": null,
-              "graphql_field": "getTravelTravelPolicy",
-              "op": "equals",
-              "path": "is_active",
-              "source": "active_record_id"
-            },
-            "event": "activate",
-            "ui": [
-              {
-                "assert": "visible",
-                "selector": "#travel_policy_detail",
-                "value": null
-              }
-            ]
-          },
-          "action_deactivate": {
-            "backend": {
-              "api": "get",
-              "args": [
-                {
-                  "name": "id",
-                  "source": "active_record_id"
-                }
-              ],
-              "binds": [],
-              "equals": "false",
-              "excludes_source": null,
-              "graphql_field": "getTravelTravelPolicy",
-              "op": "equals",
-              "path": "is_active",
-              "source": "active_record_id"
-            },
-            "event": "deactivate",
-            "ui": [
-              {
-                "assert": "visible",
-                "selector": "#travel_policy_detail",
-                "value": null
-              }
-            ]
-          },
           "create": {
             "backend": {
               "api": "get",
