@@ -1,67 +1,96 @@
 {
   "record": {
-    "title": "",
-    "state": "",
-    "generation_mode": "",
+    "title": "ICU 2026年3月第4周排班",
+    "state": "draft",
+    "generation_mode": "auto",
     "department": {
-      "name": ""
+      "name": "ICU"
     },
-    "start_date": "",
-    "end_date": "",
+    "start_date": "2026-03-23",
+    "end_date": "2026-03-29",
     "current_version": {
-      "version_no": ""
+      "version_no": "v1"
     },
     "last_solver_run": {
-      "status": ""
+      "status": "completed"
     },
     "schedule_versions": [
       {
-        "version_no": "",
-        "status": "",
-        "origin_type": "",
-        "change_summary": "",
-        "inserted_at": ""
+        "version_no": "v1",
+        "status": "draft",
+        "origin_type": "solver",
+        "change_summary": "求解器自动生成初始排班方案，覆盖 7 天 × 3 班次 × 10 名护士",
+        "inserted_at": "2026-03-22T10:00:00Z"
       },
       {
-        "version_no": "",
-        "status": "",
-        "origin_type": "",
-        "change_summary": "",
-        "inserted_at": ""
+        "version_no": "v2",
+        "status": "draft",
+        "origin_type": "manual",
+        "change_summary": "手动调整：周三大夜班张三换为李四（张三请假）",
+        "inserted_at": "2026-03-22T14:30:00Z"
       },
       {
-        "version_no": "",
-        "status": "",
-        "origin_type": "",
-        "change_summary": "",
-        "inserted_at": ""
+        "version_no": "v3",
+        "status": "pending_approval",
+        "origin_type": "manual",
+        "change_summary": "护士长审核后微调周六白班人员，提交审批",
+        "inserted_at": "2026-03-22T16:00:00Z"
       }
     ],
     "solver_runs": [
       {
-        "engine_type": "",
-        "status": "",
-        "score": "",
-        "hard_violation_count": "",
-        "started_at": "",
-        "completed_at": ""
+        "engine_type": "greedy",
+        "status": "completed",
+        "score": "850",
+        "hard_violation_count": "0",
+        "started_at": "2026-03-22T09:55:00Z",
+        "completed_at": "2026-03-22T09:55:12Z"
       },
       {
-        "engine_type": "",
-        "status": "",
-        "score": "",
-        "hard_violation_count": "",
-        "started_at": "",
-        "completed_at": ""
+        "engine_type": "or_tools",
+        "status": "completed",
+        "score": "920",
+        "hard_violation_count": "0",
+        "started_at": "2026-03-22T09:56:00Z",
+        "completed_at": "2026-03-22T09:57:30Z"
       },
       {
-        "engine_type": "",
-        "status": "",
-        "score": "",
-        "hard_violation_count": "",
-        "started_at": "",
-        "completed_at": ""
+        "engine_type": "or_tools",
+        "status": "failed",
+        "score": "0",
+        "hard_violation_count": "3",
+        "started_at": "2026-03-22T10:10:00Z",
+        "completed_at": "2026-03-22T10:10:05Z"
       }
+    ],
+    "coverage_summary": {
+      "total_slots": 42,
+      "filled_slots": 42,
+      "coverage_rate": "100%",
+      "shifts": [
+        {"name": "白班", "code": "day", "time": "08:00-16:00", "color": "#4CAF50", "daily_headcount": 2},
+        {"name": "小夜班", "code": "evening", "time": "16:00-00:00", "color": "#FF9800", "daily_headcount": 2},
+        {"name": "大夜班", "code": "night", "time": "00:00-08:00", "color": "#9C27B0", "daily_headcount": 2}
+      ]
+    },
+    "staff_list": [
+      {"employee_code": "N001", "name": "张三", "can_lead_shift": true, "work_restrictions": null},
+      {"employee_code": "N002", "name": "李四", "can_lead_shift": true, "work_restrictions": null},
+      {"employee_code": "N003", "name": "王五", "can_lead_shift": false, "work_restrictions": null},
+      {"employee_code": "N004", "name": "赵六", "can_lead_shift": false, "work_restrictions": null},
+      {"employee_code": "N005", "name": "陈七", "can_lead_shift": false, "work_restrictions": null},
+      {"employee_code": "N006", "name": "周八", "can_lead_shift": false, "work_restrictions": null},
+      {"employee_code": "N007", "name": "吴九", "can_lead_shift": false, "work_restrictions": null},
+      {"employee_code": "N008", "name": "郑十", "can_lead_shift": false, "work_restrictions": null},
+      {"employee_code": "N009", "name": "刘十一", "can_lead_shift": false, "work_restrictions": "pregnant"},
+      {"employee_code": "N010", "name": "孙十二", "can_lead_shift": false, "work_restrictions": null}
+    ],
+    "constraints": [
+      {"name": "夜班后必须休息 12 小时", "category": "rest_after_night", "constraint_type": "hard", "enabled": true},
+      {"name": "连续工作不超过 6 天", "category": "max_consecutive_days", "constraint_type": "hard", "enabled": true},
+      {"name": "每班至少 1 名带班护士", "category": "lead_coverage", "constraint_type": "hard", "enabled": true},
+      {"name": "夜班公平分配", "category": "fair_night_distribution", "constraint_type": "soft", "weight": 80, "enabled": true},
+      {"name": "尊重班次偏好", "category": "respect_preference", "constraint_type": "soft", "weight": 40, "enabled": true}
     ]
   }
 }
